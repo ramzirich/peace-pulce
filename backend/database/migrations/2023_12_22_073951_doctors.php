@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("user_id");
             $table->decimal('hourly_rate');
-            $table->decimal('rating');
             $table->text('about');
             $table->string('degree');
+            $table->string('specialization');
             $table->softDeletes()->nullable(); 
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
