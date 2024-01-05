@@ -16,7 +16,6 @@ class RatingController extends Controller
     //
     protected $user, $rating, $doctor, $userSpecificGenericManager;
     public function __construct(){
-        // $this->middleware('patient.check', ['except' => ['login','register']]);
         $this->middleware('patient.check', ['except' => ['getRating']]);
         $this->user = Auth::user();
         $this->rating = new Rating();
@@ -44,9 +43,7 @@ class RatingController extends Controller
             if(!$doctorObj){
                 return ExceptionMessages::NotFound("Doctor");
             }
-            if($doctorObj->role_id != 2){
-                return ExceptionMessages::Error("Not a doctor", 400);
-            }
+           
             $request['patient_id']=Auth::user()->id;
             $ratingObj = $this->rating->where('patient_id',$request['patient_id'])
                                         ->where("doctor_id", $request['doctor_id'])

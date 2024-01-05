@@ -9,6 +9,7 @@ use App\Manager\GenericManager;
 use App\Models\Patient_doctor_request;
 use App\Models\Patients_comment;
 use App\Models\User;
+use App\Models\Doctors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class PatientCommentController extends Controller
 
     public function getAllPatientCommentForDoctor($id, Request $request){
         $request->merge(['doctor_id' => $id]);
-        return $this->userSpecificGenericManager->getAllForCurrentUser($request, ['user']);
+        return $this->userSpecificGenericManager->getAllForCurrentUser($request, ['doctor','user']);
     }
 
     public function createPatientComment(Request $request){
@@ -41,14 +42,11 @@ class PatientCommentController extends Controller
                 return $responseData['errors'];
             }
 
-            $genericManager = new GenericManager(new User);
+            $genericManager = new GenericManager(new Doctors);
             $data = $request->json()->all();
             $doctorObj = $genericManager->findById($data['doctor_id']);
             if(!$doctorObj){
                 return ExceptionMessages::NotFound("Doctor");
-            }
-            if($doctorObj->role_id != 2){
-                return ExceptionMessages::Error('This user is not a doctor', 400);
             }
             
             $patientRequestDoctor = new Patient_doctor_request();

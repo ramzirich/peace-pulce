@@ -21,7 +21,7 @@ class AuthController extends Controller
         $this->middleware('auth.user', ['except' => ['login','register']]);
     }
 
-    public function login(Request $request)
+    public function login(Request $request) 
     {
         $validationResponse = LoginRequest::loginValidation($request);
         $responseData = json_decode($validationResponse->getContent(), true);

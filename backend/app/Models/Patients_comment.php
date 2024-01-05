@@ -19,6 +19,6 @@ class Patients_comment extends Model
     }
 
     public function doctor(){
-        return $this->belongsTo(User::class, 'doctor_id');
+        return $this->belongsTo(Doctors::class, 'doctor_id');
     }
 }

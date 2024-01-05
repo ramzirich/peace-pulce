@@ -20,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 20);
             $table->string('last_name', 20);
-            $table->string('email', 100)->unique();
+            $table->string('email', 100);
             $table->string('password');
             $table->string('img_url')->nullable();
             $table->unsignedBigInteger('role_id')->default(1);

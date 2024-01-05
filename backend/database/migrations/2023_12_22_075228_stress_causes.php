@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("patient_id");
             $table->string('name');
+            $table->string('img_url')->nullable();
             $table->softDeletes()->nullable(); 
 
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
