@@ -14,9 +14,9 @@ class UserSpecificGenericManager{
         $this->user = Auth::user();
     }
 
-    public function findById($id, $foreignKey) {
+    public function findById($id, $foreignKey, $with=[]) {
         try{
-            $model = $this->obj->find($id);
+            $model = $this->obj->with($with)->find($id);
             if(!$model){
                 return [];
             }
@@ -29,9 +29,12 @@ class UserSpecificGenericManager{
         }      
     }
 
-    public function getByColumn($foreignKey, $foreignKeyVale) {
+    public function getByColumn($foreignKey, $foreignKeyVale, $userKey, $with=[]) {
         try{
-            $model = $this->obj->where($foreignKey, $foreignKeyVale)->first();
+            $model = $this->obj->with($with)
+                                ->where($foreignKey, $foreignKeyVale)
+                                ->where($userKey, $this->user->id)
+                                ->first();
             if(!$model){
                 return [];
             }
@@ -77,7 +80,7 @@ class UserSpecificGenericManager{
 
     public function createWithSpecificUser($request) {
         try{
-            $data = $request->json()->all();
+            $data = $request->all();
             $user = auth()->user();
             $this->obj->fill($data);
             $this->obj->user()->associate($user->id);

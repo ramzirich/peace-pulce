@@ -7,7 +7,7 @@ use App\Manager\UserSpecificGenericManager;
 use App\Manager\GenericManager;
 use App\Models\Patient_doctor_request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Doctors;
 
 use Illuminate\Http\Request;
 
@@ -23,16 +23,13 @@ class PatientRequestDoctorController extends Controller
     }
 
     public function getRequestForPatient($id){
-        return $this->userSpecificGenericManager->findById($id, "patient_id");   
+        return $this->userSpecificGenericManager->findById($id, "patient_id", $with=['doctor']);   
     }
 
     public function getAllDoctorRequestForPatient(Request $request){
-        $perPage = $request->query('perPage', 10);
-        $page = $request->query('page', 1);
-        $sortColumns = $request->query('sortColumns', []);
         $request->merge(['patient_id' => $this->user->id]);
 
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $perPage, $page, $sortColumns);
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $with=['doctor']);
         if(!$model){
             return [];
         }
@@ -50,27 +47,20 @@ class PatientRequestDoctorController extends Controller
                 ], 422); 
             }
 
-            $genericManager = new GenericManager(new User);
+            $genericManager = new GenericManager(new Doctors);
             $data = $request->json()->all();
             $doctorObj = $genericManager->findById($data['doctor_id']);
             if(!$doctorObj){
                 return ExceptionMessages::NotFound("Doctor");
             }
-            if($doctorObj->role_id != 2){
-                return ExceptionMessages::Error('This user is not a doctor', 400);
-            }
 
-            $data['patient_id'] = Auth::user()->id;
-            $data['doctor_id'] = $request['doctor_id'];
-            $data['request'] = 'requested';
-            
-            $this->doctorRequest->fill($data);
-            $this->doctorRequest->save();
+            $isRequestExist = $this->userSpecificGenericManager
+                                    ->getByColumn('doctor_id', $data['doctor_id'], 'patient_id');
+            if(!empty($isRequestExist)){
+                return ExceptionMessages::Error("Request already sent", 400);
+            } 
 
-            return response()->json([
-                'status'=> 'success',
-                'data'=> $this->doctorRequest
-            ], 201);
+            return $this->userSpecificGenericManager->createWithSpecificUser($request);
         }catch(\Exception $exception){
             return ExceptionMessages::Error($exception->getMessage());
         }
@@ -80,7 +70,7 @@ class PatientRequestDoctorController extends Controller
         return $this->userSpecificGenericManager->deleteForSpecificUser($id, "patient_id");
     }
 
-    public function massDeleteDoctorRequest(Request $request){
-        return $this->userSpecificGenericManager->massdeleteSpecificUser("patient_id", $request) ;
-    }
+    // public function massDeleteDoctorRequest(Request $request){
+    //     return $this->userSpecificGenericManager->massdeleteSpecificUser("patient_id", $request) ;
+    // }
 }

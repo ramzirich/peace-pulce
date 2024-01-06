@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('img_url')->nullable();
             $table->unsignedBigInteger('role_id')->default(1);
             $table->integer('is_online')->default(1);
-            $table->softDeletes()->nullable(); 
+            // $table->softDeletes()->nullable(); 
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('restrict');

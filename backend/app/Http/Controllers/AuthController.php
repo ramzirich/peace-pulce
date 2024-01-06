@@ -138,8 +138,18 @@ class AuthController extends Controller
     }
 
     public function deleteUser(){
-        $genericManager = new GenericManager(Auth::user());
-        return $genericManager->delete(Auth::user()->id);
+        try{
+            $userObj = Auth::user();
+            // $userObj->email ='';
+            // $userObj->save();
+            $userObj->delete();
+            return response()->json([
+                'status'=> 'success',
+                'message'=> "User successfully deleted" 
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
     }
 
     public function uploadImage(Request $request){
