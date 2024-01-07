@@ -42,7 +42,7 @@ class PatientCommentController extends Controller
                 return $responseData['errors'];
             }
 
-            $genericManager = new GenericManager(new Doctors);
+            $genericManager = new GenericManager(new Doctors); 
             $data = $request->json()->all();
             $doctorObj = $genericManager->findById($data['doctor_id']);
             if(!$doctorObj){
@@ -71,6 +71,7 @@ class PatientCommentController extends Controller
             if($responseData['status'] != "success"){
                 return $responseData['errors'];
             }
+            
             if ($request->has('doctor_id')) {
                 $data = $request->except(['doctor_id']);
                 $request->replace($data);

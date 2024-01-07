@@ -12,6 +12,7 @@ use App\Http\Controllers\StressCauseController;
 use App\Http\Controllers\PatientCommentController;
 use App\Http\Controllers\DoctorNoteController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\VideosController;
 use App\Http\Controllers\VolunteerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('delete/user', 'deleteUser');
     Route::get('user', 'getCurrentUser');
     Route::post('image', 'uploadImage');
+});
+
+Route::controller(VideosController::class)->group(function () {
+    Route::post('upload/video', 'uploadVideo');
 });
 
 Route::middleware('auth.user')->group(function () {
@@ -116,7 +121,7 @@ Route::controller(DoctorListAndIndividualController::class)->group(function () {
     Route::get('doctors', 'getListOfDoctors');
 });
 
-Route::middleware('auth.user')->group(function () {
+Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::post('doctor_request/create',  [PatientRequestDoctorController::class, 'createDoctorRequest']);
     Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
     Route::post('doctor_request/massDelete',  [PatientRequestDoctorController::class, 'massDeleteDoctorRequest']);

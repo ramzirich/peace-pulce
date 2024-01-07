@@ -8,24 +8,23 @@ use App\Manager\UserSpecificGenericManager;
 use App\Models\Patient_doctor_request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
-use App\Models\User;
+use App\Models\Doctors;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
     //
-    protected $user, $rating, $doctor, $userSpecificGenericManager;
+    protected $user, $rating, $doctor;
     public function __construct(){
         $this->middleware('patient.check', ['except' => ['getRating']]);
         $this->user = Auth::user();
         $this->rating = new Rating();
-        $this->userSpecificGenericManager = new UserSpecificGenericManager($this->rating);
-        $this->doctor = new User();
+        $this->doctor = new Doctors();
     }
 
     public function getRating($id){
         try{
-            return $this->rating->where('doctor_id', $id)->get();
+            return $this->rating->with(['user','doctor'])->where('doctor_id', $id)->get();
         }catch(\Exception $exception){
             return ExceptionMessages::Error($exception->getMessage());
         }
