@@ -1,24 +1,18 @@
 import React from 'react';
-import { Keyboard, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Link, useNavigate } from 'react-router-native';
+import { Image, Keyboard, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CustomColors } from '../../styles/color';
 import { Input } from '../../reusable/elements/Input/Input';
 import { CustomButton } from '../../reusable/elements/Button/CustomButton';
 import { config } from '../../../config';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import { useAuth } from '../../utils/AuthContext';
 import { validateLogin } from './LoginValidation';
-// import { useDispatch } from 'react-redux';
-// import { setUser } from '../../redux/actions/userActions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setFirstName, setLastName } from '../../redux/actions/userActions';
 import { setUserInfo } from '../../redux/actions/userActions';
-// import { useNavigation } from '@react-navigation/native';
 
 
 export default Login = ({navigation}) =>{
-    // const {firstName, lastName} = useSelector(state, state.userReducer)
     const [inputs, setInputs] = React.useState({
         email:'',
         password:''
@@ -28,28 +22,18 @@ export default Login = ({navigation}) =>{
 
     const dispatch = useDispatch();
 
-    // const navigate = useNavigate();
-    // const navigation = useNavigation();
-
     const validate = () => {
         const isValid = validateLogin(inputs, handleError);
         if (isValid) {
           login(inputs);
         }
-      };
+    };
 
     const login = async(inputs) =>{
         try{
             const response = await axios.post(`${config.apiUrl}/login`, inputs);
             await AsyncStorage.setItem('authToken', response.data.authorisation.token);
-            const authToken = await AsyncStorage.getItem('authToken');
-            dispatch(setFirstName(response.data.user.first_name))
-            dispatch(setLastName(response.data.user.last_name))
             dispatch(setUserInfo(response.data.user))
-            // console.log(authToken);
-            // console.log(response.data.user)
-            // dispatch(setUser(response.data.user))
-            // console.log(response.data.authorisation.token);
             navigation.navigate('home')
         }catch(error){
             console.error("Coudn't login: ", error.response?.data || error.message)
@@ -65,6 +49,9 @@ export default Login = ({navigation}) =>{
 
     return(
         <SafeAreaView style={styles.bigContainer}>
+            <View>
+                <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
+            </View>
             <View style={styles.smallContainer}>
                 <Input
                     onChangeText={text => handleOnchange(text, 'email')}
@@ -82,18 +69,18 @@ export default Login = ({navigation}) =>{
                     error={errors.password}
                     password 
                 />
-
-                <CustomButton title="Login" onPress={validate} />
-                {/* <Text
-                    onPress={() => navigation.navigate('LoginScreen')}
+                
+                <View style={styles.btn}>
+                    <CustomButton title="Log in" onPress={validate} />
+                </View>         
+                <Text
+                    onPress={() => navigation.navigate('register')}
                     style={{
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    fontSize: 16,
+                    fontSize: 12,
+                    color:CustomColors.white
                     }}>
-                    Already have account ?Login
-                </Text> */}
-                {/* </View> */}
+                    Don't have an account ?Register
+                </Text>
             </View>
         </SafeAreaView>
     )
@@ -101,7 +88,7 @@ export default Login = ({navigation}) =>{
 
 const styles = StyleSheet.create({
     bigContainer:{ 
-        backgroundColor:CustomColors.BabyBlue,
+        backgroundColor:CustomColors.white,
         height:'100%',
         paddingHorizontal:30,
         flexDirection:'column', 
@@ -110,6 +97,17 @@ const styles = StyleSheet.create({
     smallContainer:{
         padding: 30, 
         backgroundColor:CustomColors.purple,
-        borderRadius:10
+        borderRadius:10,
+        
+    },
+    btn:{
+        marginTop:20,
+        marginBottom:5
+    },
+    logo:{
+        height:200,
+        width:200,
+        alignSelf:'center',
+        marginBottom:20,
     }
 })

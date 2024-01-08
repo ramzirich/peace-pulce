@@ -7,6 +7,8 @@ import {
   Keyboard,
   ScrollView,
   Alert,
+  StyleSheet,
+  Image,
 } from 'react-native';
 
 import { CustomColors } from '../../styles/color';
@@ -14,11 +16,11 @@ import { CustomButton } from '../../reusable/elements/Button/CustomButton';
 import { Input } from '../../reusable/elements/Input/Input';
 import { config } from '../../../config';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { Registervalidation } from './RegisterValidation';
+import { setUserInfo } from '../../redux/actions/userActions';
 
-const Registration = () => {
-    // const to = AsyncStorage.getItem('user');
-    // const err = JSON.parse(to);
-    // console.log(err);
+export default Registration = ({navigation}) => {
   const [inputs, setInputs] = React.useState({
     email: '',
     first_name: '',
@@ -27,62 +29,22 @@ const Registration = () => {
   });
   const [errors, setErrors] = React.useState({});
 
+  const dispatch = useDispatch();
+
   const validate = () => {
-    Keyboard.dismiss();
-    let isValid = true;
-
-    if (!inputs.email) {
-      handleError('Please input email', 'email');
-      isValid = false;
-    } else if (!inputs.email.match(/\S+@\S+\.\S+/)) {
-      handleError('Please input a valid email', 'email');
-      isValid = false;
-    }else if(inputs.email.length>100){
-        handleError('Email cannot exceed 100 characters', 'email');
-        isValid = false;
-    }
-
-    if (!inputs.first_name) {
-      handleError('Please input first name', 'first_name');
-      isValid = false;
-    }else if(inputs.first_name.length>20){
-        handleError('First name cannot exceed 20 characters', 'first_name');
-        isValid = false;
-    }
-
-    if (!inputs.last_name) {
-        handleError('Please input last name', 'last_name');
-        isValid = false;
-      }else if(inputs.last_name.length>20){
-          handleError('last name cannot exceed 20 characters', 'last_name');
-          isValid = false;
-      }
-
-    if (!inputs.password) {
-      handleError('Please input password', 'password');
-      isValid = false;
-    } else if (inputs.password.length < 8) {
-      handleError('Min password length of 8', 'password');
-      isValid = false;
-    }else if(inputs.password.length>20){
-        handleError('last name cannot exceed 20 characters', 'last_name');
-        isValid = false;
-    }else if(!inputs.password.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\s\S]{8,20}$/)){
-        handleError('The password must contain at least one uppercase letter, one lowercase letter,' +
-                        'one numeric digit, one special character.', 'password');
-    }
-
+    const isValid = Registervalidation(inputs, handleError);
     if (isValid) {
       register(inputs);
     }
   };
-
+  
   const register = async(inputs) =>{
     try{
-        const response = await axios.post(`${config.apiUrl}/register`, inputs);
-        await AsyncStorage.setItem('authToken', response.data.authorisation.token);
-        await AsyncStorage.setItem('user', JSON.stringify(response.data.user))
-        
+      const response = await axios.post(`${config.apiUrl}/register`, inputs);
+      await AsyncStorage.setItem('authToken', response.data.authorisation.token);
+      // await AsyncStorage.getItem('authToken');
+      dispatch(setUserInfo(response.data.user))
+      navigation.navigate('home')    
     }catch(error){
         console.error("Coudn't login: ", error.response?.data || error.message)
     }
@@ -96,66 +58,85 @@ const Registration = () => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: CustomColors.white, flex: 1}}>
-      <ScrollView
-        contentContainerStyle={{paddingTop: 50, paddingHorizontal: 20}}>
+    <ScrollView>
+    <SafeAreaView style={styles.bigContainer}>
+    
+    <View>
+        <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
+    </View>
+    <View style={styles.smallContainer}>
+      <Input
+        onChangeText={text => handleOnchange(text, 'first_name')}
+        onFocus={() => handleError(null, 'first_name')}
+        label="First name"
+        placeholder="Enter your first name"
+        error={errors.first_name} 
+      />
 
-        <Text style={{color: CustomColors.black, fontSize: 40, fontWeight: 'bold'}}>
-          Register
-        </Text>
-        <Text style={{color: CustomColors.grey, fontSize: 18, marginVertical: 10}}>
-          Enter Your Details to Register
-        </Text>
+      <Input
+        onChangeText={text => handleOnchange(text, 'last_name')}
+        onFocus={() => handleError(null, 'last_name')}
+        label="Last Name"
+        placeholder="Enter your last name"
+        error={errors.last_name} 
+      />
 
-        <View style={{marginVertical: 20}}>
-            <Input
-                onChangeText={text => handleOnchange(text, 'first_name')}
-                onFocus={() => handleError(null, 'first_name')}
-                label="First Name"
-                placeholder="Enter your first name"
-                error={errors.first_name}
-            />
+      <Input
+          onChangeText={text => handleOnchange(text, 'email')}
+          onFocus={() => handleError(null, 'email')}
+          label="Email"
+          placeholder="Enter your email address"
+          error={errors.email} 
+      />
 
-            <Input
-                onChangeText={text => handleOnchange(text, 'last_name')}
-                onFocus={() => handleError(null, 'last_name')}
-                label="Last Name"
-                placeholder="Enter your last name"
-                error={errors.last_name}
-            />
-
-            <Input
-                onChangeText={text => handleOnchange(text, 'email')}
-                onFocus={() => handleError(null, 'email')}
-                label="Email"
-                placeholder="Enter your email address"
-                error={errors.email}
-            />
-
-          <Input
-            onChangeText={text => handleOnchange(text, 'password')}
-            onFocus={() => handleError(null, 'password')}
-            label="Password"
-            placeholder="Enter your password"
-            error={errors.password}
-            password
-          />
-
-          <CustomButton title="Register" onPress={validate} />
-          {/* <Text
-            onPress={() => navigation.navigate('LoginScreen')}
+      <Input
+          onChangeText={text => handleOnchange(text, 'password')}
+          onFocus={() => handleError(null, 'password')}
+          label="Password"
+          placeholder="Enter your password"
+          error={errors.password}
+          password 
+      />
+        
+        <View style={styles.btn}>
+            <CustomButton title="Register" onPress={validate} />
+        </View>         
+        <Text
+            onPress={() => navigation.navigate('login')}
             style={{
-              color: COLORS.black,
-              fontWeight: 'bold',
-              textAlign: 'center',
-              fontSize: 16,
+            fontSize: 12,
+            color:CustomColors.white
             }}>
-            Already have account ?Login
-          </Text> */}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+            Already have an account ?Login
+        </Text>
+    </View>
+    
+</SafeAreaView>
+</ScrollView>
+)
+}
 
-export default Registration;
+  const styles = StyleSheet.create({
+    bigContainer:{ 
+      backgroundColor:CustomColors.BabyBlue,
+      height:'100%',
+      paddingHorizontal:30,
+      flexDirection:'column', 
+      justifyContent:'center' 
+    },
+    smallContainer:{
+      padding: 30, 
+      backgroundColor:CustomColors.purple,
+      borderRadius:10
+    },
+    btn:{
+      marginTop:20,
+      marginBottom:5
+    },
+      logo:{
+      height:200,
+      width:200,
+      alignSelf:'center',
+      marginBottom:20,
+      }
+  })

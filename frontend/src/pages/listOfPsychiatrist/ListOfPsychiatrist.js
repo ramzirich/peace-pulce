@@ -13,8 +13,7 @@ import Home from "../Home/Home"
 
 export const ListOfPsychiatrist = ({navigation}) =>{
     const [doctors, setDoctors] = React.useState([]);
-    // const navigate = useNavigate();
-    // const navigation = useNavigation();
+
     useEffect(() =>{
         const fetchUserData = async() =>{
             try{
@@ -44,9 +43,6 @@ export const ListOfPsychiatrist = ({navigation}) =>{
                 navigation={navigation}
              /> 
            }
-            {/* <Link to='/home'>
-                <Text>Home</Text>
-            </Link> */}
         </View>
     )
 } 

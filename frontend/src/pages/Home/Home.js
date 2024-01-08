@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useAuth } from '../../utils/AuthContext';
 import { Link } from 'react-router-native';
@@ -11,47 +11,57 @@ import { SliderHorizental } from '../../reusable/components/sliderHorizental/Sli
 import { CustomColors } from '../../styles/color';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_FIRST_NAME, SET_LAST_NAME } from '../../redux/actions/userActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Video from 'react-native-video';
+import CustomVideo from '../../reusable/components/video/CustomVideo';
 
 const Home = ({navigation}) => {
-  const {firstName, lastName} = useSelector(state => state.userReducer);
   const {userInfo} = useSelector(state => state.userInfoReducer)
-  // const dispatch = useDispatch();
-  // const [user, setUser] = React.useState({});
-  // useEffect(() =>{
-  //   const fetchUserData = async() =>{
-  //     try{
-  //       const response = await axios.get(`${config.apiUrl}/user`,{
-  //         headers:{
-  //           'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC4wLjEwMzo4MDAwL2FwaS9sb2dpbiIsImlhdCI6MTcwMzkzNDg3NiwiZXhwIjoxNzAzOTM4NDc2LCJuYmYiOjE3MDM5MzQ4NzYsImp0aSI6InJWbWxGcTFBRXFqUEVUZksiLCJzdWIiOiIzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.g-ib7FjZ3VZqYDvaGbPx5cNxtSLRP6rVj1Lbb84n6Zs'
-  //         }
-  //       });
-  //       setUser(response.data);   
-  //     }catch(error){
-  //       console.error('Error fetching user data:', error.message);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, [])
 
+  const [videos, setVideos] = useState([]);
+
+
+  useEffect(() =>{
+    const fetchUserData = async() =>{
+      try{
+        const response = await axios.get(`${config.apiUrl}/videos`,{
+          // headers:{
+          //   'Authorization': AsyncStorage.getItem('authToken')
+          // }
+        });
+        setVideos(response.data.data);   
+      }catch(error){
+        console.error('Error fetching user data:', error.message);
+      }
+    };
+    fetchUserData();
+  }, [])
+//   console.log("hii")
+// console.log(videos.length===0)
+// console.log(videos)
   // console.log(user.length ==0 ?true:false)
   return (
-    <ScrollView>
-    {/* <Text>{userInfo.last_name} {userInfo.email}</Text> */}
-      {userInfo? <CustomHeader name={userInfo.first_name}/>: 
-        <Text style={{marginVertical:10}}>Loading...</Text>} 
-      <HeaderButton navigation={navigation} />
-      <SliderHorizental />
-      <View style={styles.videoLength}>
+     <ScrollView>
+       {userInfo? <CustomHeader name={userInfo.first_name}/>: 
+         <Text style={{marginVertical:10}}>Loading...</Text>} 
+       <HeaderButton navigation={navigation} />
+       <SliderHorizental />
+     {/* {videos.length>0 &&  <Video
+    key={videos[0].id}
+    video={{ uri: `${config.imgUrl}videos/${videos[0].filename}` }}
+    videoWidth={200} 
+    videoHeight={200}
+    controls={true}
+     thumbnail={{ uri: '../../../assets/images/logo.jpg'}}
 
+/>}  */}
+
+    {videos.length>0 && <CustomVideo oneVideo={videos[0]}></CustomVideo>}
+
+      
+       <View style={styles.videoLength}>
       </View>
-      {/* <Link to="/">
-        <Text>Hi</Text>
-      </Link>  */}
-    </ScrollView>
-      /* <Text>Welcome, {user ? user.first_name : 'Guest'}!</Text>*/
-     
-      
-      
+    </ScrollView>       
   );
 };
 
