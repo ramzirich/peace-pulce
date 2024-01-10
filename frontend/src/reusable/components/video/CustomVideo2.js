@@ -33,7 +33,7 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
                     source={{uri: `${config.imgUrl}videos/${oneVideo.filename}`}}           
                     paused = {paused}
                     ref={(ref) => {
-                        this.player = ref
+                        this.player = ref  
                     }}                                    
                     poster={'http://192.168.0.104:8000/images/user.jpg'}
                     posterResizeMode={'stretch'}
