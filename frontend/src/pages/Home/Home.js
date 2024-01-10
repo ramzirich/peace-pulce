@@ -36,31 +36,13 @@ const Home = ({navigation}) => {
     };
     fetchUserData();
   }, [])
-//   console.log("hii")
-// console.log(videos.length===0)
-// console.log(videos)
-  // console.log(user.length ==0 ?true:false)
+
   return ( 
      <ScrollView>
        {userInfo? <CustomHeader name={userInfo.first_name}/>: 
          <Text style={{marginVertical:10}}>Loading...</Text>} 
        <HeaderButton navigation={navigation} />
        <SliderHorizental videos={videos} />
-     {/* {videos.length>0 &&  <Video
-    key={videos[0].id}
-    video={{ uri: `${config.imgUrl}videos/${videos[0].filename}` }}
-    videoWidth={200} 
-    videoHeight={200}
-    controls={true}
-     thumbnail={{ uri: '../../../assets/images/logo.jpg'}}
-
-/>}  */}
-
-     {videos.length>0 && <CustomVideo2 oneVideo={videos[0]}/>}  
-
-      
-       {/* <View style={styles.videoLength}>
-      </View> */}
     </ScrollView>      
   ); 
 };
