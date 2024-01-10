@@ -1,20 +1,17 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native"
 import { CustomHeader } from "../../reusable/components/header/CustomHeader"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
-import { create } from "react-test-renderer"
 import { CustomColors } from "../../styles/color"
-import YourComponent from "../../tryy3"
 import { CommentList } from "../../reusable/components/comment/CommentList"
 import AsyncStorage from "@react-native-async-storage/async-storage"
-// import { useParams } from "react-router-dom"
-// import { Link } from "react-router-native"
+
 
 export const PsychiatristInfo =({route, navigation}) =>{
     // const {id}=useParams();
     const {id} = route.params;
-    // console.log(id)
+   console.log(doctor)
     const [doctor, setDoctor] = useState({})
     const [ratingList, setRatingList] = useState([]);
     const [rating, setRating] = useState(0);
@@ -28,7 +25,6 @@ export const PsychiatristInfo =({route, navigation}) =>{
         const fetchUserData = async() =>{
             try{
                 const authToken = await AsyncStorage.getItem('authToken');
-                // console.log(authToken);
                 const response =await  axios.get(`${config.apiUrl}/doctor/${id}`);
                 setDoctor(response.data)
 
@@ -37,8 +33,7 @@ export const PsychiatristInfo =({route, navigation}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
-                setRatingList(ratingResponse.data)
-               
+                setRatingList(ratingResponse.data)             
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -68,72 +63,81 @@ export const PsychiatristInfo =({route, navigation}) =>{
             }else {
                 setRatingDistribution({ '0-2.5': 0, '2.5-3.75': 0, '3.75-5': 0 });
             }
-    }, [ratingList])
-console.log(doctor);
+    }, [ratingList]) 
+    
     return(
-        <>
-            
+        <>  
+        <Image source={require('../../../assets/star-one-quarter.png')} style={{height:20, width:20}}  /> 
+        <Image source={require('../../../assets/images/half-star.png')} style={{height:20, width:20}}  />   
+        <ScrollView>
+        {doctor && doctor.user && 
+            <Image source={{ uri: `${config.imgUrl}${doctor.user.img_url}`}} 
+                    style={{height: 400, width:'100%'}}
+                    resizeMode="contain"
+            />
+        } 
             <View style={styles.big_container}>
-            <ScrollView>
-                <CustomHeader />
-                <View style={styles.info_card}>
-                    {doctor && <Text>{doctor.about}</Text>}
-                </View>
-                <View style={styles.cost_rating}>
-
-                    <View style={styles.costRating_container}>
-                        <View style={styles.cost_circle} />
-                        <View>
-                            <Text style={styles.subTitle}>Cost</Text>
-                            <Text style={{fontSize:12, fontWeight:300}}>${doctor.hourly_rate}/hr</Text>
-                        </View>
+                
+                    
+                    <View style={styles.info_card}>
+                        {doctor && <Text>{doctor.about}</Text>}
                     </View>
+                    <View style={styles.cost_rating}>
 
-                    <View style={styles.costRating_container}>
-                        <View>
-                            <Text style={styles.start}>★</Text>
+                        <View style={styles.costRating_container}>
+                            <View>
+                                <Text style={styles.start}>★</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.subTitle}>Rating</Text>
+                                <Text style={{fontSize:10, fontWeight:300}}>{ratingList.length} votes</Text>
+                            </View>                        
                         </View>
-                        <View>
-                            <Text style={styles.subTitle}>Rating</Text>
-                            <Text style={{fontSize:10, fontWeight:300}}>{rating}, {ratingList.length} votes</Text>
-                        </View>                        
+
+                        <View style={styles.costRating_container}>
+                            <View style={styles.cost_circle} />
+                            <View>
+                                <Text style={styles.subTitle}>Cost</Text>
+                                <Text style={{fontSize:12, fontWeight:300}}>${doctor.hourly_rate}/hr</Text>
+                            </View>
+                        </View>
+
+                    </View> 
+
+                    <View style={styles.emojies_container}>
+                        <View style={styles.emoji_info}>
+                            <View>
+                                <Text style={styles.emojies}>😊</Text>
+                            </View>
+                            <View>
+                                <Text>{ratingDistribution['3.75-5']} votes</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.emoji_info}>
+                            <View>
+                                <Text style={styles.emojies}>😐</Text>
+                            </View>
+                            <View>
+                                <Text >{ratingDistribution['2.5-3.75']} votes</Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.emoji_info}>
+                            <View>
+                                <Text style={styles.emojies}>😡</Text>
+                            </View>
+                            <View>
+                                <Text >{ratingDistribution['0-2.5']} votes</Text>
+                            </View>
+                        </View>
+
                     </View>
-
-                </View> 
-
-                <View style={styles.emojies_container}>
-                    <View style={styles.emoji_info}>
-                        <View>
-                            <Text style={styles.emojies}>😊</Text>
-                        </View>
-                        <View>
-                            <Text>{ratingDistribution['3.75-5']} votes</Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.emoji_info}>
-                        <View>
-                            <Text style={styles.emojies}>😡</Text>
-                        </View>
-                        <View>
-                            <Text >{ratingDistribution['0-2.5']} votes</Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.emoji_info}>
-                        <View>
-                            <Text style={styles.emojies}>😐</Text>
-                        </View>
-                        <View>
-                            <Text >{ratingDistribution['2.5-3.75']} votes</Text>
-                        </View>
-                    </View>
-                </View>
-               
-                <CommentList id={id} />
-                {/* <Link to={'/'}><Text>Login</Text></Link> */}
-                </ScrollView>
+        
+                    <CommentList id={id} />
+                
             </View>
+            </ScrollView>
         </>
         
     )

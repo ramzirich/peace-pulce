@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,80 +9,55 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import CustomVideo from '../video/CustomVideo'; 
+import { CustomColors } from '../../../styles/color';
 
 const ListItem = ({ item, isFirst, isLast }) => {
   return (
-    <View style={[
-        styles.item,      
-    ]}>
-      <Image
-        source={{
-          uri: item.uri,
-        }}
-        style={[styles.itemPhoto,
-                isFirst && styles.borderItem,
-                isLast && styles.LastItem]}
-        resizeMode="cover"
-      />
-    </View>
+      <CustomVideo oneVideo={item} isFirst={isFirst} isLast={isLast} /> 
   );
 };
 
-export const SliderHorizental =  () => {
+export const SliderHorizental =  ({videos}) => {
+  const [videoIndex, setVideoIndex] = useState(0)
+  // console.log(videos[videoIndex].duration)
+  // console.log(videos);
+  console.log(videoIndex)
   return (
     <View style={styles.container}>
       <SafeAreaView >
       <FlatList
+        // pagingEnabled ////
+        onScroll={e =>{
+          const x = e.nativeEvent.contentOffset.x;
+          setVideoIndex((x/200).toFixed(0))
+        }}
         horizontal
-        data={SECTIONS[0].data}
-        keyExtractor={(item) => item.key}
+        data={videos}
+        keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => 
-            <ListItem item={item} 
+            <CustomVideo2 oneVideo={item}
                        isFirst={index==0}
-                       isLast ={index==SECTIONS[0].data.length-1} 
+                       isLast ={index==videos.length-1}                  
             />}
         showsHorizontalScrollIndicator={false} 
       />
+       <View style={styles.videoLength}>
+      {videos[videoIndex] && <Text style={{color:'red'}}> {videos[videoIndex].duration} </Text> } 
+      </View>
       </SafeAreaView>
+      {/* {videos[0] && <Video 
+                style={{ width:200, height:360,
+                borderRadius:20}}
+                mute
+                source={{uri: `${config.imgUrl}videos/${videos[0].filename}`}}/>} */}
     </View>
   );
-};
+}; 
 
-const SECTIONS = [
-  {
-    title: 'Made for you',
-    data: [
-      {
-        key: '1',
-        text: 'Item text 1',
-        uri: 'https://picsum.photos/id/1/200',
-      },
-      {
-        key: '2',
-        text: 'Item text 2',
-        uri: 'https://picsum.photos/id/10/200',
-      },
-
-      {
-        key: '3',
-        text: 'Item text 3',
-        uri: 'https://picsum.photos/id/1002/200',
-      },
-      {
-        key: '4',
-        text: 'Item text 4',
-        uri: 'https://picsum.photos/id/1006/200',
-      },
-      {
-        key: '5',
-        text: 'Item text 5',
-        uri: 'https://picsum.photos/id/1008/200',
-      },
-    ],
-  },
-
-];
-
+import Video from 'react-native-video';
+import { config } from '../../../../config';
+import CustomVideo2 from '../video/CustomVideo2';
 const styles = StyleSheet.create({
   container: {
     marginTop:20
@@ -107,6 +82,14 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
   },
+  videoLength:{
+    width:100,
+    height:100,
+    borderRadius: 50,
+    marginTop: 20,
+    backgroundColor: CustomColors.black,
+    alignSelf: "center"
+  }
 });
 
 

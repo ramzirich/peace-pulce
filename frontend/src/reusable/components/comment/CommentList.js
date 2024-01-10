@@ -6,7 +6,6 @@ import { config } from "../../../../config"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const CommentList = ({id}) =>{
-    // const [perPage, setPerPage] = useState(2); 
     let perPage =2;
     const [commentList, setCommentList] = useState([]);
 
@@ -30,26 +29,19 @@ export const CommentList = ({id}) =>{
     const loadMore = async() =>{
         const authToken = await AsyncStorage.getItem('authToken');
         perPage = perPage+2;
-        const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/5?perPage=${perPage}&page=1`,{
+        const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPage}&page=1`,{
             headers:{
                 'Authorization': `Bearer ${authToken}`
             }
-        });
-        
+        });       
         setCommentList(commentResponse.data)
     }
-//     console.log(commentList)
-//   console.log(perPage)
+
     renderItem = ({item}) =>{
         return(
             <Comment item={item}/>
         )
     }
-
-    // const ListItem = ({ item }) => {
-    //     return (
-    //       <Comment item = {item} />
-    //   };
 
     return(
         <View style={{marginTop:20}}>
@@ -60,22 +52,6 @@ export const CommentList = ({id}) =>{
                 keyExtractor={(item) => item.id }
             /> : <Text>No comment</Text>}
             <Button title="Load more" onPress={loadMore}></Button>
-        </View>
-    //     <View >
-    //     {commentList && commentList.length>0?
-    //         <SafeAreaView style={{ flex: 1 }}>
-    //     <SectionList
-    //       contentContainerStyle={{ paddingHorizontal: 10 }}
-    //       stickySectionHeadersEnabled={false}
-         
-    //       sections={commentList}
-    //       renderItem={renderItem}
-    //     />
-    //   </SafeAreaView> :
-    //   <Text>No comment</Text>
-    //         }
-      
-    // </View>
-        
+        </View>       
     )
 } 

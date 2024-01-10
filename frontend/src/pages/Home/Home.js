@@ -40,12 +40,12 @@ const Home = ({navigation}) => {
 // console.log(videos.length===0)
 // console.log(videos)
   // console.log(user.length ==0 ?true:false)
-  return (
+  return ( 
      <ScrollView>
        {userInfo? <CustomHeader name={userInfo.first_name}/>: 
          <Text style={{marginVertical:10}}>Loading...</Text>} 
        <HeaderButton navigation={navigation} />
-       <SliderHorizental />
+       <SliderHorizental videos={videos} />
      {/* {videos.length>0 &&  <Video
     key={videos[0].id}
     video={{ uri: `${config.imgUrl}videos/${videos[0].filename}` }}
@@ -56,13 +56,13 @@ const Home = ({navigation}) => {
 
 />}  */}
 
-    {videos.length>0 && <CustomVideo oneVideo={videos[0]}></CustomVideo>}
+     {videos.length>0 && <CustomVideo2 oneVideo={videos[0]}/>}  
 
       
-       <View style={styles.videoLength}>
-      </View>
-    </ScrollView>       
-  );
+       {/* <View style={styles.videoLength}>
+      </View> */}
+    </ScrollView>      
+  ); 
 };
 
 const styles= StyleSheet.create({

@@ -19,7 +19,6 @@ export const Comment = ({item}) =>{
         return formattedDate;
       }
       
-      // Example usage:
       const inputDateString = item.user.created_at;
       const formattedDate = formatDate(inputDateString);
    
@@ -50,13 +49,10 @@ export const Comment = ({item}) =>{
 const styles = StyleSheet.create({
     container:{
         marginBottom:10,
-        // flexDirection:'row',
-       
     },
     img_container:{
         // flexDirection:'row',
-        // justifyContent:"flex-start",
-       
+        // justifyContent:"flex-start",     
     },  
     img:{
         height:50,
