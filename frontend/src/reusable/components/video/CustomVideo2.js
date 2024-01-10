@@ -31,7 +31,7 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
                 <Video 
                     style={[styles.video, vidoStyle]}
                     source={{uri: `${config.imgUrl}videos/${oneVideo.filename}`}}           
-                    paused = {paused}
+                    paused = {paused} 
                     ref={(ref) => {
                         this.player = ref  
                     }}                                    
