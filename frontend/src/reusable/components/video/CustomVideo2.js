@@ -35,7 +35,7 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
                     ref={(ref) => {
                         this.player = ref
                     }}                                    
-                    poster={'http://192.168.0.104:8000/images/user.jpg'}
+                    poster={'http://192.168.0.104:8000/images/user.jpg'} 
                     posterResizeMode={'stretch'}
                     resizeMode="stretch"
                 />
