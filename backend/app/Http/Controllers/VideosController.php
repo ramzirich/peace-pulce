@@ -30,9 +30,22 @@ class VideosController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => "Video successfully uploaded"
-            ]);
+            ], 201);
         }catch(\Exception $exception){
             ExceptionMessages::Error($exception->getMessage());
+        }
+    }
+
+    public function getAllVideos(){
+        try{
+            $videos = new Videos();
+            $list = $videos->get();
+            return response()->json([
+                "status" => "success",
+                "data"=> $list
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
         }
     }
 }

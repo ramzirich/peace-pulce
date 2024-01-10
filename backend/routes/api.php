@@ -47,6 +47,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(VideosController::class)->group(function () {
     Route::post('upload/video', 'uploadVideo');
+    Route::get('videos', 'getAllVideos');
 });
 
 Route::middleware('auth.user')->group(function () {
