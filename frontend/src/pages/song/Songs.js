@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     greyContainer:{
         width:'90%',
         height:40,
-        backgroundColor:'#9e9e9e',
+        backgroundColor:'#522810',
         borderRadius: 3
     }
 })
