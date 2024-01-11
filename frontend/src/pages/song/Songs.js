@@ -9,6 +9,7 @@ import SongPlayer from "../../reusable/components/songPlayer/SongPlayer"
 
 export default Songs = () =>{
     const [songsList, setSongsList] = useState([]);
+    const [isVisible, setIsVisible] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0);
     const playbackState = usePlaybackState();
     const progress = useProgress();
@@ -172,7 +173,12 @@ export default Songs = () =>{
                         </TouchableOpacity>
             }}
             />
-            <View style={styles.songProgress}>
+            <TouchableOpacity style={styles.songProgress}
+                activeOpacity={1}
+                onPress={() =>{
+                    setIsVisible(true)
+                }}
+            >
                 <View style={{flexDirection:'row', gap:10, alignItems:'center'}}>
                     <Image source={require('../../../assets/images/logo.jpg')} style={{height:25, width:25}}/>
                         <View>
@@ -196,12 +202,13 @@ export default Songs = () =>{
                     style={{width:25, height: 25, tintColor:'white'}}
                 />
                 </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
             <SongPlayer  
                 songsList={sngs}
                 currentIndex ={currentIndex}
                 playbackState ={playbackState}
                 progress ={progress}
+                isVisible={isVisible}
             />
         </LinearGradient>
     )
