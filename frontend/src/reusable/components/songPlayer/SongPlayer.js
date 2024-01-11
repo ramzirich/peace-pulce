@@ -3,8 +3,16 @@ import { Image, StyleSheet, Text, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import  Modal  from "react-native-modal"
 import { CustomColors } from "../../../styles/color"
+import Slider from "@react-native-community/slider"
 
 const SongPlayer = ({songsList, currentIndex, playbackState, progress}) =>{
+    const format = seconds => {
+        let mins = parseInt(seconds / 60)
+          .toString()
+          .padStart(2, '0');
+        let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
+        return `${mins}:${secs}`;
+      };
     return(
         <Modal isVisible style={{margin:0}}>
             <LinearGradient colors={['#067a02', '#064f03', '#032901', '#000000']}
@@ -23,6 +31,13 @@ const SongPlayer = ({songsList, currentIndex, playbackState, progress}) =>{
                 <Text style={{fontSize:16,color:'white', fontWeight:'600'}}>
                     {songsList[currentIndex].artist}
                 </Text>
+                <Slider
+                    style={{width: '90%', height: 40, alignSelf: 'center'}}
+                    minimumValue={progress.position}
+                    maximumValue={progress.duration}
+                    minimumTrackTintColor="#FFFFFF"
+                    maximumTrackTintColor="#fff"
+                />
             </LinearGradient>
         </Modal>
     )
