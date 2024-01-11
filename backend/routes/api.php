@@ -53,6 +53,7 @@ Route::controller(VideosController::class)->group(function () {
 
 Route::controller(SongController::class)->group(function () {
     Route::post('upload/song', 'uploadSong');
+    Route::get('songs', 'getAllSongs');
 });
 
 Route::middleware('auth.user')->group(function () {
