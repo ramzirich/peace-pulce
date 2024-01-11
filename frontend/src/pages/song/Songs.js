@@ -5,6 +5,7 @@ import { CustomColors } from "../../styles/color"
 import axios from "axios"
 import { config } from "../../../config"
 import TrackPlayer, { Capability, State, usePlaybackState, useProgress, } from "react-native-track-player"
+import SongPlayer from "../../reusable/components/songPlayer/SongPlayer"
 
 export default Songs = () =>{
     const [songsList, setSongsList] = useState([]);
@@ -172,12 +173,31 @@ export default Songs = () =>{
             }}
             />
             <View style={styles.songProgress}>
-                <Image source={require('../../../assets/images/logo.jpg')} style={{height:25, width:25}}/>
-                <View>
-                    <Text style={{color:'white'}}>{sngs[currentIndex].title}</Text>
-                    <Text style={{color:'white', fontSize:5}}>{sngs[currentIndex].artist}</Text>
+                <View style={{flexDirection:'row', gap:10, alignItems:'center'}}>
+                    <Image source={require('../../../assets/images/logo.jpg')} style={{height:25, width:25}}/>
+                        <View>
+                            <Text style={{color:'white'}}>{sngs[currentIndex].title}</Text>
+                            <Text style={{color:'white', fontSize:10}}>{sngs[currentIndex].artist}</Text>
+                        </View>
                 </View>
+                <TouchableOpacity onPress={async() =>{
+                        if(State.Playing== playbackState.state){
+                            await TrackPlayer.pause();
+                        }else{
+                            await TrackPlayer.skip(currentIndex);
+                            await TrackPlayer.play()
+                        }
+                    }}>
+                    <Image source={
+                        State.Playing == playbackState.state?
+                        require('../../../assets/songImages/pause2.png')
+                        : require('../../../assets/songImages/play.png')
+                    }
+                    style={{width:25, height: 25, tintColor:'white'}}
+                />
+                </TouchableOpacity>
             </View>
+            <SongPlayer />
         </LinearGradient>
     )
 } 
@@ -202,7 +222,7 @@ const styles = StyleSheet.create({
     },
     searchContainer:{
         width:'90%',
-        height:40,
+        height:30,
         backgroundColor:'#b06a41',
         borderRadius: 5,
         flexDirection:'row',
@@ -215,7 +235,7 @@ const styles = StyleSheet.create({
     },
     sortContainer:{
         width:'15%',
-        height:40,
+        height:30,
         backgroundColor: '#b06a41',
         borderRadius: 5,
         alignItems: 'center',
@@ -229,7 +249,7 @@ const styles = StyleSheet.create({
         width:'80%',
         height:'30%',
         alignSelf: 'center',
-        marginTop: 20,
+        marginTop: 10,
         borderRadius: 5
     },
     spotifyConainer:{
@@ -267,7 +287,8 @@ const styles = StyleSheet.create({
         backgroundColor:'rgba(0,0,0,0.8)',
         flexDirection:'row',
         alignItems:'center',
+        justifyContent:'space-between',
         paddingHorizontal:20,
-        gap:10
+        
     }
 })
