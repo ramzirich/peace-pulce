@@ -53,7 +53,7 @@ export default Songs = () =>{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        paddingTop:30,
+        paddingTop:60,
         paddingHorizontal:20,
     },
     icons:{
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     searchContainer:{
         width:'90%',
         height:40,
-        backgroundColor:'#704830',
-        borderRadius: 3,
+        backgroundColor:'#b06a41',
+        borderRadius: 5,
         flexDirection:'row',
         paddingLeft:15,
         alignItems:'center'
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     sortContainer:{
         width:'15%',
         height:40,
-        backgroundColor: '#704830',
-        borderRadius: 3,
+        backgroundColor: '#b06a41',
+        borderRadius: 5,
         alignItems: 'center',
         justifyContent :'center',
     },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         color: CustomColors.white 
     },
     songImg:{
-        width:'70%',
+        width:'80%',
         height:'35%',
         alignSelf: 'center',
         marginTop: 20,
