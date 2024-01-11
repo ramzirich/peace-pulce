@@ -1,9 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
+import axios from "axios"
+import { config } from "../../../config"
 
 export default Songs = () =>{
+    const [songsList, setSongsList] = useState([]);
+
+    useEffect(() =>{
+        const fetchSongsData = async() =>{
+            try{
+                const response = await axios.get(`${config.apiUrl}/songs`);
+                setSongsList(response.data.data);
+            }catch(error){
+                console.error('Error fetching user data:', error.message);
+            }
+        };
+        fetchSongsData();
+    }, [])
+
+    console.log(songsList)
+
     return(
         <LinearGradient colors={['#a34c0d', '#592804', '#241001', '#000000']}
             style={styles.container}
