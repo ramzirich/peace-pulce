@@ -19,7 +19,7 @@ class SongController extends Controller
                 return $responseData['errors'];
             }
 
-            $audio = $request->file('audio');
+            $audio = $request->file('filename');
             $filename = time() . '.' . $audio->getClientOriginalExtension();
             $audio->move(public_path('audio'), $filename);
 
