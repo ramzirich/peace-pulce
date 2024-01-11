@@ -165,15 +165,19 @@ export default Songs = () =>{
                                     />
                                 )}
                            </View>
-                           {/* <Image source={require('../../../assets/songImages/option.png')}
+                           <Image source={require('../../../assets/songImages/option.png')}
                                 style={styles.icons}
                             />
-                            <View style={styles.songProgress}>
-                                <Image source={require('../../../assets/images/logo.jpg')} style={{height:45, width:45}}/>
-                            </View> */}
                         </TouchableOpacity>
             }}
             />
+            <View style={styles.songProgress}>
+                <Image source={require('../../../assets/images/logo.jpg')} style={{height:25, width:25}}/>
+                <View>
+                    <Text style={{color:'white'}}>{sngs[currentIndex].title}</Text>
+                    <Text style={{color:'white', fontSize:5}}>{sngs[currentIndex].artist}</Text>
+                </View>
+            </View>
         </LinearGradient>
     )
 } 
@@ -192,7 +196,7 @@ const styles = StyleSheet.create({
     upperSmallContainer:{
         width:'90%',
         // alignSelf:'center',
-        marginTop:20,
+        marginTop:10,
         flexDirection:'row',
         gap:5
     },
@@ -257,10 +261,13 @@ const styles = StyleSheet.create({
     },
     songProgress:{
         width:'100%',
-        height:50,
+        height:40,
         position:'absolute',
         bottom:0,
-        backgroundColor:'rgba(0,0,0,0.5)',
-        flexDirection:'row' 
+        backgroundColor:'rgba(0,0,0,0.8)',
+        flexDirection:'row',
+        alignItems:'center',
+        paddingHorizontal:20,
+        gap:10
     }
 })
