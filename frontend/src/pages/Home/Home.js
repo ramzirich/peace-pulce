@@ -25,9 +25,6 @@ const Home = ({navigation}) => {
     const fetchUserData = async() =>{
       try{
         const response = await axios.get(`${config.apiUrl}/videos`,{
-          // headers:{
-          //   'Authorization': AsyncStorage.getItem('authToken')
-          // }
         });
         setVideos(response.data.data);   
       }catch(error){
@@ -39,8 +36,7 @@ const Home = ({navigation}) => {
 
   return ( 
      <ScrollView> 
-       {userInfo? <CustomHeader name={userInfo.first_name}/>: 
-         <Text style={{marginVertical:10}}>Loading...</Text>} 
+       <CustomHeader />: 
        <HeaderButton navigation={navigation} />
        <SliderHorizental videos={videos} />
     </ScrollView>      

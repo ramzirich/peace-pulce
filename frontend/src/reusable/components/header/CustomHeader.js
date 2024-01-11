@@ -1,18 +1,23 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
+import { config } from "../../../../config"
 
-export const CustomHeader = ({img_url=CustomColors.darkBlue, name='Ramzi'}) =>{
-    if(name){
-        name  = name.charAt(0).toUpperCase() + name.slice(1);
+export const CustomHeader = () =>{
+    const {userInfo} = useSelector(state => state.userInfoReducer)
+    imgUrl = `${config.imgUrl}images/${userInfo.img_url}`
+    if(userInfo && userInfo.name){
+        userInfo.name  = userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1);
     }
     
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.profile_img}/>
             <View style={styles.user}>
-                <Text style={{fontSize:16}}>Welcome {name}</Text>
+                <Text style={{fontSize:16}}>Welcome {userInfo.name}</Text>
                 <View style={styles.status_view}>
-                    <TouchableOpacity style={styles.status_circle}/>
+                    <TouchableOpacity style={styles.status_circle}>
+                        <Image source={imgUrl} />
+                    </TouchableOpacity>
                     <Text style={{fontSize:12}}>Status</Text>
                 </View>      
             </View>
@@ -24,7 +29,6 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
         justifyContent:'start',
-        // marginLeft:10,
         marginTop:10,
         marginBottom: 20
     },
