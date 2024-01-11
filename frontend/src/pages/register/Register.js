@@ -42,7 +42,6 @@ export default Registration = ({navigation}) => {
     try{
       const response = await axios.post(`${config.apiUrl}/register`, inputs);
       await AsyncStorage.setItem('authToken', response.data.authorisation.token);
-      // await AsyncStorage.getItem('authToken');
       dispatch(setUserInfo(response.data.user))
       navigation.navigate('home')    
     }catch(error){
@@ -118,25 +117,24 @@ export default Registration = ({navigation}) => {
 
   const styles = StyleSheet.create({
     bigContainer:{ 
-      backgroundColor:CustomColors.BabyBlue,
-      height:'100%',
+      backgroundColor:CustomColors.white,
+      flex:1,
       paddingHorizontal:30,
       flexDirection:'column', 
-      justifyContent:'center' 
+    },
+    logo:{
+      height:150,
+      width:150,
+      alignSelf:'center',
     },
     smallContainer:{
-      padding: 30, 
+      paddingHorizontal: 30,
+      paddingVertical:20,
       backgroundColor:CustomColors.purple,
       borderRadius:10
     },
     btn:{
-      marginTop:20,
+      marginTop: 13,
       marginBottom:5
     },
-      logo:{
-      height:200,
-      width:200,
-      alignSelf:'center',
-      marginBottom:20,
-      }
   })

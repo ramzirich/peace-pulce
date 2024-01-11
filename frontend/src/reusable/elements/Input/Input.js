@@ -60,12 +60,12 @@ export const Input = ({
 
 const style = StyleSheet.create({
   label: {
-    marginVertical: 5,
+    marginVertical: 4,
     fontSize: 14,
     color: CustomColors.grey,
   },
   inputContainer: {
-    height: 55,
+    height: 45,
     backgroundColor: CustomColors.light,
     flexDirection: 'row',
     paddingHorizontal: 15,

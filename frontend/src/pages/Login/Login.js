@@ -57,7 +57,7 @@ export default Login = ({navigation}) =>{
                     onChangeText={text => handleOnchange(text, 'email')}
                     onFocus={() => handleError(null, 'email')}
                     label="Email"
-                    placeholder="Enter your email address"
+                    placeholder="example@gmail.com"
                     error={errors.email} 
                 />
 
@@ -65,7 +65,7 @@ export default Login = ({navigation}) =>{
                     onChangeText={text => handleOnchange(text, 'password')}
                     onFocus={() => handleError(null, 'password')}
                     label="Password"
-                    placeholder="Enter your password"
+                    placeholder="********"
                     error={errors.password}
                     password 
                 />
@@ -89,10 +89,16 @@ export default Login = ({navigation}) =>{
 const styles = StyleSheet.create({
     bigContainer:{ 
         backgroundColor:CustomColors.white,
-        height:'100%',
+        flex:1,
         paddingHorizontal:30,
         flexDirection:'column', 
-        justifyContent:'center' 
+        paddingTop:20,
+    },
+    logo:{
+        height:200,
+        width:200,
+        alignSelf:'center',
+        marginBottom: 5,
     },
     smallContainer:{
         padding: 30, 
@@ -102,12 +108,6 @@ const styles = StyleSheet.create({
     },
     btn:{
         marginTop:20,
-        marginBottom:5
+        marginBottom:7
     },
-    logo:{
-        height:200,
-        width:200,
-        alignSelf:'center',
-        marginBottom:20,
-    }
 })
