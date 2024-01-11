@@ -10,25 +10,26 @@ export default Songs = () =>{
     const [songsList, setSongsList] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const playbackState = usePlaybackState();
+    const progress = useProgress();
     // console.log(playbackState)
     const sngs=[{
         id: 'trackId',
         url: 'http://192.168.0.104:8000/audio/1704966200.mp3',
-        title: 'Track Title',
-        artist: 'Track Artist',
+        title: 'Enigama',
+        artist: 'eni',
         artwork: require('../../../assets/images/logo.jpg'),
         },{
         id: 'trackIdd',
         url: 'http://192.168.0.104:8000/audio/1704966484.mp3',
-        title: 'Track Title',
-        artist: 'Track Artist',
+        title: 'Inferia',
+        artist: 'unknown',
         artwork: require('../../../assets/images/logo.jpg')}];
     useEffect(() =>{
         const fetchSongsData = async() =>{
             try{
                 const response = await axios.get(`${config.apiUrl}/songs`);
                 setSongsList(response.data.data);
-                // setupPlayer();
+                setupPlayer();
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -37,8 +38,14 @@ export default Songs = () =>{
     }, [])
 
     useEffect(() => {
-        setupPlayer();
-      }, []);
+        if(State.Playing == playbackState.state){
+            if(progress.position.toFixed(0) == progress.duration.toFixed(0)){
+                if(currentIndex<sngs.length){  ///sngs
+                    setCurrentIndex(currentIndex+1)
+                }   
+            }
+        }
+      }, [progress]);
       const setupPlayer = async() =>{
         try{
             await TrackPlayer.setupPlayer()
@@ -83,7 +90,9 @@ export default Songs = () =>{
             <Image source={{uri : `${config.imgUrl}images/psy1.jpg`}}
                     style={styles.songImg}
             />
-
+            <Text style={{fontSize:30,color:'white', fontWeight:'600', marginTop:20}}>
+                {sngs[currentIndex].title}
+            </Text>
             <View style={styles.spotifyConainer}>
                 <Image source={require('../../../assets/songImages/spotify.png')}
                         style={styles.spotifyIcon}
@@ -156,9 +165,12 @@ export default Songs = () =>{
                                     />
                                 )}
                            </View>
-                           <Image source={require('../../../assets/songImages/option.png')}
+                           {/* <Image source={require('../../../assets/songImages/option.png')}
                                 style={styles.icons}
                             />
+                            <View style={styles.songProgress}>
+                                <Image source={require('../../../assets/images/logo.jpg')} style={{height:45, width:45}}/>
+                            </View> */}
                         </TouchableOpacity>
             }}
             />
@@ -169,7 +181,7 @@ export default Songs = () =>{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        paddingTop:30,
+        paddingTop:10,
         paddingHorizontal:20,
     },
     icons:{
@@ -211,7 +223,7 @@ const styles = StyleSheet.create({
     },
     songImg:{
         width:'80%',
-        height:'35%',
+        height:'30%',
         alignSelf: 'center',
         marginTop: 20,
         borderRadius: 5
@@ -242,5 +254,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent: 'space-between',
         paddingHorizontal:20
+    },
+    songProgress:{
+        width:'100%',
+        height:50,
+        position:'absolute',
+        bottom:0,
+        backgroundColor:'rgba(0,0,0,0.5)',
+        flexDirection:'row' 
     }
 })
