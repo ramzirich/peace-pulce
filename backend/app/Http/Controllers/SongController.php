@@ -37,4 +37,17 @@ class SongController extends Controller
             return ExceptionMessages::Error($exception->getMessage());
         }
     }
+
+    public function getAllVideos(){
+        try{
+            $songs = new Song();
+            $list = $songs->get();
+            return response()->json([
+                "status" => "success",
+                "data"=> $list
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
+    }
 }
