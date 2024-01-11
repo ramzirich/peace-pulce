@@ -19,10 +19,10 @@ function App(): React.JSX.Element {
         <Stack.Navigator initialRouteName="home">
           <Stack.Screen name="login" component={Login} /> 
           <Stack.Screen name="register" component={Registration} /> 
-           <Stack.Screen name="home" component={Home} /> 
-           <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist} /> 
-             <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
-             options={{title: 'id'}} />   
+          <Stack.Screen name="home" component={Home} /> 
+          <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist} /> 
+          <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
+          options={{title: 'id'}} />   
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
