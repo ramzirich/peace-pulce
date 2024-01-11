@@ -43,15 +43,4 @@ const Home = ({navigation}) => {
   ); 
 };
 
-const styles= StyleSheet.create({
-  videoLength:{
-    width:100,
-    height:100,
-    borderRadius: 50,
-    marginTop: 20,
-    backgroundColor: CustomColors.black,
-    alignSelf: "center"
-  }
-})
-
 export default Home;
