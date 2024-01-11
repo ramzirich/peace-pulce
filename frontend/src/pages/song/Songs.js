@@ -197,7 +197,12 @@ export default Songs = () =>{
                 />
                 </TouchableOpacity>
             </View>
-            <SongPlayer />
+            <SongPlayer  
+                songsList={sngs}
+                currentIndex ={currentIndex}
+                playbackState ={playbackState}
+                progress ={progress}
+            />
         </LinearGradient>
     )
 } 
