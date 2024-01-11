@@ -38,7 +38,7 @@ class SongController extends Controller
         }
     }
 
-    public function getAllVideos(){
+    public function getAllSongs(){
         try{
             $songs = new Song();
             $list = $songs->get();
