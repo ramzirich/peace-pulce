@@ -8,12 +8,12 @@ class SongRequest{
         try{
             $request->validate([
                 "title" => "required",
-                "filename" => "required|mimes:mp3,wav",
+                // "filename" => "required|mimes:mp3,wav",
                 "artist" => "required",
             ],[
                 "title.required" => "The title field is required",
                 "filename.required" => "The filename field is required",
-                "filename.mimes" => "The filename field must contain mp3 or wav",
+                // "filename.mimes" => "The filename field must contain mp3 or wav",
                 "artist.required" => "The arttist field is required",
             ]);
             return response()->json([
