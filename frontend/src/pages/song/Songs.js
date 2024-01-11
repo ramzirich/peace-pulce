@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 import axios from "axios"
@@ -21,7 +21,7 @@ export default Songs = () =>{
         fetchSongsData();
     }, [])
 
-    console.log(songsList)
+    // console.log(songsList)
 
     return(
         <LinearGradient colors={['#a34c0d', '#592804', '#241001', '#000000']}
@@ -83,6 +83,23 @@ export default Songs = () =>{
                     </TouchableOpacity>
                 </View>
             </View>
+            <FlatList data={songsList} renderItem={({item, index}) =>{
+                return <TouchableOpacity style={styles.songContainer}>
+                           <View style={{flexDirection:'row', gap:10}}>
+                                <Image source={{uri : `${config.imgUrl}images/psy1.jpg`}}
+                                        style={{width:50, height:50}}
+                                /> 
+                                <View>
+                                    <Text style={{color:'white'}}>{item.title}</Text>
+                                    <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
+                                </View>
+                           </View>
+                           <Image source={require('../../../assets/songImages/option.png')}
+                                style={styles.icons}
+                            />
+                        </TouchableOpacity>
+            }}
+            />
         </LinearGradient>
     )
 } 
@@ -90,7 +107,7 @@ export default Songs = () =>{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        paddingTop:60,
+        paddingTop:30,
         paddingHorizontal:20,
     },
     icons:{
@@ -156,5 +173,12 @@ const styles = StyleSheet.create({
     playIcon:{
         height:50,
         width:50
+    },
+    songContainer:{
+        width:'100%', 
+        height: 50,
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        paddingHorizontal:20
     }
 })
