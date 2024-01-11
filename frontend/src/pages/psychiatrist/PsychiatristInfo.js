@@ -133,8 +133,10 @@ export const PsychiatristInfo =({route, navigation}) =>{
                         </View>
 
                     </View>
-        
-                    <CommentList id={id} />
+                        <View>
+                        <CommentList id={id} />
+                        </View>
+                    
                 
             </View>
             </ScrollView>

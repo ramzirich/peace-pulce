@@ -12,7 +12,7 @@ export const SliderVertical  = ({userList, dr=null, navigation}) =>{
               last_name={item.last_name} dr={dr} imgUrl={item.img_url}
               id={item.id} navigation={navigation}
               />
-        )
+        ) 
     }
 
     return(

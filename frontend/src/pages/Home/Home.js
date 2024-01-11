@@ -14,7 +14,7 @@ import { SET_FIRST_NAME, SET_LAST_NAME } from '../../redux/actions/userActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Video from 'react-native-video';
 import CustomVideo from '../../reusable/components/video/CustomVideo';
-
+ 
 const Home = ({navigation}) => {
   const {userInfo} = useSelector(state => state.userInfoReducer)
 
@@ -31,14 +31,14 @@ const Home = ({navigation}) => {
         });
         setVideos(response.data.data);   
       }catch(error){
-        console.error('Error fetching user data:', error.message);
+        console.error('Error fetching user data:', error.message); 
       }
     };
     fetchUserData();
   }, [])
 
   return ( 
-     <ScrollView>
+     <ScrollView> 
        {userInfo? <CustomHeader name={userInfo.first_name}/>: 
          <Text style={{marginVertical:10}}>Loading...</Text>} 
        <HeaderButton navigation={navigation} />

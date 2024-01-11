@@ -10,9 +10,26 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
     const [paused, setPaused] = useState(true);
     const [progress, setProgress] = useState(null);
     const [fullScreen,setFullScreen]=useState(false)
+
+    const toggleFullscreen = () => {
+        setFullScreen(!fullScreen);
+    };
+    // console.log(fullScreen)
     const ref = useRef();
+    const playInFullscreen = () => {
+        if (ref.current) {
+            if(fullScreen){
+                setFullScreen(false) 
+                ref.current.dismissFullscreenPlayer();
+            }else{
+                setFullScreen(true)
+                ref.current.presentFullscreenPlayer();
+            }
+        }
+    };
+      
     const format = seconds =>{ 
-        let mins = parseInt(seconds/60)
+        let mins = parseInt(seconds/60) 
             .toString()
             .padStart(2, '0');
         let secs = (Math.trunc(seconds) %60).toString().padStart(2,'0');
@@ -29,21 +46,23 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
     return(
         <>
             <TouchableOpacity
-                style={[styles.video, vidoStyle]}
+                style={fullScreen? styles.fullscreenVideo:[styles.video, vidoStyle]}
                 onPress={()=>{
                         setClicked(!clicked)
                 }}  
             >
                 {paused? 
                     <Image source={{uri:'http://192.168.0.104:8000/images/user.jpg'}} 
-                        style={[vidoStyle, styles.video]}/>
+                        style={fullScreen? styles.fullscreenVideo:[vidoStyle, styles.video]}/>
                     :<></>
-                }
+                } 
                 <Video 
-                    style={[styles.video, vidoStyle]}
+                    style={fullScreen? styles.fullscreenVideo:[styles.video, vidoStyle]}
                     source={{uri: `${config.imgUrl}videos/${oneVideo.filename}`}}           
-                    paused = {paused} 
+                    paused = {paused}
+                    onBuffer ={this.onBuffer} 
                     ref={ref}
+                    // ref={videoRef}
                     onProgress={(x) =>{
                         setProgress(x)
                         }
@@ -51,6 +70,7 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
                     poster={'http://192.168.0.104:8000/images/user.jpg'}
                     posterResizeMode={'stretch'}
                     resizeMode="stretch"
+                    fullscreenAutorotate
                 />
 
                 {clicked && 
@@ -91,14 +111,21 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
                         </View>
 
                         <View style={styles.sizeIconsContainer}>
-                            <TouchableOpacity onPress={() =>{
-                                    if(fullScreen){
-                                        Orientation.lockToPortrait();
-                                    }else{
-                                        Orientation.lockToLandscape();
-                                    }
-                                    setFullScreen(!fullScreen)
-                                }}
+                             <TouchableOpacity //onPress={() =>{
+                                    // if(fullScreen){
+                                    //     Orientation.lockToPortrait();
+                                    //     playInFullscreen(); 
+                                    // }else{
+                                    //     Orientation.lockToLandscape();
+                                    //     playInFullscreen(); 
+                                    // }
+                                    // setFullScreen(!fullScreen)
+                                  
+                                    //     setFullScreen(!fullScreen); */}
+                                         onPress={playInFullscreen} 
+                                    // }}
+
+                            
                             >
                                 <Image
                                     source={fullScreen?require('../../../../assets/videosimages/minimize.png')
@@ -177,5 +204,13 @@ const styles = StyleSheet.create({
         top: 10,
         paddingHorizontal:10,
         alignItems:'center'
-    }
+    },
+    fullscreenVideo: {
+        // height:500,
+        // width:500
+       
+        
+        width:360,
+        height:360
+    },
 })
