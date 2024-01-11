@@ -20,6 +20,9 @@ const SongPlayer = ({songsList, currentIndex, playbackState, progress}) =>{
                 <Text style={{fontSize:30,color:'white', fontWeight:'600', marginTop:20}}>
                     {songsList[currentIndex].title}
                 </Text>
+                <Text style={{fontSize:16,color:'white', fontWeight:'600'}}>
+                    {songsList[currentIndex].artist}
+                </Text>
             </LinearGradient>
         </Modal>
     )
