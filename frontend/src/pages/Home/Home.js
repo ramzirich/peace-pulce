@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { useAuth } from '../../utils/AuthContext';
-import { Link } from 'react-router-native';
-import { Square } from '../../reusable/elements/square/Square';
+import { ScrollView } from 'react-native';
 import { CustomHeader } from '../../reusable/components/header/CustomHeader';
 import { HeaderButton } from '../../reusable/components/headerButtons/HeaderButtons';
 import { config } from '../../../config';
 import axios from 'axios';
 import { SliderHorizental } from '../../reusable/components/sliderHorizental/SliderHorizental';
-import { CustomColors } from '../../styles/color';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_FIRST_NAME, SET_LAST_NAME } from '../../redux/actions/userActions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Video from 'react-native-video';
-import CustomVideo from '../../reusable/components/video/CustomVideo';
+import { useSelector } from 'react-redux';
+
  
 const Home = ({navigation}) => {
   const {userInfo} = useSelector(state => state.userInfoReducer)
