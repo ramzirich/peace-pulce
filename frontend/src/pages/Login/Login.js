@@ -48,7 +48,7 @@ export default Login = ({navigation}) =>{
       };
 
     return(
-        <SafeAreaView style={styles.bigContainer}>
+        <ScrollView style={styles.bigContainer}>
             <View>
                 <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
             </View>
@@ -82,7 +82,7 @@ export default Login = ({navigation}) =>{
                     Don't have an account ?Register
                 </Text>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 

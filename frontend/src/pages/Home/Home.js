@@ -36,7 +36,7 @@ const Home = ({navigation}) => {
 
   return ( 
      <ScrollView> 
-       <CustomHeader />: 
+       <CustomHeader/>
        <HeaderButton navigation={navigation} />
        <SliderHorizental videos={videos} />
     </ScrollView>      

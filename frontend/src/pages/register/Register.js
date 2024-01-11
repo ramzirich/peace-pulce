@@ -58,59 +58,59 @@ export default Registration = ({navigation}) => {
 
   return (
     <ScrollView>
-    <SafeAreaView style={styles.bigContainer}>
-    
-    <View>
-        <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
-    </View>
-    <View style={styles.smallContainer}>
-      <Input
-        onChangeText={text => handleOnchange(text, 'first_name')}
-        onFocus={() => handleError(null, 'first_name')}
-        label="First name"
-        placeholder="Enter your first name"
-        error={errors.first_name} 
-      />
+      <SafeAreaView style={styles.bigContainer}>
+      
+      <View>
+          <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
+      </View>
+      <View style={styles.smallContainer}>
+        <Input
+          onChangeText={text => handleOnchange(text, 'first_name')}
+          onFocus={() => handleError(null, 'first_name')}
+          label="First name"
+          placeholder="Enter your first name"
+          error={errors.first_name} 
+        />
 
-      <Input
-        onChangeText={text => handleOnchange(text, 'last_name')}
-        onFocus={() => handleError(null, 'last_name')}
-        label="Last Name"
-        placeholder="Enter your last name"
-        error={errors.last_name} 
-      />
+        <Input
+          onChangeText={text => handleOnchange(text, 'last_name')}
+          onFocus={() => handleError(null, 'last_name')}
+          label="Last Name"
+          placeholder="Enter your last name"
+          error={errors.last_name} 
+        />
 
-      <Input
-          onChangeText={text => handleOnchange(text, 'email')}
-          onFocus={() => handleError(null, 'email')}
-          label="Email"
-          placeholder="Enter your email address"
-          error={errors.email} 
-      />
+        <Input
+            onChangeText={text => handleOnchange(text, 'email')}
+            onFocus={() => handleError(null, 'email')}
+            label="Email"
+            placeholder="Enter your email address"
+            error={errors.email} 
+        />
 
-      <Input
-          onChangeText={text => handleOnchange(text, 'password')}
-          onFocus={() => handleError(null, 'password')}
-          label="Password"
-          placeholder="Enter your password"
-          error={errors.password}
-          password 
-      />
-        
-        <View style={styles.btn}>
-            <CustomButton title="Register" onPress={validate} />
-        </View>         
-        <Text
-            onPress={() => navigation.navigate('login')}
-            style={{
-            fontSize: 12,
-            color:CustomColors.white
-            }}>
-            Already have an account ?Login
-        </Text>
-    </View>
-    
-</SafeAreaView>
+        <Input
+            onChangeText={text => handleOnchange(text, 'password')}
+            onFocus={() => handleError(null, 'password')}
+            label="Password"
+            placeholder="Enter your password"
+            error={errors.password}
+            password 
+        />
+          
+          <View style={styles.btn}>
+              <CustomButton title="Register" onPress={validate} />
+          </View>         
+          <Text
+              onPress={() => navigation.navigate('login')}
+              style={{
+              fontSize: 12,
+              color:CustomColors.white
+              }}>
+              Already have an account ?Login
+          </Text>
+      </View>
+      
+  </SafeAreaView>
 </ScrollView>
 )
 }
