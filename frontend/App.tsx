@@ -9,6 +9,7 @@ import storee from './src/redux/storee';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer} from '@react-navigation/native';
 import Registration from './src/pages/register/Register';
+import Songs from './src/pages/song/Songs';
 
 
 function App(): React.JSX.Element {
@@ -22,7 +23,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="home" component={Home} /> 
           <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist} /> 
           <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
-          options={{title: 'id'}} />   
+          options={{title: 'id'}} /> 
+          <Stack.Screen name="songs" component={Songs} />   
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
