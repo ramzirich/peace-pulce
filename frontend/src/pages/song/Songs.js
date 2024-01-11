@@ -7,6 +7,7 @@ import { config } from "../../../config"
 
 export default Songs = () =>{
     const [songsList, setSongsList] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0)
 
     useEffect(() =>{
         const fetchSongsData = async() =>{
@@ -41,6 +42,9 @@ export default Songs = () =>{
                     <Text style={styles.sortText}>Sort</Text>
                 </View>
             </View>
+            <Image source={{uri : `${config.imgUrl}images/psy1.jpg`}}
+                    style={styles.songImg}
+            />
         </LinearGradient>
     )
 } 
@@ -87,5 +91,9 @@ const styles = StyleSheet.create({
     sortText:{
         fontWeight: '600',
         color: CustomColors.white 
+    },
+    songImg:{
+        width:'70%',
+        height:200
     }
 })
