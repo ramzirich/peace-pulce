@@ -210,6 +210,9 @@ export default Songs = () =>{
                 progress ={progress}
                 isVisible={isVisible}
                 onClose={() => setIsVisible(false)}
+                onChange={(x) =>{
+                    setCurrentIndex(x)
+                }}
             />
         </LinearGradient>
     )
