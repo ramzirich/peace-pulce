@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, StatusBar, StyleSheet, Text, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 import axios from "axios"
@@ -27,6 +27,7 @@ export default Songs = () =>{
         <LinearGradient colors={['#a34c0d', '#592804', '#241001', '#000000']}
             style={styles.container}
         >
+            <StatusBar translucent backgroundColor={'transparent'} />
             <Image source={require('../../../assets/songImages/left.png')}
                 style={styles.icons}
             /> 
@@ -94,6 +95,9 @@ const styles = StyleSheet.create({
     },
     songImg:{
         width:'70%',
-        height:200
+        height:'35%',
+        alignSelf: 'center',
+        marginTop: 20,
+        borderRadius: 5
     }
 })
