@@ -9,10 +9,7 @@ import { useSelector } from 'react-redux';
 
  
 const Home = ({navigation}) => {
-  const {userInfo} = useSelector(state => state.userInfoReducer)
-
   const [videos, setVideos] = useState([]);
-
 
   useEffect(() =>{
     const fetchUserData = async() =>{
