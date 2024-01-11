@@ -11,7 +11,7 @@ import TrackPlayer from 'react-native-track-player';
 // const ReduxApp = () => (
 //     <Provider store={store}>
 //       <App />
-//     </Provider>
+//     </Provider> 
 //   );
 
 AppRegistry.registerComponent(appName, () => App);

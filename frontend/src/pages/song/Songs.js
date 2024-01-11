@@ -4,16 +4,31 @@ import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 import axios from "axios"
 import { config } from "../../../config"
+import TrackPlayer, { Capability, State, usePlaybackState, useProgress, } from "react-native-track-player"
 
 export default Songs = () =>{
     const [songsList, setSongsList] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0)
-
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const playbackState = usePlaybackState();
+    // console.log(playbackState)
+    const sngs=[{
+        id: 'trackId',
+        url: 'http://192.168.0.104:8000/audio/1704966200.mp3',
+        title: 'Track Title',
+        artist: 'Track Artist',
+        artwork: require('../../../assets/images/logo.jpg'),
+        },{
+        id: 'trackIdd',
+        url: 'http://192.168.0.104:8000/audio/1704966484.mp3',
+        title: 'Track Title',
+        artist: 'Track Artist',
+        artwork: require('../../../assets/images/logo.jpg')}];
     useEffect(() =>{
         const fetchSongsData = async() =>{
             try{
                 const response = await axios.get(`${config.apiUrl}/songs`);
                 setSongsList(response.data.data);
+                // setupPlayer();
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -21,7 +36,29 @@ export default Songs = () =>{
         fetchSongsData();
     }, [])
 
-    // console.log(songsList)
+    useEffect(() => {
+        setupPlayer();
+      }, []);
+      const setupPlayer = async() =>{
+        try{
+            await TrackPlayer.setupPlayer()
+            await TrackPlayer.updateOptions({
+                capabilities: [ 
+                  Capability.Play,
+                  Capability.Pause,
+                  Capability.SkipToNext,
+                  Capability.SkipToPrevious,
+                  Capability.Stop,
+                ],
+                compactCapabilities: [Capability.Play, Capability.Pause],
+              });
+            await TrackPlayer.add(sngs)
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    // console.log(State.Playing)
 
     return(
         <LinearGradient colors={['#a34c0d', '#592804', '#241001', '#000000']}
@@ -76,15 +113,30 @@ export default Songs = () =>{
                     <Image source={require('../../../assets/songImages/shuffle.png')}
                         style={styles.icons}
                     />
-                    <TouchableOpacity>
-                    <Image source={require('../../../assets/songImages/play-button.png')}
-                        style={styles.playIcon}
-                    />
+                    <TouchableOpacity style={{backgroundColor:'red'}} onPress={async() =>{
+                        if(State.Playing== playbackState.state){
+                            await TrackPlayer.pause();
+                        }else{
+                            await TrackPlayer.skip(currentIndex);
+                            await TrackPlayer.play()
+                        }
+                    }}>
+                    {State.Playing==playbackState.state ?(
+                        <Image source={require('../../../assets/songImages/pause.png')}
+                            style={styles.playIcon}
+                        />) : 
+                        (<Image source={require('../../../assets/songImages/play-button.png')}
+                            style={styles.playIcon}
+                        />)
+                    }
                     </TouchableOpacity>
                 </View>
             </View>
-            <FlatList data={songsList} renderItem={({item, index}) =>{
-                return <TouchableOpacity style={styles.songContainer}>
+            <FlatList data={sngs} renderItem={({item, index}) =>{
+                return <TouchableOpacity style={styles.songContainer}
+                onPress={() =>{
+                    setCurrentIndex(index)
+                }}>
                            <View style={{flexDirection:'row', gap:10}}>
                                 <Image source={{uri : `${config.imgUrl}images/psy1.jpg`}}
                                         style={{width:50, height:50}}
@@ -93,6 +145,13 @@ export default Songs = () =>{
                                     <Text style={{color:'white'}}>{item.title}</Text>
                                     <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
                                 </View>
+                                {index == currentIndex && State.Playing == playbackState.state &&(
+                                    <Image 
+                                        source={require('../../../assets/songImages/playing.png')}
+                                        style={{width:18, height:18, tintColor:'white', marginRight:20}}
+
+                                    />
+                                )}
                            </View>
                            <Image source={require('../../../assets/songImages/option.png')}
                                 style={styles.icons}
