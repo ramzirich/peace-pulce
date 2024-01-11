@@ -11,6 +11,9 @@ export default Songs = () =>{
             <Image source={require('../../../assets/songImages/left.png')}
                 style={styles.icons}
             /> 
+            <View style={styles.upperSmallContainer}>
+                <View style={styles.greyContainer}></View>
+            </View>
         </LinearGradient>
     )
 } 
@@ -22,8 +25,20 @@ const styles = StyleSheet.create({
         paddingHorizontal:20,
     },
     icons:{
-        width:20,
-        height:20,
+        width:24,
+        height:24,
         tintColor:CustomColors.white
+    },
+    upperSmallContainer:{
+        width:'90%',
+        // alignSelf:'center',
+        marginTop:20,
+        flexDirection:'row'
+    },
+    greyContainer:{
+        width:'90%',
+        height:40,
+        backgroundColor:'#9e9e9e',
+        borderRadius: 3
     }
 })
