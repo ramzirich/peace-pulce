@@ -46,6 +46,13 @@ export default Songs = () =>{
             <Image source={{uri : `${config.imgUrl}images/psy1.jpg`}}
                     style={styles.songImg}
             />
+
+            <View style={styles.spotifyConainer}>
+                <Image source={require('../../../assets/songImages/spotify.png')}
+                        style={styles.spotifyIcon}
+                />
+                <Text style={styles.spotifyText}>Calm Music</Text>
+            </View>
         </LinearGradient>
     )
 } 
@@ -99,5 +106,18 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 20,
         borderRadius: 5
+    },
+    spotifyConainer:{
+        flexDirection:'row',
+        marginTop: 20
+    },
+    spotifyIcon:{
+        height:18,
+        width:18
+    },
+    spotifyText:{
+        color: CustomColors.white,
+        fontSize: 14,
+        marginLeft: 10
     }
 })
