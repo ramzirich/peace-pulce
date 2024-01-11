@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, StyleSheet, View } from "react-native"
+import { Image, StyleSheet, Text, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 
@@ -12,7 +12,16 @@ export default Songs = () =>{
                 style={styles.icons}
             /> 
             <View style={styles.upperSmallContainer}>
-                <View style={styles.greyContainer}></View>
+                <View style={styles.searchContainer}>
+                    <Image source={require('../../../assets/songImages/search2.png')}
+                        style={styles.icons}
+                    />
+                    <Text style={styles.searchText}>Find in Playlist</Text>
+                </View>
+
+                <View style={styles.sortContainer}>
+                    <Text style={styles.sortText}>Sort</Text>
+                </View>
             </View>
         </LinearGradient>
     )
@@ -33,12 +42,32 @@ const styles = StyleSheet.create({
         width:'90%',
         // alignSelf:'center',
         marginTop:20,
-        flexDirection:'row'
+        flexDirection:'row',
+        gap:5
     },
-    greyContainer:{
+    searchContainer:{
         width:'90%',
         height:40,
-        backgroundColor:'#522810',
-        borderRadius: 3
+        backgroundColor:'#704830',
+        borderRadius: 3,
+        flexDirection:'row',
+        paddingLeft:15,
+        alignItems:'center'
+    },
+    searchText:{
+        marginLeft:10,
+        color: CustomColors.white
+    },
+    sortContainer:{
+        width:'15%',
+        height:40,
+        backgroundColor: '#704830',
+        borderRadius: 3,
+        alignItems: 'center',
+        justifyContent :'center',
+    },
+    sortText:{
+        fontWeight: '600',
+        color: CustomColors.white 
     }
 })
