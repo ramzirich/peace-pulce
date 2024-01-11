@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Image, StatusBar, StyleSheet, Text, View } from "react-native"
+import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 import axios from "axios"
@@ -52,6 +52,36 @@ export default Songs = () =>{
                         style={styles.spotifyIcon}
                 />
                 <Text style={styles.spotifyText}>Calm Music</Text>
+            </View>
+
+            <View style={styles.spotifyConainer}>
+                <Text style={styles.spotifyText}>20,169 saves</Text>
+                <Text style={styles.spotifyText}>4h 26m</Text>
+            </View>
+
+            <View style={[styles.spotifyConainer, [styles.spacebetween]]}>
+                <View style={{flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Image source={require('../../../assets/songImages/plus.png')}
+                        style={styles.icons}
+                    />
+                    <Image source={require('../../../assets/songImages/arrow-down.png')}
+                        style={styles.icons}
+                    />
+                    <Image source={require('../../../assets/songImages/option.png')}
+                        style={styles.icons}
+                    />
+                </View>
+
+                <View style={{flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Image source={require('../../../assets/songImages/shuffle.png')}
+                        style={styles.icons}
+                    />
+                    <TouchableOpacity>
+                    <Image source={require('../../../assets/songImages/play-button.png')}
+                        style={styles.playIcon}
+                    />
+                    </TouchableOpacity>
+                </View>
             </View>
         </LinearGradient>
     )
@@ -109,7 +139,7 @@ const styles = StyleSheet.create({
     },
     spotifyConainer:{
         flexDirection:'row',
-        marginTop: 20
+        marginTop: 20,
     },
     spotifyIcon:{
         height:18,
@@ -119,5 +149,12 @@ const styles = StyleSheet.create({
         color: CustomColors.white,
         fontSize: 14,
         marginLeft: 10
+    },
+    spacebetween:{
+        justifyContent:'space-between'
+    },
+    playIcon:{
+        height:50,
+        width:50
     }
 })
