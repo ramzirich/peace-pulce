@@ -8,6 +8,7 @@ use App\Http\Controllers\NeuroticismController;
 use App\Http\Controllers\PatientRequestDoctorController;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\SongController;
 use App\Http\Controllers\StressCauseController;
 use App\Http\Controllers\PatientCommentController;
 use App\Http\Controllers\DoctorNoteController;
@@ -48,6 +49,10 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(VideosController::class)->group(function () {
     Route::post('upload/video', 'uploadVideo');
     Route::get('videos', 'getAllVideos');
+});
+
+Route::controller(SongController::class)->group(function () {
+    Route::post('upload/song', 'uploadSong');
 });
 
 Route::middleware('auth.user')->group(function () {
