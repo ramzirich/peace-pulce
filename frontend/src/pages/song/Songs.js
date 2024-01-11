@@ -209,6 +209,7 @@ export default Songs = () =>{
                 playbackState ={playbackState}
                 progress ={progress}
                 isVisible={isVisible}
+                onClose={() => setIsVisible(false)}
             />
         </LinearGradient>
     )

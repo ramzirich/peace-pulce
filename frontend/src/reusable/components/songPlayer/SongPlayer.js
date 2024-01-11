@@ -1,11 +1,11 @@
 import React from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import  Modal  from "react-native-modal"
 import { CustomColors } from "../../../styles/color"
 import Slider from "@react-native-community/slider"
 
-const SongPlayer = ({songsList, currentIndex, playbackState, progress, isVisible}) =>{
+const SongPlayer = ({songsList, currentIndex, playbackState, progress, isVisible, onClose}) =>{
     const format = seconds => {
         let mins = parseInt(seconds / 60)
           .toString()
@@ -18,10 +18,12 @@ const SongPlayer = ({songsList, currentIndex, playbackState, progress, isVisible
             <LinearGradient colors={['#067a02', '#064f03', '#032901', '#000000']}
                 style={styles.container}
             >
-        
-                <Image source={require('../../../../assets/songImages/down-arrow.png')}
-                    style={styles.icons}
-                />
+                <TouchableOpacity onPress={()=> onClose()}>
+                    <Image source={require('../../../../assets/songImages/down-arrow.png')}
+                        style={styles.icons}
+                    />
+                </TouchableOpacity>
+                
                 <Image source={require('../../../../assets/images/logo.jpg')}
                     style={styles.songImg}
                 /> 
