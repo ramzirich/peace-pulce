@@ -134,7 +134,10 @@ export default Songs = () =>{
             </View>
             <FlatList data={sngs} renderItem={({item, index}) =>{
                 return <TouchableOpacity style={styles.songContainer}
-                onPress={() =>{
+                onPress={async() =>{
+                    await TrackPlayer.pause()
+                    await TrackPlayer.skip(index);
+                    await TrackPlayer.play()
                     setCurrentIndex(index)
                 }}>
                            <View style={{flexDirection:'row', gap:10}}>
