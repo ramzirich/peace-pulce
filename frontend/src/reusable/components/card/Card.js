@@ -3,7 +3,6 @@ import { CustomColors } from "../../../styles/color"
 import { config } from "../../../../config";
 
 export const Card = ({dr =null, item, navigation, pathName}) =>{
-   
     const { first_name, last_name, about, img_url, id, specialization } = item;
     const imagePath = `${config.imgUrl}${img_url}`;
    

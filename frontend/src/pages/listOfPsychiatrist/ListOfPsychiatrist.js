@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { ScrollView, Text, View } from "react-native"
 import { CustomHeader } from "../../reusable/components/header/CustomHeader"
 import { SliderVertical } from "../../reusable/components/sliderVertcal/SliderVertical"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
@@ -33,16 +33,16 @@ export const ListOfPsychiatrist = ({navigation}) =>{
     }));
   
     return(
-        <View>
+        <ScrollView>
             <CustomHeader />
             <HeaderButton />
             <View>
-                {doctors.length ===0 ? <Text>No Doctors</Text> :    
+                {doctors.length ===0 ? <Text>No Doctors</Text> :
                     <SliderVertical userList={users} dr='Dr.'
                         navigation={navigation}
                     /> 
                 }
             </View>
-        </View>
+        </ScrollView>
     )
 } 
