@@ -2,23 +2,23 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
 import { config } from "../../../../config";
 
-export const Card = ({dr =null, item, navigation}) =>{
+export const Card = ({dr =null, item, navigation, pathName}) =>{
     // console.log(item)
-    const { first_name, last_name, text, imgUrl, id, help } = item;
-    // const imagePath = `${config.imgUrl}${imgUrl}`;
-    console.log(help)
+    const { first_name, last_name, about, img_url, id, specialization } = item;
+    const imagePath = `${config.imgUrl}${img_url}`;
     return(
-        <TouchableOpacity style={styles.card}>
-            {/* // onPress={()=>navigation.navigate('psychiatrist', {id:id})}>
-            // <View style={styles.img_container}>  
-            //     <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
-            // </View>
-            // <View style={styles.text_right}>
-            //     <Text style={styles.name} numberOfLines={1}>{dr} {first_name} {last_name}</Text> 
-            //     <View style={styles.info}>
-            //         <Text numberOfLines={5}>{text}</Text>     
-            //     </View>     
-            // </View> */}
+        <TouchableOpacity style={styles.card}
+            onPress={()=>navigation.navigate('psychiatrist', {id:id})}>
+            <View style={styles.img_container}>  
+                <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
+                {specialization && <Text>{specialization}</Text>}
+            </View>
+            <View style={styles.text_right}>
+                <Text style={styles.name} numberOfLines={1}>{dr} {first_name} {last_name}</Text> 
+                <View style={styles.info}>
+                    <Text numberOfLines={5}>{about}</Text>     
+                </View>     
+            </View>
         </TouchableOpacity>
     )
 } 
