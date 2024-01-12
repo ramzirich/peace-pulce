@@ -25,23 +25,20 @@ export const Comment = ({item}) =>{
     return(
         <View style={styles.container}>
             {imagePath ? 
-                <View style={styles.img_container}>  
-                    <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>   
-                </View> : 
+                <View style={styles.comment_profile}>
+                    <View style={styles.img_container}>  
+                        <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>    
+                    </View> 
+                    <View>
+                        <Text style={styles.user_name}>{item.user.first_name} {item.user.last_name}</Text> 
+                        <Text style={styles.date}>{formattedDate}</Text> 
+                    </View>
+                </View>: 
                 <TouchableOpacity style={styles.img}>
                     <Text style={{fontSize:10, alignItems:'center'}}>No image</Text>
                 </TouchableOpacity> 
             }
-
             <Text style={styles.comment}>{item.comment}</Text>
-            <View style={styles.comment_creation}>
-                <View>
-                    <Text style={styles.user_name}>{item.user.first_name} {item.user.last_name}</Text>
-                </View>
-                <View>
-                    <Text style={styles.date}>{formattedDate}</Text>
-                </View>
-            </View>
         </View>
     )
 }
@@ -58,10 +55,10 @@ const styles = StyleSheet.create({
         shadowOffset: {
         width: 0,
         height: 2,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    elevation: 3,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 3,
     },
     img_container:{
         marginBottom: 7   
@@ -74,6 +71,10 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         paddingLeft:3
     },
+    comment_profile:{
+        flexDirection:'row',
+        gap:5
+    },
     comment:{
         marginBottom:5
     },
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     date:{
-        fontWeight: '300'
+        fontWeight: '300',
+        fontSize:12
     }
 })

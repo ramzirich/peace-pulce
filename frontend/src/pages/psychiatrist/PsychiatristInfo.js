@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native"
+import { FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native"
 import { CustomHeader } from "../../reusable/components/header/CustomHeader"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -64,6 +64,7 @@ export const PsychiatristInfo =({route}) =>{
             }
     }, [ratingList]) 
     
+
     return(    
         <ScrollView style={styles.big_container}>
             <View style={styles.profile}>
@@ -136,16 +137,14 @@ export const PsychiatristInfo =({route}) =>{
             <View>
             <CommentList id={id} />
             </View>   
-               
         </ScrollView>        
-    )
+    ) 
 }
 
 const styles = StyleSheet.create({
     big_container:{
         flex:1,
         paddingTop: 10,
-        // paddingBottom: 200,
         paddingHorizontal:20,     
     },
     profile:{
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
         flexDirection:'column', 
     },
     name:{
-        fontSize:32,
+        fontSize:26,
         fontWeight:'bold',
         color: CustomColors.black,
         letterSpacing:1,
@@ -209,7 +208,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     emojies:{
-        fontSize:35
+        fontSize:25
     },
     emoji_angry:{
         color:'red'
