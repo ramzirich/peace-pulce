@@ -1,5 +1,4 @@
-import { FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native"
-import { CustomHeader } from "../../reusable/components/header/CustomHeader"
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
@@ -13,7 +12,6 @@ export const PsychiatristInfo =({route}) =>{
     const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo;
     const imgUrl = `${config.imgUrl}${img_url}` 
 
-    const [doctor, setDoctor] = useState({})
     const [ratingList, setRatingList] = useState([]);
     const [rating, setRating] = useState(0);
     const [ratingDistribution, setRatingDistribution] = useState({

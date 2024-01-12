@@ -7,7 +7,7 @@ export const CustomColors= {
     darkBlue: '#11009E',
     red: 'red',
     green:'green',
-    purple:'#6A0DAD',
+    purple:'#8962f3',
     IndigoPurple: '#4B0082',
     RoyalBlue: '#4169E1',
     PeriwinkleBlue: '#CCCCFF',

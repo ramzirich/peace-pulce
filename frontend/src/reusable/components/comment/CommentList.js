@@ -44,18 +44,15 @@ export const CommentList = ({id}) =>{
     }
 
     return(
-        <>
         <View style={{ marginTop: 20, paddingBottom: 25 }}>
-    {commentList.length > 0 ? (
-      commentList.map((item) => (
-        <Comment key={item.id} item={item} />
-      ))
-    ) : (
-      <Text>No comment</Text>
-    )}
-    <Button title="Load more" onPress={loadMore}></Button>
-  </View> 
-  
-  </>    
+            {commentList.length > 0 ? (
+            commentList.map((item) => (
+                <Comment key={item.id} item={item} />
+            ))
+            ) : (
+            <Text>No comment</Text>
+            )}
+            <Button title="Load more" onPress={loadMore}></Button>
+        </View> 
     )
 } 

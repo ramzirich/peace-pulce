@@ -11,7 +11,7 @@ export const CustomButton = ({title, onPress = () => {}}) => {
       style={{
         height: 55,
         width: '100%',
-        backgroundColor: CustomColors.blue,
+        backgroundColor: '#4752e2',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius:5
