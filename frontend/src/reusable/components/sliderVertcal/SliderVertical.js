@@ -7,8 +7,8 @@ import { Card } from "../card/Card"
 export const SliderVertical  = ({userList, dr=null, navigation}) =>{
     renderItem = ({item}) =>{
         return(
-            <Card dr={dr} item={item} navigation={navigation} 
-              />
+            <Card dr={dr} item={item} navigation={navigation} pathName='psychiatrist'
+            />
         ) 
     }
 

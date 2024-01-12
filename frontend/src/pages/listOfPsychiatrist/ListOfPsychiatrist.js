@@ -36,12 +36,13 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         <View>
             <CustomHeader />
             <HeaderButton />
-            {doctors.length ===0 ? <Text>No Doctors</Text> :
-          
-            <SliderVertical userList={users} dr='Dr.'
-                navigation={navigation}
-             /> 
-           }
+            <View>
+                {doctors.length ===0 ? <Text>No Doctors</Text> :    
+                    <SliderVertical userList={users} dr='Dr.'
+                        navigation={navigation}
+                    /> 
+                }
+            </View>
         </View>
     )
 } 

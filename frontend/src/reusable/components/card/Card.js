@@ -5,17 +5,17 @@ import { config } from "../../../../config";
 export const Card = ({dr =null, item, navigation, pathName}) =>{
    
     const { first_name, last_name, about, img_url, id, specialization } = item;
-    console.log(specialization)
     const imagePath = `${config.imgUrl}${img_url}`;
+   
     return(
         <TouchableOpacity style={styles.card}
-            onPress={()=>navigation.navigate('psychiatrist', {id:id})}>
+            onPress={()=>navigation.navigate( pathName, {id:id})}>
             <View style={styles.img_container}>  
                 <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
-                {specialization && <Text>{specialization}</Text>}
             </View>
             <View style={styles.text_right}>
-                <Text style={styles.name} numberOfLines={1}>{dr} {first_name} {last_name}</Text> 
+                <Text style={styles.name} numberOfLines={1}>{dr} {first_name} {last_name}</Text>
+                {specialization && <Text style={styles.specialization}>{specialization}</Text>} 
                 <View style={styles.info}>
                     <Text numberOfLines={5}>{about}</Text>     
                 </View>     
@@ -26,15 +26,16 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
 
 const styles = StyleSheet.create({
     card:{
-        height:150,
+        height:170,
         width:320,
         borderRadius: 30,
         backgroundColor: CustomColors.grey,
         marginBottom: 20,
         flexDirection: 'row',
-        paddingTop:15,
+        alignItems:'center',
+        paddingVertical:15,
         paddingHorizontal: 15,
-        gap:10
+        gap:7
     },
     text_right:{
         paddingLeft:30,
@@ -55,9 +56,13 @@ const styles = StyleSheet.create({
     },
     img:{
        borderRadius: 10,
-        height:120,
+        height:145,
         width:90,
         backgroundColor:CustomColors.black,
         alignSelf: "flex-end"
+    },
+    specialization:{
+        fontSize:12,
+        fontWeight:'300'
     }
 })
