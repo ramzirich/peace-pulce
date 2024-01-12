@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login"> 
+        <Stack.Navigator initialRouteName="home"> 
           <Stack.Screen name="login" component={Login} /> 
           <Stack.Screen name="register" component={Registration} /> 
           <Stack.Screen name="home" component={Home} /> 

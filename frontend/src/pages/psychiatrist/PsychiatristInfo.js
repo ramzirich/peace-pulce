@@ -10,7 +10,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const PsychiatristInfo =({route}) =>{
     const {id, doctorInfo} = route.params;
-    const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo 
+    const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo;
+    const imgUrl = `${config.imgUrl}${img_url}` 
 
     const [doctor, setDoctor] = useState({})
     const [ratingList, setRatingList] = useState([]);
@@ -25,8 +26,6 @@ export const PsychiatristInfo =({route}) =>{
         const fetchUserData = async() =>{
             try{
                 const authToken = await AsyncStorage.getItem('authToken');
-                // const response =await  axios.get(`${config.apiUrl}/doctor/${id}`);
-                // setDoctor(response.data)
 
                 const ratingResponse = await axios.get(`${config.apiUrl}/rating/${id}`,{
                     headers:{
@@ -65,78 +64,99 @@ export const PsychiatristInfo =({route}) =>{
             }
     }, [ratingList]) 
     
-    return(
-        <>  
-        <ScrollView>
-       
-            <View style={styles.big_container}>
-                    <View style={styles.cost_rating}>
-
-                        <View style={styles.costRating_container}>
-                            <View>
-                                <Text style={styles.start}>★</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.subTitle}>Rating</Text>
-                                <Text style={{fontSize:10, fontWeight:300}}>{ratingList.length} votes</Text>
-                            </View>                        
-                        </View>
-
-                        <View style={styles.costRating_container}>
-                            <View style={styles.cost_circle} />
-                            <View>
-                                <Text style={styles.subTitle}>Cost</Text>
-                                <Text style={{fontSize:12, fontWeight:300}}>${doctor.hourly_rate}/hr</Text>
-                            </View>
-                        </View>
-
-                    </View> 
-
-                    <View style={styles.emojies_container}>
-                        <View style={styles.emoji_info}>
-                            <View>
-                                <Text style={styles.emojies}>😊</Text>
-                            </View>
-                            <View>
-                                <Text>{ratingDistribution['3.75-5']} votes</Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.emoji_info}>
-                            <View>
-                                <Text style={styles.emojies}>😐</Text>
-                            </View>
-                            <View>
-                                <Text >{ratingDistribution['2.5-3.75']} votes</Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.emoji_info}>
-                            <View>
-                                <Text style={styles.emojies}>😡</Text>
-                            </View>
-                            <View>
-                                <Text >{ratingDistribution['0-2.5']} votes</Text>
-                            </View>
-                        </View>
-
-                    </View>
-                        <View>
-                        <CommentList id={id} />
-                        </View>
-                    
-                
+    return(    
+        <View style={styles.big_container}>
+            <View style={styles.profile}>
+                <View style={styles.fullname}>
+                    <Text style={styles.name}>Dr. {first_name}</Text>
+                    <Text style={styles.name}>{last_name}</Text>
+                    <Text style={styles.degree}>{degree}</Text>
+                </View>
+                <View>
+                    <Image source={{uri : imgUrl}} style={styles.imgUrl} />
+                </View>
             </View>
-            </ScrollView>
-        </>
-        
+            <View style={styles.cost_rating}>
+
+                <View style={styles.costRating_container}>
+                    <View>
+                        <Text style={styles.start}>★</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.subTitle}>Rating</Text>
+                        <Text style={{fontSize:10, fontWeight:300}}>{ratingList.length} votes</Text>
+                    </View>                        
+                </View>
+
+                <View style={styles.costRating_container}>
+                    <View style={styles.cost_circle} />
+                    <View>
+                        <Text style={styles.subTitle}>Cost</Text>
+                        <Text style={{fontSize:12, fontWeight:300}}>${doctor.hourly_rate}/hr</Text>
+                    </View>
+                </View>
+
+            </View> 
+
+            <View style={styles.emojies_container}>
+                <View style={styles.emoji_info}>
+                    <View>
+                        <Text style={styles.emojies}>😊</Text>
+                    </View>
+                    <View>
+                        <Text>{ratingDistribution['3.75-5']} votes</Text>
+                    </View>
+                </View>
+
+                <View style={styles.emoji_info}>
+                    <View>
+                        <Text style={styles.emojies}>😐</Text>
+                    </View>
+                    <View>
+                        <Text >{ratingDistribution['2.5-3.75']} votes</Text>
+                    </View>
+                </View>
+
+                <View style={styles.emoji_info}>
+                    <View>
+                        <Text style={styles.emojies}>😡</Text>
+                    </View>
+                    <View>
+                        <Text >{ratingDistribution['0-2.5']} votes</Text>
+                    </View>
+                </View>
+
+            </View>
+            <View>
+            <CommentList id={id} />
+            </View>         
+        </View>        
     )
 }
 
 const styles = StyleSheet.create({
     big_container:{
-        paddingHorizontal:20,
-        
+        paddingVertical: 30,
+        paddingHorizontal:20,     
+    },
+    profile:{
+        flexDirection:'row',
+        marginBottom:10,
+        justifyContent:'space-between',
+    },
+    fullname:{
+        flexDirection:'column', 
+    },
+    name:{
+        fontSize:32,
+        fontWeight:'bold',
+        color: CustomColors.black,
+        letterSpacing:1,
+    },
+    imgUrl:{
+        height:100,
+        width:100,
+        borderRadius:50,
     },
     info_card:{
         height:80,
