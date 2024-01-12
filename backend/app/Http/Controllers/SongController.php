@@ -26,7 +26,8 @@ class SongController extends Controller
             Song::create([
                 'title' => $request->title,
                 'url' => $filename,
-                'artist' => $request->artist
+                'artist' => $request->artist,
+                'artwork' => $request->artwork
             ]);
 
             return response()->json([
