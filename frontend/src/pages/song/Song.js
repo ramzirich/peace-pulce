@@ -4,27 +4,34 @@ import LinearGradient from "react-native-linear-gradient"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
-import TrackPlayer, { Capability } from "react-native-track-player"
+import TrackPlayer, { Capability, usePlaybackState, State, useProgress } from "react-native-track-player"
 
 export default Song = () =>{
     const [songs, setSongs] = useState([])
-    const [currentIndex, setCurrentIndex] = useState([])
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const playbackState = usePlaybackState();
+    const progress = useProgress();
+    console.log(playbackState)
 
     const setupPlayer = async() =>{
         try{
-            await TrackPlayer.setupPlayer()
-            await TrackPlayer.updateOptions({
-                capabilities: [ 
-                  Capability.Play,
-                  Capability.Pause,
-                  Capability.SkipToNext,
-                  Capability.SkipToPrevious,
-                  Capability.Stop,
-                ],
+            if(songs.length != 0){
+                await TrackPlayer.setupPlayer()
+                await TrackPlayer.updateOptions({
+                    capabilities: [ 
+                    Capability.Play,
+                    Capability.Pause,
+                    Capability.SkipToNext,
+                    Capability.SkipToPrevious,
+                    Capability.Stop,
+                    ],
                 compactCapabilities: [Capability.Play, Capability.Pause],
               });
-            await TrackPlayer.add(songs)
+              console.log(songs);
+                await TrackPlayer.add(songs)
+            }
         }catch(error){
+            
             console.log(error)
         }
     }
@@ -34,10 +41,15 @@ export default Song = () =>{
             try{
                 const response = await axios.get(`${config.apiUrl}/songs`);
                 responseArray = response.data.data
-                const modifiedSongs = responseArray.map(song =>({
-                    ...song,
-                    url: `${config.imgUrl}${song.url}`
-                }));
+                const modifiedSongs = responseArray.map(song =>{
+                    const { created_at, updated_at, ...rest } = song
+                        return{
+                    ...rest,
+                    id: song.id.toString(),
+                    url: `${config.imgUrl}audio/${song.url}`,
+                    artwork: `${config.imgUrl}${song.artwork}`,
+                    }
+                });
                 setSongs(modifiedSongs);
                 setupPlayer()
             }catch(error){
@@ -45,9 +57,11 @@ export default Song = () =>{
             }
         }
         fetchSongData();
-    },[])
+    },[]) 
 
-    // console.log(songs)
+    useEffect(() => {
+        setupPlayer();
+      }, [songs]);
 
     return(
         <LinearGradient style={styles.bigcontainer}
@@ -61,7 +75,14 @@ export default Song = () =>{
             <FlatList data={songs} 
                 renderItem={({item, index}) =>{
                     return(
-                        <TouchableOpacity style={styles.songContainer}>
+                        <TouchableOpacity 
+                            onPress={async() =>{
+                                await TrackPlayer.pause()
+                                await TrackPlayer.skip(index);
+                                await TrackPlayer.play()
+                                setCurrentIndex(index)
+                            }}
+                            style={styles.songContainer}>
                             <View>
                                 <Image source={require('../../../assets/songImages/music-player.png')}
                                     style={styles.song_player_img} />
@@ -69,6 +90,14 @@ export default Song = () =>{
                             <View>
                                 <Text style={{color:'white'}}>{item.title}</Text>
                                 <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
+                            </View>
+                            <View>
+                                {index == currentIndex && State.Playing == playbackState.state &&(
+                                    <Image 
+                                        source={require('../../../assets/songImages/playing.png')}
+                                        style={styles.icons}
+                                    />
+                                )}
                             </View>
                         </TouchableOpacity>
                     )
