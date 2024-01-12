@@ -1,6 +1,5 @@
 import { FlatList, ScrollView, Text, View } from "react-native"
 import { CustomHeader } from "../../reusable/components/header/CustomHeader"
-import { SliderVertical } from "../../reusable/components/sliderVertcal/SliderVertical"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
 import React, { useEffect } from "react"
 import axios from "axios"

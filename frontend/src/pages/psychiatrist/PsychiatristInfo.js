@@ -65,7 +65,7 @@ export const PsychiatristInfo =({route}) =>{
     }, [ratingList]) 
     
     return(    
-        <View style={styles.big_container}>
+        <ScrollView style={styles.big_container}>
             <View style={styles.profile}>
                 <View style={styles.fullname}>
                     <Text style={styles.name}>Dr. {first_name}</Text>
@@ -76,8 +76,12 @@ export const PsychiatristInfo =({route}) =>{
                     <Image source={{uri : imgUrl}} style={styles.imgUrl} />
                 </View>
             </View>
-            <View style={styles.cost_rating}>
+            
+            <View>
+                <Text style={styles.about}>{about}</Text>
+            </View>
 
+            <View style={styles.cost_rating}>
                 <View style={styles.costRating_container}>
                     <View>
                         <Text style={styles.start}>★</Text>
@@ -92,7 +96,7 @@ export const PsychiatristInfo =({route}) =>{
                     <View style={styles.cost_circle} />
                     <View>
                         <Text style={styles.subTitle}>Cost</Text>
-                        <Text style={{fontSize:12, fontWeight:300}}>${doctor.hourly_rate}/hr</Text>
+                        <Text style={{fontSize:12, fontWeight:300}}>${hourly_rate}/hr</Text>
                     </View>
                 </View>
 
@@ -127,21 +131,26 @@ export const PsychiatristInfo =({route}) =>{
                 </View>
 
             </View>
+
+            
             <View>
             <CommentList id={id} />
-            </View>         
-        </View>        
+            </View>   
+               
+        </ScrollView>        
     )
 }
 
 const styles = StyleSheet.create({
     big_container:{
-        paddingVertical: 30,
+        flex:1,
+        paddingTop: 10,
+        // paddingBottom: 200,
         paddingHorizontal:20,     
     },
     profile:{
         flexDirection:'row',
-        marginBottom:10,
+        marginBottom:20,
         justifyContent:'space-between',
     },
     fullname:{
@@ -158,22 +167,23 @@ const styles = StyleSheet.create({
         width:100,
         borderRadius:50,
     },
+    about:{
+        color: CustomColors.black,
+        fontWeight:'500',
+        letterSpacing:0.2,
+    },
     info_card:{
         height:80,
-        // width:320,
-        // alignSelf:"center",
         marginTop:20,
         backgroundColor: CustomColors.grey,
         borderRadius:20,
         padding: 10,
-        marginBottom: 40
     },
     cost_rating:{
         flexDirection:'row',
-        // paddingHorizontal
         justifyContent:'space-between',
         alignItems:'center',
-        marginBottom:20
+        marginBottom:5
     },
     costRating_container:{
         flexDirection:'row',

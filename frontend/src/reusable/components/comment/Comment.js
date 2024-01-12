@@ -33,13 +33,13 @@ export const Comment = ({item}) =>{
                 </TouchableOpacity> 
             }
 
-            <Text>{item.comment}</Text>
+            <Text style={styles.comment}>{item.comment}</Text>
             <View style={styles.comment_creation}>
                 <View>
                     <Text style={styles.user_name}>{item.user.first_name} {item.user.last_name}</Text>
                 </View>
                 <View>
-                    <Text>{formattedDate}</Text>
+                    <Text style={styles.date}>{formattedDate}</Text>
                 </View>
             </View>
         </View>
@@ -49,10 +49,22 @@ export const Comment = ({item}) =>{
 const styles = StyleSheet.create({
     container:{
         marginBottom:10,
+        borderWidth: 1, 
+        borderColor: '#ddd',
+        borderRadius: 10,
+        padding:15, 
+        backgroundColor: CustomColors.white,
+        shadowColor: '#000',
+        shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
     },
     img_container:{
-        // flexDirection:'row',
-        // justifyContent:"flex-start",     
+        marginBottom: 7   
     },  
     img:{
         height:50,
@@ -62,11 +74,17 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         paddingLeft:3
     },
+    comment:{
+        marginBottom:5
+    },
     comment_creation:{
         flexDirection:'row',
         gap: 10
     },
     user_name:{
         fontWeight:'bold'
+    },
+    date:{
+        fontWeight: '300'
     }
 })
