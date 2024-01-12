@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View } from "react-native"
+import { FlatList, Image, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../styles/color"
 import LinearGradient from "react-native-linear-gradient"
 import React, { useEffect, useState } from "react"
@@ -7,6 +7,7 @@ import { config } from "../../../config"
 
 export default Song = () =>{
     const [songs, setSongs] = useState([])
+    const [currentIndex, setCurrentIndex] = useState([])
 
     useEffect(() =>{
         const fetchSongData = async() =>{
@@ -25,7 +26,7 @@ export default Song = () =>{
         fetchSongData();
     },[])
 
-    console.log(songs)
+    // console.log(songs)
 
     return(
         <LinearGradient style={styles.bigcontainer}
@@ -36,7 +37,24 @@ export default Song = () =>{
         />
 
         <View style={styles.small_container}>
+            <FlatList data={songs} 
+                renderItem={({item, index}) =>{
+                    return(
+                        <TouchableOpacity style={styles.songContainer}>
+                            <View>
+                                <Image source={require('../../../assets/songImages/music-player.png')}
+                                    style={styles.song_player_img} />
+                            </View>
+                            <View>
+                                <Text style={{color:'white'}}>{item.title}</Text>
+                                <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
+                            </View>
 
+                        </TouchableOpacity>
+                    )
+                }}
+
+            />
         </View>
 
         </LinearGradient>
@@ -46,13 +64,32 @@ export default Song = () =>{
 const styles = StyleSheet.create({
     bigcontainer:{
         flex:1,
-        backgroundColor: CustomColors.purple
+        backgroundColor: CustomColors.purple,
     },
     img_container:{
         height: "40%",
         width:'100%',
     },
     small_container:{
+        flex:1,
         padding:20,
+    },
+    songContainer:{
+        width:'100%', 
+        height: 70,
+        flexDirection:'row',
+        gap:5,
+        alignItems: 'center',
+        padding:20,
+        // backgroundColor: '#8b62e9',
+        borderRadius: 20,
+        marginBottom:10,
+        borderWidth: 1,
+        borderColor: '#8b62e9'
+    },
+    song_player_img:{
+        width:50,
+        height:50,
+        borderRadius: 25
     }
 })
