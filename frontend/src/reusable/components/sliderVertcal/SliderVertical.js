@@ -5,12 +5,9 @@ import { Card } from "../card/Card"
 
 
 export const SliderVertical  = ({userList, dr=null, navigation}) =>{
-//    const navigate = useNavigate();
     renderItem = ({item}) =>{
         return(
-            <Card first_name={item.first_name} text={item.about}
-              last_name={item.last_name} dr={dr} imgUrl={item.img_url}
-              id={item.id} navigation={navigation}
+            <Card dr={dr} item={item} navigation={navigation} 
               />
         ) 
     }

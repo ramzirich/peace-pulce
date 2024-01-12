@@ -13,7 +13,7 @@ export const CustomHeader = () =>{
     if(userInfo && userInfo.name){
         userInfo.name  = userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1);
     }
-    console.log(imgUrl)
+   
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.profile_img}>

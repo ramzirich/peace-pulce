@@ -5,10 +5,6 @@ import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButt
 import React, { useEffect } from "react"
 import axios from "axios"
 import { config } from "../../../config"
-// import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-native"
-import Home from "../Home/Home"
-// import { useNavigation } from "@react-navigation/native"
 
 
 export const ListOfPsychiatrist = ({navigation}) =>{
