@@ -19,13 +19,13 @@ class SongController extends Controller
                 return $responseData['errors'];
             }
 
-            $audio = $request->file('filename');
+            $audio = $request->file('url');
             $filename = time() . '.' . $audio->getClientOriginalExtension();
             $audio->move(public_path('audio'), $filename);
 
             Song::create([
                 'title' => $request->title,
-                'filename' => $filename,
+                'url' => $filename,
                 'artist' => $request->artist
             ]);
 
