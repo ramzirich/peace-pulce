@@ -3,8 +3,9 @@ import { CustomColors } from "../../../styles/color"
 import { config } from "../../../../config";
 
 export const Card = ({dr =null, item, navigation, pathName}) =>{
-    // console.log(item)
+   
     const { first_name, last_name, about, img_url, id, specialization } = item;
+    console.log(specialization)
     const imagePath = `${config.imgUrl}${img_url}`;
     return(
         <TouchableOpacity style={styles.card}

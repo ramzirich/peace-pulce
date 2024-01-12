@@ -24,6 +24,9 @@ export const ListOfPsychiatrist = ({navigation}) =>{
     const users = doctors.map(doctor => ({
         about :doctor.about,
         id:doctor.id,
+        hourly_rate: doctor.hourly_rate,
+        degree: doctor.degree,
+        specialization: doctor.specialization,
         first_name: doctor.user.first_name,
         last_name: doctor.user.last_name,
         img_url: doctor.user.img_url,
