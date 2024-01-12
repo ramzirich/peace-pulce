@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer} from '@react-navigation/native';
 import Registration from './src/pages/register/Register';
 import Songs from './src/pages/song/Songs';
+import Song from './src/pages/song/Song';
 
 
 function App(): React.JSX.Element {
@@ -17,7 +18,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login"> 
+        <Stack.Navigator initialRouteName="song"> 
           <Stack.Screen name="login" component={Login} /> 
           <Stack.Screen name="register" component={Registration} /> 
           <Stack.Screen name="home" component={Home} /> 
@@ -25,6 +26,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
           options={{title: 'id'}} /> 
           <Stack.Screen name="songs" component={Songs} />  
+          <Stack.Screen name="song" component={Song} />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
