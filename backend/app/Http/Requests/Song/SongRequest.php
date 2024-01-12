@@ -10,11 +10,13 @@ class SongRequest{
                 "title" => "required",
                 "url" => "required",
                 "artist" => "required",
+                "artwork" => "required"
             ],[
                 "title.required" => "The title field is required",
                 "url.required" => "The url field is required",
                 // "filename.mimes" => "The filename field must contain mp3 or wav",
                 "artist.required" => "The arttist field is required",
+                "artwork.required" => "The artwork field is required",
             ]);
             return response()->json([
                 'status' => "success"
