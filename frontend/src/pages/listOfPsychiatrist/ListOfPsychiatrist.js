@@ -38,7 +38,8 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         <View style={{flex:1, paddingBottom:150}}>
             <CustomHeader />
             <HeaderButton  navigation={navigation} />
-            {doctors.length===0?     <Text>No Doctors</Text> :
+            {doctors.length===0?     
+                <Text>No Doctors</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
                         data={users}

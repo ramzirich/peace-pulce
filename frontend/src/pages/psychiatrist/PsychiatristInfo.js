@@ -8,10 +8,10 @@ import { CommentList } from "../../reusable/components/comment/CommentList"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
-export const PsychiatristInfo =({route, navigation}) =>{
-    // const {id}=useParams();
-    const {id} = route.params;
-   console.log(doctor)
+export const PsychiatristInfo =({route}) =>{
+    const {id, doctorInfo} = route.params;
+    const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo 
+
     const [doctor, setDoctor] = useState({})
     const [ratingList, setRatingList] = useState([]);
     const [rating, setRating] = useState(0);
@@ -25,8 +25,8 @@ export const PsychiatristInfo =({route, navigation}) =>{
         const fetchUserData = async() =>{
             try{
                 const authToken = await AsyncStorage.getItem('authToken');
-                const response =await  axios.get(`${config.apiUrl}/doctor/${id}`);
-                setDoctor(response.data)
+                // const response =await  axios.get(`${config.apiUrl}/doctor/${id}`);
+                // setDoctor(response.data)
 
                 const ratingResponse = await axios.get(`${config.apiUrl}/rating/${id}`,{
                     headers:{
@@ -67,21 +67,9 @@ export const PsychiatristInfo =({route, navigation}) =>{
     
     return(
         <>  
-        <Image source={require('../../../assets/star-one-quarter.png')} style={{height:20, width:20}}  /> 
-        <Image source={require('../../../assets/images/half-star.png')} style={{height:20, width:20}}  />   
         <ScrollView>
-        {doctor && doctor.user && 
-            <Image source={{ uri: `${config.imgUrl}${doctor.user.img_url}`}} 
-                    style={{height: 400, width:'100%'}}
-                    resizeMode="contain"
-            />
-        } 
+       
             <View style={styles.big_container}>
-                
-                    
-                    <View style={styles.info_card}>
-                        {doctor && <Text>{doctor.about}</Text>}
-                    </View>
                     <View style={styles.cost_rating}>
 
                         <View style={styles.costRating_container}>
