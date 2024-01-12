@@ -22,6 +22,7 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         };
         fetchUserData(); 
     }, [])
+
     const users = doctors.map(doctor => ({
         about :doctor.about,
         id:doctor.id,
@@ -34,9 +35,9 @@ export const ListOfPsychiatrist = ({navigation}) =>{
     }));
   
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1, paddingBottom:150}}>
             <CustomHeader />
-            <HeaderButton />
+            <HeaderButton  navigation={navigation} />
             {doctors.length===0?     <Text>No Doctors</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
