@@ -83,7 +83,8 @@ export const PsychiatristInfo =({route}) =>{
             <View style={styles.cost_rating}>
                 <View style={styles.costRating_container}>
                     <View>
-                        <Text style={styles.start}>★</Text>
+                        {/* <Text style={styles.start}>★</Text> */}
+                        <Image style={styles.star} source={require('../../../assets/half-star.png')} />
                     </View>
                     <View>
                         <Text style={styles.subTitle}>Rating</Text>
@@ -193,9 +194,9 @@ const styles = StyleSheet.create({
         backgroundColor:CustomColors.blue,
         borderRadius:22.5,
     },
-    start:{
-        fontSize:45,
-        color:"gold"
+    star:{
+        width:30,
+        height:30,
     },
     subTitle:{
         fontSize:14,
