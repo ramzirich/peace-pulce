@@ -143,7 +143,6 @@ export default Song = () =>{
                                         )}
                                     </View>
                                 </View>
-                                
                             </TouchableOpacity>
                         )
                     }}
@@ -180,7 +179,12 @@ export default Song = () =>{
                     />
                 </TouchableOpacity>
             </View>
-            <MusicPlayer/>
+            <MusicPlayer 
+                songs={songs}
+                currentIndex={currentIndex}
+                playbackState = {playbackState}
+                progress = {progress}
+            />
         </LinearGradient>
     )
 }
