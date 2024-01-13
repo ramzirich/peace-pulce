@@ -23,8 +23,6 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
             <LinearGradient style={styles.bigcontainer}
             colors={['#8962f3', '#4752e2', '#214ae2']}
             >
-            {/* <Image source={require('../../../../assets/songImages/str.png')} style={{height:30, width:30}}/>
-              <Image source={require('../../../../assets/songImages/strbrdr.jpg')} style={{height:30, width:30}}/> */}
                 <TouchableOpacity style={styles.arrow_container} 
                     onPress={() =>{
                         onClose();
