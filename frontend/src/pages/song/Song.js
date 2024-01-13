@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
 import TrackPlayer, { Capability, usePlaybackState, State, useProgress } from "react-native-track-player"
+import MusicPlayer from "../../reusable/components/songPlayer/MusicPlayer"
 
 export default Song = () =>{
     const [songs, setSongs] = useState([])
@@ -27,11 +28,9 @@ export default Song = () =>{
                     ],
                 compactCapabilities: [Capability.Play, Capability.Pause],
               });
-              console.log(songs);
                 await TrackPlayer.add(songs)
             }
-        }catch(error){
-            
+        }catch(error){   
             console.log(error)
         }
     }
@@ -148,7 +147,6 @@ export default Song = () =>{
                             </TouchableOpacity>
                         )
                     }}
-
                 />
             </View>
 
@@ -181,8 +179,8 @@ export default Song = () =>{
                     style={styles.icons_bottom}
                     />
                 </TouchableOpacity>
-                
             </View>
+            <MusicPlayer/>
         </LinearGradient>
     )
 }
