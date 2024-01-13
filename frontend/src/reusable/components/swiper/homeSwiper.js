@@ -24,7 +24,7 @@ export default homeSwipper= () =>{
             <FlatList data={sliderImages}
                 horizontal
                 keyExtractor={(item)=>item.id}
-                renderItem={({item, index})=>{
+                renderItem={({item, index, scrollx={scrollx}})=>{
                     return (
                     <View style={[styles.card, {
                                         marginLeft: index == 0 ? SIDECARD_LENGTH : SPACING,
