@@ -27,7 +27,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist} /> 
           <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
           options={{title: 'id'}} /> 
-          <Stack.Screen name="songs" component={Songs} />  
+          {/* <Stack.Screen name="songs" component={Songs} />   */}
           <Stack.Screen name="song" component={Song} />  
           <Stack.Screen name="video" component={CustomVideoPlayer} />  
         </Stack.Navigator>

@@ -1,0 +1,43 @@
+export const sliderImages =[
+    {
+        id:1,
+        url:require('../../../assets/images/4.jpg')
+    },
+    {
+        id:3,
+        url:require('../../../assets/images/7.jpg')
+    },
+    {
+        id:4,
+        url:require('../../../assets/images/8.jpg')
+    },
+    {
+        id:5,
+        url:require('../../../assets/images/9.jpg')
+    },
+
+    {
+        id:7,
+        url:require('../../../assets/images/13.jpg')
+    },
+    {
+        id:8,
+        url:require('../../../assets/images/14.jpg')
+    },
+    {
+        id:9,
+        url:require('../../../assets/images/15.jpg')
+    },
+    {
+        id:10,
+        url:require('../../../assets/images/16.jpg')
+    },
+    {
+        id:11,
+        url:require('../../../assets/images/18.jpg')
+    },
+    {
+        id:12,
+        url:require('../../../assets/images/19.jpg')
+    },
+]
