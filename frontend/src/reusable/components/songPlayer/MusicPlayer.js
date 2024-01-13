@@ -2,6 +2,7 @@ import React from "react"
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
 import LinearGradient from "react-native-linear-gradient"
+import Slider from "@react-native-community/slider"
 
 export default MusicPlayer = ({songs, currentIndex, playbackState, progress}) =>{
     return(
@@ -14,9 +15,11 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress}) =>
                         style={styles.icons}
                     />
                 </TouchableOpacity>
+
                 <Image source={require('../../../../assets/songImages/music-player.png')}
                     style={styles.song_player_img}     
                 />
+
                 <View style={styles.title_container}>
                     <Text style={styles.title}>
                         {songs && songs[currentIndex] && songs[currentIndex].title}
@@ -25,6 +28,14 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress}) =>
                         {songs && songs[currentIndex] && songs[currentIndex].artist}
                     </Text>
                 </View>
+
+                <Slider
+                    style={{width: '90%', height: 40, alignSelf: 'center'}}
+                    minimumValue={progress.position}
+                    maximumValue={progress.duration}
+                    minimumTrackTintColor="#FFFFFF"
+                    maximumTrackTintColor="#fff"
+                />
                 
             </LinearGradient>
 
