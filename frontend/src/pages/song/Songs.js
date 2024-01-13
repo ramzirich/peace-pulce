@@ -42,8 +42,10 @@ export default Songs = () =>{
     useEffect(() => {
         if(State.Playing == playbackState.state){
             if(progress.position.toFixed(0) == progress.duration.toFixed(0)){
-                if(currentIndex<sngs.length){  ///sngs
-                    setCurrentIndex(currentIndex+1)
+                if(currentIndex<sngs.length){ 
+                    console.log(currentIndex) 
+                    setCurrentIndex(currentIndex)
+                    console.log('aff',currentIndex) 
                 }   
             }
         }

@@ -62,56 +62,127 @@ export default Song = () =>{
     useEffect(() => {
         setupPlayer();
       }, [songs]);
+    
+    useEffect(() => {
+    if(State.Playing == playbackState.state){
+        if(progress.position.toFixed(0) == progress.duration.toFixed(0)){
+            if(currentIndex<songs.length){  
+                console.log(currentIndex) 
+                setCurrentIndex(currentIndex+1)
+                console.log('aff',currentIndex) 
+            }   
+        }
+    }
+    }, [progress]);
+    // console.log(progress)
+    // console.log(currentIndex)
 
     return(
         <LinearGradient style={styles.bigcontainer}
             colors={['#8962f3', '#4752e2', '#214ae2']}
         >
-        <Image style={styles.img_container}
-                source={require('../../../assets/images/logo.jpg')}
-        />
+            <Image style={styles.img_container}
+                    source={require('../../../assets/images/logo.jpg')}
+            />
 
-        <View style={styles.small_container}>
-            <FlatList data={songs} 
-                renderItem={({item, index}) =>{
-                    return(
-                        <TouchableOpacity 
-                            onPress={async() =>{
-                                await TrackPlayer.pause()
-                                await TrackPlayer.skip(index);
-                                await TrackPlayer.play()
-                                setCurrentIndex(index)
-                            }}
-                            style={styles.songContainer}>
-                            <View style={styles.song_details_container}>
-                                <View style={styles.song_profile}>
-                                    <View style={styles.img_view}>
-                                    <Image source={require('../../../assets/songImages/music-player.png')}
-                                        style={styles.song_player_img} />
-                                    </View>       
+            <View style={styles.title_container}>
+                <Text style={styles.title}>
+                    {songs && songs[currentIndex] && songs[currentIndex].title}
+                </Text>
+                <TouchableOpacity  onPress={async() =>{
+                    if(State.Playing== playbackState.state){
+                        await TrackPlayer.pause(); 
+                    }else{
+                        await TrackPlayer.skip(currentIndex);
+                        await TrackPlayer.play()
+                    }
+                }}>
+                    {State.Playing==playbackState.state ?(
+                        <Image source={require('../../../assets/songImages/pause.png')}
+                            style={styles.playIcon}
+                        />) : 
+                        (<Image source={require('../../../assets/songImages/play-button.png')}
+                            style={styles.playIcon}
+                        />)
+                    }
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.small_container}>
+                <FlatList data={songs} 
+                    showsVerticalScrollIndicator = {false}
+                    renderItem={({item, index}) =>{
+                        return(
+                            <TouchableOpacity 
+                                onPress={async() =>{
+                                    await TrackPlayer.pause()
+                                    await TrackPlayer.skip(index);
+                                    await TrackPlayer.play()
+                                    setCurrentIndex(index)
+                                }}
+                                style={styles.songContainer}>
+                                <View style={styles.song_details_container}>
+                                    <View style={styles.song_profile}>
+                                        <View style={styles.img_view}>
+                                        <Image source={require('../../../assets/songImages/music-player.png')}
+                                            style={styles.song_player_img} />
+                                        </View>       
+                                        <View>
+                                            <Text style={{color:'white'}}>
+                                                {item && item.title}
+                                            </Text>
+                                            <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
+                                        </View>
+                                    </View>
+                                    
                                     <View>
-                                        <Text style={{color:'white'}}>{item.title}</Text>
-                                        <Text style={{color:'white', fontSize:10}}>{item.artist}</Text>
+                                        {index == currentIndex && State.Playing == playbackState.state &&(
+                                            <Image 
+                                                source={require('../../../assets/songImages/playing.png')}
+                                                style={[styles.icons, styles.end]}
+                                            />
+                                        )}
                                     </View>
                                 </View>
                                 
-                                <View>
-                                    {index == currentIndex && State.Playing == playbackState.state &&(
-                                        <Image 
-                                            source={require('../../../assets/songImages/playing.png')}
-                                            style={[styles.icons, styles.end]}
-                                        />
-                                    )}
-                                </View>
-                            </View>
-                            
-                        </TouchableOpacity>
-                    )
-                }}
+                            </TouchableOpacity>
+                        )
+                    }}
 
-            />
-        </View>
+                />
+            </View>
 
+            <View style={styles.song_bottom_container}>
+                <View style={styles.row_ten}>
+                    <Image style={styles.img_bottom} source={require('../../../assets/songImages/music-player.png')}/>
+                    <View>
+                        <Text style={{color:'white'}}>
+                            {songs && songs[currentIndex] && songs[currentIndex].title}
+                        </Text>
+                        <Text style={{color:'white', fontSize:10}}>
+                            {songs && songs[currentIndex] && songs[currentIndex].artist}
+                        </Text>
+                    </View>
+                </View>
+                <TouchableOpacity 
+                    onPress={async() =>{
+                        if(State.Playing== playbackState.state){
+                            await TrackPlayer.pause();
+                        }else{
+                            await TrackPlayer.skip(currentIndex);
+                            await TrackPlayer.play()
+                        }
+                    }}>
+                    <Image source={
+                        State.Playing == playbackState.state?
+                        require('../../../assets/songImages/pause2.png')
+                        : require('../../../assets/songImages/play.png')
+                    }
+                    style={styles.icons_bottom}
+                    />
+                </TouchableOpacity>
+                
+            </View>
         </LinearGradient>
     )
 }
@@ -122,12 +193,34 @@ const styles = StyleSheet.create({
         backgroundColor: CustomColors.purple,
     },
     img_container:{
-        height: "40%",
+        height: "30%",
         width:'100%',
+    },
+    title_container:{
+        paddingHorizontal:20,
+        paddingTop: 20,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+    },
+    title:{
+        fontSize:20,
+        fontWeight:'bold',
+        color: CustomColors.white
+    },
+    playIcon:{
+        height:45,
+        width:45,
+        // tintColor: "#a906f9"
+        // tintColor:'#8705c7',
+        // tintColor: '#e87cf6'
+        // tintColor: '#e77df4'
+        // tintColor: '#e77df4'
     },
     small_container:{
         flex:1,
         padding:20,
+        paddingBottom: 58
     },
     songContainer:{
         width:'100%', 
@@ -156,8 +249,7 @@ const styles = StyleSheet.create({
     song_player_img:{
         width:50,
         height:50,
-        borderRadius: 25,
-        
+        borderRadius: 25,     
     },
     icons:{
         width:18, 
@@ -166,5 +258,33 @@ const styles = StyleSheet.create({
     },
     end:{
         alignSelf:'flex-end'
-    }
+    },
+    song_bottom_container:{
+        width:'100%',
+        height:60,
+        position:'absolute',
+        bottom:0,
+        backgroundColor:'#4752e2',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius:30,
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent:'space-between',
+        paddingRight:20
+    },
+    row_ten:{
+        flexDirection:'row',
+        gap:10,
+        alignItems: 'center'
+    },
+    img_bottom:{
+        width:60,
+        height: 60,
+        borderTopLeftRadius: 30,
+    },
+    icons_bottom:{
+        width:25, 
+        height: 25, 
+        tintColor:'white'
+    },
 })
