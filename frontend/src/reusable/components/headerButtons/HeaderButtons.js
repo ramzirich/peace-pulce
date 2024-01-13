@@ -10,7 +10,7 @@ export const HeaderButton = ({navigation}) =>{
             {/* <Square tag="Psychiatrist" onPress={() => navigate('/psychiatrists')}/> */}
             <Square tag="Psychiatrist" onPress={() =>navigation.navigate('psychiatrists')}/> 
             <Square tag="Volunteer"/>
-            <Square tag="Songs" onPress={() =>navigation.navigate('songs')}/> 
+            <Square tag="Songs" onPress={() =>navigation.navigate('song')}/> 
             <Square tag="Videos"/>
         </View>
     )

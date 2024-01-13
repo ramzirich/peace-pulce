@@ -10,6 +10,7 @@ import MusicPlayer from "../../reusable/components/songPlayer/MusicPlayer"
 export default Song = () =>{
     const [songs, setSongs] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [isVisible, setIsVisible] = useState(false);
     const playbackState = usePlaybackState();
     const progress = useProgress();
     // console.log(playbackState)
@@ -66,15 +67,16 @@ export default Song = () =>{
     if(State.Playing == playbackState.state){
         if(progress.position.toFixed(0) == progress.duration.toFixed(0)){
             if(currentIndex<songs.length){  
-                console.log(currentIndex) 
+                // console.log(currentIndex) 
                 setCurrentIndex(currentIndex+1)
-                console.log('aff',currentIndex) 
+                // console.log('aff',currentIndex) 
             }   
         }
     }
     }, [progress]);
     // console.log(progress)
     // console.log(currentIndex)
+    // console.log('song', isVisible)
 
     return(
         <LinearGradient style={styles.bigcontainer}
@@ -100,7 +102,7 @@ export default Song = () =>{
                         <Image source={require('../../../assets/songImages/pause.png')}
                             style={styles.playIcon}
                         />) : 
-                        (<Image source={require('../../../assets/songImages/play-button.png')}
+                        (<Image source={require('../../../assets/songImages/playpng.png')}
                             style={styles.playIcon}
                         />)
                     }
@@ -149,7 +151,12 @@ export default Song = () =>{
                 />
             </View>
 
-            <View style={styles.song_bottom_container}>
+            <TouchableOpacity style={styles.song_bottom_container}
+            activeOpacity={1}
+                onPress={() =>{
+                    setIsVisible(true)
+                }}
+            >
                 <View style={styles.row_ten}>
                     <Image style={styles.img_bottom} source={require('../../../assets/songImages/music-player.png')}/>
                     <View>
@@ -166,7 +173,7 @@ export default Song = () =>{
                         if(State.Playing== playbackState.state){
                             await TrackPlayer.pause();
                         }else{
-                            await TrackPlayer.skip(currentIndex);
+                            // await TrackPlayer.skip(currentIndex);
                             await TrackPlayer.play()
                         }
                     }}>
@@ -178,13 +185,23 @@ export default Song = () =>{
                     style={styles.icons_bottom}
                     />
                 </TouchableOpacity>
-            </View>
-            <MusicPlayer 
-                songs={songs}
-                currentIndex={currentIndex}
-                playbackState = {playbackState}
-                progress = {progress}
-            />
+            </TouchableOpacity>
+            {isVisible==true && 
+                <MusicPlayer 
+                    songs={songs}
+                    currentIndex={currentIndex} 
+                    playbackState = {playbackState}
+                    progress = {progress}
+                    isVisible={isVisible}
+                    onClose={()=>{
+                        setIsVisible(false)
+                    }}
+                    onChange={(x)=>{
+                        // console.log("x",x)
+                        setCurrentIndex(x)
+                    }}
+                />
+            }
         </LinearGradient>
     )
 }
@@ -208,15 +225,15 @@ const styles = StyleSheet.create({
     title:{
         fontSize:20,
         fontWeight:'bold',
-        color: CustomColors.white
+        color: CustomColors.white 
     },
     playIcon:{
         height:45,
         width:45,
-        // tintColor: "#a906f9"
+        tintColor: CustomColors.white,
+        // tintColor: "#a906f9",
         // tintColor:'#8705c7',
         // tintColor: '#e87cf6'
-        // tintColor: '#e77df4'
         // tintColor: '#e77df4'
     },
     small_container:{
