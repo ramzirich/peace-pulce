@@ -83,7 +83,7 @@ export default Song = () =>{
             colors={['#214ae2', '#4752e2','#8962f3']}
         >
             <Image style={styles.img_container}
-                    source={require('../../../assets/images/logo1.png')}
+                    source={require('../../../assets/images/logo22.png')}
             />
 
             <View style={styles.title_container}>
