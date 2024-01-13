@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { config } from "../../../config";
+import CustomVideo3 from "../../reusable/components/video/CustomVideo3";
 
 export default VideoPlayer = () =>{
     const [videos, setVideos] = useState([]);
@@ -25,10 +26,11 @@ export default VideoPlayer = () =>{
                 colors={['#214ae2', '#4752e2','#8962f3']}
             >
                 {currentIndex && 
-                    <View style={{height:'50%', width:'100%'}}></View>
+                    <CustomVideo3 style={styles.video_container}
+                        video={videos[currentIndex]}
+                    />
                 }
                 <FlatList data={videos}
-                    // style={{flex:1}}
                     showsVerticalScrollIndicator={false}
                     renderItem={({item, index})=>{
                         return (
@@ -38,7 +40,13 @@ export default VideoPlayer = () =>{
                                     setCurrentIndex(index)
                                 }}    
                             >
-
+                                <View>
+                                    <Image style={styles.img}
+                                        source={{uri : `${config.imgUrl}${item.poster}`}} />
+                                </View>
+                                <View>
+                                    <Text style={styles.title}>{item.title}</Text>
+                                </View>
                             </TouchableOpacity>
                         )
                     }}
@@ -58,6 +66,16 @@ const styles = StyleSheet.create({
         borderColor: '#8b62e9',
         paddingHorizontal:20,
         paddingVertical:10,
-        backgroundColor:'red'
-    }
+        flexDirection:'row',
+        alignItems:'center',
+        gap:10
+    },
+    img:{
+        height:50,
+        width:50,
+        borderRadius:5
+    },
+    title:{
+        color:'white'
+    },
 })
