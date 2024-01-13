@@ -34,6 +34,9 @@ export default homeSwipper= () =>{
                     </View>
                     )
                 }}
+                onScroll={(event)=>{
+                    event.nativeEvent.contentOffset.x
+                }}
             />
         </View>
     )    
