@@ -17,7 +17,7 @@ const Home = ({navigation}) => {
        style={{flex:1}}> 
        <CustomHeader/>
        <HeaderButton navigation={navigation} />
-       <HomeSwiper />
+       {/* <HomeSwiper /> */}
     </LinearGradient>      
   ); 
 };
