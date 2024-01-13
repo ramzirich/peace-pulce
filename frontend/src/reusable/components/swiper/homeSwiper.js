@@ -20,7 +20,7 @@ const SIDECARD_LENGTH = (SRC_WIDTH * 0.18) / 2;
 export default homeSwipper= () =>{
     const [scrollx, setScrollx] = useState(0)
     return(
-        <View style={{flex:1, marginTop:20}}>
+        <View style={{flex:1, marginTop:20}}> 
             <FlatList data={sliderImages}
                 horizontal
                 keyExtractor={(item)=>item.id}
