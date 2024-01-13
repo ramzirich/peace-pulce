@@ -1,5 +1,5 @@
 import React from "react"
-import { Dimensions, FlatList, Image, View } from "react-native"
+import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native"
 import { sliderImages } from "../../../utils/sliderImages/sliderImages";
 
 
@@ -19,13 +19,18 @@ const SIDECARD_LENGTH = (SRC_WIDTH * 0.18) / 2;
 
 export default homeSwipper= () =>{
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1, marginTop:20}}>
             <FlatList data={sliderImages}
+                horizontal
                 keyExtractor={(item)=>item.id}
                 renderItem={({item, index})=>{
                     return (
-                    <View>
-                        <Image source={item.url} style={{height:340, width:200}}/>
+                    <View style={[styles.card, {
+                                        marginLeft: index == 0 ? SIDECARD_LENGTH : SPACING,
+                                        marginRight: index == sliderImages.length-1 ? SIDECARD_LENGTH : SPACING
+                                    }
+                                ]}>
+                        <Image source={item.url} style={{height:'100%', width:'100%'}}/>
                     </View>
                     )
                 }}
@@ -33,3 +38,11 @@ export default homeSwipper= () =>{
         </View>
     )    
 }
+
+const styles = StyleSheet.create({
+    card:{
+        width: CARD_LENGTH,
+        height:340,
+        overflow:'hidden',
+    }
+})
