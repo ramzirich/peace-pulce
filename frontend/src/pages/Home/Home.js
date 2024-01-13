@@ -27,7 +27,9 @@ const Home = ({navigation}) => {
   return ( 
      <ScrollView> 
        <CustomHeader/>
-       {/* <Image source={require('../../../assets/images/1.jpg')} style={{width:200, height:340, alignSelf:'center'}}/> */}
+       <Image source={require('../../../assets/images/18.jpg')} style={{width:200, height:340, alignSelf:'center'}}
+        // resizeMode='contain'
+       />
        <HeaderButton navigation={navigation} />
        <SliderHorizental videos={videos} />
     </ScrollView>      

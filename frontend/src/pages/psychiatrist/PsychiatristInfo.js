@@ -84,7 +84,7 @@ export const PsychiatristInfo =({route}) =>{
                 <View style={styles.costRating_container}>
                     <View>
                         {/* <Text style={styles.start}>★</Text> */}
-                        <Image style={styles.star} source={require('../../../assets/half-star.png')} />
+                        <Image style={styles.star} source={require('../../../assets/stars/half-star.png')} />
                     </View>
                     <View>
                         <Text style={styles.subTitle}>Rating</Text>

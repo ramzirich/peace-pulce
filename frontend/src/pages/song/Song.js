@@ -80,10 +80,10 @@ export default Song = () =>{
 
     return(
         <LinearGradient style={styles.bigcontainer}
-            colors={['#8962f3', '#4752e2', '#214ae2']}
+            colors={['#214ae2', '#4752e2','#8962f3']}
         >
             <Image style={styles.img_container}
-                    source={require('../../../assets/images/logo.jpg')}
+                    source={require('../../../assets/images/logo1.png')}
             />
 
             <View style={styles.title_container}>

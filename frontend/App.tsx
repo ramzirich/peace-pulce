@@ -11,6 +11,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import Registration from './src/pages/register/Register';
 import Songs from './src/pages/song/Songs';
 import Song from './src/pages/song/Song';
+import VideoPlayer from './src/pages/video/VideoPlayer';
 
 
 function App(): React.JSX.Element {
@@ -27,6 +28,7 @@ function App(): React.JSX.Element {
           options={{title: 'id'}} /> 
           <Stack.Screen name="songs" component={Songs} />  
           <Stack.Screen name="song" component={Song} />  
+          <Stack.Screen name="video" component={VideoPlayer} />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
