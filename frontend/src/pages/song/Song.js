@@ -102,7 +102,7 @@ export default Song = () =>{
                         <Image source={require('../../../assets/songImages/pause.png')}
                             style={styles.playIcon}
                         />) : 
-                        (<Image source={require('../../../assets/songImages/playpng.png')}
+                        (<Image source={require('../../../assets/songImages/play1png.png')}
                             style={styles.playIcon}
                         />)
                     }
