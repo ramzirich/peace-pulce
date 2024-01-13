@@ -1,13 +1,14 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Image, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
 import LinearGradient from "react-native-linear-gradient"
 import Slider from "@react-native-community/slider"
-import TrackPlayer, { State } from "react-native-track-player"
+import TrackPlayer, { State, useTrackPlayerProgress } from "react-native-track-player"
 
 export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isVisible, onClose, onChange}) =>{
     const [songCurrentIndex, setSongCurrentIndex] = useState(currentIndex)
-    // console.log(progress)
+    const [sliderValue, setSliderValue] = useState(progress.position);
+
     const format = seconds => {
         let mins = parseInt(seconds / 60)
           .toString()
@@ -15,9 +16,20 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
         let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
         return `${mins}:${secs}`;
     };
-    // console.log(isVisible)
-    // console.log("c",currentIndex)
-    // console.log(songCurrentIndex)
+
+    const handleSeek = (value) => {
+        TrackPlayer.seekTo(value);
+    };
+ 
+    useEffect(() => {
+        setSliderValue(progress.position);
+    }, [progress.position]);  
+
+    useEffect(() => {
+    setSliderValue(progress.position);
+    }, [progress.position]);
+
+
     return(
         <Modal isVisible={isVisible} style={{margin:0}}>
             <LinearGradient style={styles.bigcontainer}
@@ -50,10 +62,17 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                     <Text style={{color: 'white'}}>{format(progress.position)}</Text>
                     <Slider
                         style={styles.slider}
-                        minimumValue={progress.position}
+                        minimumValue={0}
                         maximumValue={progress.duration}
                         minimumTrackTintColor="#FFFFFF"
-                        maximumTrackTintColor="#fff"
+                        maximumTrackTintColor="#fff" 
+                        value={sliderValue}
+                        onValueChange={(x) => {
+          setSliderValue(x);
+        }}
+        onSlidingComplete={(x) => {
+          handleSeek(x);
+        }}
                     />
                     <Text style={{color: 'white'}}>{format(progress.duration)}</Text>
                 </View>
@@ -63,13 +82,9 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                          onPress={async() =>{
                             if(songCurrentIndex>=1){
                                 await TrackPlayer.skipToPrevious()
-                                // await TrackPlayer.skip(songCurrentIndex-1);
-                                await TrackPlayer.play()
-                                // await TrackPlayer.skipToPrevious()
-                               
+                                await TrackPlayer.play()                           
                                 setSongCurrentIndex(songCurrentIndex-1)
                                 onChange(songCurrentIndex-2)
-                                // onChange(currentIndex-1)
                             }
                         }}
                     >
@@ -83,7 +98,6 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                             if(State.Playing== playbackState.state){
                                 await TrackPlayer.pause();
                             }else{
-                                // await TrackPlayer.skip(currentIndex);
                                 await TrackPlayer.play()
                             }
                         }}
@@ -112,12 +126,8 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                             // onReset()
                           }else{
                             await TrackPlayer.skipToNext()
-                            // await TrackPlayer.play()
                             setSongCurrentIndex(songCurrentIndex+1) 
                           } 
-                        // await TrackPlayer.skip(songCurrentIndex+1);
-                        //  await TrackPlayer.play()
-                        //   setSongCurrentIndex(songCurrentIndex+1)
                         }}
                     >
                         <Image
@@ -125,11 +135,8 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                             style={styles.icons}
                         />
                     </TouchableOpacity>
-                </View>
-                
-                
+                </View>         
             </LinearGradient>
-
         </Modal>
     )
 }
@@ -189,7 +196,6 @@ const styles = StyleSheet.create({
         width:50,
         height:50,
         borderRadius: 25,
-        // paddingLeft:'1%',
         backgroundColor: CustomColors.white,
         justifyContent:'center',
         alignItems:'center'

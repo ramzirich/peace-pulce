@@ -11,7 +11,8 @@ import { NavigationContainer} from '@react-navigation/native';
 import Registration from './src/pages/register/Register';
 import Songs from './src/pages/song/Songs';
 import Song from './src/pages/song/Song';
-import VideoPlayer from './src/pages/video/VideoPlayer';
+import VideoPlayer from './src/pages/video/CustomVideoPlayer';
+import CustomVideoPlayer from './src/pages/video/CustomVideoPlayer';
 
 
 function App(): React.JSX.Element {
@@ -28,7 +29,7 @@ function App(): React.JSX.Element {
           options={{title: 'id'}} /> 
           <Stack.Screen name="songs" component={Songs} />  
           <Stack.Screen name="song" component={Song} />  
-          <Stack.Screen name="video" component={VideoPlayer} />  
+          <Stack.Screen name="video" component={CustomVideoPlayer} />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>

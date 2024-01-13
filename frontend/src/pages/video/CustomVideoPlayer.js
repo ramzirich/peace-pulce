@@ -5,9 +5,10 @@ import LinearGradient from "react-native-linear-gradient";
 import { config } from "../../../config";
 import CustomVideo3 from "../../reusable/components/video/CustomVideo3";
 
-export default VideoPlayer = () =>{
+export default CustomVideoPlayer = () =>{
     const [videos, setVideos] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(null)
+    
     useEffect(()=>{
         const fetchVideoData = async() =>{
             try{
@@ -19,16 +20,13 @@ export default VideoPlayer = () =>{
         }
         fetchVideoData()
     },[])
-    console.log(videos)
-    console.log(currentIndex)
+   
     return(
             <LinearGradient style={styles.bigcontainer}
                 colors={['#214ae2', '#4752e2','#8962f3']}
             >
-                {currentIndex && 
-                    <CustomVideo3 style={styles.video_container}
-                        video={videos[currentIndex]}
-                    />
+                {currentIndex!=null && 
+                    <CustomVideo3 video={videos[currentIndex]}/>
                 }
                 <FlatList data={videos}
                     showsVerticalScrollIndicator={false}
@@ -63,6 +61,7 @@ const styles = StyleSheet.create({
         height:70,
         width:'100%',
         borderBottomWidth: 1,
+        borderTopWidth: 1,
         borderColor: '#8b62e9',
         paddingHorizontal:20,
         paddingVertical:10,

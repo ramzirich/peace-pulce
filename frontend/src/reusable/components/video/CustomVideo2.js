@@ -75,7 +75,7 @@ export default CustomVideo2 = ({oneVideo, isFirst, isLast}) =>{
 
                 {clicked && 
                     <>
-                        <View style={styles.videoContainer}> 
+                        <View style={styles.videoContainer}>  
                             <View  style={[styles.rowFlex, styles.gap]}>
                                 <TouchableOpacity
                                     onPress={() =>{
