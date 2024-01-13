@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native"
 import { sliderImages } from "../../../utils/sliderImages/sliderImages";
 
@@ -18,6 +18,7 @@ const SIDECARD_LENGTH = (SRC_WIDTH * 0.18) / 2;
 //   };
 
 export default homeSwipper= () =>{
+    const [scrollx, setScrollx] = useState(0)
     return(
         <View style={{flex:1, marginTop:20}}>
             <FlatList data={sliderImages}
