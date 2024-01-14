@@ -10,7 +10,9 @@ export const Square= ({tag, img_url=CustomColors.darkBlue, onPress = () =>{}, ur
             >
                 <Image source={url} style={styles.img}/>
             </TouchableOpacity>
-            <Text style={styles.text}>{tag}</Text>
+            <View style={styles.constainer}>
+                <Text style={styles.text}>{tag}</Text>
+            </View>
         </View>     
     )
 }
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
         borderRadius:10
     },
     text:{
+        color: CustomColors.white,
         fontSize:10,
         marginTop:5
     }
