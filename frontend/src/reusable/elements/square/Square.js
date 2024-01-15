@@ -11,7 +11,7 @@ export const Square= ({tag, img_url=CustomColors.darkBlue, onPress = () =>{}, ur
                 <Image source={url} style={styles.img}/>
             </TouchableOpacity>
             <View style={styles.constainer}>
-                <Text style={styles.text}>{tag}</Text>
+                {tag &&<Text style={styles.text}>{tag}</Text>}
             </View>
         </View>     
     )

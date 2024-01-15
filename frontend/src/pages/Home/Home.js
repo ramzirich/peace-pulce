@@ -9,17 +9,19 @@ import { useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import HomeSwiper from '../../reusable/components/swiper/HomeSwiper';
 import SwiperComponent from '../../reusable/components/swiper/SwiperComponenet';
+import FooterButtons from '../../reusable/components/footerButtons/footerButtons';
 
  
 const Home = ({navigation}) => {
 
   return ( 
-     <LinearGradient colors={['#8962f3', '#4752e2','#214ae2']}
+     <LinearGradient colors={['#214ae2', '#4752e2','#8962f3']}
        style={{flex:1}}> 
-       <CustomHeader/> 
+       <CustomHeader/>
        <HeaderButton navigation={navigation} />
        {/* <HomeSwiper/> */}
        <SwiperComponent/>
+       <FooterButtons navigation={navigation} />
     </LinearGradient>      
   ); 
 };

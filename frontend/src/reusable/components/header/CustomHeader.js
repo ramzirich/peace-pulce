@@ -23,12 +23,12 @@ export const CustomHeader = () =>{
             </TouchableOpacity>
             <View style={styles.user}>
                 {userInfo && userInfo.first_name? 
-                    <Text style={{fontSize:16}}>Welcome {userInfo.first_name}</Text>
+                    <Text style={{fontSize:16, color:CustomColors.white}}>Welcome {userInfo.first_name}</Text>
                     : ""
                 }
                 <View style={styles.status_view}>
                     <TouchableOpacity style={styles.status_circle}/>
-                    <Text style={{fontSize:12}}>Status</Text>
+                    <Text style={{fontSize:12, color:CustomColors.white}}>Status</Text>
                 </View>      
             </View>
         </View> 

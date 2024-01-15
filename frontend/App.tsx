@@ -13,6 +13,7 @@ import Songs from './src/pages/song/Songs';
 import Song from './src/pages/song/Song';
 import VideoPlayer from './src/pages/video/CustomVideoPlayer';
 import CustomVideoPlayer from './src/pages/video/CustomVideoPlayer';
+import VideoChat from './src/pages/VideoCat/VideoChat';
 
 
 function App(): React.JSX.Element {
@@ -30,6 +31,7 @@ function App(): React.JSX.Element {
           {/* <Stack.Screen name="songs" component={Songs} />   */}
           <Stack.Screen name="song" component={Song} />  
           <Stack.Screen name="video" component={CustomVideoPlayer} />  
+          <Stack.Screen name="video-chat" component={VideoChat} />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>

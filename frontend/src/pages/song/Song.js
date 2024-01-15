@@ -173,7 +173,6 @@ export default Song = () =>{
                         if(State.Playing== playbackState.state){
                             await TrackPlayer.pause();
                         }else{
-                            // await TrackPlayer.skip(currentIndex);
                             await TrackPlayer.play()
                         }
                     }}>
@@ -197,7 +196,6 @@ export default Song = () =>{
                         setIsVisible(false)
                     }}
                     onChange={(x)=>{
-                        // console.log("x",x)
                         setCurrentIndex(x)
                     }}
                 />
