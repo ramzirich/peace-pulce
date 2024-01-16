@@ -16,6 +16,6 @@ class Patient_doctor_request extends Model
     }
     public function doctor()
     {
-        return $this->belongsTo(Doctors::class, 'doctor_id')->with('user');
+        return $this->belongsTo(Doctors::class, 'doctor_id'); //chain a user not doctor
     }
 }

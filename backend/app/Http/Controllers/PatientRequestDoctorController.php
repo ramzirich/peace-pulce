@@ -23,7 +23,7 @@ class PatientRequestDoctorController extends Controller
     }
 
     public function getRequestForPatient($id){
-        return $this->userSpecificGenericManager->findById($id, "patient_id", $with=['doctor']);   
+        return $this->userSpecificGenericManager->getByColumn("doctor_id", $id, 'patient_id', $with=['doctor']);   
     }
 
     public function getAllDoctorRequestForPatient(Request $request){
