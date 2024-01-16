@@ -21,7 +21,6 @@ export const PsychiatristInfo =({route}) =>{
         '3.75-5': 0,
       });  
     const [request, setRequest] = useState(null);
-      console.log(request)
 
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -41,6 +40,7 @@ export const PsychiatristInfo =({route}) =>{
                 });
 
                 setRequest(requestResponse.data.request)
+                console.log("hhii",requestResponse.data)
                 setRatingList(ratingResponse.data)             
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -72,6 +72,24 @@ export const PsychiatristInfo =({route}) =>{
                 setRatingDistribution({ '0-2.5': 0, '2.5-3.75': 0, '3.75-5': 0 });
             }
     }, [ratingList]) 
+
+    async function sendCancelRequest (){
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+
+            const requestResponse = await axios.post(`${config.apiUrl}/doctor_request/create`,{
+                'doctor_id' : id
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            if(requestResponse.status == 'success')
+                setRequest('requested')
+        }catch(error){
+            console.error(error)
+        }
+    }
     
 
     return(    
@@ -153,9 +171,9 @@ export const PsychiatristInfo =({route}) =>{
                 </View>
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={sendCancelRequest}>
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
-                {request == 'accepted' && <Text style={styles.request}>Request sent</Text>}
+                {(request == 'accepted' || request=='requested') && <Text style={styles.request}>Request sent</Text>}
             </TouchableOpacity>
             <View>
             <CommentList id={id} />
