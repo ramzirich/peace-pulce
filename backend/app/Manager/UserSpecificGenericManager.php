@@ -132,6 +132,22 @@ class UserSpecificGenericManager{
         }
     }
 
+    public function deleteForSpecificUserByColumn($foreignKey, $foreignKeyVale, $userKey){
+        try{
+            $model_toDelete= $this->getByColumn($foreignKey, $foreignKeyVale, $userKey) ;
+            if(!$model_toDelete){
+                return ExceptionMessages::NotFound(class_basename($this->obj));
+            }
+            $model_toDelete->delete();
+            return response()->json([
+                'status'=> 'success',
+                'message'=> class_basename($this->obj). " successfully deleted" 
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
+    }
+
     public function massdeleteSpecificUser($foreignKey, $request,){
         try {
             $data  = $request->json('ids',[]);

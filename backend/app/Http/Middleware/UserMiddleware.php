@@ -23,7 +23,7 @@ class UserMiddleware
         }
         return response()->json([
             'status' => 'error',
-            'message' => 'Unauthorized',
+            'message' => 'Unauthorized user',
         ], 403);   
     }
 }

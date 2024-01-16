@@ -67,7 +67,7 @@ class PatientRequestDoctorController extends Controller
     }
 
     public function deleteDoctorRequest($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUser($id, "patient_id");
+        return $this->userSpecificGenericManager->deleteForSpecificUserByColumn('doctor_id', $id , 'patient_id');
     }
 
     // public function massDeleteDoctorRequest(Request $request){
