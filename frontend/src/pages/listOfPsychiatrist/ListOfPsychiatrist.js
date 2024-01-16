@@ -5,6 +5,7 @@ import React, { useEffect } from "react"
 import axios from "axios"
 import { config } from "../../../config"
 import { Card } from "../../reusable/components/card/Card"
+import LinearGradient from "react-native-linear-gradient"
 
 
 export const ListOfPsychiatrist = ({navigation}) =>{
@@ -34,13 +35,16 @@ export const ListOfPsychiatrist = ({navigation}) =>{
     }));
   
     return(
-        <View style={{flex:1, paddingBottom:150}}>
+        <LinearGradient 
+            colors={['#8962f3', '#4752e2','#214ae2']} 
+            style={{flex:1, paddingBottom:150}}>
             <CustomHeader />
             <HeaderButton  navigation={navigation} />
             {doctors.length===0?     
                 <Text>No Doctors</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
+                    showsVerticalScrollIndicator={false}
                         data={users}
                         renderItem={({item})=>{
                         return <Card item={item} dr='Dr' navigation={navigation} pathName='psychiatrist'/>
@@ -50,6 +54,6 @@ export const ListOfPsychiatrist = ({navigation}) =>{
                     />
                 </View> 
             }
-        </View>
+        </LinearGradient>
     )
 } 

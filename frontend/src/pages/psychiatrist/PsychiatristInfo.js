@@ -1,10 +1,11 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
 import { CustomColors } from "../../styles/color"
 import { CommentList } from "../../reusable/components/comment/CommentList"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import LinearGradient from "react-native-linear-gradient"
 
 
 export const PsychiatristInfo =({route}) =>{
@@ -19,6 +20,8 @@ export const PsychiatristInfo =({route}) =>{
         '2.5-3.75': 0,
         '3.75-5': 0,
       });  
+    const [request, setRequest] = useState(null);
+      console.log(request)
 
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -30,6 +33,14 @@ export const PsychiatristInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
+
+                const requestResponse = await axios.get(`${config.apiUrl}/doctor_request/${id}`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+
+                setRequest(requestResponse.data.request)
                 setRatingList(ratingResponse.data)             
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -64,12 +75,45 @@ export const PsychiatristInfo =({route}) =>{
     
 
     return(    
-        <ScrollView style={styles.big_container}>
+        <LinearGradient style={styles.big_container}
+            colors={['#8962f3', '#4752e2','#214ae2']} 
+        >
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.profile}>
                 <View style={styles.fullname}>
-                    <Text style={styles.name}>Dr. {first_name}</Text>
-                    <Text style={styles.name}>{last_name}</Text>
-                    <Text style={styles.degree}>{degree}</Text>
+                    <Text style={[styles.name, styles.white]}>Dr. {first_name}</Text>
+                    <Text style={[styles.name, styles.white]}>{last_name}</Text>
+                    <Text style={[styles.degree, styles.white]}>{degree}</Text>
+
+                    <View style={{flexDirection:"row", justifyContent:'space-between', alignItems:'center'}}>
+                    <View style={styles.costRating_container}>
+                    <View>
+                        {/* <Text style={styles.start}>★</Text> */}
+                        {rating ==0 && 
+                            <Image style={styles.star} source={require('../../../assets/stars/empty-star.png')} />   
+                        }
+                        {rating >0 && rating<2 && 
+                            <Image style={styles.star} source={require('../../../assets/stars/quarter-star.png')} />   
+                        }
+                        {rating >=2 && rating<3 && 
+                            <Image style={styles.star} source={require('../../../assets/stars/half-star.png')} />   
+                        }
+                        {rating >= 3 && rating<=4 && 
+                            <Image style={styles.star} source={require('../../../assets/stars/34star.png')} />   
+                        }
+                        {rating >4 && 
+                            <Image style={styles.star} source={require('../../../assets/stars/full-star.png')} />   
+                        }
+                    </View>
+                    <View>
+                        <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>{ratingList.length} votes</Text>
+                    </View>                        
+                </View>
+                        <View>
+                        <Text style={[{fontSize:12, fontWeight:300}, styles.white]}>${hourly_rate}/hr</Text>
+                        </View>
+                        
+                    </View>
                 </View>
                 <View>
                     <Image source={{uri : imgUrl}} style={styles.imgUrl} />
@@ -80,35 +124,13 @@ export const PsychiatristInfo =({route}) =>{
                 <Text style={styles.about}>{about}</Text>
             </View>
 
-            <View style={styles.cost_rating}>
-                <View style={styles.costRating_container}>
-                    <View>
-                        {/* <Text style={styles.start}>★</Text> */}
-                        <Image style={styles.star} source={require('../../../assets/stars/half-star.png')} />
-                    </View>
-                    <View>
-                        <Text style={styles.subTitle}>Rating</Text>
-                        <Text style={{fontSize:10, fontWeight:300}}>{ratingList.length} votes</Text>
-                    </View>                        
-                </View>
-
-                <View style={styles.costRating_container}>
-                    <View style={styles.cost_circle} />
-                    <View>
-                        <Text style={styles.subTitle}>Cost</Text>
-                        <Text style={{fontSize:12, fontWeight:300}}>${hourly_rate}/hr</Text>
-                    </View>
-                </View>
-
-            </View> 
-
             <View style={styles.emojies_container}>
                 <View style={styles.emoji_info}>
                     <View>
                         <Text style={styles.emojies}>😊</Text>
                     </View>
                     <View>
-                        <Text>{ratingDistribution['3.75-5']} votes</Text>
+                        <Text style={styles.white}>{ratingDistribution['3.75-5']} votes</Text>
                     </View>
                 </View>
 
@@ -117,7 +139,7 @@ export const PsychiatristInfo =({route}) =>{
                         <Text style={styles.emojies}>😐</Text>
                     </View>
                     <View>
-                        <Text >{ratingDistribution['2.5-3.75']} votes</Text>
+                        <Text style={styles.white}>{ratingDistribution['2.5-3.75']} votes</Text>
                     </View>
                 </View>
 
@@ -126,30 +148,36 @@ export const PsychiatristInfo =({route}) =>{
                         <Text style={styles.emojies}>😡</Text>
                     </View>
                     <View>
-                        <Text >{ratingDistribution['0-2.5']} votes</Text>
+                        <Text style={styles.white}>{ratingDistribution['0-2.5']} votes</Text>
                     </View>
                 </View>
-
             </View>
 
-            
+            <TouchableOpacity>
+                {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
+                {request == 'accepted' && <Text style={styles.request}>Request sent</Text>}
+            </TouchableOpacity>
             <View>
             <CommentList id={id} />
             </View>   
-        </ScrollView>        
+        </ScrollView> 
+        </LinearGradient>       
     ) 
 }
 
 const styles = StyleSheet.create({
     big_container:{
         flex:1,
-        paddingTop: 10,
+        paddingTop: 20,
         paddingHorizontal:20,     
     },
     profile:{
         flexDirection:'row',
         marginBottom:20,
         justifyContent:'space-between',
+    },
+    white:{
+        color:CustomColors.white,
     },
     fullname:{
         flexDirection:'column', 
@@ -169,6 +197,7 @@ const styles = StyleSheet.create({
         color: CustomColors.black,
         fontWeight:'500',
         letterSpacing:0.2,
+        color:CustomColors.white,
     },
     info_card:{
         height:80,
@@ -185,7 +214,7 @@ const styles = StyleSheet.create({
     },
     costRating_container:{
         flexDirection:'row',
-        gap:5,
+        gap:2,
         alignItems:'center'
     },
     cost_circle:{
@@ -204,7 +233,8 @@ const styles = StyleSheet.create({
     },
     emojies_container:{
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        paddingVertical:20
     },
     emojies:{
         fontSize:25
@@ -216,5 +246,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         gap:5,
         alignItems:'center'
+    },
+    request:{
+        color: CustomColors.white,
+        alignSelf:'flex-end',
+        paddingBottom:10
     }
 })

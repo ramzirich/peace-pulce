@@ -21,7 +21,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="home"> 
+        <Stack.Navigator initialRouteName="login"> 
           <Stack.Screen name="login" component={Login} /> 
           <Stack.Screen name="register" component={Registration} /> 
           <Stack.Screen name="home" component={Home} /> 
@@ -39,3 +39,32 @@ function App(): React.JSX.Element {
 }
 
 export default App;
+
+
+
+// FAILURE: Build failed with an exception.
+
+// * What went wrong:
+// A problem occurred configuring root project 'frontend'.
+// > Could not determine the dependencies of null.
+//    > Could not resolve all task dependencies for configuration ':classpath'.
+//       > Could not resolve com.google.gms:google-services:4.4.0.
+//         Required by:
+//             project :
+//          > Could not resolve com.google.gms:google-services:4.4.0.
+//             > Could not get resource 'https://dl.google.com/dl/android/maven2/com/google/gms/google-services/4.4.0/google-services-4.4.0.pom'.
+//                > Could not GET 'https://dl.google.com/dl/android/maven2/com/google/gms/google-services/4.4.0/google-services-4.4.0.pom'.  
+//                   > No such host is known (dl.google.com)
+//          > Could not resolve com.google.gms:google-services:4.4.0.
+//             > Could not get resource 'https://repo.maven.apache.org/maven2/com/google/gms/google-services/4.4.0/google-services-4.4.0.pom'.
+//                > Could not GET 'https://repo.maven.apache.org/maven2/com/google/gms/google-services/4.4.0/google-services-4.4.0.pom'.     
+//                   > No such host is known (repo.maven.apache.org)
+
+// * Try:
+// > Run with --stacktrace option to get the stack trace.
+// > Run with --info or --debug option to get more log output.
+// > Run with --scan to get full insights.
+// > Get more help at https://help.gradle.org.
+
+// BUILD FAILED in 21s
+// info Run CLI with --verbose flag for more details.

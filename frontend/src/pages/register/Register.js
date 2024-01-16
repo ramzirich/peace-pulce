@@ -19,6 +19,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Registervalidation } from './RegisterValidation';
 import { setUserInfo } from '../../redux/actions/userActions';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default Registration = ({navigation}) => {
   const [inputs, setInputs] = React.useState({
@@ -57,11 +58,14 @@ export default Registration = ({navigation}) => {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.bigContainer}>
+    <LinearGradient  
+      colors={['#8962f3', '#4752e2','#214ae2']} 
+      // colors={['#6484ee','#3e6ddb', '#1d50e0']}
+      style={styles.bigContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
       
       <View>
-          <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
+          <Image source={require('../../../assets/images/logo22.png')} style={styles.logo} /> 
       </View>
       <View style={styles.smallContainer}>
         <Input
@@ -110,8 +114,8 @@ export default Registration = ({navigation}) => {
           </Text>
       </View>
       
-  </SafeAreaView>
-</ScrollView>
+  </ScrollView>
+</LinearGradient>
 )
 }
 

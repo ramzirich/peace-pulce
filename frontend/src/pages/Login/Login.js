@@ -10,6 +10,7 @@ import { validateLogin } from './LoginValidation';
 import { useDispatch } from 'react-redux';
 import { setFirstName, setLastName } from '../../redux/actions/userActions';
 import { setUserInfo } from '../../redux/actions/userActions';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 export default Login = ({navigation}) =>{
@@ -48,41 +49,46 @@ export default Login = ({navigation}) =>{
       };
 
     return(
-        <ScrollView style={styles.bigContainer}>
-            <View>
-                <Image source={require('../../../assets/images/logo.jpg')} style={styles.logo} /> 
-            </View>
-            <View style={styles.smallContainer}>
-                <Input
-                    onChangeText={text => handleOnchange(text, 'email')}
-                    onFocus={() => handleError(null, 'email')}
-                    label="Email"
-                    placeholder="example@gmail.com"
-                    error={errors.email} 
-                />
+        <LinearGradient 
+            // colors={['#8962f3', '#4752e2','#214ae2', '#1d50e0']} 
+            colors={['#8962f3', '#4752e2','#214ae2']} 
+            style={styles.bigContainer}>
+            <ScrollView>
+                <View>
+                    <Image source={require('../../../assets/images/logo22.png')} style={styles.logo} /> 
+                </View>
+                <View style={styles.smallContainer}>
+                    <Input
+                        onChangeText={text => handleOnchange(text, 'email')}
+                        onFocus={() => handleError(null, 'email')}
+                        label="Email"
+                        placeholder="example@gmail.com"
+                        error={errors.email} 
+                    />
 
-                <Input
-                    onChangeText={text => handleOnchange(text, 'password')}
-                    onFocus={() => handleError(null, 'password')}
-                    label="Password"
-                    placeholder="********"
-                    error={errors.password}
-                    password 
-                />
-                
-                <View style={styles.btn}>
-                    <CustomButton title="Log in" onPress={validate} />
-                </View>         
-                <Text
-                    onPress={() => navigation.navigate('register')}
-                    style={{
-                    fontSize: 12,
-                    color:CustomColors.white
-                    }}>
-                    Don't have an account ?Register
-                </Text>
-            </View>
-        </ScrollView>
+                    <Input
+                        onChangeText={text => handleOnchange(text, 'password')}
+                        onFocus={() => handleError(null, 'password')}
+                        label="Password"
+                        placeholder="********"
+                        error={errors.password}
+                        password 
+                    />
+                    
+                    <View style={styles.btn}>
+                        <CustomButton title="Log in" onPress={validate} />
+                    </View>         
+                    <Text
+                        onPress={() => navigation.navigate('register')}
+                        style={{
+                        fontSize: 12,
+                        color:CustomColors.white
+                        }}>
+                        Don't have an account ?Register
+                    </Text>
+                </View>
+            </ScrollView>
+        </LinearGradient>
     )
 }
 

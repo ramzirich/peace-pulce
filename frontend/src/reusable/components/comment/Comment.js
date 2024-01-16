@@ -40,7 +40,7 @@ export const Comment = ({item}) =>{
             }
             <Text style={styles.comment}>{item.comment}</Text>
         </View>
-    )
+    ) 
 }
 
 const styles = StyleSheet.create({
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         width: 0,
         height: 2,
         },
-        shadowOpacity: 0.2,
+        shadowOpacity: 1,
         shadowRadius: 2,
         elevation: 3,
     },

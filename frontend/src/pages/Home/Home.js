@@ -15,14 +15,16 @@ import FooterButtons from '../../reusable/components/footerButtons/footerButtons
 const Home = ({navigation}) => {
 
   return ( 
-     <LinearGradient colors={['#214ae2', '#4752e2','#8962f3']}
-       style={{flex:1}}> 
+    //  <LinearGradient colors={['#8962f3', '#4752e2','#214ae2']}
+      <View 
+       style={{flex:1, backgroundColor:'#8962f3'}}> 
        <CustomHeader/>
        <HeaderButton navigation={navigation} />
        {/* <HomeSwiper/> */}
        <SwiperComponent/>
        <FooterButtons navigation={navigation} />
-    </LinearGradient>      
+       </View>
+    // </LinearGradient>      
   ); 
 };
 

@@ -16,19 +16,19 @@ export const CustomHeader = () =>{
    
     return(
         <View style={styles.container}>
-            <TouchableOpacity style={styles.profile_img}>
+            {/* <TouchableOpacity style={styles.profile_img}>
                 {imgUrl && 
                     <Image source={{uri : imgUrl}} style={styles.profile_img}/>
                 }
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <View style={styles.user}>
                 {userInfo && userInfo.first_name? 
                     <Text style={{fontSize:16, color:CustomColors.white}}>Welcome {userInfo.first_name}</Text>
                     : ""
                 }
                 <View style={styles.status_view}>
-                    <TouchableOpacity style={styles.status_circle}/>
-                    <Text style={{fontSize:12, color:CustomColors.white}}>Status</Text>
+                    {/* <TouchableOpacity style={styles.status_circle}/> */}
+                    {/* <Text style={{fontSize:12, color:CustomColors.white}}>Status</Text> */}
                 </View>      
             </View>
         </View> 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
         justifyContent:'start',
-        marginTop:10,
+        marginTop:15,
         marginBottom: 20,
         paddingLeft: 15
     },

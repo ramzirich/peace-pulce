@@ -52,7 +52,10 @@ export const CommentList = ({id}) =>{
             ) : (
             <Text>No comment</Text>
             )}
-            <Button title="Load more" onPress={loadMore}></Button>
+            <Button title="Load more" 
+                onPress={loadMore}
+                
+            />
         </View> 
     )
 } 
