@@ -40,7 +40,6 @@ export const PsychiatristInfo =({route}) =>{
                 });
 
                 setRequest(requestResponse.data.request)
-                console.log("hhii",requestResponse.data)
                 setRatingList(ratingResponse.data)             
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -75,17 +74,32 @@ export const PsychiatristInfo =({route}) =>{
 
     async function sendCancelRequest (){
         try{
-            const authToken = await AsyncStorage.getItem('authToken');
+            if(request =='null'|| !request){
+                const authToken = await AsyncStorage.getItem('authToken');
 
-            const requestResponse = await axios.post(`${config.apiUrl}/doctor_request/create`,{
-                'doctor_id' : id
-            }, {
-                headers:{
-                    'Authorization': `Bearer ${authToken}`
+                const requestResponse = await axios.post(`${config.apiUrl}/doctor_request/create`,{
+                    'doctor_id' : id
+                }, {
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                if(requestResponse.status == 201){
+                    setRequest('requested')
                 }
-            });
-            if(requestResponse.status == 'success')
-                setRequest('requested')
+            }
+            if(request=='accepted' || request==='requested'){        
+                const authToken = await AsyncStorage.getItem('authToken');
+                const requestDeleteResponse = await axios.post(`${config.apiUrl}/doctor_request/delete/${id}`,{
+                } ,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                if(requestDeleteResponse.status == 200){
+                    setRequest(null)
+                }
+            }
         }catch(error){
             console.error(error)
         }
@@ -101,12 +115,12 @@ export const PsychiatristInfo =({route}) =>{
                 <View style={styles.fullname}>
                     <Text style={[styles.name, styles.white]}>Dr. {first_name}</Text>
                     <Text style={[styles.name, styles.white]}>{last_name}</Text>
+                    <Text style={[styles.degree, styles.white]}>{specialization}</Text>
                     <Text style={[styles.degree, styles.white]}>{degree}</Text>
 
                     <View style={{flexDirection:"row", justifyContent:'space-between', alignItems:'center'}}>
                     <View style={styles.costRating_container}>
                     <View>
-                        {/* <Text style={styles.start}>★</Text> */}
                         {rating ==0 && 
                             <Image style={styles.star} source={require('../../../assets/stars/empty-star.png')} />   
                         }
@@ -198,7 +212,8 @@ const styles = StyleSheet.create({
         color:CustomColors.white,
     },
     fullname:{
-        flexDirection:'column', 
+        flexDirection:'column',
+        width:'60%' 
     },
     name:{
         fontSize:26,
