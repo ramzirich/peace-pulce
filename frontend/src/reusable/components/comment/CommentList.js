@@ -11,7 +11,6 @@ export const CommentList = ({id}) =>{
     let perPage =2;
     const [commentList, setCommentList] = useState([]);
     const [commentCount, setCommentCount] = useState(0);
-    console.log(commentCount)
 
     useEffect(() =>{
         const fetcData = async() =>{

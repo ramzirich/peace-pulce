@@ -26,19 +26,24 @@ export const Comment = ({item}) =>{
    
     return(
         <View style={styles.container}>
-            {imagePath ? 
-                <View style={styles.comment_profile}>
-                    <View style={styles.img_container}>  
-                        <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>    
-                    </View> 
-                    <View>
-                        <Text style={styles.user_name}>{item.user.first_name} {item.user.last_name}</Text> 
-                        <Text style={styles.date}>{formattedDate}</Text> 
+            {imagePath ?
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <View style={styles.comment_profile}>
+                        <View style={styles.img_container}>  
+                            <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>    
+                        </View> 
+                        <View>
+                            <Text style={styles.user_name}>{item.user.first_name} {item.user.last_name}</Text> 
+                            <Text style={styles.date}>{formattedDate}</Text> 
+                        </View>
                     </View>
-                </View>: 
-                <TouchableOpacity style={styles.img}>
-                    <Text style={{fontSize:10, alignItems:'center'}}>No image</Text>
-                </TouchableOpacity> 
+                    <View>
+                        <Text>Hiii</Text>
+                    </View>
+                </View>      
+                :   <TouchableOpacity style={styles.img}>
+                        <Text style={{fontSize:10, alignItems:'center'}}>No image</Text>
+                    </TouchableOpacity>       
             }
             <Text style={styles.comment}>{item.comment}</Text>
         </View>
