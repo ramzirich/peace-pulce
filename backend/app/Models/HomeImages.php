@@ -9,5 +9,5 @@ class HomeImages extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable=['url', 'text', 'author']
+    protected $fillable=['url', 'text', 'author'];
 }
