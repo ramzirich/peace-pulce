@@ -1,8 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../../config";
 import { CustomColors } from "../../../styles/color";
+import { useSelector } from "react-redux";
 
 export const Comment = ({item}) =>{
+    const {userInfo} = useSelector(state => state.userInfoReducer)
     let imagePath = null
     if(item.user.img_url){
         imagePath = `${config.imgUrl}${item.user.img_url}`;
