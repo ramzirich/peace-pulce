@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('text');
+            $table->string('author');
         });
     }
 
