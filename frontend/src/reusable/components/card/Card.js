@@ -16,7 +16,7 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
                 <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
                 {specialization && <Text style={styles.specialization}>{specialization}</Text>} 
                 <View style={styles.info}>
-                    <Text numberOfLines={4} style={{color:CustomColors.white}}>{about}</Text>     
+                    <Text numberOfLines={5} style={{color:CustomColors.white}}>{about}</Text>     
                 </View>     
             </View>
         </TouchableOpacity>
@@ -28,22 +28,18 @@ const styles = StyleSheet.create({
         height:200,
         width:320,
         borderRadius: 30,
-        // backgroundColor: CustomColors.grey,
         borderWidth:1,
         borderColor:'#8b62e9',
         borderColor:'#e782f5',
         marginBottom: 20,
         flexDirection: 'row',
-        // alignItems:'center',
         paddingHorizontal: 15,
         paddingVertical:12.5,
         gap:7
     },
     text_right:{
-        paddingHorizontal:10,
+        paddingHorizontal:7,
         width: '57%',
-        // paddingRight: 10,
-        justifyContent: 'flex-start',
     },
     name:{
         fontSize:20,
