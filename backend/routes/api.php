@@ -94,6 +94,7 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::post('patient_comment/delete/{id}',  [PatientCommentController::class, 'deletePatientComment']);
     Route::get('patient_comment/{id}',  [PatientCommentController::class, 'getPatientComment']);
     Route::get('patient_comments/{id}',  [PatientCommentController::class, 'getAllPatientCommentForDoctor']);
+    Route::get('patient_comments/count/{id}',  [PatientCommentController::class, 'getCommentsCounts']);
 });
 
 Route::middleware(['auth.user', 'doctor.check'])->group(function () {

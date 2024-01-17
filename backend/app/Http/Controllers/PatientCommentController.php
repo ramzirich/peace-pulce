@@ -28,6 +28,10 @@ class PatientCommentController extends Controller
     //     return $this->userSpecificGenericManager->findById($id, "patient_id");   
     // }
 
+    public function getCommentsCounts($id){
+        return $this->patient_comment->where('doctor_id', $id)->count();
+    }
+
     public function getAllPatientCommentForDoctor($id, Request $request){
         $request->merge(['doctor_id' => $id]);
         return $this->userSpecificGenericManager->getAllForCurrentUser($request, ['doctor','user']);
