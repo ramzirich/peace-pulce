@@ -6,16 +6,17 @@ import { config } from "../../../../config"
 export default homeCard = ({item, index, listCount}) =>{
     const [isImage, setIsImage] = useState(true)
     const [displayedText, setDisplayedText] = useState('');
-    const [continueTyping, setContinueTyping] = useState(true);
+    // const [continueTyping, setContinueTyping] = useState(true);
         // console.log("continueTyping", continueTyping)
         // console.log('display', displayedText) 
+        console.log('isImage', isImage) 
   useEffect(() => {
     if (!isImage) {
         // setDisplayedText('');
         animateText();
     }
     if(isImage){
-        setContinueTyping(false);
+        // setContinueTyping(false);
         setDisplayedText('')
     }
   }, [isImage]);
@@ -29,29 +30,25 @@ export default homeCard = ({item, index, listCount}) =>{
   }; 
 
   const animateText = async () => {
-    // setContinueTyping(true);
     let i=0;
     for (i;i < item.text.length ; i++) {
-        if(continueTyping){
-            console.log("i1",i)
-            i=0
-            console.log("i2",i)
-            break;
-        }
-      await setAsyncTimeout(() => {
+        // if(!isImage){
+        //     break;
+        // }
+      await setAsyncTimeout(() => {    
         setDisplayedText((prevText) => prevText + item.text.charAt(i));
       }, 50);
     }
   };
 
-  const setAsyncTimeout = (callback, delay) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        callback();
-        resolve();
-      }, delay);
-    });
-  };
+//   const setAsyncTimeout = (callback, delay) => {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         callback();
+//         resolve();
+//       }, delay);
+//     });
+//   };
     return(
         <TouchableOpacity onPress={flip}>
         {isImage ?
