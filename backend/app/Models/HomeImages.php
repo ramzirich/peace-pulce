@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HomeImages extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable=['url', 'text', 'author']
 }
