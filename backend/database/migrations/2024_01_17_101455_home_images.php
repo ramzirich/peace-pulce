@@ -12,6 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         //
+        Schema::create('home_images', function(Blueprint $table){
+            $table->id();
+            $table->string('url');
+            $table->string('text');
+        });
     }
 
     /**
