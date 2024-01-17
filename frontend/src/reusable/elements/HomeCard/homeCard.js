@@ -6,10 +6,7 @@ import { config } from "../../../../config"
 export default homeCard = ({item, index, listCount}) =>{
     const [isImage, setIsImage] = useState(true)
     const [displayedText, setDisplayedText] = useState('');
-    // const [continueTyping, setContinueTyping] = useState(true);
-        // console.log("continueTyping", continueTyping)
-        // console.log('display', displayedText) 
-        console.log('isImage', isImage) 
+    console.log('isImage', isImage) 
   useEffect(() => {
     if (!isImage) {
         // setDisplayedText('');
@@ -38,7 +35,7 @@ export default homeCard = ({item, index, listCount}) =>{
       await setAsyncTimeout(() => {    
         setDisplayedText((prevText) => prevText + item.text.charAt(i));
       }, 50);
-    }
+    } 
   };
 
 //   const setAsyncTimeout = (callback, delay) => {
