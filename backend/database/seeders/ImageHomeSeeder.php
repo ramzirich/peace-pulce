@@ -26,8 +26,8 @@ class ImageHomeSeeder extends Seeder
                 'img_url' => '/images/home/9.jpg',
             ],
             [
-                'text' => "Your time is limited, don't waste it living someone else's life.",
-                'author' => 'Steve Jobs',
+                'text' => "In the future, the great division will be between those who have trained themselves to handle these complexities and those who are overwhelmed by them ",
+                'author' => 'Robert Green',
                 'img_url' => '/images/home/12.jpg',
             ],
             [
@@ -56,8 +56,8 @@ class ImageHomeSeeder extends Seeder
                 'img_url' => '/images/home/18.jpg',
             ],
             [
-                'text' => "It is never too late to be what you might have been.",
-                'author' => 'George Eliot',
+                'text' => "You possess a potent force that you either use, or it will use you.",
+                'author' => 'Robert Greene',
                 'img_url' => '/images/home/19.jpg',
             ],
         ];
