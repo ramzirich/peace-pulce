@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../../config"
+import { CustomButton } from "../Button/CustomButton"
+import { CustomColors } from "../../../styles/color"
 
 
 export default homeCard = ({item, index, listCount}) =>{
@@ -19,7 +21,6 @@ export default homeCard = ({item, index, listCount}) =>{
 
   const flip = () => {
     setIsImage(!isImage);
-
     // if(!isImage && displayedText==''){
     // }
   }; 
@@ -78,21 +79,20 @@ export default homeCard = ({item, index, listCount}) =>{
                 ]}
             />
             :<View 
-                style={[styles.img,
+                style={[styles.img, styles.cardContainer,
                         {
                             borderTopRightRadius: index==listCount?0:20,
                             borderBottomRightRadius: index==listCount?0:20,
                             borderTopLeftRadius: index==0?0:20,
                             borderBottomLeftRadius: index==0?0:20,
                             marginRight: index==listCount?0:20,
-                            backgroundColor:'white'
                         }
                     ]}
             >
-                <Text>{displayedText}</Text>
+                <Text style={styles.text}>{displayedText}</Text>
             </View>
         }
-
+        {/* <Text>{"tt \n tt"}</Text> */}
       </TouchableOpacity>
     )
 }
@@ -101,5 +101,18 @@ const styles = StyleSheet.create({
     img:{
         height:340,
         width:200
+    },
+    cardContainer:{
+        padding:20,
+        borderWidth: 1,
+        borderColor: '#e782f5',
+        backgroundColor: "transparent"
+    },
+    text:{
+        fontSize: 16,
+        color: CustomColors.white,
+        fontWeight: "500",
+        letterSpacing:0.4,
+        lineHeight: 20,
     }
 })
