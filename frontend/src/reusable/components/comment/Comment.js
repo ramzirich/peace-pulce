@@ -38,7 +38,9 @@ export const Comment = ({item}) =>{
                         </View>
                     </View>
                     <View>
-                        <Text>Hiii</Text>
+                        <TouchableOpacity>
+                            <Image source={require('../../../../assets/images/edit.png')}/>
+                        </TouchableOpacity>
                     </View>
                 </View>      
                 :   <TouchableOpacity style={styles.img}>
