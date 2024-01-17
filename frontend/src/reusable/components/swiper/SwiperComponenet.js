@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, FlatList, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { sliderImages } from '../../../utils/sliderImages/sliderImages';
+import HomeCard from '../../elements/HomeCard/homeCard';
 
 const SwiperComponent = () => {
     const len = sliderImages.length
@@ -14,20 +15,7 @@ const SwiperComponent = () => {
         // contentContainerStyle={styles.flatListContainer}
         renderItem={({ item, index }) => {
           return (
-            <View >
-              <Image
-                source={item.url}
-                style={[styles.img,
-                        {
-                            borderTopRightRadius: index==len-1?0:20,
-                            borderBottomRightRadius: index==len-1?0:20,
-                            borderTopLeftRadius: index==0?0:20,
-                            borderBottomLeftRadius: index==0?0:20,
-                            marginRight: index==len-1?0:20
-                        }
-                    ]}
-              />
-            </View>
+            <HomeCard item={item} index={index} listCount={sliderImages.length-1}/>
           );
         }}
       />
