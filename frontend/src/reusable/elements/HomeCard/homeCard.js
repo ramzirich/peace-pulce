@@ -6,41 +6,62 @@ import { config } from "../../../../config"
 export default homeCard = ({item, index, listCount}) =>{
     const [isImage, setIsImage] = useState(true)
     const [displayedText, setDisplayedText] = useState('');
-    console.log('isImage', isImage) 
+    // console.log('isImage', isImage) 
   useEffect(() => {
     if (!isImage) {
         // setDisplayedText('');
-        animateText();
+        animateText();     
     }
-    if(isImage){
+    if(isImage && displayedText.length == item.text.length ){
         setDisplayedText('')
     }
   }, [isImage]);
 
   const flip = () => {
     setIsImage(!isImage);
+
+    // if(!isImage && displayedText==''){
+    // }
   }; 
 
   const animateText = async () => {
-    let i=0;
-    for (i;i < item.text.length ; i++) {
-        // if(!isImage){
-        //     break;
-        // }
-      await setAsyncTimeout(() => {    
-        setDisplayedText((prevText) => prevText + item.text.charAt(i));
-      }, 50);
-    } 
+    // let i=0;
+    if(isImage==false && displayedText==''){
+        for (let i=0;i < item.text.length && !isImage; i++) {
+            // if(isImage){
+            //     break
+            // }
+            // console.log("imaaage", isImage)
+            await setAsyncTimeout(() => {
+                // if(isImage==false){
+                    setDisplayedText((prevText) => prevText + item.text.charAt(i));
+                // }  else {
+                //     return // Set the flag to false to stop the loop
+                //   }
+                // console.log("isIm", isImage)
+                // if(isImage){
+                //     return
+                // }
+            }, 50);
+            // if (isImage) {
+            //     break;
+            //   }
+        } 
+    }
+    
   };
 
-//   const setAsyncTimeout = (callback, delay) => {
-//     return new Promise((resolve) => {
-//       setTimeout(() => {
-//         callback();
-//         resolve();
-//       }, delay);
-//     });
-//   };
+  const setAsyncTimeout = (callback, delay) => {
+    // if(isImage==false){
+        return new Promise((resolve) => { 
+            setTimeout(() => {
+              callback();
+              resolve();
+            }, delay);
+          });
+    //}
+    
+  };
     return(
         <TouchableOpacity onPress={flip}>
         {isImage ?
