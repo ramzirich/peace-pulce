@@ -3,7 +3,7 @@ import {TouchableOpacity, Text} from 'react-native';
 import { CustomColors } from '../../../styles/color';
 
 
-export const CustomButton = ({title, onPress = () => {}}) => {
+export const CustomButton = ({title, onPress = () => {}, colorOfButton='#4752e2'}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -11,7 +11,7 @@ export const CustomButton = ({title, onPress = () => {}}) => {
       style={{
         height: 55,
         width: '100%',
-        backgroundColor: '#4752e2',
+        backgroundColor: colorOfButton,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius:5

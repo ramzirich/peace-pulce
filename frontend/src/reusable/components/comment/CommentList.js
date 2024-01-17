@@ -1,13 +1,17 @@
-import { Button, FlatList, SafeAreaView, ScrollView, SectionList, Text, TouchableOpacity, View } from "react-native"
+import { Button, FlatList, SafeAreaView, ScrollView, SectionList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { Comment } from "./Comment"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../../config"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { create } from "react-test-renderer"
+import { CustomButton } from "../../elements/Button/CustomButton"
 
 export const CommentList = ({id}) =>{
     let perPage =2;
     const [commentList, setCommentList] = useState([]);
+    const [commentCount, setCommentCount] = useState(0);
+    console.log(commentCount)
 
     useEffect(() =>{
         const fetcData = async() =>{
@@ -18,6 +22,14 @@ export const CommentList = ({id}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
+
+                const commentCountResponse = await axios.get(`${config.apiUrl}/patient_comments/count/${id}?`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+        
+                setCommentCount(commentCountResponse.data);
                 setCommentList(commentResponse?.data)
             }catch(error){
                 console.error('Error fetching user data f:', error.message);
@@ -50,12 +62,22 @@ export const CommentList = ({id}) =>{
                 <Comment key={item.id} item={item} />
             ))
             ) : (
-            <Text>No comment</Text>
+                <></>
+            /* <Text>No comment</Text> */
             )}
-            <Button title="Load more" 
-                onPress={loadMore}
-                
-            />
+            {commentCount>commentList.length &&
+                <CustomButton title="Load more"
+                    colorOfButton= '#8962f3'
+                    onPress={loadMore}
+                />
+            }
         </View> 
     )
 } 
+
+const styles = StyleSheet.create({
+    button:{
+        width:'50%',
+        alignSelf: 'center'
+    }
+})
