@@ -13,17 +13,12 @@ export default homeCard = ({item, index, listCount}) =>{
         animateText();
     }
     if(isImage){
-        // setContinueTyping(false);
         setDisplayedText('')
     }
   }, [isImage]);
 
   const flip = () => {
     setIsImage(!isImage);
-    if (!isImage) {
-        setDisplayedText('');
-        // setContinueTyping(true);
-    }
   }; 
 
   const animateText = async () => {
