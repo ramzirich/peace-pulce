@@ -21,8 +21,8 @@ class ImageHomeSeeder extends Seeder
                 'img_url' => '/images/home/8.jpg',
             ],
             [
-                'text' => "Believe you can and you\'re halfway there.",
-                'author' => 'Theodore Roosevelt',
+                'text' => "You will not fail if it is worth it. Do not give up!",
+                'author' => 'Pantheon',
                 'img_url' => '/images/home/9.jpg',
             ],
             [
@@ -31,8 +31,8 @@ class ImageHomeSeeder extends Seeder
                 'img_url' => '/images/home/12.jpg',
             ],
             [
-                'text' => "Your life does not get better by chance, it gets better by change.",
-                'author' => 'Jim Rohn',
+                'text' => "Pressing forward is not the same as running from your mistakes. We are what we overcome",
+                'author' => 'Pantheon',
                 'img_url' => '/images/home/13.jpg',
             ],
             [
