@@ -8,14 +8,16 @@ import { CustomColors } from "../../../styles/color"
 export default homeCard = ({item, index, listCount}) =>{
     const [isImage, setIsImage] = useState(true)
     const [displayedText, setDisplayedText] = useState('');
+    const [displayedAuthor, setDisplayedAuthor] = useState('');
     // console.log('isImage', isImage) 
   useEffect(() => {
     if (!isImage) {
         // setDisplayedText('');
         animateText();     
     }
-    if(isImage && displayedText.length == item.text.length ){
+    if(isImage && displayedText.length == item.text.length && displayedAuthor.length == item.author.length ){
         setDisplayedText('')
+        setDisplayedAuthor('')
     }
   }, [isImage]);
 
@@ -27,7 +29,7 @@ export default homeCard = ({item, index, listCount}) =>{
 
   const animateText = async () => {
     // let i=0;
-    if(isImage==false && displayedText==''){
+    if(isImage==false && displayedText=='' && displayedAuthor == ''){
         for (let i=0;i < item.text.length && !isImage; i++) {
             // if(isImage){
             //     break
@@ -47,7 +49,12 @@ export default homeCard = ({item, index, listCount}) =>{
             // if (isImage) {
             //     break;
             //   }
-        } 
+        }
+        for (let i=0;i < item.author.length && !isImage; i++) {
+            await setAsyncTimeout(() => {
+                setDisplayedAuthor((prevAuth) => prevAuth + item.author.charAt(i));
+            }, 50);
+        }
     }
     
   };
@@ -90,6 +97,7 @@ export default homeCard = ({item, index, listCount}) =>{
                     ]}
             >
                 <Text style={styles.text}>{displayedText}</Text>
+                <Text style={styles.author}>{displayedAuthor}</Text>
             </View>
         }
         {/* <Text>{"tt \n tt"}</Text> */}
@@ -106,13 +114,29 @@ const styles = StyleSheet.create({
         padding:20,
         borderWidth: 1,
         borderColor: '#e782f5',
-        backgroundColor: "transparent"
+        // // backgroundColor: "transparent",
+        // backgroundColor: "#8962f3",
+        backgroundColor: '#9877E2',
+        // backgroundColor: '#5962F3CC',
+        // backgroundColor:'#4752e2',
+        // backgroundColor:CustomColors.white,
+        //   backgroundColor:'#7A76E1',
+        //    backgroundColor:'#e782f5',
     },
     text:{
         fontSize: 16,
         color: CustomColors.white,
+        // color: '#8962f3',
         fontWeight: "500",
         letterSpacing:0.4,
         lineHeight: 20,
+    },
+    author:{
+        fontSize: 12,
+        color: CustomColors.white,
+        // color: "#8962f3",
+        fontWeight:'300',
+        alignSelf:'flex-end',
+        paddingTop:10
     }
 })

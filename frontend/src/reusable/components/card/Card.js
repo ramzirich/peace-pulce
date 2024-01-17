@@ -13,10 +13,10 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
                 <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
             </View>
             <View style={styles.text_right}>
-                <Text style={styles.name} numberOfLines={1}>{dr} {first_name} {last_name}</Text>
+                <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
                 {specialization && <Text style={styles.specialization}>{specialization}</Text>} 
                 <View style={styles.info}>
-                    <Text numberOfLines={5} style={{color:CustomColors.white}}>{about}</Text>     
+                    <Text numberOfLines={4} style={{color:CustomColors.white}}>{about}</Text>     
                 </View>     
             </View>
         </TouchableOpacity>
@@ -25,7 +25,7 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
 
 const styles = StyleSheet.create({
     card:{
-        height:170,
+        height:200,
         width:320,
         borderRadius: 30,
         // backgroundColor: CustomColors.grey,
@@ -34,14 +34,15 @@ const styles = StyleSheet.create({
         borderColor:'#e782f5',
         marginBottom: 20,
         flexDirection: 'row',
-        alignItems:'center',
+        // alignItems:'center',
         paddingHorizontal: 15,
+        paddingVertical:12.5,
         gap:7
     },
     text_right:{
-        paddingLeft:30,
-        width:200,
-        paddingRight: 10,
+        paddingHorizontal:10,
+        width: '57%',
+        // paddingRight: 10,
         justifyContent: 'flex-start',
     },
     name:{
@@ -54,12 +55,12 @@ const styles = StyleSheet.create({
     },
     img_container:{
         alignItems :'flex-end',
-        
+        width:'45%',
     },
     img:{
        borderRadius: 10,
-        height:145,
-        width:120,
+        height:175,
+        width:'100%',
         backgroundColor:CustomColors.black,
         alignSelf: "flex-end"
     },
