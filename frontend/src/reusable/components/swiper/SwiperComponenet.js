@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, FlatList, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { sliderImages } from '../../../utils/sliderImages/sliderImages';
 import HomeCard from '../../elements/HomeCard/homeCard';
+import axios from 'axios';
+import { config } from '../../../../config';
 
 const SwiperComponent = () => {
-    const len = sliderImages.length
+  const [images, setImages] = useState([]);
+  // console.log(images)
+  useEffect(() =>{
+    const fetchImages = async() =>{ 
+      try{  
+        const response = await axios.get(`${config.apiUrl}/homeImages`);
+        // console.log("res", response)
+        setImages(response.data) 
+      }catch(error){
+        console.error("Error in fetching images: ",error)
+      }     
+    }
+    fetchImages();
+  }, [])
+
+  const len = sliderImages.length
   return (
     <View style={styles.container}>
-      <FlatList
-        data={sliderImages}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        // contentContainerStyle={styles.flatListContainer}
-        renderItem={({ item, index }) => {
-          return (
-            <HomeCard item={item} index={index} listCount={sliderImages.length-1}/>
-          );
-        }}
-      />
+      {images.length>0 && <
+        FlatList
+          data={images} 
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          // contentContainerStyle={styles.flatListContainer}
+          renderItem={({ item, index }) => {
+            return (
+              <HomeCard item={item} index={index} listCount={images.length-1}/>
+            );
+          }}
+        /> 
+      }
     </View>
   );
 };

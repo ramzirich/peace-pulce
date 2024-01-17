@@ -1,19 +1,62 @@
-import React, { useState } from "react"
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
+import React, { useEffect, useState } from "react"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { config } from "../../../../config"
 
 
 export default homeCard = ({item, index, listCount}) =>{
     const [isImage, setIsImage] = useState(true)
-    console.log(item)
-          function flip(){
-            setIsImage(!isImage)
-            console.log(index, isImage)
-          }
+    const [displayedText, setDisplayedText] = useState('');
+    const [continueTyping, setContinueTyping] = useState(true);
+        // console.log("continueTyping", continueTyping)
+        // console.log('display', displayedText) 
+  useEffect(() => {
+    if (!isImage) {
+        // setDisplayedText('');
+        animateText();
+    }
+    if(isImage){
+        setContinueTyping(false);
+        setDisplayedText('')
+    }
+  }, [isImage]);
+
+  const flip = () => {
+    setIsImage(!isImage);
+    if (!isImage) {
+        setDisplayedText('');
+        // setContinueTyping(true);
+    }
+  }; 
+
+  const animateText = async () => {
+    // setContinueTyping(true);
+    let i=0;
+    for (i;i < item.text.length ; i++) {
+        if(continueTyping){
+            console.log("i1",i)
+            i=0
+            console.log("i2",i)
+            break;
+        }
+      await setAsyncTimeout(() => {
+        setDisplayedText((prevText) => prevText + item.text.charAt(i));
+      }, 50);
+    }
+  };
+
+  const setAsyncTimeout = (callback, delay) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        callback();
+        resolve();
+      }, delay);
+    });
+  };
     return(
         <TouchableOpacity onPress={flip}>
         {isImage ?
             <Image
-            source={item.url}
+            source={{uri: `${config.imgUrl}${item.url}`}}
             style={[styles.img,
                     {
                         borderTopRightRadius: index==listCount?0:20,
@@ -35,7 +78,9 @@ export default homeCard = ({item, index, listCount}) =>{
                             backgroundColor:'white'
                         }
                     ]}
-            ></View>
+            >
+                <Text>{displayedText}</Text>
+            </View>
         }
 
       </TouchableOpacity>
