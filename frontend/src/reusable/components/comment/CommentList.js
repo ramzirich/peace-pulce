@@ -111,13 +111,15 @@ export const CommentList = ({id, request}) =>{
                 
             }
             { isShowInput == true &&
-                <TextInput
-                    value={newComment}
-                    onChangeText={(text) => setNewComment(text)}
-                    placeholder="Type your comment..."
-                    multiline
-                    style={styles.input}
-                />
+                <View style={styles.spacebtw}>
+                    <TextInput
+                        value={newComment}
+                        onChangeText={(text) => setNewComment(text)}
+                        placeholder="Type your comment..."
+                        multiline
+                        style={styles.input}
+                    />
+                </View>
             }
             <View style={{ marginTop: 20, paddingBottom: 25 }}>
                 {commentList.length > 0 ? (
@@ -144,6 +146,11 @@ const styles = StyleSheet.create({
     button:{
         width:'50%',
         alignSelf: 'center'
+    },
+    spacebtw:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        alignItems:'center'
     },
     input:{
         backgroundColor:CustomColors.white,
