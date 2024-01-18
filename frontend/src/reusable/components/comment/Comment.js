@@ -6,7 +6,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-export const Comment = ({item}) =>{
+export const Comment = ({item, onDelete}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
     const [isEditing, setIsEditing] = useState(false);
     const [updatedComment, setUpdatedComment] = useState(item.comment);
@@ -77,7 +77,7 @@ export const Comment = ({item}) =>{
                             <TouchableOpacity onPress={startEditing}>
                                 <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => onDelete()}>
                                 <Image style={styles.icon} source={require('../../../../assets/images/delete.png')}/>
                             </TouchableOpacity>
                         </View>

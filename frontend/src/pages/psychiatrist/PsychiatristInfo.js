@@ -191,13 +191,14 @@ export const PsychiatristInfo =({route}) =>{
                     </View>
                 </View>
             </View>
-
+               
             <TouchableOpacity onPress={sendCancelRequest}>
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
                 {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
+
             <View>
-            <CommentList id={id} />
+            <CommentList id={id} request={request} />
             </View>   
         </ScrollView> 
         </LinearGradient>       
@@ -290,6 +291,11 @@ const styles = StyleSheet.create({
     request:{
         color: CustomColors.white,
         alignSelf:'flex-end',
+        paddingBottom:10
+    },
+    comment:{
+        color: CustomColors.white,
+        alignSelf:'flex-start',
         paddingBottom:10
     }
 })
