@@ -6,6 +6,7 @@ use App\Http\Controllers\FavoriteHobbyController;
 use App\Http\Controllers\HobbiesController;
 use App\Http\Controllers\HomeImagesController;
 use App\Http\Controllers\NeuroticismController;
+use App\Http\Controllers\OpenAiController;
 use App\Http\Controllers\PatientRequestDoctorController;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\RatingController;
@@ -55,6 +56,10 @@ Route::controller(VideosController::class)->group(function () {
 Route::controller(SongController::class)->group(function () {
     Route::post('upload/song', 'uploadSong');
     Route::get('songs', 'getAllSongs');
+});
+
+Route::controller(OpenAiController::class)->group(function () {
+    Route::get('openai', 'send_to_open_ai_api');
 });
 
 Route::middleware('auth.user')->group(function () {
@@ -149,17 +154,17 @@ Route::middleware('auth.user')->group(function () {
 });
 
 
-Route::get('ask/{question}', function ($question){
-    $result = OpenAI::completions()->create([
-        'model' => 'text-davinci-003',
-        'prompt' => $question,
-        // 'max_tokens' =>20,
-        // 'temperature' =>0,
-        // 'n' =>2
-    ]);
+// Route::get('ask/{question}', function ($question){
+//     $result = OpenAI::completions()->create([
+//         'model' => 'text-davinci-003',
+//         'prompt' => $question,
+//         // 'max_tokens' =>20,
+//         // 'temperature' =>0,
+//         // 'n' =>2
+//     ]);
      
-    echo $result['choices'][0]['text'];
-});
+//     echo $result['choices'][0]['text'];
+// });
 
 
 
