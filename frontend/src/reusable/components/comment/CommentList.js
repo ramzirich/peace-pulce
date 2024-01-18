@@ -120,7 +120,7 @@ export const CommentList = ({id, request}) =>{
                         style={styles.input}
                     />
                     <TouchableOpacity style={styles.postBtn}>
-
+                        <Text style={{color:CustomColors.white}}>Post</Text>
                     </TouchableOpacity>
                 </View>
             }
