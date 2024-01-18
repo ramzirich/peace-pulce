@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 export const Comment = ({item}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
+    console.log("uu",item)
     let imagePath = null
     if(item.user.img_url){
         imagePath = `${config.imgUrl}${item.user.img_url}`;
@@ -27,7 +28,7 @@ export const Comment = ({item}) =>{
     return(
         <View style={styles.container}>
             {imagePath ?
-                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                <View style={styles.space_between}>
                     <View style={styles.comment_profile}>
                         <View style={styles.img_container}>  
                             <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>    
@@ -37,11 +38,16 @@ export const Comment = ({item}) =>{
                             <Text style={styles.date}>{formattedDate}</Text> 
                         </View>
                     </View>
-                    <View>
-                        <TouchableOpacity>
-                            <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
-                        </TouchableOpacity>
-                    </View>
+                    {userInfo.id == item.patient_id &&
+                        <View style={styles.row_gap_five}>
+                            <TouchableOpacity>
+                                <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Image style={styles.icon} source={require('../../../../assets/images/delete.png')}/>
+                            </TouchableOpacity>
+                        </View>
+                    }
                 </View>      
                 :   <TouchableOpacity style={styles.img}>
                         <Text style={{fontSize:10, alignItems:'center'}}>No image</Text>
@@ -72,6 +78,14 @@ const styles = StyleSheet.create({
     icon:{
         height:20,
         width:20,
+    },
+    space_between:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    row_gap_five:{
+        flexDirection:'row',
+        gap:10,
     },
     img_container:{
         marginBottom: 7   
