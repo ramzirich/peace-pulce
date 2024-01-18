@@ -99,6 +99,28 @@ export const CommentList = ({id, request}) =>{
         setIsShowInput(!isShowInput)
     }
 
+    const submitComment = async () => {
+        try {
+          const authToken = await AsyncStorage.getItem('authToken');
+          const commentResponse = await axios.post(`${config.apiUrl}/patient_comment/create`,
+            {
+              comment: newComment,
+              doctor_id : id,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            }
+          );
+          fetchCommentData();
+          setNewComment(''); 
+          setIsShowInput(false)
+        } catch (error) {
+          console.error('Error submitting comment:', error.message);
+        }
+      };
+
     return(
         <View>
             {
@@ -119,7 +141,7 @@ export const CommentList = ({id, request}) =>{
                         multiline
                         style={styles.input}
                     />
-                    <TouchableOpacity style={styles.postBtn}>
+                    <TouchableOpacity style={styles.postBtn} onPress={submitComment}>
                         <Text style={{color:CustomColors.white}}>Post</Text>
                     </TouchableOpacity>
                 </View>
