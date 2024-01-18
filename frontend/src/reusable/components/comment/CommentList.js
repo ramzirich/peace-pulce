@@ -13,7 +13,7 @@ export const CommentList = ({id, request}) =>{
     const [commentList, setCommentList] = useState([]);
     const [commentCount, setCommentCount] = useState(0);
     const [newComment, setNewComment] = useState('');
-    const [showInput, setShowInput] = useState(false);
+    const [isShowInput, setIsShowInput] = useState(false);
     const perPageRef = useRef(perPage);
 
     useEffect(() =>{
@@ -95,19 +95,22 @@ export const CommentList = ({id, request}) =>{
             console.error("Error in deleting comment: ", error)
         }
     }
+    const showAddComment = () =>{
+        setIsShowInput(!isShowInput)
+    }
 
     return(
         <View>
             {
                 request == 'accepted' && 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={showAddComment}>
                         <Text style={styles.addcomment}>
                             Add Comment
                         </Text>
                     </TouchableOpacity>
                 
             }
-            { request == 'accepted' &&
+            { isShowInput == true &&
                 <TextInput
                     value={newComment}
                     onChangeText={(text) => setNewComment(text)}
@@ -147,7 +150,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius:5,
         borderColor:'#e782f5',
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        width:'80%'
     },
     addcomment:{
         color:CustomColors.white,
