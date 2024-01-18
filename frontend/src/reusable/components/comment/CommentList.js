@@ -119,6 +119,9 @@ export const CommentList = ({id, request}) =>{
                         multiline
                         style={styles.input}
                     />
+                    <TouchableOpacity style={styles.postBtn}>
+
+                    </TouchableOpacity>
                 </View>
             }
             <View style={{ marginTop: 20, paddingBottom: 25 }}>
@@ -158,10 +161,19 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderColor:'#e782f5',
         paddingHorizontal:10,
-        width:'80%'
+        width:'75%'
     },
     addcomment:{
         color:CustomColors.white,
         marginBottom:5
+    },
+    postBtn:{
+        height: 40,
+        width:'20%',
+        backgroundColor:'#8962f3',
+        borderRadius: 5,
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems:'center'
     }
 })
