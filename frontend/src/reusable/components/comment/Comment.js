@@ -39,7 +39,7 @@ export const Comment = ({item}) =>{
                     </View>
                     <View>
                         <TouchableOpacity>
-                            <Image source={require('../../../../assets/images/edit.png')}/>
+                            <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
                         </TouchableOpacity>
                     </View>
                 </View>      
@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 2,
         elevation: 3,
+    },
+    icon:{
+        height:20,
+        width:20,
     },
     img_container:{
         marginBottom: 7   
