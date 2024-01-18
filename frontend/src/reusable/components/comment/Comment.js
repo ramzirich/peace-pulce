@@ -1,10 +1,16 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { config } from "../../../../config";
 import { CustomColors } from "../../../styles/color";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export const Comment = ({item}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
+    const [isEditing, setIsEditing] = useState(false);
+    const [updatedComment, setUpdatedComment] = useState(item.comment);
+
     let imagePath = null
     if(item.user.img_url){
         imagePath = `${config.imgUrl}${item.user.img_url}`;
@@ -24,8 +30,33 @@ export const Comment = ({item}) =>{
       const inputDateString = item.user.created_at;
       const formattedDate = formatDate(inputDateString);
 
-      updateComment=()=>{
-        
+      const startEditing = () => {
+        setIsEditing(true);
+      };
+    
+      const cancelEditing = () => {
+        setIsEditing(false);
+        setUpdatedComment(item.comment);
+      };
+
+      updateComment= async()=>{
+        try {
+            const authToken = await AsyncStorage.getItem('authToken');
+
+            const requestResponse = await axios.post(`${config.apiUrl}/patient_comment/update/${item.id}`,{
+                comment: updatedComment
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            setIsEditing(false);
+            Keyboard.dismiss();
+            const updatedCommentFromApi = requestResponse.data.data.comment;
+            setUpdatedComment(updatedCommentFromApi);
+          } catch (error) {
+            console.error('Error updating comment:', error.message);
+          }
       }
    
     return(
@@ -42,8 +73,8 @@ export const Comment = ({item}) =>{
                         </View>
                     </View>
                     {userInfo.id == item.patient_id &&
-                        <View style={styles.row_gap_five}>
-                            <TouchableOpacity onPress={updateComment}>
+                        <View style={styles.row_gap_ten}>
+                            <TouchableOpacity onPress={startEditing}>
                                 <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
                             </TouchableOpacity>
                             <TouchableOpacity>
@@ -56,7 +87,26 @@ export const Comment = ({item}) =>{
                         <Text style={{fontSize:10, alignItems:'center'}}>No image</Text>
                     </TouchableOpacity>       
             }
-            <Text style={styles.comment}>{item.comment}</Text>
+            {isEditing ? (
+                <TextInput
+                value={updatedComment}
+                onChangeText={(text) => setUpdatedComment(text)}
+                multiline
+                autoFocus
+                />
+            ) : (
+                <Text style={styles.comment}>{updatedComment}</Text>
+            )}
+            {isEditing && (
+                <View style={styles.row_gap_ten}>
+                <TouchableOpacity onPress={updateComment}>
+                    <Image style={styles.icon} source={require('../../../../assets/images/done.jpg')} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={cancelEditing}>
+                    <Image style={styles.icon} source={require('../../../../assets/images/cancel.jpg')} />
+                </TouchableOpacity>
+                </View>
+            )}
         </View>
     ) 
 }
@@ -86,7 +136,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between'
     },
-    row_gap_five:{
+    row_gap_ten:{
         flexDirection:'row',
         gap:10,
     },
