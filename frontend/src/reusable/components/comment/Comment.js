@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export const Comment = ({item}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
-    console.log("uu",item)
     let imagePath = null
     if(item.user.img_url){
         imagePath = `${config.imgUrl}${item.user.img_url}`;
@@ -24,6 +23,10 @@ export const Comment = ({item}) =>{
       
       const inputDateString = item.user.created_at;
       const formattedDate = formatDate(inputDateString);
+
+      updateComment=()=>{
+        
+      }
    
     return(
         <View style={styles.container}>
@@ -40,7 +43,7 @@ export const Comment = ({item}) =>{
                     </View>
                     {userInfo.id == item.patient_id &&
                         <View style={styles.row_gap_five}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={updateComment}>
                                 <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
                             </TouchableOpacity>
                             <TouchableOpacity>

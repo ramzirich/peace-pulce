@@ -138,7 +138,14 @@ export const PsychiatristInfo =({route}) =>{
                         }
                     </View>
                     <View>
-                        <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>{ratingList.length} votes</Text>
+                        {ratingList.length==1? 
+                            <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
+                                {ratingList.length} vote
+                            </Text>
+                            :   <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
+                                    {ratingList.length} votes
+                                </Text>
+                        }  
                     </View>                        
                 </View>
                         <View>
@@ -187,7 +194,7 @@ export const PsychiatristInfo =({route}) =>{
 
             <TouchableOpacity onPress={sendCancelRequest}>
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
-                {(request == 'accepted' || request=='requested') && <Text style={styles.request}>Request sent</Text>}
+                {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
             <View>
             <CommentList id={id} />
