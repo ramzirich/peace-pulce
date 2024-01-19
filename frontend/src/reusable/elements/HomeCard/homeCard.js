@@ -71,7 +71,7 @@ export default homeCard = ({item, index, listCount}) =>{
     
   };
     return(
-        <TouchableOpacity onPress={flip}>
+        <TouchableOpacity onPress={flip} style={styles.container}>
         {isImage ?
             <Image
             source={{uri: `${config.imgUrl}${item.url}`}}
@@ -106,9 +106,27 @@ export default homeCard = ({item, index, listCount}) =>{
 }
 
 const styles = StyleSheet.create({
+    container:{
+        shadowColor: 'black',
+        shadowOffset: {
+        width: 4,
+        height: 2,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+        elevation: 3,
+    },
     img:{
         height:340,
-        width:200
+        width:200,
+        // shadowColor: 'black',
+        // shadowOffset: {
+        // width: 0,
+        // height: 2,
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: 2,
+        // elevation: 3,
     },
     cardContainer:{
         padding:20,
@@ -122,6 +140,7 @@ const styles = StyleSheet.create({
         // backgroundColor:CustomColors.white,
         //   backgroundColor:'#7A76E1',
         //    backgroundColor:'#e782f5',
+        backgroundColor:'transparent'
     },
     text:{
         fontSize: 16,

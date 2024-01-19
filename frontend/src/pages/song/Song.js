@@ -13,7 +13,6 @@ export default Song = () =>{
     const [isVisible, setIsVisible] = useState(false);
     const playbackState = usePlaybackState();
     const progress = useProgress();
-    // console.log(playbackState)
 
     const setupPlayer = async() =>{
         try{

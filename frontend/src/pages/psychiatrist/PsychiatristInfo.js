@@ -131,6 +131,7 @@ export const PsychiatristInfo =({route}) =>{
             colors={['#8962f3', '#4752e2','#214ae2']} 
         >
             <ScrollView showsVerticalScrollIndicator={false}>
+            {/* <Image source={{uri : imgUrl}} style={styles.imgUrl} /> */}
             <View style={styles.profile}>
                 <View style={styles.fullname}>
                     <Text style={[styles.name, styles.white]}>Dr. {first_name}</Text>
@@ -175,7 +176,7 @@ export const PsychiatristInfo =({route}) =>{
                     </View>
                 </View>
                 <View>
-                    <Image source={{uri : imgUrl}} style={styles.imgUrl} />
+                    {/* <Image source={{uri : imgUrl}} style={styles.imgUrl} /> */}
                 </View>
             </View>
             
@@ -250,9 +251,9 @@ const styles = StyleSheet.create({
         letterSpacing:1,
     },
     imgUrl:{
-        height:100,
-        width:100,
-        borderRadius:50,
+        height:'50%',
+        width:'100%',
+        // borderRadius:50,
     },
     about:{
         color: CustomColors.black,

@@ -44,7 +44,8 @@ const SwiperComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:'13%'
+    paddingTop:'13%',
+    
   },
   img:{
     height:340,

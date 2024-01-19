@@ -7,7 +7,7 @@ export default footerButton= ({navigation}) =>{
             <Square  onPress={() =>navigation.navigate('home')} isIcon={true}
                 url={require('../../../../assets/footerImages/home2.png')}
             />
-            <Square  onPress={() =>navigation.navigate('video-chat')} isIcon={true}
+            <Square  onPress={() =>navigation.navigate('profile')} isIcon={true}
                 url={require('../../../../assets/footerImages/profile3.png')}
             />
             <Square onPress={() =>navigation.navigate('psychiatrists')} isIcon={true}
@@ -23,10 +23,11 @@ export default footerButton= ({navigation}) =>{
 const styles = StyleSheet.create({
     container:{
         width:'100%',
-        height:45,
+        height:60,
         position:'absolute',
         bottom:0,
         backgroundColor:'#4752e2',
+        
         borderTopLeftRadius: 30,
         borderTopRightRadius:30,
         flexDirection:'row',

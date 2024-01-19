@@ -14,6 +14,7 @@ import Song from './src/pages/song/Song';
 import VideoPlayer from './src/pages/video/CustomVideoPlayer';
 import CustomVideoPlayer from './src/pages/video/CustomVideoPlayer';
 import VideoChat from './src/pages/VideoCat/VideoChat';
+import Profile from './src/pages/Profile/Profile';
 
 
 function App(): React.JSX.Element {
@@ -21,7 +22,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login"> 
+        <Stack.Navigator initialRouteName="home"> 
           <Stack.Screen name="login" component={Login} /> 
           <Stack.Screen name="register" component={Registration} /> 
           <Stack.Screen name="home" component={Home} /> 
@@ -32,6 +33,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="song" component={Song} />  
           <Stack.Screen name="video" component={CustomVideoPlayer} />  
           <Stack.Screen name="video-chat" component={VideoChat} />  
+          <Stack.Screen name="profile" component={Profile} />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>

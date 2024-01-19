@@ -13,7 +13,7 @@ export default Songs = () =>{
     const [currentIndex, setCurrentIndex] = useState(0);
     const playbackState = usePlaybackState();
     const progress = useProgress();
-    // console.log(playbackState)
+
     const sngs=[{
         id: 'trackId',
         url: 'http://192.168.0.104:8000/audio/1704966200.mp3',
