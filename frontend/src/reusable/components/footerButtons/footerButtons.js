@@ -4,7 +4,7 @@ import { Square } from "../../elements/square/Square"
 export default footerButton= ({navigation}) =>{
     return(
         <View style={styles.container}>
-            <Square  onPress={() =>navigation.navigate('video-chat')} isIcon={true}
+            <Square  onPress={() =>navigation.navigate('home')} isIcon={true}
                 url={require('../../../../assets/footerImages/home2.png')}
             />
             <Square  onPress={() =>navigation.navigate('video-chat')} isIcon={true}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import { CustomHeader } from '../../reusable/components/header/CustomHeader';
 import { HeaderButton } from '../../reusable/components/headerButtons/HeaderButtons';
 import SwiperComponent from '../../reusable/components/swiper/SwiperComponenet';
 import FooterButtons from '../../reusable/components/footerButtons/footerButtons';
