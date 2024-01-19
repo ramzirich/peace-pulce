@@ -8,15 +8,14 @@ import { create } from "react-test-renderer"
 import { CustomButton } from "../../elements/Button/CustomButton"
 import { CustomColors } from "../../../styles/color"
 
-export const CommentList = ({id, request}) =>{
+export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
     let perPage =2;
     const [commentList, setCommentList] = useState([]);
     const [commentCount, setCommentCount] = useState(0);
     const [newComment, setNewComment] = useState('');
     const [isShowInput, setIsShowInput] = useState(false);
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(userRating);
     const perPageRef = useRef(perPage);
-
     useEffect(() =>{
         const fetchData = async() =>{
             try{
@@ -42,11 +41,15 @@ export const CommentList = ({id, request}) =>{
         fetchData();
     }, [id])
 
+    useEffect(()=>{
+        setRating(userRating)
+        renderStars()
+    },[userRating])
+
     const loadMore = async() =>{
         const authToken = await AsyncStorage.getItem('authToken');
         
         perPageRef.current = perPageRef.current + 2;
-        console.log(perPageRef.current)
         const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}&page=1`,{
             headers:{
                 'Authorization': `Bearer ${authToken}`
@@ -122,20 +125,35 @@ export const CommentList = ({id, request}) =>{
         }
       };
 
-      const handleStarClick = (selectedRating) => {
-        console.log(selectedRating)
-        setRating(selectedRating);
+      const handleStarClick = async(selectedRating) => {
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+            const postRating = await axios.post(`${config.apiUrl}/rating`,
+                {
+                    rating: selectedRating,
+                    doctor_id: id
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                }
+            )
+            setRating(selectedRating)
+            onRatingChange()
+        }catch(error){
+            console.log("Error in set rating: ",error)
+        }
       };
 
       const renderStars = () => {
         const stars = [];
         const maxStars = 5;
-    
         for (let i = 1; i <= maxStars; i++) {
           const starStyle = {
-            color: i <= rating ? 'gold' : 'gray',
+            color: i <= rating ? 'gold' : 'gray'
+           
           };
-    
           stars.push(
             <TouchableOpacity
               key={i}

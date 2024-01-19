@@ -6,14 +6,17 @@ import { CustomColors } from "../../styles/color"
 import { CommentList } from "../../reusable/components/comment/CommentList"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
+import { useSelector } from "react-redux"
 
 
 export const PsychiatristInfo =({route}) =>{
     const {id, doctorInfo} = route.params;
+    const {userInfo} = useSelector(state => state.userInfoReducer)
     const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo;
     const imgUrl = `${config.imgUrl}${img_url}` 
 
     const [ratingList, setRatingList] = useState([]);
+    // console.log(ratingList)
     const [rating, setRating] = useState(0);
     const [ratingDistribution, setRatingDistribution] = useState({
         '0-2.5': 0,
@@ -21,7 +24,8 @@ export const PsychiatristInfo =({route}) =>{
         '3.75-5': 0,
       });  
     const [request, setRequest] = useState(null);
-
+    const [userRating, setUserRating] = useState(null)
+      console.log("userRating",userRating)
     useEffect(() =>{
         const fetchUserData = async() =>{
             try{
@@ -40,7 +44,12 @@ export const PsychiatristInfo =({route}) =>{
                 });
 
                 setRequest(requestResponse.data.request)
-                setRatingList(ratingResponse.data)             
+                setRatingList(ratingResponse.data)
+                const recordWithMatchingUserId = ratingResponse.data.find(record => record.user.id === userInfo.id)
+                // console.log(recordWithMatchingUserId.rating) 
+                if(recordWithMatchingUserId){
+                    setUserRating(recordWithMatchingUserId.rating)
+                }            
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -104,7 +113,18 @@ export const PsychiatristInfo =({route}) =>{
             console.error(error)
         }
     }
-    
+
+    onRatingChange = async() =>{
+        const authToken = await AsyncStorage.getItem('authToken');
+
+        const ratingResponse = await axios.get(`${config.apiUrl}/rating/${id}`,{
+            headers:{
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+
+        setRatingList(ratingResponse.data)     
+    }
 
     return(    
         <LinearGradient style={styles.big_container}
@@ -198,7 +218,7 @@ export const PsychiatristInfo =({route}) =>{
             </TouchableOpacity>
 
             <View>
-            <CommentList id={id} request={request} />
+                <CommentList id={id} request={request} onRatingChange={onRatingChange} userRating={userRating} />
             </View>   
         </ScrollView> 
         </LinearGradient>       

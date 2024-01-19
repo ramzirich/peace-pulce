@@ -1,14 +1,14 @@
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomColors } from "../../../styles/color";
 
-export const Square= ({tag, img_url=CustomColors.darkBlue, onPress = () =>{}, url=null}) =>{
+export const Square= ({tag, img_url=CustomColors.darkBlue, onPress = () =>{}, url=null, isIcon=false}) =>{
     return(
         <View style={styles.conatiner}>
             <TouchableOpacity
                 onPress={onPress}
-                style={styles.square} 
+                style={[styles.square,{height: isIcon? 40 : 55,width: isIcon? 40 : 55}]} 
             >
-                <Image source={url} style={styles.img}/>
+                <Image source={url} style={[styles.img,{tintColor: isIcon? '#8962f3' : ""}]}/>
             </TouchableOpacity>
             <View style={styles.constainer}>
                 {tag &&<Text style={styles.text}>{tag}</Text>}
@@ -22,15 +22,13 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         justifyContent: 'center',
     },
-    square:{
-        height:55, 
-        width:55,  
+    square:{ 
         borderRadius:10
     },
     img:{
         height:'100%',
         width:'100%',
-        borderRadius:10
+        borderRadius:10,
     },
     text:{
         color: CustomColors.white,

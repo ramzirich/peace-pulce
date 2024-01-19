@@ -4,14 +4,14 @@ import { Square } from "../../elements/square/Square"
 export default footerButton= ({navigation}) =>{
     return(
         <View style={styles.container}>
-            <Square  onPress={() =>navigation.navigate('video-chat')}
-                url={require('../../../../assets/footerImages/chatai.png')}
+            <Square  onPress={() =>navigation.navigate('video-chat')} isIcon={true}
+                url={require('../../../../assets/footerImages/home.png')}
             />
-            <Square onPress={() =>navigation.navigate('psychiatrists')}
-                url={require('../../../../assets/footerImages/chatai.png')}
+            <Square onPress={() =>navigation.navigate('psychiatrists')} isIcon={true}
+                url={require('../../../../assets/footerImages/journal2.png')}
             />
-            <Square onPress={() =>navigation.navigate('psychiatrists')}
-                url={require('../../../../assets/footerImages/photos.jpg')}
+            <Square onPress={() =>navigation.navigate('psychiatrists')} isIcon={true}
+                url={require('../../../../assets/footerImages/face-scan.png')}
             />
         </View>
     )
