@@ -14,6 +14,7 @@ export const CommentList = ({id, request}) =>{
     const [commentCount, setCommentCount] = useState(0);
     const [newComment, setNewComment] = useState('');
     const [isShowInput, setIsShowInput] = useState(false);
+    const [rating, setRating] = useState(0);
     const perPageRef = useRef(perPage);
 
     useEffect(() =>{
@@ -121,19 +122,57 @@ export const CommentList = ({id, request}) =>{
         }
       };
 
+      const handleStarClick = (selectedRating) => {
+        console.log(selectedRating)
+        setRating(selectedRating);
+      };
+
+      const renderStars = () => {
+        const stars = [];
+        const maxStars = 5;
+    
+        for (let i = 1; i <= maxStars; i++) {
+          const starStyle = {
+            color: i <= rating ? 'gold' : 'gray',
+          };
+    
+          stars.push(
+            <TouchableOpacity
+              key={i}
+              onPress={() => handleStarClick(i)}
+              style={styles.star}
+            >
+              <Text style={starStyle}>★</Text>
+            </TouchableOpacity>
+          );
+        }
+    
+        return stars;
+      };
+
     return(
         <View>
             {
                 request == 'accepted' && 
-                    <TouchableOpacity onPress={showAddComment}>
-                        <Text style={styles.addcomment}>
-                            Add Comment
-                        </Text>
-                    </TouchableOpacity>
+                    <View style={styles.spacebtw}>
+                        <TouchableOpacity onPress={showAddComment}>
+                            <Text style={styles.addcomment}>
+                                Add Comment
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={styles.row_five}>
+                            <View>
+                                <Text style={{color:CustomColors.white}}>
+                                    Rate
+                                </Text>
+                            </View>
+                            <View style={styles.starsContainer}>{renderStars()}</View> 
+                        </View>
+                    </View>
                 
             }
             { isShowInput == true &&
-                <View style={styles.spacebtw}>
+                <View style={[styles.spacebtw, {marginTop:5}]}>
                     <TextInput
                         value={newComment}
                         onChangeText={(text) => setNewComment(text)}
@@ -153,7 +192,6 @@ export const CommentList = ({id, request}) =>{
                 ))
                 ) : (
                     <></>
-                /* <Text>No comment</Text> */
                 )}
                 {commentCount>commentList.length &&
                     <CustomButton title="Load more"
@@ -175,6 +213,12 @@ const styles = StyleSheet.create({
     spacebtw:{
         flexDirection:'row', 
         justifyContent:'space-between',
+        alignItems:'center',
+        alignItems:'center'
+    },
+    row_five:{
+        flexDirection:'row',
+        gap:5,
         alignItems:'center'
     },
     input:{
@@ -197,5 +241,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'center',
         alignItems:'center'
-    }
+    },
+    starsContainer: {
+        flexDirection: 'row',
+        gap:5
+      },
+      star: {
+        fontSize: 20,
+      },
 })
