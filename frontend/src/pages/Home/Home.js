@@ -10,10 +10,9 @@ const Home = ({navigation}) => {
   return ( 
       <View 
         style={{flex:1,
-         backgroundColor:'#8962f3'
-        // backgroundColor:'rgba(137,98,243,0.8)' 
+         backgroundColor:'#8962f3',
+         paddingTop:40
          }}> 
-        <CustomHeader/>
         <HeaderButton navigation={navigation} />
         <SwiperComponent/>
         <FooterButtons navigation={navigation} />

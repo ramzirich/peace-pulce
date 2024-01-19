@@ -6,9 +6,9 @@ export const Square= ({tag, img_url=CustomColors.darkBlue, onPress = () =>{}, ur
         <View style={styles.conatiner}>
             <TouchableOpacity
                 onPress={onPress}
-                style={[styles.square,{height: isIcon? 40 : 55,width: isIcon? 40 : 55}]} 
+                style={[styles.square,{height: isIcon? 35 : 55,width: isIcon? 35 : 55}]} 
             >
-                <Image source={url} style={[styles.img,{tintColor: isIcon? '#8962f3' : ""}]}/>
+                <Image source={url} style={[styles.img,{tintColor: isIcon? CustomColors.white : ""}]}/>
             </TouchableOpacity>
             <View style={styles.constainer}>
                 {tag &&<Text style={styles.text}>{tag}</Text>}

@@ -7,12 +7,11 @@ import { config } from '../../../../config';
 
 const SwiperComponent = () => {
   const [images, setImages] = useState([]);
-  // console.log(images)
+
   useEffect(() =>{
     const fetchImages = async() =>{ 
       try{  
         const response = await axios.get(`${config.apiUrl}/homeImages`);
-        // console.log("res", response)
         setImages(response.data) 
       }catch(error){
         console.error("Error in fetching images: ",error)
@@ -45,7 +44,7 @@ const SwiperComponent = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical:20
+    paddingTop:'13%'
   },
   img:{
     height:340,
