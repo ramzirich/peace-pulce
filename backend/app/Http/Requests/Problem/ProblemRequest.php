@@ -7,17 +7,18 @@ class PatientCommentRequest{
     public static function createPatientCommentValidation($request){
         try{
             $request->validate([
-                "user_id" => "required|numeric",
                 "problem" => "required|string",
-                "solution" => "required|string",
                 "action" => "required|string",
-                "ai_solution" => "required|string",
                 "severity" => "required|numeric",
             ],[
-                "doctor_id.required" => "The Doctor id field is required",
-                "doctor_id.numeric" => "The Doctor id field must be a number",
-                "comment.required" => "The Comment field is required",
-                "comment.numeric" => "The Comment field must be a number",
+                "problem.required" => "The Problem field is required",
+                "problem.string" => "The Problem field must be a stringaction",
+
+                "action.required" => "The action field is required",
+                "action.string" => "The action field must be a string",
+
+                "severity.required" => "The severity field is required",
+                "severity.string" => "The severity field must be a string",
             ]);
             return response()->json([
                 'status' => "success"
