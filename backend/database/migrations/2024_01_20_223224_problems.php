@@ -15,10 +15,11 @@ return new class extends Migration
         Schema::create('problems', function(Blueprint $table){
             $table->id();
             $table->unsignedBigInteger("user_id");
-            $table->string('problem');
+            $table->text('problem');
             $table->integer('severity');
-            $table->string('solution');
-            $table->string('ai_solution');
+            $table->text('solution');
+            $table->text('ai_solution');
+            $table->text('action');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
