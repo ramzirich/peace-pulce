@@ -11,6 +11,7 @@ class UpdateUserRequest{
             $validateData = $req->validate([
                 'first_name' => 'string|max:20',
                 'last_name' => 'string|max:20',
+                'phone' => 'string|max:20',
                 'email' => 'email|unique:users,email|max:100',
                 'password' => ['string',
                                 'min:8',
@@ -22,7 +23,10 @@ class UpdateUserRequest{
                 'first_name.max' => 'The first name must not exceed 20 characters.',
 
                 'last_name.string' => 'The last name must be a string with a maximum of 20 characters.',
-                'last_name.max' => 'The first name must not exceed 20 characters.',
+                'last_name.max' => 'The last name must not exceed 20 characters.',
+
+                'phone.string' => 'The phone must be a string with a maximum of 20 characters.',
+                'phone.max' => 'The phone must not exceed 20 characters.',
                 
                 'email.email' => 'Please enter a valid email address.',
                 'email.unique' => 'This email address is already in use.',
