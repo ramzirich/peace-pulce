@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\PatientComment;
+namespace App\Http\Requests\Problem;
 use Illuminate\Validation\ValidationException;
 
 class ProblemRequest{
