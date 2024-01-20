@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         padding:20,
         borderWidth: 1,
         borderColor: '#e782f5',
-        backgroundColor: '#9877E2',
+        backgroundColor: 'transparent',
     },
     text:{
         fontSize: 16,
