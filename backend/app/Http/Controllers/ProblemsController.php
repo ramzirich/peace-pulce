@@ -34,4 +34,8 @@ class ProblemsController extends Controller
         }
         return $this->_userSpecificGenericManager->updateForSpecificUser($request, $id, "user_id");
     }
+
+    public function deleteProblem($id){
+        return $this->_userSpecificGenericManager->deleteForSpecificUser($id, "user_id");
+    }
 }
