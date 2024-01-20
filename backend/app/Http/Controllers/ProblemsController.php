@@ -42,4 +42,8 @@ class ProblemsController extends Controller
     public function getProblem($id){
         return $this->_userSpecificGenericManager->findById($id, "user_id");
     }
+
+    public function getAllProblems(){
+        return $this->_userSpecificGenericManager->getAllForCurrentUser();
+    }
 }
