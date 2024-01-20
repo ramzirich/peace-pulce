@@ -25,4 +25,13 @@ class ProblemsController extends Controller
 
         return $this->_userSpecificGenericManager->createWithSpecificUser($request);
     }
+
+    public function updateProblem(Request $request, $id){
+        $validationResponse = ProblemRequest::updateProblemValidation($request);
+        $responseData = json_decode($validationResponse->getContent(), true);
+        if($responseData['status']!="success"){
+            return $responseData['errors'];
+        }
+        return $this->_userSpecificGenericManager->updateForSpecificUser($request, $id, "user_id");
+    }
 }
