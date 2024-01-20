@@ -21,16 +21,16 @@ function App(): React.JSX.Element {
     <Provider store={storee}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="login"> 
-          <Stack.Screen name="login" component={Login} /> 
-          <Stack.Screen name="register" component={Registration} /> 
-          <Stack.Screen name="home" component={Home} /> 
-           <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist} /> 
+          <Stack.Screen name="login" component={Login} options={{ headerShown: false }} /> 
+          <Stack.Screen name="register" component={Registration} options={{ headerShown: false }} /> 
+          <Stack.Screen name="home" component={Home} options={{ headerShown: false }} /> 
+           <Stack.Screen name="psychiatrists" component={ListOfPsychiatrist}  options={{ headerShown: false }}/> 
           <Stack.Screen name="psychiatrist" component={PsychiatristInfo}  
-          options={{title: 'id'}} /> 
-          <Stack.Screen name="song" component={Song} />  
-          <Stack.Screen name="video" component={CustomVideoPlayer} />  
-          <Stack.Screen name="video-chat" component={VideoChat} />  
-          <Stack.Screen name="profile" component={Profile} />   
+          options={{title: 'id', headerShown: false }}  /> 
+          <Stack.Screen name="song" component={Song}  options={{ headerShown: false }} />  
+          <Stack.Screen name="video" component={CustomVideoPlayer} options={{ headerShown: false }} />  
+          <Stack.Screen name="video-chat" component={VideoChat} options={{ headerShown: false }} />  
+          <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />   
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>

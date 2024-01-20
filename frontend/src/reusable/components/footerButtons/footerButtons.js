@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         position:'absolute',
         bottom:0,
         backgroundColor:'#4752e2',
-        
+        // backgroundColor:'#8962f3',
         borderTopLeftRadius: 30,
         borderTopRightRadius:30,
         flexDirection:'row',

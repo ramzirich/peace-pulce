@@ -53,7 +53,7 @@ export default Login = ({navigation}) =>{
             // colors={['#8962f3', '#4752e2','#214ae2', '#1d50e0']} 
             colors={['#8962f3', '#4752e2','#214ae2']} 
             style={styles.bigContainer}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View>
                 <View>
                     <Image source={require('../../../assets/images/logo22.png')} style={styles.logo} /> 
