@@ -6,6 +6,7 @@ use App\Http\Requests\Problem\ProblemRequest;
 use App\Manager\UserSpecificGenericManager;
 use App\Models\Problem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProblemsController extends Controller
 {
@@ -43,7 +44,8 @@ class ProblemsController extends Controller
         return $this->_userSpecificGenericManager->findById($id, "user_id");
     }
 
-    public function getAllProblems(){
-        return $this->_userSpecificGenericManager->getAllForCurrentUser();
+    public function getAllProblems(Request $request){
+        $request->merge(['user_id' => Auth::user()->id]);
+        return $this->_userSpecificGenericManager->getAllForCurrentUser($request);
     }
 }
