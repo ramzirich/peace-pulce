@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PatientComment\ProblemRequest;
+use App\Http\Requests\Problem\ProblemRequest;
 use App\Manager\UserSpecificGenericManager;
 use App\Models\Problem;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ProblemsController extends Controller
         if($responseData['status']!="success"){
             return $responseData['errors'];
         }
-        
+
         return $this->_userSpecificGenericManager->createWithSpecificUser($request);
     }
 }
