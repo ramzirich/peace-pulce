@@ -128,7 +128,7 @@ export default Profile = ({navigation}) =>{
                         //   onChangeText={text => handleOnchange(text, 'first_name')}
                         //   onFocus={() => handleError(null, 'first_name')}
                         label="Phone Number"
-                        placeholder= {userInfo.phone}
+                        placeholder= {userInfo.phone !== null ? userInfo.phone : 'Enter your phone number'}
                         //   error={errors.first_name} 
                     />
             </View>
