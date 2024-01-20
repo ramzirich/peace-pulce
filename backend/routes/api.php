@@ -9,6 +9,7 @@ use App\Http\Controllers\NeuroticismController;
 use App\Http\Controllers\OpenAiController;
 use App\Http\Controllers\PatientRequestDoctorController;
 use App\Http\Controllers\PlacesController;
+use App\Http\Controllers\ProblemsController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\StressCauseController;
@@ -151,6 +152,15 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
 Route::middleware('auth.user')->group(function () {
     Route::post('rating',  [RatingController::class, 'CreateUpdateRating']);
     Route::get('rating/{id}',  [RatingController::class, 'getRating']);
+});
+
+Route::middleware('auth.user')->group(function () {
+    Route::post('problem/create',  [ProblemsController::class, 'createProblem']);
+    Route::post('problem/update/{id}',  [ProblemsController::class, 'updateProblem']);
+    Route::post('problem/delete/{id}',  [ProblemsController::class, 'deleteProblem']);
+    Route::post('problems/massDelete',  [ProblemsController::class, 'massDeleteProblem']);
+    Route::get('problem/{id}',  [ProblemsController::class, 'getProblem']);
+    Route::get('problems',  [ProblemsController::class, 'getAllProblems']);
 });
 
 
