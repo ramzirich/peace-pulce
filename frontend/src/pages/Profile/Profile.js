@@ -6,6 +6,7 @@ import { config } from "../../../config"
 import { useSelector } from "react-redux"
 // import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import LinearGradient from "react-native-linear-gradient"
 
 export default Profile = () =>{
     const [image, setImage] = useState(null)
@@ -50,7 +51,7 @@ export default Profile = () =>{
         };
     return(
     //     // <LinearGradient 
-    //     //     colors={['#8962f3', '#4752e2', '#214ae2']}
+    //     //     colors={['#8962f3', '#4752e2','#214ae2']} 
     //     //     style={styles.bigContainer}>
     //         // {/* <View>
     //         <View>
@@ -63,12 +64,15 @@ export default Profile = () =>{
 
     //     {/* </LinearGradient> */}
     // )
-    <View></View>)
+        <LinearGradient colors={['#8962f3', '#4752e2','#214ae2']}  style={styles.bigContainer}>
+
+        </LinearGradient>
+   )
 }
 
 const styles = StyleSheet.create({
     bigContainer:{
         flex:1,
-        paddingTop:20
+        paddingTop:40
     }
 })
