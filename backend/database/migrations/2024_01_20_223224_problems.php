@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->text('problem');
             $table->integer('severity');
-            $table->text('solution');
-            $table->text('ai_solution');
+            $table->text('solution')->nullable();
+            $table->text('ai_solution')->nullable();
             $table->text('action');
             $table->timestamps();
 
