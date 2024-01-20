@@ -13,6 +13,14 @@ import { setImgUrl } from "../../redux/actions/userActions"
 export default Profile = ({navigation}) =>{
     const [image, setImage] = useState(null)
     const [imageuri, setImageuri] = useState(null)
+    const [inputs, setInputs] = useState({
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        phone:''
+    });
+    const [errors, setErrors] = useState({});
     const {userInfo} = useSelector(state => state.userInfoReducer);
 
     const dispatch = useDispatch();
@@ -114,7 +122,7 @@ export default Profile = ({navigation}) =>{
                             //   onChangeText={text => handleOnchange(text, 'first_name')}
                             //   onFocus={() => handleError(null, 'first_name')}
                             label="Password"
-                            placeholder= {userInfo.last_name}
+                            placeholder= "********"
                             password
                             //   error={errors.first_name} 
                         />
