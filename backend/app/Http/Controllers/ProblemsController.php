@@ -12,8 +12,8 @@ class ProblemsController extends Controller
     //
     private $_problem, $_userSpecificGenericManager;
     public function __construct(){
-        $_problem = new Problem();
-        $_userSpecificGenericManager = new UserSpecificGenericManager($_problem);
+        $this->_problem = new Problem();
+        $this->_userSpecificGenericManager = new UserSpecificGenericManager($this->_problem);
     }
 
     public function createProblem(Request $request){
