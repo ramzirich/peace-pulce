@@ -176,7 +176,7 @@ export const PsychiatristInfo =({route}) =>{
                     </View>
                 </View>
                 <View>
-                    {/* <Image source={{uri : imgUrl}} style={styles.imgUrl} /> */}
+                    <Image source={{uri : imgUrl}} style={styles.imgUrl} />
                 </View>
             </View>
             
@@ -251,9 +251,9 @@ const styles = StyleSheet.create({
         letterSpacing:1,
     },
     imgUrl:{
-        height:'50%',
-        width:'100%',
-        // borderRadius:50,
+        height:100,
+        width:100,
+        borderRadius:50,
     },
     about:{
         color: CustomColors.black,
