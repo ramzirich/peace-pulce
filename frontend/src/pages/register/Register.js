@@ -62,6 +62,7 @@ export default Registration = ({navigation}) => {
       colors={['#8962f3', '#4752e2','#214ae2']} 
       // colors={['#6484ee','#3e6ddb', '#1d50e0']}
       style={styles.bigContainer}>
+    
       <ScrollView showsVerticalScrollIndicator={false}>
       
       <View>
@@ -108,14 +109,15 @@ export default Registration = ({navigation}) => {
               onPress={() => navigation.navigate('login')}
               style={{
               fontSize: 12,
-              color:CustomColors.white
+              color:CustomColors.white,
+              marginTop:5
               }}>
               Already have an account ?Login
           </Text>
       </View>
       
   </ScrollView>
-</LinearGradient>
+ </LinearGradient>
 )
 }
 
@@ -133,12 +135,13 @@ export default Registration = ({navigation}) => {
     },
     smallContainer:{
       paddingHorizontal: 30,
-      paddingVertical:20,
+      paddingTop:20,
+      paddingBottom:15,
       backgroundColor:CustomColors.purple,
       borderRadius:10
     },
     btn:{
-      marginTop: 13,
+      marginTop: 10,
       marginBottom:5
     },
   })

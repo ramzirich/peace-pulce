@@ -1,10 +1,10 @@
 import axios from "axios"
 import React, { useState } from "react"
 import { Alert, Button, Image, StyleSheet, View } from "react-native"
-import LinearGradient from "react-native-linear-gradient"
+// import LinearGradient from "react-native-linear-gradient"
 import { config } from "../../../config"
 import { useSelector } from "react-redux"
-import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
+// import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default Profile = () =>{
@@ -49,20 +49,21 @@ export default Profile = () =>{
           }
         };
     return(
-        <LinearGradient 
-            colors={['#8962f3', '#4752e2', '#214ae2']}
-            style={styles.bigContainer}>
-            <View>
-            <View>
-      <Button title="Pick Image" onPress={pickImage} />
-      <Image source={{uri:imageuri}} style={{width:100, height:100}}/>
-      {/* {image && <Image source={{ uri: userInfo.img_url }} style={{ width: 200, height: 200 }} />} */}
-      {image && <Button title="Upload Image" onPress={uploadImage} />}
-    </View>
-            </View>
+    //     // <LinearGradient 
+    //     //     colors={['#8962f3', '#4752e2', '#214ae2']}
+    //     //     style={styles.bigContainer}>
+    //         // {/* <View>
+    //         <View>
+    //   <Button title="Pick Image" onPress={pickImage} />
+    //   <Image source={{uri:imageuri}} style={{width:100, height:100}}/>
+    //   {/* {image && <Image source={{ uri: userInfo.img_url }} style={{ width: 200, height: 200 }} />} */}
+    //   {/* image && <Button title="Upload Image" onPress={uploadImage /> */}
+    // {/* </View> */}
+    //          </View> 
 
-        </LinearGradient>
-    )
+    //     {/* </LinearGradient> */}
+    // )
+    <View></View>)
 }
 
 const styles = StyleSheet.create({

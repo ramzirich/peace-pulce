@@ -54,6 +54,7 @@ export default Login = ({navigation}) =>{
             colors={['#8962f3', '#4752e2','#214ae2']} 
             style={styles.bigContainer}>
             <ScrollView>
+            <View>
                 <View>
                     <Image source={require('../../../assets/images/logo22.png')} style={styles.logo} /> 
                 </View>
@@ -82,10 +83,12 @@ export default Login = ({navigation}) =>{
                         onPress={() => navigation.navigate('register')}
                         style={{
                         fontSize: 12,
-                        color:CustomColors.white
+                        color:CustomColors.white,
+                        marginTop:5
                         }}>
-                        Don't have an account ?Register
+                        Don't have an account? Register
                     </Text>
+                </View>
                 </View>
             </ScrollView>
         </LinearGradient>

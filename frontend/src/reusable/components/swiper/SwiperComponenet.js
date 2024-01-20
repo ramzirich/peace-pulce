@@ -29,7 +29,6 @@ const SwiperComponent = () => {
           keyExtractor={(item) => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
-          // contentContainerStyle={styles.flatListContainer}
           renderItem={({ item, index }) => {
             return (
               <HomeCard item={item} index={index} listCount={images.length-1}/>
