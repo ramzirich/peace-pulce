@@ -6,11 +6,18 @@ export const ProfileInput = ({
   label,
   error,
   password,
+  defaultValue,
   onFocus = () => {},
+  onChangeText,
   ...props
 }) => {
   const [hidePassword, setHidePassword] = React.useState(password);
   const [isFocused, setIsFocused] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState(defaultValue);
+  const handleTextChange = (text) => {
+    setInputValue(text);
+    onChangeText && onChangeText(text); // Notify parent component of text change
+  };
   return (
     <View style={{marginBottom: 10}}>
       <Text style={style.label}>{label}</Text>
@@ -39,6 +46,8 @@ export const ProfileInput = ({
           }}
           onBlur={() => setIsFocused(false)}
           secureTextEntry={hidePassword}
+          value={inputValue}
+          onChangeText={handleTextChange}
           placeholderTextColor={CustomColors.white}
           style={{color: CustomColors.white, flex: 1, borderRadius:5}}
           {...props}

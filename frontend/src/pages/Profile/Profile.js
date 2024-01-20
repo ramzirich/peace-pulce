@@ -8,26 +8,27 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
-import { setImgUrl } from "../../redux/actions/userActions"
+import { setImgUrl, setUserInfo } from "../../redux/actions/userActions"
+import { Updatevalidation } from "./UpdateValidation"
 
 export default Profile = ({navigation}) =>{
     const [image, setImage] = useState(null)
     const [imageuri, setImageuri] = useState(null)
-    const [inputs, setInputs] = useState({
-        email: '',
-        first_name: '',
-        last_name: '',
-        password: '',
-        phone:''
-    });
     const [errors, setErrors] = useState({});
     const {userInfo} = useSelector(state => state.userInfoReducer);
+    const [inputs, setInputs] = useState({
+        email: userInfo.email,
+        first_name: userInfo.first_name,
+        last_name: userInfo.last_name,
+        password: '',
+        phone:userInfo.phone
+    });
+    const initialEmail = userInfo.email
 
     const dispatch = useDispatch();
 
     useEffect(() =>{
         const uploadImage = async () => {
-            console.log(image)
             if(image != null){ 
                 try {
                     const formData = new FormData();
@@ -47,7 +48,6 @@ export default Profile = ({navigation}) =>{
                     });
                         if (response.status === 200) {
                             const newImgUrl = "images/" + response.data.data;
-                            console.log(newImgUrl);
                             dispatch(setImgUrl(newImgUrl));
                             console.log('Image uploaded successfully');
                             } else {
@@ -73,6 +73,43 @@ export default Profile = ({navigation}) =>{
         })
        
     };
+
+    const validate = () => {
+        const isValid = Updatevalidation(inputs, handleError);
+        if (isValid) {
+          update(inputs);
+        } 
+    };
+
+    const update = async(inputs) =>{
+        try{
+            const inputsWithoutEmail = { ...inputs };
+            if (inputs.email === initialEmail) {
+                delete inputsWithoutEmail.email;
+            }
+            if (inputs.password === '') {
+                delete inputsWithoutEmail.password;
+            }
+            const authToken = await AsyncStorage.getItem('authToken');
+            const response = await axios.post(`${config.apiUrl}/update/user`, inputsWithoutEmail,{
+                headers:{
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            dispatch(setUserInfo(response.data.data))
+            navigation.navigate('home')    
+        }catch(error){
+            console.error("Error in saving changes: ", error.response?.data || error.message)
+        }
+    }
+
+    const handleOnchange = (text, input) => {
+        setInputs(prevState => ({...prevState, [input]: text}));
+    };
+    const handleError = (error, input) => {
+        setErrors(prevState => ({...prevState, [input]: error}));
+    };
+
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
@@ -90,21 +127,23 @@ export default Profile = ({navigation}) =>{
                         <View style={styles.spacebtw}>
                             <View style={styles.width_fourty_five}>  
                                 <ProfileInput
-                                    //   onChangeText={text => handleOnchange(text, 'first_name')}
-                                    //   onFocus={() => handleError(null, 'first_name')}
+                                    onChangeText={text => handleOnchange(text, 'first_name')}
+                                    onFocus={() => handleError(null, 'first_name')}
                                     label="First name"
                                     placeholder= {userInfo.first_name}
-                                    //   error={errors.first_name} 
+                                    error={errors.first_name}
+                                    defaultValue={userInfo.first_name}
                                 />
                             </View>
                             
                             <View style={styles.width_fourty_five}>  
                                 <ProfileInput
-                                    //   onChangeText={text => handleOnchange(text, 'first_name')}
-                                    //   onFocus={() => handleError(null, 'first_name')}
+                                    onChangeText={text => handleOnchange(text, 'last_name')}
+                                    onFocus={() => handleError(null, 'last_name')}
                                     label="Last name"
                                     placeholder= {userInfo.last_name}
-                                    //   error={errors.first_name} 
+                                    error={errors.last_name}
+                                    defaultValue={userInfo.last_name} 
                                 />
                             </View>
                         </View>
@@ -112,30 +151,32 @@ export default Profile = ({navigation}) =>{
 
                     <View style={styles.gap_col}>
                         <ProfileInput
-                            //   onChangeText={text => handleOnchange(text, 'first_name')}
-                            //   onFocus={() => handleError(null, 'first_name')}
+                            onChangeText={text => handleOnchange(text, 'email')}
+                            onFocus={() => handleError(null, 'email')}
                             label="Email"
                             placeholder= {userInfo.email}
-                            //   error={errors.first_name} 
+                            error={errors.email} 
+                            defaultValue={userInfo.email} 
                         />
                         <ProfileInput
-                            //   onChangeText={text => handleOnchange(text, 'first_name')}
-                            //   onFocus={() => handleError(null, 'first_name')}
+                            onChangeText={text => handleOnchange(text, 'password')}
+                            onFocus={() => handleError(null, 'password')}
                             label="Password"
                             placeholder= "********"
                             password
-                            //   error={errors.first_name} 
+                            error={errors.password} 
                         />
                         <ProfileInput
-                            //   onChangeText={text => handleOnchange(text, 'first_name')}
-                            //   onFocus={() => handleError(null, 'first_name')}
+                            onChangeText={text => handleOnchange(text, 'phone')}
+                            onFocus={() => handleError(null, 'phone')}
                             label="Phone Number"
                             placeholder= {userInfo.phone !== null ? userInfo.phone : '123456...'}
-                            //   error={errors.first_name} 
+                            error={errors.phone}
+                            defaultValue={userInfo.phone} 
                         />
                     </View>
                 </View>
-                <TouchableOpacity style={styles.save_btn}>
+                <TouchableOpacity style={styles.save_btn} onPress={validate}>
                     <Text style={styles.save_text}>Save</Text>
                 </TouchableOpacity>
             {/* <FooterButtons navigation={navigation} /> */}

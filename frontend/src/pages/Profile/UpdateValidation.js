@@ -39,19 +39,18 @@ export const Updatevalidation = (inputs, handleError) => {
           isValid = false;
       }
 
-    if (!inputs.password) {
-      handleError('Please input password', 'password');
-      isValid = false;
-    } else if (inputs.password.length < 8) {
-      handleError('Min password length of 8', 'password');
-      isValid = false;
-    }else if(inputs.password.length>20){
-        handleError('last name cannot exceed 20 characters', 'last_name');
+    if (inputs.password !== '') {
+      if (inputs.password.length < 8) {
+        handleError('Min password length of 8', 'password');
         isValid = false;
-    }else if(!inputs.password.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\s\S]{8,20}$/)){
-        handleError('The password must contain at least one uppercase letter, one lowercase letter,' +
-                        'one numeric digit, one special character.', 'password');
-    }
+      }else if(inputs.password.length>20){
+          handleError('last name cannot exceed 20 characters', 'last_name');
+          isValid = false;
+      }else if(!inputs.password.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])[\s\S]{8,20}$/)){
+          handleError('The password must contain at least one uppercase letter, one lowercase letter,' +
+                          'one numeric digit, one special character.', 'password');
+      }
+    } 
 
     return isValid;
   };
