@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -152,23 +153,40 @@ class AuthController extends Controller
         }
     }
 
-    public function uploadImage(Request $request){
-        try{
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
-            $user = Auth::user(); 
-            if ($user && $request->hasFile('image')) {
-                $imageName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('images'), $imageName);
-                $user->update(['img_url' => 'images/' . $imageName]);
+    // public function uploadImage(Request $request){
+    //     try{
+    //         // $request->validate([
+    //         //     'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    //         // ]);
+    //         // Log::info('Incoming request:', $request->all());
+    //         $user = Auth::user(); 
+    //         if ($user && $request->hasFile('image')) {
+    //             $imageName = time() . '.' . $request->image->extension();
+    //             $request->image->move(public_path('images'), $imageName);
+    //             $user->update(['img_url' => 'images/' . $imageName]);
         
-                return response()->json(['success' => 'Image uploaded successfully']);
-            }       
-            return ExceptionMessages::Error('Unauthorized', 401);
-        }catch(\Exception $exception){
-            return ExceptionMessages::Error($exception->getMessage());
-        }
-    }
+    //             return response()->json(['success' => 'Image uploaded successfully']);
+    //         }       
+    //         return ExceptionMessages::Error('Unauthorized', 401);
+    //     }catch(\Exception $exception){
+    //         return ExceptionMessages::Error($exception->getMessage());
+    //     }
+    // }
 
+    public function uploadImage(Request $request)
+        {
+            // $request->validate([
+            // //     'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // // ]);
+            $user = Auth::user(); 
+        if($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $finalName = date('His') . $filename;
+        $request->file('image')->storeAs ('images/', $finalName, 'public');
+        $user->update(['img_url' => 'images/' . $filename]);
+        return response()->json (["message" => "Successfully upload an image"]);
+        } else {
+        return response()->json (["message" => "You must select the image first"]);
+        }}
 }
