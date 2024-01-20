@@ -16,13 +16,12 @@ export const PsychiatristInfo =({route}) =>{
     const imgUrl = `${config.imgUrl}${img_url}` 
 
     const [ratingList, setRatingList] = useState([]);
-    // console.log(ratingList)
     const [rating, setRating] = useState(0);
     const [ratingDistribution, setRatingDistribution] = useState({
         '0-2.5': 0,
         '2.5-3.75': 0,
         '3.75-5': 0,
-      });  
+    });  
     const [request, setRequest] = useState(null);
     const [userRating, setUserRating] = useState(null)
       console.log("userRating",userRating)
@@ -46,7 +45,6 @@ export const PsychiatristInfo =({route}) =>{
                 setRequest(requestResponse.data.request)
                 setRatingList(ratingResponse.data)
                 const recordWithMatchingUserId = ratingResponse.data.find(record => record.user.id === userInfo.id)
-                // console.log(recordWithMatchingUserId.rating) 
                 if(recordWithMatchingUserId){
                     setUserRating(recordWithMatchingUserId.rating)
                 }            
@@ -122,16 +120,17 @@ export const PsychiatristInfo =({route}) =>{
                 'Authorization': `Bearer ${authToken}`
             }
         });
-
         setRatingList(ratingResponse.data)     
     }
 
-    return(    
+    return(   
+ 
         <LinearGradient style={styles.big_container}
             colors={['#8962f3', '#4752e2','#214ae2']} 
         >
+            
             <ScrollView showsVerticalScrollIndicator={false}>
-            {/* <Image source={{uri : imgUrl}} style={styles.imgUrl} /> */}
+            {/* <Image source={{uri : imgUrl}} style={styles.image} /> */}
             <View style={styles.profile}>
                 <View style={styles.fullname}>
                     <Text style={[styles.name, styles.white]}>Dr. {first_name}</Text>
@@ -139,40 +138,39 @@ export const PsychiatristInfo =({route}) =>{
                     <Text style={[styles.degree, styles.white]}>{specialization}</Text>
                     <Text style={[styles.degree, styles.white]}>{degree}</Text>
 
-                    <View style={{flexDirection:"row", justifyContent:'space-between', alignItems:'center'}}>
-                    <View style={styles.costRating_container}>
-                    <View>
-                        {rating ==0 && 
-                            <Image style={styles.star} source={require('../../../assets/stars/empty-star.png')} />   
-                        }
-                        {rating >0 && rating<2 && 
-                            <Image style={styles.star} source={require('../../../assets/stars/quarter-star.png')} />   
-                        }
-                        {rating >=2 && rating<3 && 
-                            <Image style={styles.star} source={require('../../../assets/stars/half-star.png')} />   
-                        }
-                        {rating >= 3 && rating<=4 && 
-                            <Image style={styles.star} source={require('../../../assets/stars/34star.png')} />   
-                        }
-                        {rating >4 && 
-                            <Image style={styles.star} source={require('../../../assets/stars/full-star.png')} />   
-                        }
-                    </View>
-                    <View>
-                        {ratingList.length==1? 
-                            <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
-                                {ratingList.length} vote
-                            </Text>
-                            :   <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
-                                    {ratingList.length} votes
-                                </Text>
-                        }  
-                    </View>                        
-                </View>
-                        <View>
-                        <Text style={[{fontSize:12, fontWeight:300}, styles.white]}>${hourly_rate}/hr</Text>
+                    <View style={{flexDirection:"row", gap:30, alignItems:'center'}}>
+                        <View style={styles.costRating_container}>
+                            <View>
+                                {rating ==0 && 
+                                    <Image style={styles.star} source={require('../../../assets/stars/empty-star.png')} />   
+                                }
+                                {rating >0 && rating<2 && 
+                                    <Image style={styles.star} source={require('../../../assets/stars/quarter-star.png')} />   
+                                }
+                                {rating >=2 && rating<3 && 
+                                    <Image style={styles.star} source={require('../../../assets/stars/half-star.png')} />   
+                                }
+                                {rating >= 3 && rating<=4 && 
+                                    <Image style={styles.star} source={require('../../../assets/stars/34star.png')} />   
+                                }
+                                {rating >4 && 
+                                    <Image style={styles.star} source={require('../../../assets/stars/full-star.png')} />   
+                                }
+                            </View>
+                            <View>
+                                {ratingList.length==1? 
+                                    <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
+                                        {ratingList.length} vote
+                                    </Text>
+                                    :   <Text style={[{fontSize:10, fontWeight:300}, styles.white]}>
+                                            {ratingList.length} votes
+                                        </Text>
+                                }  
+                            </View>                        
                         </View>
-                        
+                        <View>
+                            <Text style={[{fontSize:12, fontWeight:300}, styles.white]}>${hourly_rate}/hr</Text>
+                        </View>    
                     </View>
                 </View>
                 <View>
@@ -180,7 +178,8 @@ export const PsychiatristInfo =({route}) =>{
                 </View>
             </View>
             
-            <View>
+            <View style={styles.aboutContainer}>
+                <Text style={styles.aboutheader}>About</Text>
                 <Text style={styles.about}>{about}</Text>
             </View>
 
@@ -229,8 +228,13 @@ export const PsychiatristInfo =({route}) =>{
 const styles = StyleSheet.create({
     big_container:{
         flex:1,
-        paddingTop: 20,
+        paddingTop: 40,
         paddingHorizontal:20,     
+    },
+    image:{
+        height: 300,
+        width:'100%',
+        resizeMode:'stretch'
     },
     profile:{
         flexDirection:'row',
@@ -242,7 +246,7 @@ const styles = StyleSheet.create({
     },
     fullname:{
         flexDirection:'column',
-        width:'60%' 
+        width:'55%', 
     },
     name:{
         fontSize:26,
@@ -250,23 +254,28 @@ const styles = StyleSheet.create({
         color: CustomColors.black,
         letterSpacing:1,
     },
+    degree:{
+        paddingTop:5
+    },
     imgUrl:{
-        height:100,
-        width:100,
-        borderRadius:50,
+        height:120,
+        width:120,
+        borderRadius:60,
+    },
+    aboutContainer:{
+        paddingTop:20
+    },
+    aboutheader:{
+        paddingBottom:5,
+        color: CustomColors.white,
+        fontSize:22,
+        fontWeight:'500'
     },
     about:{
         color: CustomColors.black,
         fontWeight:'500',
         letterSpacing:0.2,
         color:CustomColors.white,
-    },
-    info_card:{
-        height:80,
-        marginTop:20,
-        backgroundColor: CustomColors.grey,
-        borderRadius:20,
-        padding: 10,
     },
     cost_rating:{
         flexDirection:'row',

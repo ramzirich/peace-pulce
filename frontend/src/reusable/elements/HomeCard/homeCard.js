@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../../config"
-import { CustomButton } from "../Button/CustomButton"
 import { CustomColors } from "../../../styles/color"
 
 
@@ -46,9 +45,7 @@ export default homeCard = ({item, index, listCount}) =>{
               callback();
               resolve();
             }, delay);
-          });
-    //}
-    
+          }); 
   };
     return(
         <TouchableOpacity onPress={flip} style={styles.container}>

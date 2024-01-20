@@ -6,6 +6,7 @@ import axios from "axios"
 import { config } from "../../../config"
 import { Card } from "../../reusable/components/card/Card"
 import LinearGradient from "react-native-linear-gradient"
+import { CustomColors } from "../../styles/color"
 
 
 export const ListOfPsychiatrist = ({navigation}) =>{
@@ -36,12 +37,11 @@ export const ListOfPsychiatrist = ({navigation}) =>{
   
     return(
         <LinearGradient 
-            colors={['#8962f3', '#4752e2','#214ae2']} 
-            style={{flex:1, paddingBottom:150}}>
-            <CustomHeader />
+            colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
+            style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
             {doctors.length===0?     
-                <Text>No Doctors</Text> :
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
                     showsVerticalScrollIndicator={false}
