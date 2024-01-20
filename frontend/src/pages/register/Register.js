@@ -36,7 +36,7 @@ export default Registration = ({navigation}) => {
     const isValid = Registervalidation(inputs, handleError);
     if (isValid) {
       register(inputs);
-    }
+    } 
   };
   
   const register = async(inputs) =>{

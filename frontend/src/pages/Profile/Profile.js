@@ -2,20 +2,20 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Alert, Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../config"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
-import { Input } from "../../reusable/elements/Input/Input"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
-import FooterButtons from "../../reusable/components/footerButtons/footerButtons"
-import { CustomButton } from "../../reusable/elements/Button/CustomButton"
 import { CustomColors } from "../../styles/color"
+import { setImgUrl } from "../../redux/actions/userActions"
 
 export default Profile = ({navigation}) =>{
     const [image, setImage] = useState(null)
     const [imageuri, setImageuri] = useState(null)
     const {userInfo} = useSelector(state => state.userInfoReducer);
+
+    const dispatch = useDispatch();
 
     useEffect(() =>{
         const uploadImage = async () => {
@@ -37,8 +37,10 @@ export default Profile = ({navigation}) =>{
                             'Content-Type': 'multipart/form-data',
                         },
                     });
-                        // console.log(response.data.data)
                         if (response.status === 200) {
+                            const newImgUrl = "images/" + response.data.data;
+                            console.log(newImgUrl);
+                            dispatch(setImgUrl(newImgUrl));
                             console.log('Image uploaded successfully');
                             } else {
                             console.error('Error uploading image. Server responded with:', response);
