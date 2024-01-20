@@ -24,7 +24,7 @@ export const PsychiatristInfo =({route}) =>{
     });  
     const [request, setRequest] = useState(null);
     const [userRating, setUserRating] = useState(null)
-      console.log("userRating",userRating)
+    
     useEffect(() =>{
         const fetchUserData = async() =>{
             try{
