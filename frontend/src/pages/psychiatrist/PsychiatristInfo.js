@@ -123,12 +123,53 @@ export const PsychiatristInfo =({route}) =>{
         setRatingList(ratingResponse.data)     
     }
 
+    const handleStarClick = async(selectedRating) => {
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+            const postRating = await axios.post(`${config.apiUrl}/rating`,
+                {
+                    rating: selectedRating,
+                    doctor_id: id
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                }
+            )
+            setRating(selectedRating)
+            onRatingChange()
+        }catch(error){
+            console.log("Error in set rating: ",error)
+        }
+      };
+
+      const renderStars = () => {
+        const stars = [];
+        const maxStars = 5;
+        for (let i = 1; i <= maxStars; i++) {
+            const starStyle = {
+            color: i <= rating ? 'gold' : 'gray'
+            
+            };
+            stars.push(
+            <TouchableOpacity
+                key={i}
+                onPress={() => handleStarClick(i)}
+                style={styles.stars}
+            >
+                <Text style={starStyle}>★</Text>
+            </TouchableOpacity>
+            );
+        }
+        return stars;
+      };
+
+
     return(   
- 
         <LinearGradient style={styles.big_container}
             colors={['#8962f3', '#4752e2','#214ae2']} 
-        >
-            
+        >     
             <ScrollView showsVerticalScrollIndicator={false}>
             {/* <Image source={{uri : imgUrl}} style={styles.image} /> */}
             <View style={styles.profile}>
@@ -216,6 +257,17 @@ export const PsychiatristInfo =({route}) =>{
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
                 {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
+            {/* {
+                request == 'accepted' && 
+                    <View style={styles.row_five}>
+                        <View>
+                            <Text style={{color:CustomColors.white}}>
+                                Rate
+                            </Text>
+                        </View>
+                        <View style={styles.starsContainer}>{renderStars()}</View> 
+                    </View>
+            } */}
 
             <View>
                 <CommentList id={id} request={request} onRatingChange={onRatingChange} userRating={userRating} />
@@ -327,5 +379,23 @@ const styles = StyleSheet.create({
         color: CustomColors.white,
         alignSelf:'flex-start',
         paddingBottom:10
-    }
+    },
+    spacebtw:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        alignItems:'center',
+        alignItems:'center'
+    },
+    row_five:{
+        flexDirection:'row',
+        gap:5,
+        alignItems:'center'
+    },
+    starsContainer: {
+        flexDirection: 'row',
+        gap:5
+    },
+    stars: {
+        fontSize: 20,
+    },
 })
