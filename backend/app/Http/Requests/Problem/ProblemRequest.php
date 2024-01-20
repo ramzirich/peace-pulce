@@ -3,8 +3,8 @@
 namespace App\Http\Requests\PatientComment;
 use Illuminate\Validation\ValidationException;
 
-class PatientCommentRequest{
-    public static function createPatientCommentValidation($request){
+class ProblemRequest{
+    public static function createProblemValidation($request){
         try{
             $request->validate([
                 "problem" => "required|string",
@@ -19,24 +19,6 @@ class PatientCommentRequest{
 
                 "severity.required" => "The severity field is required",
                 "severity.string" => "The severity field must be a string",
-            ]);
-            return response()->json([
-                'status' => "success"
-            ]);
-        }catch (ValidationException $exception) {
-            return response()->json([
-                'status' => "error",
-                'errors' => $exception->errors()
-            ], 422);
-        }
-    }
-
-    public static function updatePatientCommentValidation($request){
-        try{
-            $request->validate([
-                "comment" => "string"
-            ],[
-                "comment.string" => "The Comment field must be a number",
             ]);
             return response()->json([
                 'status' => "success"
