@@ -1,7 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Alert, Button, Image, StyleSheet, TouchableOpacity, View } from "react-native"
-// import LinearGradient from "react-native-linear-gradient"
 import { config } from "../../../config"
 import { useSelector } from "react-redux"
 import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
