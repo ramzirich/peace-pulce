@@ -21,7 +21,7 @@ class DoctorController extends Controller
     }
 
     public function getDoctor(){
-        return $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, "user");   
+        return $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, "user_id");  
     }
 
     // public function createDoctor(Request $request){
@@ -45,22 +45,22 @@ class DoctorController extends Controller
     //     }
     // }
 
-    // public function updateDoctor(Request $request){
-    //     try{
-    //         $doctorModel =  $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id);
-    //         if($doctorModel){
-    //             $data  = $request->all();
-    //             $doctorModel->fill($data);
-    //             $doctorModel->save();
+    public function updateDoctor(Request $request){
+        try{
+            $doctorModel =  $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id,'user_id');
+            if($doctorModel){
+                $data  = $request->all();
+                $doctorModel->fill($data);
+                $doctorModel->save();
 
-    //             return response()->json([
-    //                 'status'=> 'success',
-    //                 'data'=> $doctorModel
-    //             ]);
-    //         }
-    //         return ExceptionMessages::NotFound("Doctor");
-    //     }catch(\Exception $exception){
-    //         return ExceptionMessages::Error($exception->getMessage());
-    //     }
-    // }
+                return response()->json([
+                    'status'=> 'success',
+                    'data'=> $doctorModel
+                ]);
+            }
+            return ExceptionMessages::NotFound("Doctor");
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
+    }
 }
