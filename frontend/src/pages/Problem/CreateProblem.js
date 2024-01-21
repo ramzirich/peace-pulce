@@ -8,6 +8,12 @@ import { CustomColors } from "../../styles/color"
 
 export default CreateProblem = () =>{
     const [ severity, setSeverity] = useState(0);
+    const [inputs, setInputs] = useState({
+        problem: '',
+        severity: severity,
+        action: '',
+        solution: '',
+    });
 
     const renderBalls = () => {
         const balls = [];
