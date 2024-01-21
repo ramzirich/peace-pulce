@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 import CreateProblem from "./CreateProblem"
+import ListOfProblems from "./ListOfProblems"
 
 
 export default Problem = () =>{
@@ -25,11 +26,11 @@ export default Problem = () =>{
                     <Text style={styles.btnTextStyle}>List of problems</Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView>
-                {isCreate && <CreateProblem/>}
+            {isCreate && <ScrollView>
+                <CreateProblem/>
             </ScrollView>
-            
-
+            }
+                {isCreate == false && <ListOfProblems/>}
         </LinearGradient> 
     )
 }

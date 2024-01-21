@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import {  ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
 import { createProblemvalidation } from "./CreateProblemValidation"
@@ -98,6 +98,7 @@ export default CreateProblem = () =>{
             if (inputs.ai_solution === '') {
                 delete inputsWithoutSolution.ai_solution;
             }
+            console.log(inputsWithoutSolution)
             const authToken = await AsyncStorage.getItem('authToken');
             const response = await axios.post(`${config.apiUrl}/problem/create`, inputsWithoutSolution,{
                 headers:{
