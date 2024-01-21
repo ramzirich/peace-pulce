@@ -13,6 +13,7 @@ import Song from './src/pages/song/Song';
 import CustomVideoPlayer from './src/pages/video/CustomVideoPlayer';
 import VideoChat from './src/pages/VideoCat/VideoChat';
 import Profile from './src/pages/Profile/Profile';
+import Problem from './src/pages/Problem/Problem';
 
 
 function App(): React.JSX.Element {
@@ -30,7 +31,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="song" component={Song}  options={{ headerShown: false }} />  
           <Stack.Screen name="video" component={CustomVideoPlayer} options={{ headerShown: false }} />  
           <Stack.Screen name="video-chat" component={VideoChat} options={{ headerShown: false }} />  
-          <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />   
+          <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />  
+          <Stack.Screen name="problem" component={Problem} options={{ headerShown: false }} />   
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
