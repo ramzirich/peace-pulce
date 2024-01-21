@@ -9,18 +9,17 @@ import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
 import { setUserInfo } from "../../redux/actions/userActions"
 import { Updatevalidation } from "./UpdateValidation"
+import { DoctorProfileValidation } from "./DoctorValidation"
 
 export default DoctorProfile = ({navigation}) =>{
     const [errors, setErrors] = useState({});
-    const {userInfo} = useSelector(state => state.userInfoReducer);
     const [inputs, setInputs] = useState({
-        email: userInfo.email,
-        first_name: userInfo.first_name,
-        last_name: userInfo.last_name,
-        password: '',
-        phone:userInfo.phone
+        about: '',
+        degree: '',
+        hourly_rate: '',
+        specialization: '',
     });
-
+    console.log(inputs)
 
 
     useEffect(() =>{
@@ -32,7 +31,8 @@ export default DoctorProfile = ({navigation}) =>{
                         "Authorization" :`Bearer ${authToken}`
                 }
             })
-            console.log("resp",responseData.data) 
+            // console.log("resp",responseData.data)
+            setInputs(responseData.data) 
             }catch(error){
                 console.error("Error in fetching dctor info: ", error)
             }
@@ -41,7 +41,7 @@ export default DoctorProfile = ({navigation}) =>{
     },[])
 
     const validate = () => {
-        const isValid = Updatevalidation(inputs, handleError);
+        const isValid = DoctorProfileValidation(inputs, handleError);
         if (isValid) {
           update(inputs);
         } 
@@ -49,21 +49,14 @@ export default DoctorProfile = ({navigation}) =>{
 
     const update = async(inputs) =>{
         try{
-            const inputsWithoutEmail = { ...inputs };
-            if (inputs.email === initialEmail) {
-                delete inputsWithoutEmail.email;
-            }
-            if (inputs.password === '') {
-                delete inputsWithoutEmail.password;
-            }
             const authToken = await AsyncStorage.getItem('authToken');
-            const response = await axios.post(`${config.apiUrl}/update/user`, inputsWithoutEmail,{
+            const response = await axios.post(`${config.apiUrl}/doctor/update`, inputs,{
                 headers:{
                     'Authorization': `Bearer ${authToken}`
                 }
             });
-            dispatch(setUserInfo(response.data.data))
-            navigation.navigate('home')    
+            // dispatch(setUserInfo(response.data.data))
+            navigation.navigate('profile')    
         }catch(error){
             console.error("Error in saving changes: ", error.response?.data || error.message)
         }
@@ -85,55 +78,39 @@ export default DoctorProfile = ({navigation}) =>{
                             source={require('../../../assets/songImages/left.png')}/>
                     </TouchableOpacity>
                     <View style={styles.small_container}>
-                        <View style={styles.spacebtw}>
-                            <View style={styles.width_fourty_five}>  
-                                <ProfileInput
-                                    onChangeText={text => handleOnchange(text, 'first_name')}
-                                    onFocus={() => handleError(null, 'first_name')}
-                                    label="First name"
-                                    placeholder= {userInfo.first_name}
-                                    error={errors.first_name}
-                                    defaultValue={userInfo.first_name}
-                                />
-                            </View>
-                            
-                            <View style={styles.width_fourty_five}>  
-                                <ProfileInput
-                                    onChangeText={text => handleOnchange(text, 'last_name')}
-                                    onFocus={() => handleError(null, 'last_name')}
-                                    label="Last name"
-                                    placeholder= {userInfo.last_name}
-                                    error={errors.last_name}
-                                    defaultValue={userInfo.last_name} 
-                                />
-                            </View>
-                        </View>
+                        <ProfileInput
+                            onChangeText={text => handleOnchange(text, 'inputs.degree')}
+                            onFocus={() => handleError(null, 'inputs.degree')}
+                            label="Degree"
+                            placeholder= {inputs.degree}
+                            error={errors.degree}
+                            defaultValue={inputs.degree}
+                        />
+                        <ProfileInput
+                            onChangeText={text => handleOnchange(text, 'hourly_rate')}
+                            onFocus={() => handleError(null, 'hourly_rate')}
+                            label="Hourly rate"
+                            placeholder= {inputs.hourly_rate}
+                            error={errors.hourly_rate}
+                            defaultValue={inputs.hourly_rate} 
+                        />
                     </View>
-
                     <View style={styles.gap_col}>
                         <ProfileInput
-                            onChangeText={text => handleOnchange(text, 'email')}
-                            onFocus={() => handleError(null, 'email')}
-                            label="Email"
-                            placeholder= {userInfo.email}
-                            error={errors.email} 
-                            defaultValue={userInfo.email} 
+                            onChangeText={text => handleOnchange(text, 'specialization')}
+                            onFocus={() => handleError(null, 'specialization')}
+                            label="Specialization"
+                            placeholder= {inputs.specialization}
+                            error={errors.specialization} 
+                            defaultValue={inputs.specialization} 
                         />
                         <ProfileInput
-                            onChangeText={text => handleOnchange(text, 'password')}
-                            onFocus={() => handleError(null, 'password')}
-                            label="Password"
-                            placeholder= "********"
-                            password
-                            error={errors.password} 
-                        />
-                        <ProfileInput
-                            onChangeText={text => handleOnchange(text, 'phone')}
-                            onFocus={() => handleError(null, 'phone')}
-                            label="Phone Number"
-                            placeholder= {userInfo.phone !== null ? userInfo.phone : '123456...'}
-                            error={errors.phone}
-                            defaultValue={userInfo.phone} 
+                            onChangeText={text => handleOnchange(text, 'about')}
+                            onFocus={() => handleError(null, 'about')}
+                            label="About"
+                            placeholder= {inputs.about}
+                            error={errors.about}
+                            defaultValue={inputs.about} 
                         />
                     </View>
                 </View>
