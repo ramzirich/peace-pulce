@@ -16,7 +16,7 @@ export const ProfileInput = ({
   const [inputValue, setInputValue] = React.useState(defaultValue);
   const handleTextChange = (text) => {
     setInputValue(text);
-    onChangeText && onChangeText(text); // Notify parent component of text change
+    onChangeText && onChangeText(text);
   };
   return (
     <View style={{marginBottom: 10}}>
@@ -49,6 +49,7 @@ export const ProfileInput = ({
           value={inputValue}
           onChangeText={handleTextChange}
           placeholderTextColor={CustomColors.grey}
+          placeholder={isFocused ? '' : props.placeholder} 
           style={{color: CustomColors.white, flex: 1, borderRadius:5}}
           {...props}
         />
