@@ -1,19 +1,16 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { Alert, Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../config"
 import { useDispatch, useSelector } from "react-redux"
-import {launchCamera,launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
-import { setImgUrl, setUserInfo } from "../../redux/actions/userActions"
+import { setUserInfo } from "../../redux/actions/userActions"
 import { Updatevalidation } from "./UpdateValidation"
 
-export default Profile = ({navigation}) =>{
-    const [image, setImage] = useState(null)
-    const [imageuri, setImageuri] = useState(null)
+export default DoctorProfile = ({navigation}) =>{
     const [errors, setErrors] = useState({});
     const {userInfo} = useSelector(state => state.userInfoReducer);
     const [inputs, setInputs] = useState({
@@ -23,56 +20,25 @@ export default Profile = ({navigation}) =>{
         password: '',
         phone:userInfo.phone
     });
-    const initialEmail = userInfo.email
 
-    const dispatch = useDispatch();
+
 
     useEffect(() =>{
-        const uploadImage = async () => {
-            if(image != null){ 
-                try {
-                    const formData = new FormData();
-                    formData.append('image', {
-                        uri: image.assets[0].uri,
-                        type: image.assets[0].type,
-                        name: image.assets[0].fileName,
-                    });
-                    formData.append('image', image.assets[0]);
-                    
-                    const authToken = await AsyncStorage.getItem('authToken');
-                    const response = await axios.post(`${config.apiUrl}/image`,formData, {
-                        headers: {
-                            'Authorization': `Bearer ${authToken}`,
-                            'Content-Type': 'multipart/form-data',
-                        }, 
-                    });
-                        if (response.status === 200) {
-                            const newImgUrl = "images/" + response.data.data;
-                            dispatch(setImgUrl(newImgUrl));
-                            console.log('Image uploaded successfully');
-                            } else {
-                            console.error('Error uploading image. Server responded with:', response);
-                            }
-                    } catch (error) {
-                        console.error('Error uploading image:', error);
-                    }
-            }    
-        };
-        uploadImage();
-    },[image])
-
-    const pickImage = async() => {
-        let options = {
-            storageOptions:{
-                path:'image'
+        const fetchData = async() =>{
+            try{
+                const authToken = await AsyncStorage.getItem('authToken');
+                const responseData = await axios.get(`${config.apiUrl}/doctor`,{
+                    headers:{
+                        "Authorization" :`Bearer ${authToken}`
+                }
+            })
+            console.log("resp",responseData.data) 
+            }catch(error){
+                console.error("Error in fetching dctor info: ", error)
             }
         }
-        launchImageLibrary(options, response=>{
-            setImage(response)
-            setImageuri(response.assets[0].uri)
-        })
-       
-    };
+        fetchData()
+    },[])
 
     const validate = () => {
         const isValid = Updatevalidation(inputs, handleError);
@@ -113,22 +79,11 @@ export default Profile = ({navigation}) =>{
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
-                <View style={styles.medium_container}>
-                    <View style={[styles.spacebtw,{alignItems:'center'}]}>
-                        <TouchableOpacity onPress={pickImage}>
-                            {imageuri ? <Image source={{uri:imageuri}} style={styles.img} />
-                                :
-                                <Image  style={styles.img} 
-                                    source={{uri: `${config.imgUrl}${userInfo.img_url}`}}/>
-                            }
-                        </TouchableOpacity>
-                        {userInfo.role_id==2 &&
-                            <TouchableOpacity onPress={() => navigation.navigate('doctor-profile')}>
-                                <Image style={{height:60, width:60, tintColor:'white'}} 
-                                    source={require('../../../assets/songImages/right.png')}/>
-                            </TouchableOpacity>
-                        }
-                    </View>
+                <View style={styles.medium_container}>          
+                    <TouchableOpacity onPress={() => navigation.navigate('profile')}>
+                        <Image style={{height:60, width:60, tintColor:'white'}} 
+                            source={require('../../../assets/songImages/left.png')}/>
+                    </TouchableOpacity>
                     <View style={styles.small_container}>
                         <View style={styles.spacebtw}>
                             <View style={styles.width_fourty_five}>  
