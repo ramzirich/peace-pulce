@@ -9,11 +9,11 @@ export default Problem = () =>{
         <LinearGradient style={styles.container}
         colors={['#373b39','#214ae2', '#4752e2','#8962f3']} >
             <View style={styles.navigateBtn}>
-                <TouchableOpacity style={styles.btnTextStyle}>
+                <TouchableOpacity style={[styles.btnStyle]}>
                     <Text style={styles.btnTextStyle}>Create problem</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btnTextStyle}>
-                    <Text style={styles.btnTextStyle}>Create problem</Text>
+                <TouchableOpacity style={[styles.btnStyle, styles.middle]}>
+                    <Text style={styles.btnTextStyle}>List of problems</Text>
                 </TouchableOpacity>
             </View>
 
@@ -27,15 +27,24 @@ const styles = StyleSheet.create({
     },
     navigateBtn:{
         flexDirection:'row',
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        width:"100%",
     },
     btnStyle:{
         width:"50%",
         height:100,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:"center"
+    },
+    middle:{
+        borderLeftWidth:1.5,
+        borderColor:'#e782f5'
     },
     btnTextStyle:{
         color:CustomColors.white,
         fontSize:16,
-        fontWeight:"500"
+        fontWeight:"500",
+        alignSelf:'center'
     }
 })
