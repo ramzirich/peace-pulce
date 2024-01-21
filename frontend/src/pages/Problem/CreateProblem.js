@@ -11,6 +11,8 @@ import { config } from "../../../config"
 export default CreateProblem = () =>{
     const [key, setKey] = useState(0);
     const [ severity, setSeverity] = useState(0);
+    const [ aiSolution, setAiSolution] = useState('');
+    const [generateResponse, setGenerateResponse] = useState(false);
     const [severityError, setSeverityError] = useState(false)
     const [errors, setErrors] = useState({});
     const [inputs, setInputs] = useState({
@@ -21,17 +23,63 @@ export default CreateProblem = () =>{
         ai_solution:''
     });
 
-    const validate = () => {
+    useEffect(() => {
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            ai_solution: aiSolution
+        }));
+    }, [aiSolution]);
+    // const animateText = async () => {
+    //     for (let i=0;i < aiSolution.length ; i++) {
+    //         await setAsyncTimeout(() => {
+    //             setAiSolution((prevText) => prevText + aiSolution.charAt(i));
+    //         }, 50);
+    //     }       
+    // };
+    
+    // const setAsyncTimeout = (callback, delay) => {
+    //     return new Promise((resolve) => { 
+    //         setTimeout(() => {
+    //             callback();
+    //             resolve();
+    //         }, delay);
+    //     }); 
+    // };
+
+    const validateForAi = () => {
+        setErrors({})
         const isValid = createProblemvalidation(inputs, handleError);
-        if(severity ===0){
-            setSeverityError(true)
-        }
-        if (isValid && severity !== 0) {
-          createProblemRequest(inputs);
+        if (isValid ) {
+            textForAi= `problem:${inputs.problem}, action:${inputs.action}`
+            createProblemRequestForAi(textForAi);
         }
     };
 
-    const validateForAi = () => {
+    const createProblemRequestForAi = async(textForAi) =>{
+        try{
+            setAiSolution("");
+            setGenerateResponse(true);
+            const response = await axios.get(`${config.apiUrl}/openai`, 
+                {
+                    params:{
+                        user_prompt: textForAi
+                    }        
+                }
+            );
+            setGenerateResponse(false);
+            setAiSolution(response.data.data.choices[0].message.content)
+            inputs.ai_solution = response.data.data.choices[0].message.content
+            // for (let i=0;i < response.data.data.choices[0].message.content; i++) {
+            //     await setAsyncTimeout(() => {
+            //         setAiSolution((prevText) => prevText + aiSolution.charAt(i));
+            //     }, 50);
+            // } 
+        }catch(error){
+            console.error("Error: ", error.response?.data || error.message)
+        }
+    }
+
+    const validate = () => {
         const isValid = createProblemvalidation(inputs, handleError);
         if(severity ===0){
             setSeverityError(true)
@@ -57,6 +105,7 @@ export default CreateProblem = () =>{
                 }
             });
             setSeverity(0)
+            setAiSolution('')
             setInputs({
                 problem: '',
                 severity: severity,
@@ -115,6 +164,7 @@ export default CreateProblem = () =>{
     
         return balls;
       };
+
     return(
         <View style={styles.container}>
                 <ProfileInput
@@ -155,7 +205,11 @@ export default CreateProblem = () =>{
                     error={errors.solution}
                 />
                 <View>
-                    <Text style={styles.label}>Need help Click here to use our Ai 😎</Text>
+                    <Text style={styles.label} onPress={validateForAi}>
+                        Need help Click here to use our Ai 😎
+                    </Text>
+                    {generateResponse == true && <Text style={styles.label}>Generate Response..</Text>}
+                    {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}
                 </View>
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
                     <Text style={styles.save_text}>Save</Text>

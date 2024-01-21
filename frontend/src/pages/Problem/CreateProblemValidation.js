@@ -28,7 +28,7 @@ export const createProblemvalidation = (inputs, handleError) => {
         }
     }
 
-    if (inputs.ai_solution) {
+    if (inputs.ai_solution !="") {
        if(inputs.ai_solution.length>3000){
           handleError('last name cannot exceed 3000 characters', 'ai_solution');
           isValid = false;
