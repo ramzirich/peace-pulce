@@ -1,0 +1,17 @@
+import React from "react"
+import LinearGradient from "react-native-linear-gradient"
+
+
+export default Problem = () =>{
+    return(
+        <LinearGradient colors={['#8962f3', '#4752e2','#214ae2']}>
+
+        </LinearGradient> 
+    )
+}
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+    }
+})
