@@ -114,7 +114,7 @@ export default Profile = ({navigation}) =>{
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
                 <View style={styles.medium_container}>
-                    <View>
+                    <View style={styles.spacebtw}>
                         <TouchableOpacity onPress={pickImage}>
                             {imageuri ? <Image source={{uri:imageuri}} style={styles.img} />
                                 :
