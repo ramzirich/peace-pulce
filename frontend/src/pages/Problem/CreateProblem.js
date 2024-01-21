@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import {  StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
-import { Input } from "../../reusable/elements/Input/Input"
-import { ProblemInput } from "../../reusable/elements/Input/ProblemInput"
 import { CustomColors } from "../../styles/color"
 import { createProblemvalidation } from "./CreateProblemValidation"
 import AsyncStorage from "@react-native-async-storage/async-storage"
@@ -15,7 +13,6 @@ export default CreateProblem = () =>{
     const [ severity, setSeverity] = useState(0);
     const [severityError, setSeverityError] = useState(false)
     const [errors, setErrors] = useState({});
-    console.log(severity)
     const [inputs, setInputs] = useState({
         problem: '',
         severity: severity,
@@ -34,9 +31,18 @@ export default CreateProblem = () =>{
         }
     };
 
+    const validateForAi = () => {
+        const isValid = createProblemvalidation(inputs, handleError);
+        if(severity ===0){
+            setSeverityError(true)
+        }
+        if (isValid && severity !== 0) {
+          createProblemRequest(inputs);
+        }
+    };
+
     const createProblemRequest = async(inputs) =>{
         try{
-            console.log("inputs", inputs)
             const inputsWithoutSolution = { ...inputs };
             if (inputs.solution === '') {
                 delete inputsWithoutSolution.solution;
@@ -148,6 +154,9 @@ export default CreateProblem = () =>{
                     placeholder= "Every problem has it's solution 🤓"
                     error={errors.solution}
                 />
+                <View>
+                    <Text style={styles.label}>Need help Click here to use our Ai 😎</Text>
+                </View>
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
                     <Text style={styles.save_text}>Save</Text>
                 </TouchableOpacity>
