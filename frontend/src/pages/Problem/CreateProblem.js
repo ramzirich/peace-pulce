@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { Input } from "../../reusable/elements/Input/Input"
 import { ProblemInput } from "../../reusable/elements/Input/ProblemInput"
@@ -44,46 +44,45 @@ export default CreateProblem = () =>{
       };
     return(
         <View style={styles.container}>
-            <ProfileInput
-                // onChangeText={text => handleOnchange(text, 'first_name')}
-                // onFocus={() => handleError(null, 'first_name')}
-                label="Problem"
-                placeholder= "What is the Problem!!! 😢"
-                // error={errors.first_name}
-                // defaultValue={userInfo.first_name}
-            />
-            <View style={styles.spaceTop}>
-                <Text style={styles.label}>Severity</Text>
-                <View style={styles.ballsContainer}>{renderBalls()}</View>
-            </View>
+                <ProfileInput
+                    // onChangeText={text => handleOnchange(text, 'first_name')}
+                    // onFocus={() => handleError(null, 'first_name')}
+                    label="Problem"
+                    placeholder= "What is the Problem!!! 😢"
+                    // error={errors.first_name}
+                    // defaultValue={userInfo.first_name}
+                />
+                <View style={styles.spaceTop}>
+                    <Text style={styles.label}>Severity</Text>
+                    <View style={styles.ballsContainer}>{renderBalls()}</View>
+                </View>
 
-            <ProfileInput
-                // onChangeText={text => handleOnchange(text, 'first_name')}
-                // onFocus={() => handleError(null, 'first_name')}
-                label="Action"
-                placeholder= "Tell me what happened 😧"
-                // error={errors.first_name}
-                // defaultValue={userInfo.first_name}
-            />
+                <ProfileInput
+                    // onChangeText={text => handleOnchange(text, 'first_name')}
+                    // onFocus={() => handleError(null, 'first_name')}
+                    label="Action"
+                    placeholder= "Tell me what happened 😧"
+                    // error={errors.first_name}
+                    // defaultValue={userInfo.first_name}
+                />
 
-            <ProfileInput
-                // onChangeText={text => handleOnchange(text, 'first_name')}
-                // onFocus={() => handleError(null, 'first_name')}
-                label="Solution"
-                placeholder= "Every problem has it's solution 🤓"
-                // error={errors.first_name}
-                // defaultValue={userInfo.first_name}
-            />
+                <ProfileInput
+                    // onChangeText={text => handleOnchange(text, 'first_name')}
+                    // onFocus={() => handleError(null, 'first_name')}
+                    label="Solution"
+                    placeholder= "Every problem has it's solution 🤓"
+                    // error={errors.first_name}
+                    // defaultValue={userInfo.first_name}
+                />
 
-            <ProfileInput
-                // onChangeText={text => handleOnchange(text, 'first_name')}
-                // onFocus={() => handleError(null, 'first_name')}
-                label="Ai Solution"
-                placeholder= "Need help!!!, Use our Ai 😎"
-                // error={errors.first_name}
-                // defaultValue={userInfo.first_name}
-            />
-            
+                <ProfileInput
+                    // onChangeText={text => handleOnchange(text, 'first_name')}
+                    // onFocus={() => handleError(null, 'first_name')}
+                    label="Ai Solution"
+                    placeholder= "Need help!!!, Use our Ai 😎"
+                    // error={errors.first_name}
+                    // defaultValue={userInfo.first_name}
+                /> 
         </View>
     )
 }
