@@ -2,22 +2,15 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import { CustomColors } from '../../../styles/color';
 
-export const ProfileInput = ({
+export const ProblemInput = ({
   label,
   error,
   password,
-  defaultValue,
   onFocus = () => {},
-  onChangeText,
   ...props
 }) => {
   const [hidePassword, setHidePassword] = React.useState(password);
   const [isFocused, setIsFocused] = React.useState(false);
-  const [inputValue, setInputValue] = React.useState(defaultValue);
-  const handleTextChange = (text) => {
-    setInputValue(text);
-    onChangeText && onChangeText(text); // Notify parent component of text change
-  };
   return (
     <View style={{marginBottom: 10}}>
       <Text style={style.label}>{label}</Text>
@@ -30,8 +23,9 @@ export const ProfileInput = ({
               : isFocused
               ? '#e782f5'
               : "#e782f5",
+            //   ? CustomColors.darkBlue
+            //   : CustomColors.light,
             alignItems: 'center',
-            borderWidth:1
           },
         ]}>
         {/* <Icon
@@ -46,10 +40,7 @@ export const ProfileInput = ({
           }}
           onBlur={() => setIsFocused(false)}
           secureTextEntry={hidePassword}
-          value={inputValue}
-          onChangeText={handleTextChange}
-          placeholderTextColor={CustomColors.grey}
-          style={{color: CustomColors.white, flex: 1, borderRadius:5}}
+          style={{color: CustomColors.darkBlue, flex: 1, borderRadius:5}}
           {...props}
         />
         {/* {password && (
@@ -81,10 +72,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 15,
     borderWidth: 0.5,
-    borderRadius:5,
-    marginTop:2
-    // borderWidth:1,
-    // borderBlockColor:'#e782f5',
-    // borderColor:'#e782f5'
+    borderRadius:5
   },
 });

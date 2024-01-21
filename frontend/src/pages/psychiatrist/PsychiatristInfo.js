@@ -144,28 +144,6 @@ export const PsychiatristInfo =({route}) =>{
         }
       };
 
-      const renderStars = () => {
-        const stars = [];
-        const maxStars = 5;
-        for (let i = 1; i <= maxStars; i++) {
-            const starStyle = {
-            color: i <= rating ? 'gold' : 'gray'
-            
-            };
-            stars.push(
-            <TouchableOpacity
-                key={i}
-                onPress={() => handleStarClick(i)}
-                style={styles.stars}
-            >
-                <Text style={starStyle}>★</Text>
-            </TouchableOpacity>
-            );
-        }
-        return stars;
-      };
-
-
     return(   
         <LinearGradient style={styles.big_container}
             colors={['#8962f3', '#4752e2','#214ae2']} 

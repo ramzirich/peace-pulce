@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
+import CreateProblem from "./CreateProblem"
 
 
 export default Problem = () =>{
+    const [isCreate, setIsCreate] = useState(true)
     return(
         <LinearGradient style={styles.container}
         colors={['#373b39','#214ae2', '#4752e2','#8962f3']} >
@@ -16,6 +18,7 @@ export default Problem = () =>{
                     <Text style={styles.btnTextStyle}>List of problems</Text>
                 </TouchableOpacity>
             </View>
+            {isCreate && <CreateProblem/>}
 
         </LinearGradient> 
     )
