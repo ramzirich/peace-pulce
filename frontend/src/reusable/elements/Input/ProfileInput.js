@@ -74,6 +74,7 @@ const style = StyleSheet.create({
     marginVertical: 4,
     fontSize: 14,
     color: CustomColors.white,
+    paddingBottom:5
   },
   inputContainer: {
     height: 45,

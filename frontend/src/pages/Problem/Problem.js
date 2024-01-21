@@ -11,7 +11,7 @@ export default Problem = () =>{
         <LinearGradient style={styles.container}
         colors={['#373b39','#214ae2', '#4752e2','#8962f3']} >
             <View style={styles.navigateBtn}>
-                <TouchableOpacity style={[styles.btnStyle]}>
+                <TouchableOpacity style={[styles.btnStyle, styles.middle2]}>
                     <Text style={styles.btnTextStyle}>Create problem</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnStyle, styles.middle]}>
@@ -41,7 +41,11 @@ const styles = StyleSheet.create({
         alignItems:"center"
     },
     middle:{
-        borderLeftWidth:1.5,
+        borderLeftWidth:1,
+        borderColor:'#e782f5'
+    },
+    middle2:{
+        borderRightWidth:1,
         borderColor:'#e782f5'
     },
     btnTextStyle:{
