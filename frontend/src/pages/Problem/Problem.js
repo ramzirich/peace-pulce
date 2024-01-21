@@ -7,14 +7,21 @@ import CreateProblem from "./CreateProblem"
 
 export default Problem = () =>{
     const [isCreate, setIsCreate] = useState(true)
+    changeToCreatePage = () =>{
+        setIsCreate(true)
+    }
+
+    changeToPageList = () =>{
+        setIsCreate(false)
+    }
     return(
         <LinearGradient style={styles.container}
         colors={['#373b39','#214ae2', '#4752e2','#8962f3']} >
             <View style={styles.navigateBtn}>
-                <TouchableOpacity style={[styles.btnStyle, styles.middle2]}>
+                <TouchableOpacity style={[styles.btnStyle, styles.middle2]} onPress={changeToCreatePage}>
                     <Text style={styles.btnTextStyle}>Create problem</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.btnStyle, styles.middle]}>
+                <TouchableOpacity style={[styles.btnStyle, styles.middle]} onPress={changeToPageList}>
                     <Text style={styles.btnTextStyle}>List of problems</Text>
                 </TouchableOpacity>
             </View>

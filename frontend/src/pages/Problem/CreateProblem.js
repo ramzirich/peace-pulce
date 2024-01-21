@@ -222,6 +222,7 @@ const styles =StyleSheet.create({
     container:{
         flex:1,
         paddingTop:30,
+        paddingBottom:10,
         paddingHorizontal:20,
         flexDirection:'column',
         gap:18
