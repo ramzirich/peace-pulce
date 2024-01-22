@@ -66,7 +66,7 @@ export const PatientInfo =({route}) =>{
                         <Image source={require('../../../assets/images/email.png')} 
                             style={[styles.icon,styles.icon_size]}/>
                         <Text 
-                            style={[styles.white, styles.text]} onPress={handleEmailPress} underlayColor="transparent"
+                            style={[styles.white, styles.text]} onPress={handleEmailPress}
                         >
                             {email}
                         </Text>
