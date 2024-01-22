@@ -153,6 +153,11 @@ class AuthController extends Controller
         }
     }
 
+    // public function getUser($id){
+    //     $user = new User();
+    //     return $user->find($id);
+    // }
+
     public function uploadImage(Request $request){
         try{
             // $request->validate([
