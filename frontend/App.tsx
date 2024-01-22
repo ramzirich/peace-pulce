@@ -17,6 +17,7 @@ import Problem from './src/pages/Problem/Problem';
 import DoctorProfile from './src/pages/Profile/DoctorProfile';
 import { ListOfPatients } from './src/pages/ListOfPatients/ListOfPatients';
 import { PatientInfo } from './src/pages/Patient/Patient';
+import CallPage from './src/pages/Call/CallPage';
 
 
 function App(): React.JSX.Element {
@@ -24,7 +25,7 @@ function App(): React.JSX.Element {
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="home"> 
+        <Stack.Navigator initialRouteName="login"> 
           <Stack.Screen name="login" component={Login} options={{ headerShown: false }} /> 
           <Stack.Screen name="register" component={Registration} options={{ headerShown: false }} /> 
           <Stack.Screen name="home" component={Home} options={{ headerShown: false }} /> 
@@ -37,6 +38,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />  
           <Stack.Screen name="problem" component={Problem} options={{ headerShown: false }} /> 
           <Stack.Screen name="doctor-profile" component={DoctorProfile} options={{ headerShown: false }} />
+          <Stack.Screen name="call" component={CallPage} options={{ headerShown: false }} />
           <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} />
           <Stack.Screen name="patient" component={PatientInfo}  
           options={{title: 'id', headerShown: false }}  />  

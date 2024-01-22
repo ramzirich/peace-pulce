@@ -7,12 +7,13 @@ import { CommentList } from "../../reusable/components/comment/CommentList"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
 import { useSelector } from "react-redux"
+import { useNavigation } from "@react-navigation/native"
 
 
 export const PsychiatristInfo =({route}) =>{
     const {id, doctorInfo} = route.params;
     const {userInfo} = useSelector(state => state.userInfoReducer)
-    const {first_name, last_name, about, img_url, degree, specialization, hourly_rate } = doctorInfo;
+    const {first_name, last_name, about, img_url, degree, specialization, hourly_rate,phone } = doctorInfo;
     const imgUrl = `${config.imgUrl}${img_url}` 
 
     const [ratingList, setRatingList] = useState([]);
@@ -24,6 +25,7 @@ export const PsychiatristInfo =({route}) =>{
     });  
     const [request, setRequest] = useState(null);
     const [userRating, setUserRating] = useState(null)
+    const navigation = useNavigation();
     
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -149,6 +151,7 @@ export const PsychiatristInfo =({route}) =>{
             colors={['#8962f3', '#4752e2','#214ae2']} 
         >     
             <ScrollView showsVerticalScrollIndicator={false}>
+           <TouchableOpacity style={{width:60, height:60, backgroundColor:'red'}}></TouchableOpacity>
             {/* <Image source={{uri : imgUrl}} style={styles.image} /> */}
             <View style={styles.profile}>
                 <View style={styles.fullname}>
@@ -156,7 +159,8 @@ export const PsychiatristInfo =({route}) =>{
                     <Text style={[styles.name, styles.white]}>{last_name}</Text>
                     <Text style={[styles.degree, styles.white]}>{specialization}</Text>
                     <Text style={[styles.degree, styles.white]}>{degree}</Text>
-
+                    <Text onPress={() =>navigation.navigate('call', {phone})}>call me</Text>
+                    
                     <View style={{flexDirection:"row", gap:30, alignItems:'center'}}>
                         <View style={styles.costRating_container}>
                             <View>

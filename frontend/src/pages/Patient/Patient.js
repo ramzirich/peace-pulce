@@ -6,6 +6,7 @@ import { CustomColors } from "../../styles/color"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import LinearGradient from "react-native-linear-gradient"
 import { useSelector } from "react-redux"
+import { useNavigation } from "@react-navigation/native"
 
 
 export const PatientInfo =({route}) =>{
@@ -16,6 +17,7 @@ export const PatientInfo =({route}) =>{
     const [noteId, setNoteId] = useState(0)
     const [isEditing, setIsEditing] = useState(false);
     const imgUrl = `${config.imgUrl}${img_url}` 
+    const navigation = useNavigation();
 
     const handleEmailPress = () => {
         Linking.openURL(`mailto:${email}`);
@@ -80,6 +82,7 @@ export const PatientInfo =({route}) =>{
         >     
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Image source={{uri : imgUrl}} style={styles.imgUrl} />
+                <Text onPress={() =>navigation.navigate('call', {phone})}>call me</Text>
                 <View style={styles.profile}>
                     <View style={styles.fullname}>
                         <Text style={[styles.name, styles.white]}>{first_name} {last_name}</Text>

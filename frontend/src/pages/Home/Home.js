@@ -4,6 +4,7 @@ import { HeaderButton } from '../../reusable/components/headerButtons/HeaderButt
 import SwiperComponent from '../../reusable/components/swiper/SwiperComponenet';
 import FooterButtons from '../../reusable/components/footerButtons/footerButtons';
 import LinearGradient from 'react-native-linear-gradient';
+import { Text } from 'react-native-svg';
 
  
 const Home = ({navigation}) => {

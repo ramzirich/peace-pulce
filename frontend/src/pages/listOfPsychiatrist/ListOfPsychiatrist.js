@@ -23,7 +23,6 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         };
         fetchUserData(); 
     }, [])
-
     const users = doctors.map(doctor => ({
         about :doctor.about,
         id:doctor.id,
@@ -33,6 +32,7 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         first_name: doctor.user.first_name,
         last_name: doctor.user.last_name,
         img_url: doctor.user.img_url,
+        phone:doctor.user.phone
     }));
   
     return(
