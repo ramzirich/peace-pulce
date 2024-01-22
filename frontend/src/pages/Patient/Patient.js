@@ -1,4 +1,4 @@
-import { Image, Linking, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
+import { Image, Keyboard, Linking, ScrollView, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from "react-native"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
@@ -16,7 +16,6 @@ export const PatientInfo =({route}) =>{
     const [noteId, setNoteId] = useState(0)
     const [isEditing, setIsEditing] = useState(false);
     const imgUrl = `${config.imgUrl}${img_url}` 
-    console.log(noteId)
 
     const handleEmailPress = () => {
         Linking.openURL(`mailto:${email}`);
@@ -45,6 +44,35 @@ export const PatientInfo =({route}) =>{
         } 
         fetchUserData();
     }, [])
+
+    const startEditing = () => {
+        setIsEditing(true);
+      };
+    
+      const cancelEditing = () => {
+        setIsEditing(false);
+        setNote(note);
+      };
+
+      updateNote= async()=>{
+        try {
+            const authToken = await AsyncStorage.getItem('authToken');
+
+            const requestResponse = await axios.post(`${config.apiUrl}/doctor_note/update/${noteId}`,{
+                note: note
+            }, {
+                headers:{
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            setIsEditing(false);
+            Keyboard.dismiss();
+            const updatednoteFromApi = requestResponse.data.data.note;
+            setNote(updatednoteFromApi);
+          } catch (error) {
+            console.error('Error updating comment:', error.message);
+          }
+      }
 
     return(   
         <LinearGradient style={styles.big_container}
@@ -80,11 +108,40 @@ export const PatientInfo =({route}) =>{
                 </View>
 
                 {note  &&
-                    <View style={{paddingTop:30,paddingBottom:20}}>
-                        <View style={styles.noteContainer}>
-                            <Text>{note}</Text>
+                    <>
+                        <View style={{paddingTop:30,paddingBottom:20}}>
+                            <View style={styles.noteContainer}>
+                                <View style={styles.row_gap_ten}>
+                                    <TouchableOpacity onPress={startEditing}>
+                                        <Image style={styles.noteicon} source={require('../../../assets/images/edit.png')}/>
+                                    </TouchableOpacity>
+                                    {/* <TouchableOpacity onPress={() => onDelete()}>
+                                        <Image style={styles.noteicon} source={require('../../../assets/images/delete.png')}/>
+                                    </TouchableOpacity> */}
+                                </View>
+                            {isEditing ? (
+                                <TextInput
+                                    value={note}
+                                    onChangeText={(text) => setNote(text)}
+                                    multiline
+                                    autoFocus
+                                    />
+                                ) : (
+                                <Text style={styles.comment}>{note}</Text>
+                            )}
+                            {isEditing && (
+                                <View style={styles.row_gap_ten}>
+                                    <TouchableOpacity onPress={updateNote}>
+                                        <Image style={styles.noteicon} source={require('../../../assets/images/done.jpg')} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={cancelEditing}>
+                                        <Image style={styles.noteicon} source={require('../../../assets/images/cancel.jpg')} />
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+                            </View>
                         </View>
-                    </View>
+                    </>
                 }
         </ScrollView> 
         </LinearGradient>       
@@ -160,5 +217,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 2,
         elevation: 3,
+    },
+    row_gap_ten:{
+        flexDirection:'row',
+        gap:10,
+    },
+    noteicon:{
+        height:20,
+        width:20,
     }
 })
