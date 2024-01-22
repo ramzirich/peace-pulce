@@ -17,6 +17,7 @@ export const PatientInfo =({route}) =>{
     const [typedNote, setTypedNote] = useState(null);
     const [noteId, setNoteId] = useState(0)
     const [isEditing, setIsEditing] = useState(false);
+    const [isVisibleNote, setIsVisibleNote] = useState(false)
     const imgUrl = `${config.imgUrl}${img_url}` 
     const navigation = useNavigation();
 
@@ -120,6 +121,37 @@ export const PatientInfo =({route}) =>{
                     </Text>
                 </View>
 
+                {
+                    !note &&
+                        <>
+                            <View style={{paddingTop:'8%'}}>
+                                <View>
+                                    <Text style={[styles.white, styles.text]} 
+                                        onPress={() =>setIsVisibleNote(!isVisibleNote)}
+                                    >
+                                    Add Notes
+                                    </Text>
+                                </View>
+                                <TouchableOpacity style={styles.postBtn}>
+                                    <Text style={[styles.white, styles.text]} >POST</Text>
+                                </TouchableOpacity>
+                            </View>
+                            {isVisibleNote && 
+                                <View style={{paddingTop:"5%"}}>
+                                    <View style={styles.noteContainerType}>
+                                    <TextInput
+                                        value={typedNote}
+                                        onChangeText={(text) => setTypedNote(text)}
+                                        multiline
+                                        // autoFocus
+                                        style={{height:150, width:'100%', color:CustomColors.white}}
+                                    />
+                                    </View>
+                                </View>
+                            }
+                        </>      
+                }
+
                 {note  &&
                     <>
                         <View style={{paddingTop:30,paddingBottom:20}}>
@@ -139,7 +171,7 @@ export const PatientInfo =({route}) =>{
                                     onChangeText={(text) => setNote(text)}
                                     multiline
                                     autoFocus
-                                    />
+                                />
                                 ) : (
                                 <View style={{paddingTop:10}}>
                                     <Text style={styles.comment}>{note}</Text>
@@ -256,5 +288,18 @@ const styles = StyleSheet.create({
         fontSize:16,
         fontWeight:'500',
         color:"black"
+    },
+    noteContainerType:{
+        borderWidth:1, 
+        borderColor:"#e782f5", 
+        paddingHorizontal:20, 
+        borderRadius:20
+    },
+    postBtn:{
+        height:25,
+        width:25,
+        backgroundColor: '#8962f3',
+        alignItems:'center',
+        justifyContent:'center'
     }
 })
