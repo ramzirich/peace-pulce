@@ -17,6 +17,16 @@ export const HeaderButton = ({navigation}) =>{
                     />
                 </>
             }
+            {userInfo.role_id ===2 &&
+                <>
+                    <Square tag="Patients" onPress={() =>navigation.navigate('psychiatrists')}
+                        url={require('../../../../assets/headerImages/patient.jpg')}
+                    />
+                    <Square tag="Request" onPress={() =>navigation.navigate('psychiatrists')}
+                        url={require('../../../../assets/headerImages/patient3.jpg')}
+                    /> 
+                </>
+            }
             <Square tag="Songs" onPress={() =>navigation.navigate('song')}
                 url={require('../../../../assets/headerImages/musicplayer3.jpg')}
             /> 
