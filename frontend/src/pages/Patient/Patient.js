@@ -14,6 +14,7 @@ export const PatientInfo =({route}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer);
     const [note, setNote] = useState(null);
     const [noteId, setNoteId] = useState(0)
+    const [isEditing, setIsEditing] = useState(false);
     const imgUrl = `${config.imgUrl}${img_url}` 
     console.log(noteId)
 
@@ -146,6 +147,18 @@ const styles = StyleSheet.create({
     },
     noteContainer:{
         padding:20,
-        backgroundColor:CustomColors.white
+        borderWidth: 1, 
+        borderColor: '#ddd',
+        borderRadius: 10,
+        padding:15, 
+        backgroundColor: CustomColors.white,
+        shadowColor: '#000',
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 2,
+        elevation: 3,
     }
 })
