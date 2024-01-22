@@ -35,7 +35,8 @@ export const ListOfPatients = ({navigation}) =>{
         first_name: patient.user.first_name,
         last_name: patient.user.last_name,
         img_url: patient.user.img_url,
-        phone : patient.user.phone
+        phone : patient.user.phone,
+        email : patient.user.email,
     }));
   
     return(
@@ -54,9 +55,7 @@ export const ListOfPatients = ({navigation}) =>{
                         return (
                             <TouchableOpacity 
                                 style={styles.small_container}
-                                // onPress={() =>{
-                                //     setCurrentIndex(index)
-                                // }}    
+                                onPress={()=>navigation.navigate( 'patient', {id:item.id, patientInfo: item})}    
                             >
                                 <View>
                                     <Image style={styles.img}

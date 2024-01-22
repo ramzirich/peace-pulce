@@ -16,6 +16,7 @@ import Profile from './src/pages/Profile/Profile';
 import Problem from './src/pages/Problem/Problem';
 import DoctorProfile from './src/pages/Profile/DoctorProfile';
 import { ListOfPatients } from './src/pages/ListOfPatients/ListOfPatients';
+import { PatientInfo } from './src/pages/Patient/Patient';
 
 
 function App(): React.JSX.Element {
@@ -36,7 +37,9 @@ function App(): React.JSX.Element {
           <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />  
           <Stack.Screen name="problem" component={Problem} options={{ headerShown: false }} /> 
           <Stack.Screen name="doctor-profile" component={DoctorProfile} options={{ headerShown: false }} />
-          <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} /> 
+          <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} />
+          <Stack.Screen name="patient" component={PatientInfo}  
+          options={{title: 'id', headerShown: false }}  />  
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
