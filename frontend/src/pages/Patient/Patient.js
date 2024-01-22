@@ -13,6 +13,7 @@ export const PatientInfo =({route}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
     const {first_name, last_name, img_url, phone, email} = patientInfo;
     const imgUrl = `${config.imgUrl}${img_url}` 
+    console.log(id)
 
     const handleEmailPress = () => {
         Linking.openURL(`mailto:${email}`);
@@ -27,11 +28,12 @@ export const PatientInfo =({route}) =>{
             try{
                 const authToken = await AsyncStorage.getItem('authToken');
 
-                // const requestResponse = await axios.get(`${config.apiUrl}/doctor_request/${id}`,{
-                //     headers:{
-                //         'Authorization': `Bearer ${authToken}`
-                //     }
-                // });          
+                const requestResponse = await axios.get(`${config.apiUrl}/doctor_note/${id}`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });  
+                console.log(requestResponse.data)         
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
