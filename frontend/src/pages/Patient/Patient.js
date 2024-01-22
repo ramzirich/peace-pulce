@@ -10,10 +10,12 @@ import { useSelector } from "react-redux"
 
 export const PatientInfo =({route}) =>{
     const {id, patientInfo} = route.params;
-    const {userInfo} = useSelector(state => state.userInfoReducer)
     const {first_name, last_name, img_url, phone, email} = patientInfo;
+    const {userInfo} = useSelector(state => state.userInfoReducer);
+    const [note, setNote] = useState(null);
+    const [noteId, setNoteId] = useState(0)
     const imgUrl = `${config.imgUrl}${img_url}` 
-    console.log(id)
+    console.log(noteId)
 
     const handleEmailPress = () => {
         Linking.openURL(`mailto:${email}`);
@@ -33,14 +35,15 @@ export const PatientInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });  
-                console.log(requestResponse.data)         
+                // console.log("eff", requestResponse.data.id)
+                setNoteId(requestResponse.data.id)
+                setNote(requestResponse.data.note)        
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
         } 
         fetchUserData();
     }, [])
-
 
     return(   
         <LinearGradient style={styles.big_container}
@@ -74,6 +77,14 @@ export const PatientInfo =({route}) =>{
                         </Text>
                     </View>
                 </View>
+
+                {note  &&
+                    <View style={{paddingTop:30,paddingBottom:20}}>
+                        <View style={styles.noteContainer}>
+                            <Text>{note}</Text>
+                        </View>
+                    </View>
+                }
         </ScrollView> 
         </LinearGradient>       
     ) 
@@ -132,5 +143,9 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:16
+    },
+    noteContainer:{
+        padding:20,
+        backgroundColor:CustomColors.white
     }
 })
