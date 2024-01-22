@@ -82,7 +82,6 @@ export const PatientInfo =({route}) =>{
         >     
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Image source={{uri : imgUrl}} style={styles.imgUrl} />
-                <Text onPress={() =>navigation.navigate('call', {phone})}>call me</Text>
                 <View style={styles.profile}>
                     <View style={styles.fullname}>
                         <Text style={[styles.name, styles.white]}>{first_name} {last_name}</Text>
@@ -100,14 +99,24 @@ export const PatientInfo =({route}) =>{
                         </Text>
                     </View>
                     <View style={styles.row_gap}>
-                        <Image source={require('../../../assets/images/email.png')} 
-                            style={[styles.icon,styles.icon_size]}/>
-                        <Text 
-                            style={[styles.white, styles.text]} onPress={handleEmailPress}
-                        >
-                            {email}
-                        </Text>
+                        <Image source={require('../../../assets/images/phone.png')} 
+                            style={[styles.icon]}/>
+                            <Text style={[styles.white, styles.text]} 
+                                onPress={() =>navigation.navigate('call', {phone})}
+                            >
+                                In App Call
+                            </Text>
                     </View>
+                </View>
+
+                <View style={[styles.row_gap, {paddingVertical:30}]}>
+                    <Image source={require('../../../assets/images/email.png')} 
+                        style={[styles.icon,styles.icon_size]}/>
+                    <Text 
+                        style={[styles.white, styles.text]} onPress={handleEmailPress}
+                    >
+                        {email}
+                    </Text>
                 </View>
 
                 {note  &&

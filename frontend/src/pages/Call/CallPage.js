@@ -345,7 +345,9 @@ export default function CallPage({route}) {
     //       </>
     //     </TouchableWithoutFeedback>
     //   </KeyboardAvoidingView>
-    <LinearGradient colors={['#373b39','#214ae2', '#4752e2','#8962f3']}  style={{flex:1}} >
+    <LinearGradient colors={['#373b39','#214ae2', '#4752e2','#8962f3']}  
+      style={{flex:1, alignItems:"center", justifyContent:'center'}} 
+    >
            <TouchableOpacity
                 onPress={() => {
                   setType('OUTGOING_CALL');
@@ -357,11 +359,12 @@ export default function CallPage({route}) {
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderRadius: 12,
-                  marginTop: 16,
+                  width:"50%",
+                  height:'12%'
                 }}>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: 24,
                     color: '#FFFFFF',
                   }}>
                   Call Now
