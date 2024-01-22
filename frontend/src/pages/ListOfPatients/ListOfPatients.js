@@ -40,7 +40,7 @@ export const ListOfPatients = ({navigation}) =>{
   
     return(
         <LinearGradient 
-            colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
+            colors={['black','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
             <View style={styles.logo_container}>
