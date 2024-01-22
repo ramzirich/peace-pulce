@@ -14,6 +14,7 @@ export const PatientInfo =({route}) =>{
     const {first_name, last_name, img_url, phone, email} = patientInfo;
     const {userInfo} = useSelector(state => state.userInfoReducer);
     const [note, setNote] = useState(null);
+    const [typedNote, setTypedNote] = useState(null);
     const [noteId, setNoteId] = useState(0)
     const [isEditing, setIsEditing] = useState(false);
     const imgUrl = `${config.imgUrl}${img_url}` 
@@ -123,13 +124,14 @@ export const PatientInfo =({route}) =>{
                     <>
                         <View style={{paddingTop:30,paddingBottom:20}}>
                             <View style={styles.noteContainer}>
-                                <View style={styles.row_gap_ten}>
+                                <View style={styles.spacebtw}>
+                                    <View>
+                                        <Text style={styles.noteText}>Notes</Text>
+                                    </View>
                                     <TouchableOpacity onPress={startEditing}>
-                                        <Image style={styles.noteicon} source={require('../../../assets/images/edit.png')}/>
+                                        <Image style={[styles.noteicon]} 
+                                            source={require('../../../assets/images/edit.png')}/>
                                     </TouchableOpacity>
-                                    {/* <TouchableOpacity onPress={() => onDelete()}>
-                                        <Image style={styles.noteicon} source={require('../../../assets/images/delete.png')}/>
-                                    </TouchableOpacity> */}
                                 </View>
                             {isEditing ? (
                                 <TextInput
@@ -139,15 +141,23 @@ export const PatientInfo =({route}) =>{
                                     autoFocus
                                     />
                                 ) : (
-                                <Text style={styles.comment}>{note}</Text>
+                                <View style={{paddingTop:10}}>
+                                    <Text style={styles.comment}>{note}</Text>
+                                </View>
+                               
                             )}
                             {isEditing && (
-                                <View style={styles.row_gap_ten}>
-                                    <TouchableOpacity onPress={updateNote}>
-                                        <Image style={styles.noteicon} source={require('../../../assets/images/done.jpg')} />
-                                    </TouchableOpacity>
+                                <View style={styles.spacebtw}>
                                     <TouchableOpacity onPress={cancelEditing}>
-                                        <Image style={styles.noteicon} source={require('../../../assets/images/cancel.jpg')} />
+                                        <Image style={styles.noteicon} 
+                                            source={require('../../../assets/images/cancel.jpg')} 
+                                        />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={updateNote}>
+                                        <Image style={styles.noteicon} 
+                                            source={require('../../../assets/images/done.jpg')}     
+                                        />
+                                        {/* <Text>-&gt;</Text> */}
                                     </TouchableOpacity>
                                 </View>
                             )}
@@ -201,6 +211,10 @@ const styles = StyleSheet.create({
         gap:7,
         alignItems:'center'
     },
+    flexEnd:{
+        flexDirection:'row',
+        justifyContent:'flex-end'
+    },
     icon:{
         backgroundColor:'transparent', 
         width:16, 
@@ -217,7 +231,7 @@ const styles = StyleSheet.create({
     noteContainer:{
         padding:20,
         borderWidth: 1, 
-        borderColor: '#ddd',
+        borderColor: '#e782f5',
         borderRadius: 10,
         padding:15, 
         backgroundColor: CustomColors.white,
@@ -237,5 +251,10 @@ const styles = StyleSheet.create({
     noteicon:{
         height:20,
         width:20,
+    },
+    noteText:{
+        fontSize:16,
+        fontWeight:'500',
+        color:"black"
     }
 })
