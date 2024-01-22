@@ -207,7 +207,7 @@ export default CreateProblem = () =>{
                 />
                 <View>
                     <Text style={styles.label} onPress={validateForAi}>
-                        Need help Click here to use our Ai 😎
+                        Need help Click here to use our AI 😎
                     </Text>
                     {generateResponse == true && <Text style={styles.label}>Generate Response..</Text>}
                     {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}

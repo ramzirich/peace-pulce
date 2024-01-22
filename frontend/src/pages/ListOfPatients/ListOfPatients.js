@@ -1,22 +1,28 @@
-import { FlatList, ScrollView, Text, View } from "react-native"
-import { CustomHeader } from "../../reusable/components/header/CustomHeader"
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
 import React, { useEffect } from "react"
 import axios from "axios"
 import { config } from "../../../config"
-import { Card } from "../../reusable/components/card/Card"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
 export const ListOfPatients = ({navigation}) =>{
-    const [doctors, setDoctors] = React.useState([]);
+    const [patients, setPatients] = React.useState([]);
 
     useEffect(() =>{
         const fetchUserData = async() =>{
             try{
-                const response =await  axios.get(`${config.apiUrl}/doctors`);
-                setDoctors(response.data)
+                const auth = await AsyncStorage.getItem('authToken')
+                const response =await  axios.get(`${config.apiUrl}/patients_request`,
+                    {
+                        headers:{
+                            "Authorization" : `Bearer ${auth}`
+                        }
+                    }
+                );
+                setPatients(response.data)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -24,15 +30,12 @@ export const ListOfPatients = ({navigation}) =>{
         fetchUserData(); 
     }, [])
 
-    const users = doctors.map(doctor => ({
-        about :doctor.about,
-        id:doctor.id,
-        hourly_rate: doctor.hourly_rate,
-        degree: doctor.degree,
-        specialization: doctor.specialization,
-        first_name: doctor.user.first_name,
-        last_name: doctor.user.last_name,
-        img_url: doctor.user.img_url,
+    const users = patients.map(patient => ({
+        id:patient.user.id,
+        first_name: patient.user.first_name,
+        last_name: patient.user.last_name,
+        img_url: patient.user.img_url,
+        phone : patient.user.phone
     }));
   
     return(
@@ -40,20 +43,66 @@ export const ListOfPatients = ({navigation}) =>{
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
-            {doctors.length===0?     
+            <View style={styles.logo_container}>
+                <Image source={require('../../../assets/images/logo22.png')} style={styles.img_logo} />
+            </View>
+            {patients.length===0?     
                 <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
-                <View style={{alignItems:'center', marginTop:20}}>
-                    <FlatList
+                <FlatList data={users}
                     showsVerticalScrollIndicator={false}
-                        data={users}
-                        renderItem={({item})=>{
-                        return <Card item={item} dr='Dr' navigation={navigation} pathName='psychiatrist'/>
-                        }}
-                        keyExtractor={(item) => item.id }
-                        contentContainerStyle={{ paddingBottom: 20 }} 
-                    />
-                </View> 
+                    renderItem={({item, index})=>{
+                        return (
+                            <TouchableOpacity 
+                                style={styles.small_container}
+                                // onPress={() =>{
+                                //     setCurrentIndex(index)
+                                // }}    
+                            >
+                                <View>
+                                    <Image style={styles.img}
+                                        source={{uri : `${config.imgUrl}${item.img_url}`}} />
+                                </View>
+                                <View>
+                                    <Text style={styles.title}>{item.first_name} {item.last_name}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )
+                    }}
+                />
             }
         </LinearGradient>
     )
 } 
+
+const styles = StyleSheet.create({
+    logo_container:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:'center',
+        flex:1,
+    },
+    img_logo:{
+        width:'100%',
+        height:"100%"
+    },
+    small_container:{
+        height:70,
+        width:'100%',
+        borderBottomWidth: 1,
+        borderTopWidth: 1,
+        borderColor: '#8b62e9',
+        paddingHorizontal:20,
+        paddingVertical:10,
+        flexDirection:'row',
+        alignItems:'center',
+        gap:10
+    },
+    img:{
+        height:50,
+        width:50,
+        borderRadius:5
+    },
+    title:{
+        color:'white'
+    },
+})

@@ -1,7 +1,6 @@
 import { Image, StyleSheet, View } from "react-native"
 import { Square } from "../../elements/square/Square"
 import { useSelector } from "react-redux"
-// import { useNavigate } from "react-router-dom"
 
 export const HeaderButton = ({navigation}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
@@ -23,7 +22,7 @@ export const HeaderButton = ({navigation}) =>{
                         url={require('../../../../assets/headerImages/patient.jpg')}
                     />
                     <Square tag="Request" onPress={() =>navigation.navigate('request')}
-                        url={require('../../../../assets/headerImages/patient3.jpg')}
+                        url={require('../../../../assets/headerImages/request.jpg')}
                     /> 
                 </>
             }

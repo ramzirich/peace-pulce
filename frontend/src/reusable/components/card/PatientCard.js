@@ -2,8 +2,8 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
 import { config } from "../../../../config";
 
-export const Card = ({dr =null, item, navigation, pathName}) =>{
-    const { first_name, last_name, about, img_url, id, specialization } = item;
+export const PCard = ({dr =null, item, navigation, pathName}) =>{
+    const { first_name, last_name, about, img_url, id, phone} = item;
     const imagePath = `${config.imgUrl}${img_url}`;
    
     return(
@@ -15,11 +15,9 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
             <View style={styles.text_right}>
                 <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
                 {specialization && <Text style={styles.specialization}>{specialization}</Text>} 
-                {about && 
-                    <View style={styles.info}>
-                        <Text numberOfLines={5} style={{color:CustomColors.white}}>{about}</Text>     
-                    </View>
-                }     
+                <View style={styles.info}>
+                    <Text numberOfLines={5} style={{color:CustomColors.white}}>{about}</Text>     
+                </View>     
             </View>
         </TouchableOpacity>
     )
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
         height:175,
         width:'100%',
         backgroundColor:CustomColors.black,
-        alignSelf: "flex-end",
+        alignSelf: "flex-end"
     },
     specialization:{
         fontSize:12,
