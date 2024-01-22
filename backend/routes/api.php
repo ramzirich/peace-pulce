@@ -150,10 +150,10 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::get('doctor_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
 });
 
-Route::middleware(['auth.user', 'patient.check'])->group(function () {
-    Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
-    Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
-    Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllDoctorRequestForPatient']);
+Route::middleware(['auth.user', 'doctor.check'])->group(function () {
+    // Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
+    // Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
+    Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllRequestForDoctor']);
 });
 
 Route::middleware('auth.user')->group(function () {
