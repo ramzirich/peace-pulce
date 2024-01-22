@@ -19,10 +19,10 @@ export const HeaderButton = ({navigation}) =>{
             }
             {userInfo.role_id ===2 &&
                 <>
-                    <Square tag="Patients" onPress={() =>navigation.navigate('psychiatrists')}
+                    <Square tag="Patients" onPress={() =>navigation.navigate('patients')}
                         url={require('../../../../assets/headerImages/patient.jpg')}
                     />
-                    <Square tag="Request" onPress={() =>navigation.navigate('psychiatrists')}
+                    <Square tag="Request" onPress={() =>navigation.navigate('request')}
                         url={require('../../../../assets/headerImages/patient3.jpg')}
                     /> 
                 </>

@@ -15,6 +15,7 @@ import VideoChat from './src/pages/VideoCat/VideoChat';
 import Profile from './src/pages/Profile/Profile';
 import Problem from './src/pages/Problem/Problem';
 import DoctorProfile from './src/pages/Profile/DoctorProfile';
+import { ListOfPatients } from './src/pages/ListOfPatients/ListOfPatients';
 
 
 function App(): React.JSX.Element {
@@ -34,7 +35,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="video-chat" component={VideoChat} options={{ headerShown: false }} />  
           <Stack.Screen name="profile" component={Profile} options={{ headerShown: false }} />  
           <Stack.Screen name="problem" component={Problem} options={{ headerShown: false }} /> 
-          <Stack.Screen name="doctor-profile" component={DoctorProfile} options={{ headerShown: false }} />   
+          <Stack.Screen name="doctor-profile" component={DoctorProfile} options={{ headerShown: false }} />
+          <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} /> 
         </Stack.Navigator>
       </NavigationContainer>
      </Provider>
