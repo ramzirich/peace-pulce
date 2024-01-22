@@ -24,10 +24,10 @@ class DoctorHandleRequestController extends Controller
         return $this->userSpecificGenericManager->getByColumn("doctor_id", $id, 'patient_id', $with=['doctor']);   
     }
 
-    public function getAllDoctorRequestForPatient(Request $request){
+    public function getAllRequestForDoctor(Request $request){
         $request->merge(['patient_id' => $this->user->id]);
 
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $with=['doctor']);
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $with=['user']);
         if(!$model){
             return [];
         }

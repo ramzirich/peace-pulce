@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DoctorHandleRequestController;
 use App\Http\Controllers\DoctorListAndIndividualController;
 use App\Http\Controllers\FavoritePlaceController;
 use App\Http\Controllers\FavoriteHobbyController;
@@ -147,6 +148,12 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::post('doctor_request/massDelete',  [PatientRequestDoctorController::class, 'massDeleteDoctorRequest']);
     Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
     Route::get('doctor_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
+});
+
+Route::middleware(['auth.user', 'patient.check'])->group(function () {
+    Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
+    Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
+    Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllDoctorRequestForPatient']);
 });
 
 Route::middleware('auth.user')->group(function () {
