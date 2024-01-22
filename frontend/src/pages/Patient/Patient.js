@@ -124,7 +124,7 @@ export const PatientInfo =({route}) =>{
                 {
                     !note &&
                         <>
-                            <View style={{paddingTop:'8%'}}>
+                            <View style={styles.titleBtn}>
                                 <View>
                                     <Text style={[styles.white, styles.text]} 
                                         onPress={() =>setIsVisibleNote(!isVisibleNote)}
@@ -132,18 +132,22 @@ export const PatientInfo =({route}) =>{
                                     Add Notes
                                     </Text>
                                 </View>
-                                <TouchableOpacity style={styles.postBtn}>
-                                    <Text style={[styles.white, styles.text]} >POST</Text>
-                                </TouchableOpacity>
+                                {
+                                    typedNote &&
+                                    <TouchableOpacity style={styles.postBtn}>
+                                        <Text style={[styles.white,{fontSize:14}]} >POST</Text>
+                                    </TouchableOpacity>
+                                }
+                                
                             </View>
                             {isVisibleNote && 
-                                <View style={{paddingTop:"5%"}}>
+                                <View style={{paddingTop:20}}>
                                     <View style={styles.noteContainerType}>
                                     <TextInput
                                         value={typedNote}
                                         onChangeText={(text) => setTypedNote(text)}
                                         multiline
-                                        // autoFocus
+                                        autoFocus
                                         style={{height:150, width:'100%', color:CustomColors.white}}
                                     />
                                     </View>
@@ -297,9 +301,17 @@ const styles = StyleSheet.create({
     },
     postBtn:{
         height:25,
-        width:25,
+        width:50,
         backgroundColor: '#8962f3',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        borderRadius:7
+    },
+    titleBtn:{
+        paddingTop:'8%',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        padding:5
     }
 })
