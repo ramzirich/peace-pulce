@@ -24,7 +24,7 @@ class DoctorNoteController extends Controller
     }
 
     public function getDoctorNote($id){
-        return $this->userSpecificGenericManager->getByColumn('user_id', $id, "doctor_id");   
+        return $this->userSpecificGenericManager->getByColumn('patient_id', $id, "doctor_id");   
     } 
     public function createDoctorNote(Request $request){
         try{
