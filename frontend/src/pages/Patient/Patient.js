@@ -39,7 +39,6 @@ export const PatientInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });  
-                // console.log("eff", requestResponse.data.id)
                 setNoteId(requestResponse.data.id)
                 setNote(requestResponse.data.note)        
             }catch(error){
@@ -58,25 +57,41 @@ export const PatientInfo =({route}) =>{
         setNote(note);
       };
 
-      updateNote= async()=>{
-        try {
-            const authToken = await AsyncStorage.getItem('authToken');
+    updateNote= async()=>{
+    try {
+        const authToken = await AsyncStorage.getItem('authToken');
 
-            const requestResponse = await axios.post(`${config.apiUrl}/doctor_note/update/${noteId}`,{
-                note: note
+        const requestResponse = await axios.post(`${config.apiUrl}/doctor_note/update/${noteId}`,{
+            note: note
+        }, {
+            headers:{
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+        setIsEditing(false);
+        Keyboard.dismiss();
+        const updatednoteFromApi = requestResponse.data.data.note;
+        setNote(updatednoteFromApi);
+        } catch (error) {
+        console.error('Error updating comment:', error.message);
+        }
+    }
+
+    addNote = async() =>{
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+            const requestResponse = await axios.post(`${config.apiUrl}/doctor_note/create`,{
+                note: typedNote,
+                patient_id : id
             }, {
                 headers:{
                     'Authorization': `Bearer ${authToken}`
                 }
             });
-            setIsEditing(false);
-            Keyboard.dismiss();
-            const updatednoteFromApi = requestResponse.data.data.note;
-            setNote(updatednoteFromApi);
-          } catch (error) {
-            console.error('Error updating comment:', error.message);
-          }
-      }
+        }catch(error){
+            console.error("Error in posting data: ", error)
+        }
+    }
 
     return(   
         <LinearGradient style={styles.big_container}
@@ -134,7 +149,9 @@ export const PatientInfo =({route}) =>{
                                 </View>
                                 {
                                     typedNote &&
-                                    <TouchableOpacity style={styles.postBtn}>
+                                    <TouchableOpacity style={styles.postBtn}
+                                        onPress={addNote}    
+                                    >
                                         <Text style={[styles.white,{fontSize:14}]} >POST</Text>
                                     </TouchableOpacity>
                                 }
