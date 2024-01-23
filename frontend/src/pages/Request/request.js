@@ -1,6 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { config } from "../../../config"
 import LinearGradient from "react-native-linear-gradient"
@@ -10,12 +10,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export const RequestFromPatient = ({navigation}) =>{
     const [patients, setPatients] = React.useState([]);
+    const [acceptSuccess, setAcceptSuccess] = useState(false);
 
     useEffect(() =>{
         const fetchUserData = async() =>{
             try{
                 const auth = await AsyncStorage.getItem('authToken')
-                const response =await  axios.get(`${config.apiUrl}/patients_request`,
+                const response =await  axios.get(`${config.apiUrl}/patient_request_pending`,
                     {
                         headers:{
                             "Authorization" : `Bearer ${auth}`
@@ -28,7 +29,7 @@ export const RequestFromPatient = ({navigation}) =>{
             }
         };
         fetchUserData(); 
-    }, [])
+    }, [acceptSuccess])
 
     const users = patients.map(patient => ({
         id:patient.user.id,
@@ -37,7 +38,26 @@ export const RequestFromPatient = ({navigation}) =>{
         img_url: patient.user.img_url,
         phone : patient.user.phone,
         email : patient.user.email,
+        id_request:patient.id
     }));
+
+    acceptRequest = async(id) =>{
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+            const response = await axios.post(`${config.apiUrl}/doctor_accept_request/update/${id}`,
+            {
+                request : 'accepted'
+            },
+            {
+                headers:{
+                    "Authorization" : `Bearer ${authToken}`
+                }
+            });
+            setAcceptSuccess(!acceptSuccess)
+        }catch(error){
+            console.error("Error accepting request: ", error)
+        }
+    }
   
     return(
         <LinearGradient 
@@ -53,18 +73,34 @@ export const RequestFromPatient = ({navigation}) =>{
                     showsVerticalScrollIndicator={false}
                     renderItem={({item, index})=>{
                         return (
-                            <TouchableOpacity 
-                                style={styles.small_container}
-                                onPress={()=>navigation.navigate( 'patient', {id:item.id, patientInfo: item})}    
+                            <View 
+                                style={styles.small_container}  
                             >
-                                <View>
-                                    <Image style={styles.img}
-                                        source={{uri : `${config.imgUrl}${item.img_url}`}} />
+                                <View style={styles.spaceBtn}>
+                                    <View>
+                                        <Image style={styles.img}
+                                            source={{uri : `${config.imgUrl}${item.img_url}`}} />
+                                    </View>
+                                    <View>
+                                        <Text style={styles.title}>{item.first_name} {item.last_name}</Text>
+                                    </View>
                                 </View>
-                                <View>
-                                    <Text style={styles.title}>{item.first_name} {item.last_name}</Text>
+                                
+                                <View style={styles.gap}>
+                                    <TouchableOpacity onPress={() =>acceptRequest(item.id_request)}>
+                                            {/* <Image style={styles.noteicon} 
+                                                source={require('../../../assets/images/done.jpg')} 
+                                            /> */}
+                                            <Text style={{color:'white'}}>✔️</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity>
+                                            {/* <Image style={styles.noteicon} 
+                                                source={require('../../../assets/images/done.jpg')}     
+                                            /> */}
+                                            <Text style={styles.x}>X</Text>
+                                        </TouchableOpacity>
                                 </View>
-                            </TouchableOpacity>
+                            </View>
                         )
                     }}
                 />
@@ -94,7 +130,7 @@ const styles = StyleSheet.create({
         paddingVertical:10,
         flexDirection:'row',
         alignItems:'center',
-        gap:10
+        justifyContent: 'space-between'
     },
     img:{
         height:50,
@@ -104,4 +140,22 @@ const styles = StyleSheet.create({
     title:{
         color:'white'
     },
+    spaceBtn:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:10
+    },
+    gap:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:15
+    },
+    noteicon:{
+        height:20,
+        width:20,
+    },
+    x:{
+        color:"red",
+        fontSize:16
+    }
 })
