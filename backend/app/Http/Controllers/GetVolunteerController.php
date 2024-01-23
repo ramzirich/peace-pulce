@@ -18,11 +18,11 @@ class GetVolunteerController extends Controller
         $this->genericManager = new GenericManager($this->volunteer);
     }
 
-    public function getDoctor($id){
+    public function getVolunteer($id){
         return $this->genericManager->findById($id, ['user']);
     }
 
-    public function getListOfDoctors(Request $request){
+    public function getListOfVolunteers(Request $request){
         return $this->genericManager->getAll($request, ['user']);
     }
 
