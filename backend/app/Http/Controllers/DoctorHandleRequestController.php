@@ -45,4 +45,9 @@ class DoctorHandleRequestController extends Controller
         }
         return $model;
     }
+
+    public function acceptRequest($id, Request $request){
+        $request['request'] = 'accepted';
+        return $this->userSpecificGenericManager->updateForSpecificUser($request, $id, 'doctor_id');
+    }
 }
