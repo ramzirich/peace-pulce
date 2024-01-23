@@ -1,11 +1,15 @@
+import { FlatList, ScrollView, Text, View } from "react-native"
+import { CustomHeader } from "../../reusable/components/header/CustomHeader"
+import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
+import React, { useEffect } from "react"
+import axios from "axios"
 import { config } from "../../../config"
 import { Card } from "../../reusable/components/card/Card"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
 
-
 export const ListOfVolunteer = ({navigation}) =>{
-    const [volunteers, setVolunteers] = React.useState([]);
+    const [volunteers, setVolunteers] = React.useState(null);
 
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -18,22 +22,29 @@ export const ListOfVolunteer = ({navigation}) =>{
         };
         fetchUserData(); 
     }, [])
-    const users = volunteers.map(volunteer => ({
-        about :volunteer.about,
-        id:volunteer.id,
-        first_name: volunteer.user.first_name,
-        last_name: volunteer.user.last_name,
-        img_url: volunteer.user.img_url,
-        phone:volunteer.user.phone
-    }));
+
+    let users=[]
+    if(volunteers){
+        users = volunteers.map(volunteer => ({
+            about :volunteer.about,
+            id:volunteer.id,
+            first_name: volunteer.user.first_name,
+            last_name: volunteer.user.last_name,
+            img_url: volunteer.user.img_url,
+            phone:volunteer.user.phone
+        }));
+    }
+    
   
     return(
         <LinearGradient 
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
-            {doctors.length===0?     
+            {volunteers == null? 
                 <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
+                volunteers.length===0?     
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>No Volunteers</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
                     showsVerticalScrollIndicator={false}
