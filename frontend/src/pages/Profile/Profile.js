@@ -12,10 +12,10 @@ import { setImgUrl, setUserInfo } from "../../redux/actions/userActions"
 import { Updatevalidation } from "./UpdateValidation"
 
 export default Profile = ({navigation}) =>{
-    const [image, setImage] = useState(null)
-    const [imageuri, setImageuri] = useState(null)
     const [errors, setErrors] = useState({});
     const {userInfo} = useSelector(state => state.userInfoReducer);
+    const [imageuri, setImageuri] = useState(null)
+    const [image, setImage] = useState(userInfo.img_url)
     const [inputs, setInputs] = useState({
         email: userInfo.email,
         first_name: userInfo.first_name,
@@ -27,7 +27,7 @@ export default Profile = ({navigation}) =>{
 
     const dispatch = useDispatch();
 
-    useEffect(() =>{
+     useEffect(() =>{
         const uploadImage = async () => {
             if(image != null){ 
                 try {
@@ -49,17 +49,19 @@ export default Profile = ({navigation}) =>{
                         if (response.status === 200) {
                             const newImgUrl = "images/" + response.data.data;
                             dispatch(setImgUrl(newImgUrl));
+                            setImage(newImgUrl)
                             console.log('Image uploaded successfully');
                             } else {
                             console.error('Error uploading image. Server responded with:', response);
                             }
                     } catch (error) {
-                        console.error('Error uploading image:', error);
+                        // console.error('Error uploading image:', error);
+                        // throw
                     }
             }    
         };
         uploadImage();
-    },[image])
+    },[imageuri])
 
     const pickImage = async() => {
         let options = {
@@ -71,7 +73,7 @@ export default Profile = ({navigation}) =>{
             setImage(response)
             setImageuri(response.assets[0].uri)
         })
-       
+       uploadImage()
     };
 
     const validate = () => {
@@ -109,25 +111,33 @@ export default Profile = ({navigation}) =>{
     const handleError = (error, input) => {
         setErrors(prevState => ({...prevState, [input]: error}));
     };
-
+    // console.log(imageuri)
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
                 <View style={styles.medium_container}>
                     <View style={[styles.spacebtw,{alignItems:'center'}]}>
                         <TouchableOpacity onPress={pickImage}>
-                            {imageuri ? <Image source={{uri:imageuri}} style={styles.img} />
+                            {image? <Image source={{uri:`${config.imgUrl}${image}`}} style={styles.img} />
                                 :
                                 <Image  style={styles.img} 
-                                    source={{uri: `${config.imgUrl}${userInfo.img_url}`}}/>
+                                    // source={{uri: `${config.imgUrl}${userInfo.img_url}`}}/>
+                                    source={require('../../../assets/images/user.png')}/>
                             }
                         </TouchableOpacity>
-                        {userInfo.role_id==2 &&
+                        {userInfo.role_id==2  &&
                             <TouchableOpacity onPress={() => navigation.navigate('doctor-profile')}>
                                 <Image style={{height:60, width:60, tintColor:'white'}} 
                                     source={require('../../../assets/songImages/right.png')}/>
                             </TouchableOpacity>
                         }
+                        {userInfo.role_id==3  &&
+                            <TouchableOpacity onPress={() => navigation.navigate('volunteer-profile')}>
+                                <Image style={{height:60, width:60, tintColor:'white'}} 
+                                    source={require('../../../assets/songImages/right.png')}/>
+                            </TouchableOpacity>
+                        }
+
                     </View>
                     <View style={styles.small_container}>
                         <View style={styles.spacebtw}>
