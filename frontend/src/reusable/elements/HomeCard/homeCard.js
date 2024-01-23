@@ -28,7 +28,7 @@ export default homeCard = ({item, index, listCount}) =>{
         for (let i=0;i < item.text.length && !isImage; i++) {
             await setAsyncTimeout(() => {
                     setDisplayedText((prevText) => prevText + item.text.charAt(i));
-            }, 50);
+            }, 30);
         }
         for (let i=0;i < item.author.length && !isImage; i++) {
             await setAsyncTimeout(() => {
