@@ -219,6 +219,7 @@ export const PsychiatristInfo =({route}) =>{
                 <View style={styles.emoji_info}>
                     <View>
                         <Text style={styles.emojies}>😊</Text>
+                        {/* <Image source={require('../../../assets/images/smiley1.jpg')} style={{height:20, width:20}}/> */}
                     </View>
                     <View>
                         <Text style={styles.white}>{ratingDistribution['3.75-5']} votes</Text>
