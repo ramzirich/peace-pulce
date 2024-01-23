@@ -11,7 +11,7 @@ export default homeCard = ({item, index, listCount}) =>{
 
   useEffect(() => {
     if (!isImage) {
-        animateText();     
+        animateText();      
     }
     if(isImage && displayedText.length == item.text.length && displayedAuthor.length == item.author.length ){
         setDisplayedText('')
