@@ -19,7 +19,7 @@ class GenericManager{
         }      
     }
 
-    public function getAll($request = null, $with=[], $perPage = 10, 
+    public function getAll($request = null, $with=[], $perPage = 20, 
                             $page =1, $sortBy = null, $sortOrder = 'asc'){
         try{
             $data = $request? $request->json()->all() : [];
