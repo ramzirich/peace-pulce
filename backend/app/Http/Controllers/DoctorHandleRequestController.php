@@ -34,4 +34,15 @@ class DoctorHandleRequestController extends Controller
         }
         return $model;
     }
+
+    public function getAllPendingRequestForDoctor(Request $req){
+        $req->merge(['doctor_id' => $this->user->id]);
+        $req->merge(['request' => 'requested']);
+
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($req, $with=['user']);
+        if(!$model){
+            return [];
+        }
+        return $model;
+    }
 }
