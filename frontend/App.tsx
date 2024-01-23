@@ -19,6 +19,7 @@ import { ListOfPatients } from './src/pages/ListOfPatients/ListOfPatients';
 import { PatientInfo } from './src/pages/Patient/Patient';
 import CallPage from './src/pages/Call/CallPage';
 import { RequestFromPatient } from './src/pages/Request/request';
+import { ListOfVolunteer } from './src/pages/Volunteer/ListVolunteer';
 
 
 function App(): React.JSX.Element {
@@ -42,6 +43,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="call" component={CallPage} options={{ headerShown: false }} />
           <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} />
           <Stack.Screen name="request" component={RequestFromPatient} options={{ headerShown: false }} />
+          <Stack.Screen name="volunteers" component={ListOfVolunteer} options={{ headerShown: false }} />
           <Stack.Screen name="patient" component={PatientInfo}  
           options={{title: 'id', headerShown: false }}  />  
         </Stack.Navigator>
