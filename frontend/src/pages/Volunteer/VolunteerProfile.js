@@ -7,8 +7,8 @@ import { config } from "../../../config";
 
 export default VolunteerProfile = () =>{
     const [hobbies, setHobbies] = useState([]);
-    console.log(hobbies)
-    
+    const [places, setPlaces] = useState([])
+   
   const renderHobbies = () => {
     const rows = [];
     for (let i = 0; i < hobbies.length; i += 4) {
