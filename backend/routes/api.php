@@ -151,7 +151,7 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
 });
 
 Route::middleware(['auth.user', 'doctor.check'])->group(function () {
-    Route::get('doctor_request/pending',  [PatientRequestDoctorController::class, 'getAllPendingRequestForDoctor']);
+    Route::get('patient_request_pending',  [DoctorHandleRequestController::class, 'getAllPendingRequestForDoctor']);
     Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllRequestForDoctor']);
 });
 
