@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     img:{
         height:380,
-        width:200,
+        width:240,
     },
     cardContainer:{
         padding:20,
