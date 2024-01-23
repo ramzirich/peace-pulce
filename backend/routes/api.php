@@ -151,8 +151,7 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
 });
 
 Route::middleware(['auth.user', 'doctor.check'])->group(function () {
-    // Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
-    // Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
+    Route::get('doctor_request/pending',  [PatientRequestDoctorController::class, 'getAllPendingRequestForDoctor']);
     Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllRequestForDoctor']);
 });
 
