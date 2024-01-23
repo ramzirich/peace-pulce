@@ -20,47 +20,47 @@ class VolunteerController extends Controller
         $this->userSpecificGenericManager = new UserSpecificGenericManager($this->volunteer);
     }
 
-    public function getVolunteer(){
-        return $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, );   
-    }
+    // public function getVolunteer(){
+    //     return $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, );   
+    // }
 
-    public function createVolunteer(Request $request){
-        try{
-            $validationResponse = VolunteerRequest::createVolunteerValidation($request);
-            $responseData = json_decode($validationResponse->getContent(), true);
+    // public function createVolunteer(Request $request){
+    //     try{
+    //         $validationResponse = VolunteerRequest::createVolunteerValidation($request);
+    //         $responseData = json_decode($validationResponse->getContent(), true);
         
-            if($responseData['status'] != "success"){
-                return $responseData['errors'];
-            }
+    //         if($responseData['status'] != "success"){
+    //             return $responseData['errors'];
+    //         }
 
-            $volunteerObj = $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, ); 
-            if($volunteerObj){
-                return ExceptionMessages::Error("Bad Request", 400);
-            } 
+    //         $volunteerObj = $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id, ); 
+    //         if($volunteerObj){
+    //             return ExceptionMessages::Error("Bad Request", 400);
+    //         } 
             
-            return $this->userSpecificGenericManager->createWithSpecificUser($request);
+    //         return $this->userSpecificGenericManager->createWithSpecificUser($request);
 
-        }catch(\Exception $exception){
-            return ExceptionMessages::Error($exception->getMessage());
-        }
-    }
+    //     }catch(\Exception $exception){
+    //         return ExceptionMessages::Error($exception->getMessage());
+    //     }
+    // }
 
-    public function updateVolunteer(Request $request){
-        try{
-            $volunteerObj =  $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id);
-            if($volunteerObj){
-                $data  = $request->all();
-                $volunteerObj->fill($data);
-                $volunteerObj->save();
+    // public function updateVolunteer(Request $request){
+    //     try{
+    //         $volunteerObj =  $this->userSpecificGenericManager->getByColumn("user_id", $this->user->id);
+    //         if($volunteerObj){
+    //             $data  = $request->all();
+    //             $volunteerObj->fill($data);
+    //             $volunteerObj->save();
 
-                return response()->json([
-                    'status'=> 'success',
-                    'data'=> $volunteerObj
-                ]);
-            }
-            return ExceptionMessages::NotFound("Doctor");
-        }catch(\Exception $exception){
-            return ExceptionMessages::Error($exception->getMessage());
-        }
-    }
+    //             return response()->json([
+    //                 'status'=> 'success',
+    //                 'data'=> $volunteerObj
+    //             ]);
+    //         }
+    //         return ExceptionMessages::NotFound("Doctor");
+    //     }catch(\Exception $exception){
+    //         return ExceptionMessages::Error($exception->getMessage());
+    //     }
+    // }
 }
