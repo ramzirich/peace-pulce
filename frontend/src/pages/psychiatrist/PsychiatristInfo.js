@@ -193,6 +193,17 @@ export const PsychiatristInfo =({route}) =>{
                             <Text style={[{fontSize:12, fontWeight:300}, styles.white]}>${hourly_rate}/hr</Text>
                         </View>    
                     </View>
+                    <View style={{marginTop: 7, flexDirection:'row', alignItems:'center', gap:8}}>
+                        <View>
+                            <Image source={require('../../../assets/images/phone.png')} 
+                                    style={[styles.icon]}/>
+                        </View>
+                        <View>
+                            <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
+                                Call me
+                            </Text>
+                        </View>
+                    </View>
                 </View>
                 <View>
                     <Image source={{uri : imgUrl}} style={styles.imgUrl} />
@@ -202,18 +213,6 @@ export const PsychiatristInfo =({route}) =>{
             <View style={styles.aboutContainer}>
                 <Text style={styles.aboutheader}>About</Text>
                 <Text style={styles.about}>{about}</Text>
-            </View>
-
-            <View style={{marginTop: 15, flexDirection:'row', alignItems:'center', gap:8}}>
-                <View>
-                    <Image source={require('../../../assets/images/phone.png')} 
-                            style={[styles.icon]}/>
-                </View>
-                <View>
-                    <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
-                        Call me
-                    </Text>
-                </View>
             </View>
 
             <View style={styles.emojies_container}>
@@ -307,7 +306,7 @@ const styles = StyleSheet.create({
         borderRadius:60,
     },
     aboutContainer:{
-        paddingTop:20
+        paddingTop:15
     },
     aboutheader:{
         paddingBottom:5,
