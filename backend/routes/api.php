@@ -4,6 +4,7 @@ use App\Http\Controllers\DoctorHandleRequestController;
 use App\Http\Controllers\DoctorListAndIndividualController;
 use App\Http\Controllers\FavoritePlaceController;
 use App\Http\Controllers\FavoriteHobbyController;
+use App\Http\Controllers\GetVolunteerController;
 use App\Http\Controllers\HobbiesController;
 use App\Http\Controllers\HomeImagesController;
 use App\Http\Controllers\NeuroticismController;
@@ -135,6 +136,11 @@ Route::controller(HobbiesController::class)->group(function () {
 Route::controller(DoctorListAndIndividualController::class)->group(function () {
     Route::get('doctor/{id}', 'getDoctor');
     Route::get('doctors', 'getListOfDoctors');
+});
+
+Route::controller(GetVolunteerController::class)->group(function () {
+    Route::get('volunteer/{id}', 'getVolunteer');
+    Route::get('volunteers', 'getListOfVolunteers');
 });
 
 Route::controller(HomeImagesController::class)->group(function () {
