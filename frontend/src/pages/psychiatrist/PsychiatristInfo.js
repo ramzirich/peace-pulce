@@ -151,7 +151,6 @@ export const PsychiatristInfo =({route}) =>{
             colors={['#8962f3', '#4752e2','#214ae2']} 
         >     
             <ScrollView showsVerticalScrollIndicator={false}>
-           <TouchableOpacity style={{width:60, height:60, backgroundColor:'red'}}></TouchableOpacity>
             {/* <Image source={{uri : imgUrl}} style={styles.image} /> */}
             <View style={styles.profile}>
                 <View style={styles.fullname}>
@@ -159,7 +158,6 @@ export const PsychiatristInfo =({route}) =>{
                     <Text style={[styles.name, styles.white]}>{last_name}</Text>
                     <Text style={[styles.degree, styles.white]}>{specialization}</Text>
                     <Text style={[styles.degree, styles.white]}>{degree}</Text>
-                    <Text onPress={() =>navigation.navigate('call', {phone})}>call me</Text>
                     
                     <View style={{flexDirection:"row", gap:30, alignItems:'center'}}>
                         <View style={styles.costRating_container}>
@@ -204,6 +202,18 @@ export const PsychiatristInfo =({route}) =>{
             <View style={styles.aboutContainer}>
                 <Text style={styles.aboutheader}>About</Text>
                 <Text style={styles.about}>{about}</Text>
+            </View>
+
+            <View style={{marginTop: 15, flexDirection:'row', alignItems:'center', gap:8}}>
+                <View>
+                    <Image source={require('../../../assets/images/phone.png')} 
+                            style={[styles.icon]}/>
+                </View>
+                <View>
+                    <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
+                        Call me
+                    </Text>
+                </View>
             </View>
 
             <View style={styles.emojies_container}>
@@ -379,5 +389,11 @@ const styles = StyleSheet.create({
     },
     stars: {
         fontSize: 20,
+    },
+    icon:{
+        backgroundColor:'transparent', 
+        width:16, 
+        height:16, 
+        tintColor:'white'
     },
 })
