@@ -91,9 +91,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 2,
         elevation: 3,
+        paddingTop:8
     },
     img:{
-        height:340,
+        height:380,
         width:200,
     },
     cardContainer:{
