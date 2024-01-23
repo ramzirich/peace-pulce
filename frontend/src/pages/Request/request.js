@@ -58,6 +58,24 @@ export const RequestFromPatient = ({navigation}) =>{
             console.error("Error accepting request: ", error)
         }
     }
+
+    deleteRequest = async(id) =>{
+        try{
+            const authToken = await AsyncStorage.getItem('authToken');
+            const response = await axios.post(`${config.apiUrl}/doctor_request/delete/${id}`,
+            {
+                request : 'accepted'
+            },
+            {
+                headers:{
+                    "Authorization" : `Bearer ${authToken}`
+                }
+            });
+            setAcceptSuccess(!acceptSuccess)
+        }catch(error){
+            console.error("Error accepting request: ", error)
+        }
+    }
   
     return(
         <LinearGradient 
@@ -68,7 +86,7 @@ export const RequestFromPatient = ({navigation}) =>{
                 <Image source={require('../../../assets/images/logo22.png')} style={styles.img_logo} />
             </View>
             {patients.length===0?     
-                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}></Text> :
                 <FlatList data={users}
                     showsVerticalScrollIndicator={false}
                     renderItem={({item, index})=>{
@@ -93,7 +111,9 @@ export const RequestFromPatient = ({navigation}) =>{
                                             /> */}
                                             <Text style={{color:'white'}}>✔️</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity>
+                                        <TouchableOpacity 
+                                        style={{width:20}}
+                                        onPress={() =>deleteRequest(item.id_request)}>
                                             {/* <Image style={styles.noteicon} 
                                                 source={require('../../../assets/images/done.jpg')}     
                                             /> */}
@@ -148,7 +168,7 @@ const styles = StyleSheet.create({
     gap:{
         flexDirection:'row',
         alignItems:'center',
-        gap:15
+        gap:20
     },
     noteicon:{
         height:20,

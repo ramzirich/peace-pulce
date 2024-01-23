@@ -48,7 +48,7 @@ export const ListOfPatients = ({navigation}) =>{
                 <Image source={require('../../../assets/images/logo22.png')} style={styles.img_logo} />
             </View>
             {patients.length===0?     
-                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}></Text> :
                 <FlatList data={users}
                     showsVerticalScrollIndicator={false}
                     renderItem={({item, index})=>{
