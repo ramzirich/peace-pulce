@@ -15,11 +15,10 @@ class hobbies2 extends Seeder
     {
         //
         $hobbies = [
-            ['name' => 'basketball', 'img_url' => 'images/hobbies/basketball.jpg'],
-            ['name' => 'videogame', 'img_url' => 'images/hobbies/videogame.jpg'],
+            ['name' => 'videogame', 'img_url' => 'images/hobbies/videogame1.jpg'],
             ['name' => 'swimming', 'img_url' => 'images/hobbies/swimming.jpg'],
             ['name' => 'snowboard', 'img_url' => 'images/hobbies/snowboard.jpg'],
-            ['name' => 'volleyball', 'img_url' => 'images/hobbies/volleyball.jpg'],
+            ['name' => 'volleyball', 'img_url' => 'images/hobbies/volleyball1.jpg'],
             ['name' => 'skydiving', 'img_url' => 'images/hobbies/skydiving.jpg'],
             ['name' => 'coding', 'img_url' => 'images/hobbies/coding.jpg'],
         ];
