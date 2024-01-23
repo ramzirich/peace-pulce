@@ -44,6 +44,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="patients" component={ListOfPatients} options={{ headerShown: false }} />
           <Stack.Screen name="request" component={RequestFromPatient} options={{ headerShown: false }} />
           <Stack.Screen name="volunteers" component={ListOfVolunteer} options={{ headerShown: false }} />
+          <Stack.Screen name="volunteer-profile" component={ListOfVolunteer} options={{ headerShown: false }} />
           <Stack.Screen name="patient" component={PatientInfo}  
           options={{title: 'id', headerShown: false }}  />  
         </Stack.Navigator>
