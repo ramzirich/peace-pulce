@@ -31,7 +31,7 @@ class UserSpecificGenericManager{
 
     public function getByColumn($foreignKey, $foreignKeyVale, $userKey, $with=[]) {
         try{
-            $model = $this->obj->with($with)
+            $model = $this->obj->with($with) 
                                 ->where($foreignKey, $foreignKeyVale)
                                 ->where($userKey, $this->user->id)
                                 ->first();
@@ -99,7 +99,7 @@ class UserSpecificGenericManager{
         try{
             $data  = $request->all();
             $updated_model= $this->findById($id, $foreignKey);
-           
+       
             if(!$updated_model){
                 return ExceptionMessages::NotFound(class_basename($this->obj));
             }

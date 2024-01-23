@@ -50,4 +50,8 @@ class DoctorHandleRequestController extends Controller
         $request['request'] = 'accepted';
         return $this->userSpecificGenericManager->updateForSpecificUser($request, $id, 'doctor_id');
     }
+
+    public function DeleteRequest($id){
+        return $this->userSpecificGenericManager->deleteForSpecificUser($id, 'doctor_id');
+    }
 }
