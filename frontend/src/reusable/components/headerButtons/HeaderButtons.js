@@ -11,7 +11,7 @@ export const HeaderButton = ({navigation}) =>{
                     <Square tag="Psychiatrist" onPress={() =>navigation.navigate('psychiatrists')}
                         url={require('../../../../assets/headerImages/psychiatrist3.jpg')}
                     /> 
-                    <Square tag="Volunteer"
+                    <Square tag="Volunteer" onPress={() =>navigation.navigate('volunteers')}
                         url={require('../../../../assets/headerImages/volunteer3.png')}
                     />
                 </>
