@@ -9,7 +9,7 @@ import { Text } from 'react-native-svg';
  
 const Home = ({navigation}) => {
   return ( 
-      <LinearGradient colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
+      <LinearGradient colors={['black','#214ae2', '#4752e2','#8962f3']} 
         style={{flex:1,
          paddingTop:40
         }}> 

@@ -15,14 +15,17 @@ export default Problem = () =>{
     changeToPageList = () =>{
         setIsCreate(false)
     }
+    const border = isCreate?{ borderBottomWidth: 1.5, borderBottomColor: '#e782f5' } : {};
+    const border1 = isCreate?  {}:{ borderBottomWidth: 1.5, borderBottomColor: '#e782f5' } ;
+    
     return(
         <LinearGradient style={styles.container}
-        colors={['#373b39','#214ae2', '#4752e2','#8962f3']} >
+        colors={['black','#214ae2', '#4752e2','#8962f3']} >
             <View style={styles.navigateBtn}>
-                <TouchableOpacity style={[styles.btnStyle, styles.middle2]} onPress={changeToCreatePage}>
+                <TouchableOpacity style={[styles.btnStyle, border]} onPress={changeToCreatePage}>
                     <Text style={styles.btnTextStyle}>Create problem</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.btnStyle, styles.middle]} onPress={changeToPageList}>
+                <TouchableOpacity style={[styles.btnStyle, border1]} onPress={changeToPageList}>
                     <Text style={styles.btnTextStyle}>List of problems</Text>
                 </TouchableOpacity>
             </View>
@@ -51,12 +54,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:"center"
     },
-    middle:{
-        borderLeftWidth:1,
-        borderColor:'#e782f5'
-    },
-    middle2:{
-        borderRightWidth:1,
+    border:{
+        borderBottomWidth:1,
         borderColor:'#e782f5'
     },
     btnTextStyle:{

@@ -207,7 +207,7 @@ export default CreateProblem = () =>{
                 />
                 <View>
                     <Text style={styles.label} onPress={validateForAi}>
-                        Need help Click here to use our AI 😎
+                        Need help? Click here to use our AI 😎
                     </Text>
                     {generateResponse == true && <Text style={styles.label}>Generate Response..</Text>}
                     {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}
@@ -244,7 +244,7 @@ const styles =StyleSheet.create({
     },
     save_btn:{
         marginTop:20,
-        backgroundColor :'#8962f3',
+        backgroundColor :'#4752e2',
         width:"50%",
         height:50,
         alignSelf:"center",
