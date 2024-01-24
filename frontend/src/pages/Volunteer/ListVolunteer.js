@@ -51,7 +51,7 @@ export const ListOfVolunteer = ({navigation}) =>{
                     showsVerticalScrollIndicator={false}
                         data={users}
                         renderItem={({item})=>{
-                        return <VolunteerCard item={item} navigation={navigation} pathName='volunteerForUser'/>
+                        return <VolunteerCard item={item} navigation={navigation} pathName='volunteer-user'/>
                         }}
                         keyExtractor={(item) => item.id }
                         contentContainerStyle={{ paddingBottom: 20 }} 

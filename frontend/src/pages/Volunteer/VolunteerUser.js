@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Image, ScrollView, Text, View } from "react-native";
 
 export default VolunteerUser = ({route}) =>{
-    const {id, doctorInfo} = route.params;
+    const {id, volunteerInfo} = route.params;
     const {userInfo} = useSelector(state => state.userInfoReducer)
     const {first_name, last_name, about, img_url } = volunteerInfo;
     const imgUrl = `${config.imgUrl}${img_url}` 
