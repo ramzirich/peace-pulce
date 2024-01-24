@@ -4,38 +4,15 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { config } from "../../../config";
 import { CustomColors } from "../../styles/color";
+import { create } from "react-test-renderer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Preference from "./Preference";
 
 
 export default VolunteerProfile = () =>{
     const [hobbies, setHobbies] = useState([]);
-    const [places, setPlaces] = useState([])
-   
-  const renderHobbies = (items) => {
-    const rows = [];
-    for (let i = 0; i < items.length; i += 4) {
-        // console.log(i)
-      const currentRow = items.slice(i, i + 4).map((item, index) => (
-        <View style={{flexDirection:'column', alignItems:'center'}}>
-        <TouchableOpacity key={item.id} style={[styles.shadowContainer]} >
-          <Image
-            source={{ uri: `${config.imgUrl}${item.img_url}` }}
-            style={{ height: 50, width: 50 , borderRadius:10}} 
-          />
-        </TouchableOpacity>
-        <View>
-
-        </View>
-        <Text style={{color:CustomColors.white, fontSize:12}}>{item.name}</Text> 
-        </View>
-      ));
-      rows.push(
-        <View style={{ flexDirection: 'row', marginBottom: 15, justifyContent:'space-between' }}>
-          {currentRow}
-        </View>
-      );
-    }
-    return rows;
-  };
+    const [places, setPlaces] = useState([]);
+    const [hobbiesSet, setHobbiesSet] = useState(new Set());
         
     useEffect(() =>{
         const fetchHobbies = async() =>{
@@ -44,6 +21,19 @@ export default VolunteerProfile = () =>{
                 setHobbies(response.data)
                 const responseplaces = await axios.get(`${config.apiUrl}/places`)
                 setPlaces(responseplaces.data)
+
+                const authToken = await AsyncStorage.getItem('authToken');
+                const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_hobbies`, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                });
+
+                let set1 = new Set();
+                for(let j=0; j<responsefavoriteshobbies.data.length; j++){
+                    set1.add(responsefavoriteshobbies.data[j].hobbies_id);
+                }
+                setHobbiesSet(set1);
             }catch(error){
                 console.error("Error in fetching hobbies: ", error)
             }
@@ -58,13 +48,13 @@ export default VolunteerProfile = () =>{
             >
             <View style={{marginBottom:15}}>
                 <Text style={styles.headers}>Hobbies</Text>
-                <View>{renderHobbies(hobbies)}</View>    
+                <Preference list={hobbies} element='favorite_hobby' set={hobbiesSet} key='hobbies_id'/>
             </View>
 
-            <View>
+            {/* <View>
                 <Text style={styles.headers}>Places</Text>
                 <View>{renderHobbies(places)}</View>
-            </View>
+            </View> */}
             
         </LinearGradient>
     )
