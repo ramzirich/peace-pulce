@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomColors } from "../../styles/color";
 import { useNavigation } from "@react-navigation/native"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default VolunteerUser = ({route}) =>{
     const {id, volunteerInfo} = route.params;
