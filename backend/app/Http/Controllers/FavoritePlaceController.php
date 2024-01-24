@@ -87,10 +87,10 @@ class FavoritePlaceController extends Controller
     
     public function deleteFavoritePlace($id){
         try{
-            $this->favoritePlace->where('user_id', Auth::user()->id)->where('hobbies_id', $id)->first()->delete();
+            $this->favoritePlace->where('user_id', Auth::user()->id)->where('places_id', $id)->first()->delete();
             return response()->json([
                 'status'=> 'success',
-                'message'=> "Favorite hobby successfully deleted" 
+                'message'=> "Favorite place successfully deleted" 
             ]);
         }catch(\Exception $exception){
             return ExceptionMessages::Error($exception->getMessage());
