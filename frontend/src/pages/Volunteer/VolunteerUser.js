@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { config } from "../../../config"
 import LinearGradient from "react-native-linear-gradient"
 import { useSelector } from "react-redux";
