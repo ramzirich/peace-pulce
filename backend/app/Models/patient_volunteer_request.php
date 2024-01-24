@@ -16,6 +16,6 @@ class patient_volunteer_request extends Model
     }
     public function volunteer()
     {
-        return $this->belongsTo(Doctors::class, 'volunteer_id'); 
+        return $this->belongsTo(Volunteer::class, 'volunteer_id'); 
     }
 }
