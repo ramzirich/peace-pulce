@@ -23,6 +23,7 @@ import { ListOfVolunteer } from './src/pages/Volunteer/ListVolunteer';
 import VolunteerProfile from './src/pages/Volunteer/VolunteerProfile';
 import FaceEmotionDetection from './src/pages/FaceEmotion/FaceEmotionDetection';
 import EmotionsPage from './src/pages/FaceEmotion/EmotionsPage';
+import VolunteerUser from './src/pages/Volunteer/VolunteerUser';
 
 
 
@@ -51,6 +52,8 @@ function App(): React.JSX.Element {
           <Stack.Screen name="face" component={EmotionsPage} options={{ headerShown: false }} />  
           <Stack.Screen name="volunteer-profile" component={VolunteerProfile} options={{ headerShown: false }} />
           <Stack.Screen name="patient" component={PatientInfo}  
+          options={{title: 'id', headerShown: false }}  />  
+          <Stack.Screen name="volunteer-user" component={VolunteerUser}  
           options={{title: 'id', headerShown: false }}  />  
         </Stack.Navigator>
       </NavigationContainer>
