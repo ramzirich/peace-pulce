@@ -9,11 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Preference from "./Preference";
 
 
-export default VolunteerProfile = () =>{
-    const [hobbies, setHobbies] = useState([]);
-    const [places, setPlaces] = useState([]);
-    const [hobbiesSet, setHobbiesSet] = useState(new Set());
-        
+export default VolunteerProfile = () =>{        
     return(
         <LinearGradient style={styles.bigContainer}
            colors={ ['black','#214ae2', '#4752e2','#8962f3']}
