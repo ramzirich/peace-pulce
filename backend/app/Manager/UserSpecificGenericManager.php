@@ -71,7 +71,8 @@ class UserSpecificGenericManager{
                     }
                 }
             }
-            $result = $query->paginate($perPage, ['*'], 'page', $page);         
+            $result = $query->paginate($perPage, ['*'], 'page', $page);  
+            echo $result;       
             return $result->items();
         }catch(\Exception $exception){
             return ExceptionMessages::Error($exception->getMessage());

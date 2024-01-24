@@ -28,11 +28,12 @@ class FavoritePlaceController extends Controller
 
     public function getAllFavoritePlaceForUser(Request $request){
         $request->merge(['user_id' => $this->user->id]);
-
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, ['place']);
-        if(!$model){
-            return [];
-        }
+        // echo $this->user->id;
+        // $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, ['place']);
+        // if(!$model){
+        //     return [];
+        // }
+        $model = $this->favoritePlace->where('user_id', $this->user->id)->get();
         return $model;
     }
 
