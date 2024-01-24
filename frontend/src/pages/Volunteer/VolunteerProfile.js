@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react"
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { config } from "../../../config";
 import { CustomColors } from "../../styles/color";
@@ -8,6 +8,7 @@ import { create } from "react-test-renderer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Preference from "./Preference";
 import PreferencePlaces from "./PreferencePlaces";
+import VolunteerAbout from "./VolunteerAbout";
 
 
 export default VolunteerProfile = () =>{        
@@ -15,16 +16,21 @@ export default VolunteerProfile = () =>{
         <LinearGradient style={styles.bigContainer}
            colors={ ['black','#214ae2', '#4752e2','#8962f3']}
             >
-            <View style={{marginBottom:15}}>
-                <Text style={styles.headers}>Hobbies</Text>
-                <Preference/>
-            </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{marginBottom:15}}>
+                    <Text style={styles.headers}>Hobbies</Text>
+                    <Preference/>
+                </View>
 
-            <View>
-                <Text style={styles.headers}>Places</Text>
-                <PreferencePlaces/>
-            </View>
-            
+                <View>
+                    <Text style={styles.headers}>Places</Text>
+                    <PreferencePlaces/>
+                </View>
+                
+                <View>
+                    <VolunteerAbout/>
+                </View>
+            </ScrollView>
         </LinearGradient>
     )
 }
@@ -33,7 +39,8 @@ const styles = StyleSheet.create({
     bigContainer:{
         flex:1,
         paddingTop:40,
-        paddingHorizontal:20
+        paddingHorizontal:20,
+        paddingBottom:40
     },
     headers:{
         color:CustomColors.white,
