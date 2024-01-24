@@ -27,12 +27,9 @@ class FavoriteHobbyController extends Controller
     }
 
     public function getAllFavoriteHobbyForUser(Request $request){
-        $perPage = $request->query('perPage', 10);
-        $page = $request->query('page', 1);
-        $sortColumns = $request->query('sortColumns', []);
         $request->merge(['user_id' => $this->user->id]);
 
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $perPage, $page, $sortColumns);
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, ['hobby']);
         if(!$model){
             return [];
         }
