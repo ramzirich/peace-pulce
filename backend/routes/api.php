@@ -156,6 +156,14 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::get('doctor_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
 });
 
+Route::middleware(['auth.user', 'patient.check'])->group(function () {
+    Route::post('volunteer_request/create',  [PatientRequestDoctorController::class, 'createDoctorRequest']);
+    Route::post('volunteer_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
+    Route::post('volunteer_request/massDelete',  [PatientRequestDoctorController::class, 'massDeleteDoctorRequest']);
+    Route::get('volunteer_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
+    Route::get('volunteer_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
+});
+
 Route::middleware(['auth.user', 'doctor.check'])->group(function () {
     Route::get('patient_request_pending',  [DoctorHandleRequestController::class, 'getAllPendingRequestForDoctor']);
     Route::post('doctor_accept_request/update/{id}',  [DoctorHandleRequestController::class, 'acceptRequest']);
