@@ -14,41 +14,13 @@ export default VolunteerProfile = () =>{
     const [places, setPlaces] = useState([]);
     const [hobbiesSet, setHobbiesSet] = useState(new Set());
         
-    useEffect(() =>{
-        const fetchHobbies = async() =>{
-            try{
-                const response = await axios.get(`${config.apiUrl}/hobbies`)
-                setHobbies(response.data)
-                const responseplaces = await axios.get(`${config.apiUrl}/places`)
-                setPlaces(responseplaces.data)
-
-                const authToken = await AsyncStorage.getItem('authToken');
-                const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_hobbies`, {
-                headers: {
-                    'Authorization': `Bearer ${authToken}`,
-                },
-                });
-
-                let set1 = new Set();
-                for(let j=0; j<responsefavoriteshobbies.data.length; j++){
-                    set1.add(responsefavoriteshobbies.data[j].hobbies_id);
-                }
-                setHobbiesSet(set1);
-            }catch(error){
-                console.error("Error in fetching hobbies: ", error)
-            }
-        }
-        fetchHobbies()
-    },[])
-
     return(
         <LinearGradient style={styles.bigContainer}
            colors={ ['black','#214ae2', '#4752e2','#8962f3']}
-            // colors={[ '#8962f3', '#4752e2', '#214ae2']}
             >
             <View style={{marginBottom:15}}>
                 <Text style={styles.headers}>Hobbies</Text>
-                <Preference list={hobbies} element='favorite_hobby' set={hobbiesSet} keyValue='hobbies_id'/>
+                <Preference/>
             </View>
 
             {/* <View>
