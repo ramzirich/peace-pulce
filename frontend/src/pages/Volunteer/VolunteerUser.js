@@ -10,9 +10,43 @@ export default VolunteerUser = ({route}) =>{
     const {id, volunteerInfo} = route.params;
     const {userInfo} = useSelector(state => state.userInfoReducer)
     const {first_name, last_name, about, img_url, phone } = volunteerInfo;
-    const imgUrl = `${config.imgUrl}${img_url}` 
+    const imgUrl = `${config.imgUrl}${img_url}`
+    const [request, setRequest] = useState(null); 
 
     const navigation = useNavigation()
+
+    async function sendCancelRequest (){
+        try{
+            if(request =='null'|| !request){
+                const authToken = await AsyncStorage.getItem('authToken');
+
+                const requestResponse = await axios.post(`${config.apiUrl}/doctor_request/create`,{
+                    'doctor_id' : id
+                }, {
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                if(requestResponse.status == 201){
+                    setRequest('requested')
+                }
+            }
+            if(request=='accepted' || request==='requested'){        
+                const authToken = await AsyncStorage.getItem('authToken');
+                const requestDeleteResponse = await axios.post(`${config.apiUrl}/doctor_request/delete/${id}`,{
+                } ,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                if(requestDeleteResponse.status == 200){
+                    setRequest(null)
+                }
+            }
+        }catch(error){
+            console.error(error)
+        }
+    }
     return(
         <LinearGradient style={styles.big_container}
         colors={['#8962f3', '#4752e2','#214ae2']} 
@@ -43,6 +77,11 @@ export default VolunteerUser = ({route}) =>{
                     <Text style={styles.aboutheader}>About</Text>
                     <Text style={styles.about}>{about}</Text>
                 </View>
+
+                <TouchableOpacity onPress={sendCancelRequest}>
+                {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
+                {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
+            </TouchableOpacity>
             </ScrollView>
         </LinearGradient>
     )
