@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { config } from "../../../config"
 import React from "react"
-import { Image } from "react-native-svg"
+
 import { CustomColors } from "../../styles/color"
 
 export default  Preference = ({list, element, set, key}) =>{
-    
+    console.log(list[0]) 
     const createFavorite = async(items, id) =>{
         try{
                 const authToken = await AsyncStorage.getItem('authToken')
@@ -55,7 +55,10 @@ export default  Preference = ({list, element, set, key}) =>{
     };
 
     return(
-        <View>{renderHobbies(list)}</View>    
+        <>
+            <View>{renderHobbies(list)}</View>   
+        </>
+         
     )
 } 
 
