@@ -48,7 +48,7 @@ export default VolunteerProfile = () =>{
             >
             <View style={{marginBottom:15}}>
                 <Text style={styles.headers}>Hobbies</Text>
-                <Preference list={hobbies} element='favorite_hobby' set={hobbiesSet} key='hobbies_id'/>
+                <Preference list={hobbies} element='favorite_hobby' set={hobbiesSet} keyValue='hobbies_id'/>
             </View>
 
             {/* <View>
