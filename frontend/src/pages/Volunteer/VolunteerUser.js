@@ -37,8 +37,8 @@ export default VolunteerUser = ({route}) =>{
             if(request =='null'|| !request){
                 const authToken = await AsyncStorage.getItem('authToken');
 
-                const requestResponse = await axios.post(`${config.apiUrl}/doctor_request/create`,{
-                    'doctor_id' : id
+                const requestResponse = await axios.post(`${config.apiUrl}/volunteer_request/create`,{
+                    'volunteer_id' : id
                 }, {
                     headers:{
                         'Authorization': `Bearer ${authToken}`
@@ -50,7 +50,7 @@ export default VolunteerUser = ({route}) =>{
             }
             if(request=='accepted' || request==='requested'){        
                 const authToken = await AsyncStorage.getItem('authToken');
-                const requestDeleteResponse = await axios.post(`${config.apiUrl}/doctor_request/delete/${id}`,{
+                const requestDeleteResponse = await axios.post(`${config.apiUrl}/volunteer_request/delete/${id}`,{
                 } ,{
                     headers:{
                         'Authorization': `Bearer ${authToken}`
