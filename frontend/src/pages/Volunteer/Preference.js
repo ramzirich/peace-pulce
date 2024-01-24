@@ -6,31 +6,59 @@ import { CustomColors } from "../../styles/color"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import axios from "axios"
 
-export default  Preference = ({list, element, set, keyValue}) =>{
-    const [setDb, setSetDb] = useState(new Set(set))
+export default  Preference = () =>{
+    const [hobbies, setHobbies] = useState([]);
+    const [hobbiesSet, setHobbiesSet] = useState(new Set());
+
+    useEffect(() =>{
+        const fetchHobbies = async() =>{
+            try{
+                const response = await axios.get(`${config.apiUrl}/hobbies`)
+                setHobbies(response.data)
+                // const responseplaces = await axios.get(`${config.apiUrl}/places`)
+                // setPlaces(responseplaces.data)
+
+                const authToken = await AsyncStorage.getItem('authToken');
+                const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_hobbies`, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                });
+
+                let set1 = new Set();
+                for(let j=0; j<responsefavoriteshobbies.data.length; j++){
+                    set1.add(responsefavoriteshobbies.data[j].hobbies_id);
+                }
+                setHobbiesSet(set1);
+            }catch(error){
+                console.error("Error in fetching hobbies: ", error)
+            }
+        }
+        fetchHobbies()
+    },[])
+        
   
   
 
     const createDeleteFavorite = async(items, id) =>{
         try{
-                if(!setDb.has(id) && element=='favorite_hobby'){
+                if(!hobbiesSet.has(id)){
                     const authToken = await AsyncStorage.getItem('authToken')
-                    const response = await axios.post(`${config.apiUrl}/${element}/create`,{
+                    const response = await axios.post(`${config.apiUrl}/favorite_hobby/create`,{
                         hobbies_id : id
                     },{
                         headers: {                       
                             'Authorization': `Bearer ${authToken}`
                         }
                     })
-                    // console.log(response.data)
                     if(response.status==201){
-                        setSetDb(prevSetDb => [...prevSetDb, { id }])
+                        setHobbiesSet(prevHobbySet => [...prevHobbySet, { id }])
                     }
                 }
-                if(setDb.has(id) && element=='favorite_hobby'){
+                if(hobbiesSet.has(id)){
                     const authToken = await AsyncStorage.getItem('authToken')
-                    console.log(id)
-                    const response = await axios.post(`${config.apiUrl}/${element}/${id}`,
+                    // console.log(id)
+                    const response = await axios.post(`${config.apiUrl}/favorite_hobby/${id}`,
                     {
 
                     },{
@@ -40,7 +68,7 @@ export default  Preference = ({list, element, set, keyValue}) =>{
                     })
                     console.log(response.data)
                     if(response.status==200){
-                        setSetDb(prevSetDb => prevSetDb.filter(item => item.id !== id));
+                        setHobbiesSet(prevSetDb => prevSetDb.filter(item => item.id !== id));
                     }
                 }
                 
@@ -49,21 +77,21 @@ export default  Preference = ({list, element, set, keyValue}) =>{
         }
     }
 
-    const isFavorite =  (itemId) => setDb.has(itemId)
+    const isFavorite =  (itemId) => hobbiesSet.has(itemId)
     const toggleFavorite = (itemId) =>{
-        set.has(itemId)? set.delete(itemId) : set.add(itemId)
+        hobbiesSet.has(itemId)? hobbiesSet.delete(itemId) : hobbiesSet.add(itemId)
     }
 
     const renderHobbies = (items) => {
         const rows = [];
-        if(setDb){
+        if(hobbiesSet){
             for (let i = 0; i < items.length; i += 4) {
                 const currentRow = items.slice(i, i + 4).map((item, index) => (
                   <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
                       <TouchableOpacity key={item.id} style={[ isFavorite(item.id) && styles.shadowContainer]}
                           onPress={()=>{
                                   createDeleteFavorite(items, item.id)
-                                  // toggleFavorite(item.id)
+                                  toggleFavorite(item.id)
                                   }
                               }
                       >
