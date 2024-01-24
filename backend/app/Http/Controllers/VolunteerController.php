@@ -21,7 +21,7 @@ class VolunteerController extends Controller
     }
 
     public function getVolunteer(){
-        return $this->userSpecificGenericManager->findById( $this->user->id,"user_id" );   
+        return $this->userSpecificGenericManager->getByColumn('user_id', Auth::user()->id, 'user_id', ['user']);   
     }
 
     public function createVolunteer(Request $request){
