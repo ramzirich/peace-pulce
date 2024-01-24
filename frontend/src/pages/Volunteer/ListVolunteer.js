@@ -7,6 +7,7 @@ import { config } from "../../../config"
 import { Card } from "../../reusable/components/card/Card"
 import LinearGradient from "react-native-linear-gradient"
 import { CustomColors } from "../../styles/color"
+import { VolunteerCard } from "../../reusable/components/card/VolunteerCard"
 
 export const ListOfVolunteer = ({navigation}) =>{
     const [volunteers, setVolunteers] = React.useState(null);
@@ -50,7 +51,7 @@ export const ListOfVolunteer = ({navigation}) =>{
                     showsVerticalScrollIndicator={false}
                         data={users}
                         renderItem={({item})=>{
-                        return <Card item={item} dr='Dr' navigation={navigation} pathName='psychiatrist'/>
+                        return <VolunteerCard item={item} navigation={navigation} pathName='volunteerForUser'/>
                         }}
                         keyExtractor={(item) => item.id }
                         contentContainerStyle={{ paddingBottom: 20 }} 

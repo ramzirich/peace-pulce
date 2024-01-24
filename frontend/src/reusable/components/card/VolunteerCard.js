@@ -13,7 +13,7 @@ export const VolunteerCard = ({item, navigation, pathName}) =>{
                 <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
             </View>
             <View style={styles.text_right}>
-                <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
+                <Text style={styles.name}>{first_name} {last_name}</Text>
                 {about && 
                     <View style={styles.info}>
                         <Text numberOfLines={5} style={{color:CustomColors.white}}>{about}</Text>     
