@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { config } from "../../../config"
 import LinearGradient from "react-native-linear-gradient"
 import { useSelector } from "react-redux";
@@ -14,6 +14,23 @@ export default VolunteerUser = ({route}) =>{
     const [request, setRequest] = useState(null); 
 
     const navigation = useNavigation()
+
+    useEffect(() =>{
+        const fetchRequest = async() =>{
+            try{
+                const authToken = await AsyncStorage.getItem('authToken');
+                const requestResponse = await axios.get(`${config.apiUrl}/volunteer_request/${id}`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                setRequest(requestResponse.data.request)
+            }catch(error){
+                console.error('Error fetching user data:', error.message);
+            }
+        }
+        fetchRequest();
+    },[])
 
     async function sendCancelRequest (){
         try{
