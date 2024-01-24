@@ -27,12 +27,9 @@ class FavoritePlaceController extends Controller
     }
 
     public function getAllFavoritePlaceForUser(Request $request){
-        $perPage = $request->query('perPage', 10);
-        $page = $request->query('page', 1);
-        $sortColumns = $request->query('sortColumns', []);
         $request->merge(['user_id' => $this->user->id]);
 
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request);
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, ['place']);
         if(!$model){
             return [];
         }
