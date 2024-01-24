@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { config } from "../../../config"
 import LinearGradient from "react-native-linear-gradient"
 import { useSelector } from "react-redux";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CustomColors } from "../../styles/color";
 import { useNavigation } from "@react-navigation/native"
 
