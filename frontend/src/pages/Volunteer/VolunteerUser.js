@@ -26,7 +26,6 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
-                // console.log(requestResponse)
                 setRequest(requestResponse.data.request)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -98,7 +97,7 @@ export default VolunteerUser = ({route}) =>{
                     <Text style={styles.about}>{about}</Text>
                 </View>
 
-                <TouchableOpacity onPress={sendCancelRequest}>
+                <TouchableOpacity onPress={sendCancelRequest} style={{paddingVertical:20}}>
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
                 {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
