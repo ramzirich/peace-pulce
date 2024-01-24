@@ -16,15 +16,14 @@ export default  Preference = () =>{
                 const response = await axios.get(`${config.apiUrl}/places`)
                 setHobbies(response.data)
                 const authToken = await AsyncStorage.getItem('authToken');
-                const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_place`, {
+                const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_places`, {
                 headers: {
                     'Authorization': `Bearer ${authToken}`,
                 },
                 });
-
                 let set1 = new Set();
                 for(let j=0; j<responsefavoriteshobbies.data.length; j++){
-                    set1.add(responsefavoriteshobbies.data[j].hobbies_id);
+                    set1.add(responsefavoriteshobbies.data[j].places_id);
                 }
                 setHobbiesSet(set1);
             }catch(error){
@@ -51,7 +50,7 @@ export default  Preference = () =>{
             else{
                 const authToken = await AsyncStorage.getItem('authToken')
                 const response = await axios.post(`${config.apiUrl}/favorite_place/create`,{
-                    hobbies_id : id
+                    places_id : id
                 },{
                     headers: {                       
                         'Authorization': `Bearer ${authToken}`
