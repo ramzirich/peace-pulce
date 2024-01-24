@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeImagesController;
 use App\Http\Controllers\NeuroticismController;
 use App\Http\Controllers\OpenAiController;
 use App\Http\Controllers\PatientRequestDoctorController;
+use App\Http\Controllers\PatientRequestVolunteer;
 use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\ProblemsController;
 use App\Http\Controllers\RatingController;
@@ -157,11 +158,11 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
 });
 
 Route::middleware(['auth.user', 'patient.check'])->group(function () {
-    Route::post('volunteer_request/create',  [PatientRequestDoctorController::class, 'createDoctorRequest']);
-    Route::post('volunteer_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
-    Route::post('volunteer_request/massDelete',  [PatientRequestDoctorController::class, 'massDeleteDoctorRequest']);
-    Route::get('volunteer_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
-    Route::get('volunteer_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
+    Route::post('volunteer_request/create',  [PatientRequestVolunteer::class, 'createVolunteerRequest']);
+    Route::post('volunteer_request/delete/{id}',  [PatientRequestVolunteer::class, 'deleteVolunteerRequest']);
+    Route::post('volunteer_request/massDelete',  [PatientRequestVolunteer::class, 'massDeleteDoctorRequest']);
+    Route::get('volunteer_request/{id}',  [PatientRequestVolunteer::class, 'getRequestForPatient']);
+    Route::get('volunteer_request',  [PatientRequestVolunteer::class, 'getAllVolunteerRequestForPatient']);
 });
 
 Route::middleware(['auth.user', 'doctor.check'])->group(function () {
