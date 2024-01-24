@@ -9,15 +9,12 @@ import axios from "axios"
 export default  Preference = () =>{
     const [hobbies, setHobbies] = useState([]);
     const [hobbiesSet, setHobbiesSet] = useState(new Set());
-
+    const [counter, setCounter] = useState(0)
     useEffect(() =>{
         const fetchHobbies = async() =>{
             try{
                 const response = await axios.get(`${config.apiUrl}/hobbies`)
                 setHobbies(response.data)
-                // const responseplaces = await axios.get(`${config.apiUrl}/places`)
-                // setPlaces(responseplaces.data)
-
                 const authToken = await AsyncStorage.getItem('authToken');
                 const responsefavoriteshobbies = await axios.get(`${config.apiUrl}/favorite_hobbies`, {
                 headers: {
@@ -37,46 +34,36 @@ export default  Preference = () =>{
         fetchHobbies()
     },[])
         
-  
-  
-
     const createDeleteFavorite = async(items, id) =>{
         try{
-                if(!hobbiesSet.has(id)){
-                    const authToken = await AsyncStorage.getItem('authToken')
-                    const response = await axios.post(`${config.apiUrl}/favorite_hobby/create`,{
-                        hobbies_id : id
-                    },{
-                        headers: {                       
-                            'Authorization': `Bearer ${authToken}`
-                        }
-                    })
-                    if(response.status==201){
-                        setHobbiesSet(prevHobbySet => [...prevHobbySet, { id }])
-                    }
-                }
-                if(hobbiesSet.has(id)){
-                    const authToken = await AsyncStorage.getItem('authToken')
-                    // console.log(id)
-                    const response = await axios.post(`${config.apiUrl}/favorite_hobby/${id}`,
-                    {
+            if(hobbiesSet.has(id)){
+                const authToken = await AsyncStorage.getItem('authToken')
+                const response = await axios.post(`${config.apiUrl}/favorite_hobby/delete/${id}`,
+                {
 
-                    },{
-                        headers: {                       
-                            'Authorization': `Bearer ${authToken}`
-                        }
-                    })
-                    console.log(response.data)
-                    if(response.status==200){
-                        setHobbiesSet(prevSetDb => prevSetDb.filter(item => item.id !== id));
+                },{
+                    headers: {                       
+                        'Authorization': `Bearer ${authToken}`
                     }
-                }
-                
+                })
+                setCounter(counter+1)
+            }
+            else{
+                const authToken = await AsyncStorage.getItem('authToken')
+                const response = await axios.post(`${config.apiUrl}/favorite_hobby/create`,{
+                    hobbies_id : id
+                },{
+                    headers: {                       
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                })
+                setCounter(counter+1)
+            }
         }catch(error){
             console.error("Error: ", error)
         }
     }
-
+ 
     const isFavorite =  (itemId) => hobbiesSet.has(itemId)
     const toggleFavorite = (itemId) =>{
         hobbiesSet.has(itemId)? hobbiesSet.delete(itemId) : hobbiesSet.add(itemId)
@@ -116,7 +103,7 @@ export default  Preference = () =>{
 
     return(
         <>
-            <View>{renderHobbies(list)}</View>   
+            <View>{renderHobbies(hobbies)}</View>   
         </>
          
     )
