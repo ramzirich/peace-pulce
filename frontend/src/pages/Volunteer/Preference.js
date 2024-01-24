@@ -6,7 +6,7 @@ import { CustomColors } from "../../styles/color"
 
 export default  Preference = ({list, element, set, key}) =>{
     console.log(list[0]) 
-    const createFavorite = async(items, id) =>{
+    const createDeleteFavorite = async(items, id) =>{
         try{
                 const authToken = await AsyncStorage.getItem('authToken')
                 const response = await axios.post(`${config.apiUrl}/${element}/create`,{
@@ -33,7 +33,7 @@ export default  Preference = ({list, element, set, key}) =>{
             <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
                 <TouchableOpacity key={item.id} style={[ isFavorite(item.id) && styles.shadowContainer]}
                     onPress={()=>{
-                            createFavorite(items, item.id)
+                            createDeleteFavorite(items, item.id)
                             toggleFavorite(item.id)}
                         }
                 >
