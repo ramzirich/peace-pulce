@@ -6,6 +6,7 @@ use App\Http\Requests\PatientDoctorRequest\PatientDoctorRequestValidation;
 use App\Manager\UserSpecificGenericManager;
 use App\Manager\GenericManager;
 use App\Models\Patient_doctor_request;
+use App\Models\patient_volunteer_request;
 use App\Models\Volunteer;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Doctors;
@@ -15,19 +16,19 @@ use Illuminate\Http\Request;
 class PatientRequestVolunteer extends Controller
 {
     //
-    protected $user, $doctorRequest, $userSpecificGenericManager ; 
+    protected $user, $volunteerRequest, $userSpecificGenericManager ; 
 
     public function __construct(){
         $this->user = Auth::user();
-        $this->volunteerRequest = new Patient_doctor_request();
-        $this->userSpecificGenericManager = new UserSpecificGenericManager($this->doctorRequest);
+        $this->volunteerRequest = new patient_volunteer_request ();
+        $this->userSpecificGenericManager = new UserSpecificGenericManager($this->volunteerRequest);
     }
 
     public function getRequestForPatient($id){
         return $this->userSpecificGenericManager->getByColumn("volunteer_id", $id, 'patient_id', $with=['volunteer']);   
     }
 
-    public function getAllDoctorRequestForPatient(Request $request){
+    public function getAllVolunteerRequestForPatient(Request $request){
         $request->merge(['patient_id' => $this->user->id]);
 
         $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $with=['volunteer']);
