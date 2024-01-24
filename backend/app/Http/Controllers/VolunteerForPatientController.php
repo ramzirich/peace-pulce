@@ -12,7 +12,7 @@ use App\Models\Doctors;
 
 use Illuminate\Http\Request;
 
-class PatientRequestDoctorVolunteer extends Controller
+class PatientRequestVolunteer extends Controller
 {
     //
     protected $user, $doctorRequest, $userSpecificGenericManager ; 
