@@ -32,7 +32,7 @@ class FavoritePlaceController extends Controller
         $sortColumns = $request->query('sortColumns', []);
         $request->merge(['user_id' => $this->user->id]);
 
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request, $perPage, $page, $sortColumns);
+        $model = $this->userSpecificGenericManager->getAllForCurrentUser($request);
         if(!$model){
             return [];
         }
@@ -86,7 +86,15 @@ class FavoritePlaceController extends Controller
     }
     
     public function deleteFavoritePlace($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUser($id, "user_id");
+        try{
+            $this->favoritePlace->where('user_id', Auth::user()->id)->where('hobbies_id', $id)->first()->delete();
+            return response()->json([
+                'status'=> 'success',
+                'message'=> "Favorite hobby successfully deleted" 
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
     }
 
     public function massDeleteFavoritePlace(Request $request){

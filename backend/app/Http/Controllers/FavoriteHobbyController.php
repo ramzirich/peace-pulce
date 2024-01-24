@@ -82,7 +82,15 @@ class FavoriteHobbyController extends Controller
     }
 
     public function deleteFavoriteHobby($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUser($id, "user_id");
+        try{
+            $this->favoriteHobby->where('user_id', Auth::user()->id)->where('hobbies_id', $id)->first()->delete();
+            return response()->json([
+                'status'=> 'success',
+                'message'=> "Favorite hobby successfully deleted" 
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
     }
 
     public function massDeleteFavoriteHobby(Request $request){
