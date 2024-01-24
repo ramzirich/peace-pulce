@@ -26,6 +26,7 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
+                // console.log(requestResponse)
                 setRequest(requestResponse.data.request)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
