@@ -7,6 +7,7 @@ import { CustomColors } from "../../styles/color";
 import { create } from "react-test-renderer";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Preference from "./Preference";
+import PreferencePlaces from "./PreferencePlaces";
 
 
 export default VolunteerProfile = () =>{        
@@ -19,10 +20,10 @@ export default VolunteerProfile = () =>{
                 <Preference/>
             </View>
 
-            {/* <View>
+            <View>
                 <Text style={styles.headers}>Places</Text>
-                <View>{renderHobbies(places)}</View>
-            </View> */}
+                <PreferencePlaces/>
+            </View>
             
         </LinearGradient>
     )
