@@ -13,7 +13,7 @@ export default footerButton= ({navigation}) =>{
             <Square onPress={() =>navigation.navigate('problem')} isIcon={true}
                 url={require('../../../../assets/footerImages/journal2.png')}
             />
-            <Square onPress={() =>navigation.navigate('psychiatrists')} isIcon={true}
+            <Square onPress={() =>navigation.navigate('face')} isIcon={true}
                 url={require('../../../../assets/footerImages/face-scan.png')}
             />
         </View>

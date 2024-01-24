@@ -5,7 +5,7 @@ import { Image } from "react-native-svg"
 import { CustomColors } from "../../styles/color"
 
 export default  Preference = ({list, element, set, key}) =>{
-
+    
     const createFavorite = async(items, id) =>{
         try{
                 const authToken = await AsyncStorage.getItem('authToken')

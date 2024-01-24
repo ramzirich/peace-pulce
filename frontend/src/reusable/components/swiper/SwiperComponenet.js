@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, StyleSheet, Dimensions, Image, TouchableOpacity, Text } from 'react-native';
 import { sliderImages } from '../../../utils/sliderImages/sliderImages';
 import HomeCard from '../../elements/HomeCard/homeCard';
 import axios from 'axios';
