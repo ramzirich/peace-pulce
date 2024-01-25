@@ -131,7 +131,7 @@ export default VolunteerUser = ({route}) =>{
                 </View>
 
                 <TouchableOpacity onPress={sendCancelRequest} style={{paddingVertical:20}}>
-                    {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
+                    {!request && <Text style={styles.request}>Request volunteer -&gt;</Text>}
                     {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
                 </TouchableOpacity>
 
