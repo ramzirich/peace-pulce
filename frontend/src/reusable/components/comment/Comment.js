@@ -10,14 +10,13 @@ export const Comment = ({item, onDelete}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer)
     const [isEditing, setIsEditing] = useState(false);
     const [updatedComment, setUpdatedComment] = useState(item.comment);
-console.log(item)
+
     let imagePath = null
     if(item.user.img_url){
         imagePath = `${config.imgUrl}${item.user.img_url}`;
     }
     function formatDate(inputDateString) {
         const date = new Date(inputDateString);
-        console.log(inputDateString)
         const options = {
           weekday: 'long',
           day: 'numeric',
