@@ -169,14 +169,19 @@ export default VolunteerUser = ({route}) =>{
                     {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
                 </TouchableOpacity>
 
-                <View>
-                    <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Hobbies</Text>
-                    <View>{renderHobbies(hobbies)}</View>
-                </View>
-                <View>
-                    <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Places</Text>
-                    <View>{renderPlaces(places)}</View>
-                </View>
+                {hobbies.length !==0 &&       
+                    <View>
+                        <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Hobbies</Text>
+                        <View>{renderHobbies(hobbies)}</View>
+                    </View>
+                }
+
+                {places.length !==0 &&  
+                    <View>
+                        <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Places</Text>
+                        <View>{renderPlaces(places)}</View>
+                    </View>
+                }
             </ScrollView>
         </LinearGradient>
     )
