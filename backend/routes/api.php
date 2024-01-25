@@ -176,10 +176,10 @@ Route::middleware(['auth.user', 'doctor.check'])->group(function () {
 });
 
 Route::middleware(['auth.user', 'volunteer.check'])->group(function () {
-    Route::get('volunteer-patient_request_pending',  [VolunteerHandleRequestController::class, 'getAllPendingRequestForVolunteer']);
+    Route::get('volunteer_patient_request_pending',  [VolunteerHandleRequestController::class, 'getAllPendingRequestForVolunteer']);
     Route::post('volunteer_accept_request/update/{id}',  [VolunteerHandleRequestController::class, 'acceptRequest']);
     Route::post('volunteer_request/delete/{id}',  [VolunteerHandleRequestController::class, 'DeleteRequest']);
-    Route::get('volunteer-patients_request',  [VolunteerHandleRequestController::class, 'getAllRequestForVolunteer']); 
+    Route::get('volunteer_patients_request',  [VolunteerHandleRequestController::class, 'getAllRequestForVolunteer']); 
 });
 
 Route::middleware('auth.user')->group(function () {
