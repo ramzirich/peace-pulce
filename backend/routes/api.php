@@ -86,6 +86,7 @@ Route::middleware('auth.user')->group(function () {
     Route::post('favorite_place/delete/{id}',  [FavoritePlaceController::class, 'deleteFavoritePlace']);
     Route::post('favorite_place/massDelete',  [FavoritePlaceController::class, 'massDeleteFavoritePlace']);
     Route::get('favorite_place/{id}',  [FavoritePlaceController::class, 'getFavoritePlaceForUser']);
+    Route::get('favorite_place/{id}',  [FavoritePlaceController::class, 'getAllFavoritePlaceForVolunteer']);
     Route::get('favorite_places',  [FavoritePlaceController::class, 'getAllFavoritePlaceForUser']);  
 });
 

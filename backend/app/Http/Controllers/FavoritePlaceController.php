@@ -37,7 +37,7 @@ class FavoritePlaceController extends Controller
         return $model;
     }
 
-    public function getAllFavoriteHobbyForVolunteer($id){
+    public function getAllFavoritePlaceForVolunteer($id){
         try{
             return $this->favoritePlace->where('user_id', $id)->with(['place'])->get();
         }catch(\Exception $exception){
