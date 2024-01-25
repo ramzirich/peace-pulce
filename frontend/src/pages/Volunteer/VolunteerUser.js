@@ -114,11 +114,11 @@ export default VolunteerUser = ({route}) =>{
                       <View key={index}
                       >
                       <Image
-                          source={{ uri: `${config.imgUrl}${item.hobby.img_url}` }}
+                          source={{ uri: `${config.imgUrl}${item.place.img_url}` }}
                           style={{ height: 50, width: 50 , borderRadius:10}} 
                       />
                       </View>
-                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.hobby.name}</Text> 
+                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.place.name}</Text> 
                   </View>
                 ));
                 rows.push(
@@ -170,6 +170,10 @@ export default VolunteerUser = ({route}) =>{
                 <View>
                     <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Hobbies</Text>
                     <View>{renderHobbies(hobbies)}</View>
+                </View>
+                <View>
+                    <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Places</Text>
+                    <View>{renderPlaces(places)}</View>
                 </View>
             </ScrollView>
         </LinearGradient>
