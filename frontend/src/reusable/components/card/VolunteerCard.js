@@ -10,7 +10,9 @@ export const VolunteerCard = ({item, navigation, pathName}) =>{
         <TouchableOpacity style={styles.card}
             onPress={()=>navigation.navigate( pathName, {id:id, volunteerInfo: item})}>
             <View style={styles.img_container}>  
-                <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
+                {img_url?<Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
+                    : <Image source={require('../../../../assets/images/user.jpg')} style={styles.img} resizeMode="cover"/>
+                }
             </View>
             <View style={styles.text_right}>
                 <Text style={styles.name}>{first_name} {last_name}</Text>
