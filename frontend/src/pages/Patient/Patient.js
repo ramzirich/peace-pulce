@@ -165,7 +165,7 @@ export const PatientInfo =({route}) =>{
                                         onChangeText={(text) => setTypedNote(text)}
                                         multiline
                                         autoFocus
-                                        style={{height:150, width:'100%', color:CustomColors.white}}
+                                        style={{width:'100%', color:CustomColors.white}}
                                     />
                                     </View>
                                 </View>
