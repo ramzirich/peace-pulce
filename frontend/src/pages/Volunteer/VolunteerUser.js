@@ -140,17 +140,19 @@ export default VolunteerUser = ({route}) =>{
                     <View style={styles.fullname}>
                         <Text style={[styles.name, styles.white]}>{first_name}</Text>
                         <Text style={[styles.name, styles.white]}>{last_name}</Text>
-                        <View style={{marginTop: 7, flexDirection:'row', alignItems:'center', gap:8}}>
-                            <View>
-                                <Image source={require('../../../assets/images/phone.png')} 
-                                        style={[styles.icon]}/>
+                        {request == 'accepted' && 
+                            <View style={{marginTop: 7, flexDirection:'row', alignItems:'center', gap:8}}>
+                                <View>
+                                    <Image source={require('../../../assets/images/phone.png')} 
+                                            style={[styles.icon]}/>
+                                </View>
+                                <View>
+                                    <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
+                                        Call me
+                                    </Text>
+                                </View>
                             </View>
-                            <View>
-                                <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
-                                    Call me
-                                </Text>
-                            </View>
-                        </View>
+                        }
                     </View>
                     <View>
                         <Image source={{uri : imgUrl}} style={styles.imgUrl} />
