@@ -29,6 +29,7 @@ export default Registration = ({navigation}) => {
     password: '',
   });
   const [errors, setErrors] = React.useState({});
+  const [wrongCredentials, setWrongCredentials] = useState(false);
 
   const dispatch = useDispatch();
 
