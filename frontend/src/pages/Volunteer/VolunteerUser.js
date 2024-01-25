@@ -11,10 +11,11 @@ import axios from "axios";
 export default VolunteerUser = ({route}) =>{
     const {id, volunteerInfo} = route.params;
     const {userInfo} = useSelector(state => state.userInfoReducer)
-    const {first_name, last_name, about, img_url, phone } = volunteerInfo;
+    const {first_name, last_name, about, img_url, phone,id_volunteer } = volunteerInfo;
     const imgUrl = `${config.imgUrl}${img_url}`
     const [request, setRequest] = useState(null); 
-
+    const [hobbies, setHobbies] = useState([]);
+console.log(id_volunteer)
     const navigation = useNavigation()
 
     useEffect(() =>{
@@ -26,6 +27,12 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
+                const requestHobby = await axios.get(`${config.apiUrl}/favorite_hobbyVolunteer/${id_volunteer}`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                })
+                // console.log(requestHobby)
                 setRequest(requestResponse.data.request)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -66,6 +73,32 @@ export default VolunteerUser = ({route}) =>{
             console.error(error)
         }
     }
+
+    const renderHobbies = (items) => {
+        const rows = [];
+            for (let i = 0; i < items.length; i += 4) {
+                const currentRow = items.slice(i, i + 4).map((item, index) => (
+                  <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+                      <View key={item.id}
+                      >
+                      <Image
+                          source={{ uri: `${config.imgUrl}${item.img_url}` }}
+                          style={{ height: 50, width: 50 , borderRadius:10}} 
+                      />
+                      </View>
+                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.name}</Text> 
+                  </View>
+                ));
+                rows.push(
+                  <View style={{ flexDirection: 'row', marginBottom: 15, justifyContent:'space-between' }}>
+                    {currentRow}
+                  </View>
+                );
+            return rows;
+        }
+        
+    };
+
     return(
         <LinearGradient style={styles.big_container}
         colors={['#8962f3', '#4752e2','#214ae2']} 
@@ -98,9 +131,14 @@ export default VolunteerUser = ({route}) =>{
                 </View>
 
                 <TouchableOpacity onPress={sendCancelRequest} style={{paddingVertical:20}}>
-                {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
-                {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
-            </TouchableOpacity>
+                    {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
+                    {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
+                </TouchableOpacity>
+
+                <View>
+                    <Text style={[styles.white, styles.subTitle]}>Favorite Hobbies</Text>
+                    <View>{renderHobbies(hobbies)}</View>
+                </View>
             </ScrollView>
         </LinearGradient>
     )

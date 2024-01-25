@@ -32,7 +32,8 @@ export const ListOfVolunteer = ({navigation}) =>{
             first_name: volunteer.user.first_name,
             last_name: volunteer.user.last_name,
             img_url: volunteer.user.img_url,
-            phone:volunteer.user.phone
+            phone:volunteer.user.phone,
+            id_volunteer: volunteer.user.id,
         }));
     }
     
