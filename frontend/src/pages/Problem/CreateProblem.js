@@ -173,7 +173,7 @@ export default CreateProblem = () =>{
                     onChangeText={text => handleOnchange(text, 'problem')}
                     onFocus={() => handleError(null, 'problem')}
                     label="Problem"
-                    placeholder= "What is the Problem!!! 😢"
+                    placeholder= "What is the Problem?? 😢"
                     error={errors.problem}
                     defaultValue= {inputs.problem}
                 />
@@ -193,7 +193,7 @@ export default CreateProblem = () =>{
                     onChangeText={text => handleOnchange(text, 'action')}
                     onFocus={() => handleError(null, 'action')}
                     label="Action"
-                    placeholder= "Tell me what happened 😧"
+                    placeholder= "Tell me what you did 😧"
                     error={errors.action}
                 />
 
@@ -202,7 +202,7 @@ export default CreateProblem = () =>{
                     onChangeText={text => handleOnchange(text, 'solution')}
                     onFocus={() => handleError(null, 'solution')}
                     label="Solution"
-                    placeholder= "Every problem has it's solution 🤓"
+                    placeholder= "Every problem has its solution 🤓"
                     error={errors.solution}
                 />
                 <View>
