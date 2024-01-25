@@ -10,7 +10,7 @@ import { CustomColors } from "../../styles/color"
 
 
 export const ListOfPsychiatrist = ({navigation}) =>{
-    const [doctors, setDoctors] = React.useState([]);
+    const [doctors, setDoctors] = React.useState();
 
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -23,24 +23,29 @@ export const ListOfPsychiatrist = ({navigation}) =>{
         };
         fetchUserData(); 
     }, [])
-    const users = doctors.map(doctor => ({
-        about :doctor.about,
-        id:doctor.id,
-        hourly_rate: doctor.hourly_rate,
-        degree: doctor.degree,
-        specialization: doctor.specialization,
-        first_name: doctor.user.first_name,
-        last_name: doctor.user.last_name,
-        img_url: doctor.user.img_url,
-        phone:doctor.user.phone
-    }));
+
+    let users;
+    if(doctors){
+        users = doctors.map(doctor => ({
+            about :doctor.about,
+            id:doctor.id,
+            hourly_rate: doctor.hourly_rate,
+            degree: doctor.degree,
+            specialization: doctor.specialization,
+            first_name: doctor.user.first_name,
+            last_name: doctor.user.last_name,
+            img_url: doctor.user.img_url,
+            phone:doctor.user.phone
+        }));
+    }
+    
   
     return(
         <LinearGradient 
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
-            {doctors.length===0?     
+            {doctors && doctors.length===0?     
                 <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
