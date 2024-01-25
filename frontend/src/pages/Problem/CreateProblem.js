@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {  ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import {  ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
 import { createProblemvalidation } from "./CreateProblemValidation"
@@ -13,6 +13,7 @@ export default CreateProblem = () =>{
     const [ severity, setSeverity] = useState(0);
     const [ aiSolution, setAiSolution] = useState('');
     const [generateResponse, setGenerateResponse] = useState(false);
+    const [aiError, setAiError] = useState(false)
     const [severityError, setSeverityError] = useState(false)
     const [errors, setErrors] = useState({});
     const [inputs, setInputs] = useState({
@@ -42,6 +43,7 @@ export default CreateProblem = () =>{
     const createProblemRequestForAi = async(textForAi) =>{
         try{
             setAiSolution("");
+            setAiError(false)
             setGenerateResponse(true);
             const response = await axios.get(`${config.apiUrl}/openai`, 
                 {
@@ -59,7 +61,8 @@ export default CreateProblem = () =>{
             //     }, 50);
             // } 
         }catch(error){
-            console.error("Error: ", error.response?.data || error.message)
+            setGenerateResponse(false);
+            setAiError(true)
         }
     }
 
@@ -193,7 +196,12 @@ export default CreateProblem = () =>{
                     <Text style={styles.label} onPress={validateForAi}>
                         Need help? Click here to use our AI 😎
                     </Text>
-                    {generateResponse == true && <Text style={styles.label}>Generate Response..</Text>}
+                    {generateResponse == true && 
+                        <View style={{marginTop:10,flexDirection:'row', alignItems:'center', gap:10}}>
+                        <Text style={{color:CustomColors.white, fontSize:16, fontWeight:'500'}}>Loading</Text>
+                        <ActivityIndicator size="small" color={CustomColors.white} />
+                </View>
+                    }
                     {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}
                 </View>
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
