@@ -32,7 +32,6 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
-                console.log(commentResponse?.data.data.data)
                 setCommentCount(commentCountResponse.data);
                 setCommentList(commentResponse?.data.data.data)
             }catch(error){
