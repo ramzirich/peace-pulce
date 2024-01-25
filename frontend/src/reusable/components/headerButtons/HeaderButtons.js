@@ -31,7 +31,7 @@ export const HeaderButton = ({navigation}) =>{
                     <Square tag="Patients" onPress={() =>navigation.navigate('patients-list-volunteer')}
                         url={require('../../../../assets/headerImages/patient.jpg')}
                     />
-                    <Square tag="Request" onPress={() =>navigation.navigate('request')}
+                    <Square tag="Request" onPress={() =>navigation.navigate('request-forvolunteer')}
                         url={require('../../../../assets/headerImages/request.jpg')}
                     /> 
                 </>
