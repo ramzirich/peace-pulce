@@ -100,7 +100,7 @@ console.log(item)
                 <Text style={styles.comment}>{updatedComment}</Text>
             )}
             {isEditing && (
-                <View style={styles.row_gap_ten}>
+                <View style={styles.space_between}>
                 <TouchableOpacity onPress={updateComment}>
                     <Image style={styles.icon} source={require('../../../../assets/images/done.jpg')} />
                 </TouchableOpacity>
