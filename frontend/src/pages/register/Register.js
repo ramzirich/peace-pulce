@@ -152,4 +152,8 @@ export default Registration = ({navigation}) => {
       marginTop: 10,
       marginBottom:5
     },
+    error:{
+      color:'red',
+      fontSize:12
+    }
   })
