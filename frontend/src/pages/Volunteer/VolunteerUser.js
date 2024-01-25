@@ -32,7 +32,7 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 })
-                console.log(requestHobby.data)
+                setHobbies(requestHobby.data)
                 setRequest(requestResponse.data.request)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
@@ -79,14 +79,14 @@ export default VolunteerUser = ({route}) =>{
             for (let i = 0; i < items.length; i += 4) {
                 const currentRow = items.slice(i, i + 4).map((item, index) => (
                   <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-                      <View key={item.id}
+                      <View key={index}
                       >
                       <Image
-                          source={{ uri: `${config.imgUrl}${item.img_url}` }}
+                          source={{ uri: `${config.imgUrl}${item.hobby.img_url}` }}
                           style={{ height: 50, width: 50 , borderRadius:10}} 
                       />
                       </View>
-                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.name}</Text> 
+                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.hobby.name}</Text> 
                   </View>
                 ));
                 rows.push(
@@ -136,7 +136,7 @@ export default VolunteerUser = ({route}) =>{
                 </TouchableOpacity>
 
                 <View>
-                    <Text style={[styles.white, styles.subTitle]}>Favorite Hobbies</Text>
+                    <Text style={[styles.white, styles.subTitle, {marginBottom:10}]}>Favorite Hobbies</Text>
                     <View>{renderHobbies(hobbies)}</View>
                 </View>
             </ScrollView>
