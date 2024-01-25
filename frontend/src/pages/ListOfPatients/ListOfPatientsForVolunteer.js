@@ -55,7 +55,7 @@ export const ListOfPatientsForVolunteer = ({navigation}) =>{
                         return (
                             <TouchableOpacity 
                                 style={styles.small_container}
-                                onPress={()=>navigation.navigate( 'patient', {id:item.id, patientInfo: item})}    
+                                onPress={()=>navigation.navigate( 'patient-for-volunteer', {id:item.id, patientInfo: item})}    
                             >
                                 <View>
                                     <Image style={styles.img}
