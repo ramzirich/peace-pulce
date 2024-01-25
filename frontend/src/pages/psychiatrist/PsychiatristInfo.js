@@ -176,15 +176,19 @@ export const PsychiatristInfo =({route}) =>{
                         </View>    
                     </View>
                     <View style={{marginTop: 7, flexDirection:'row', alignItems:'center', gap:8}}>
-                        <View>
-                            <Image source={require('../../../assets/images/phone.png')} 
-                                    style={[styles.icon]}/>
-                        </View>
-                        <View>
-                            <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
-                                Call me
-                            </Text>
-                        </View>
+                    {request =='accepted'  &&
+                        <>
+                            <View>
+                                <Image source={require('../../../assets/images/phone.png')} 
+                                        style={[styles.icon]}/>
+                            </View>
+                            <View>
+                                <Text onPress={() =>navigation.navigate('call', {phone})} style={{color:'white'}}>
+                                    Call me
+                                </Text>
+                            </View>
+                        </>
+                        }
                     </View>
                 </View>
                 <View>
