@@ -103,7 +103,7 @@ export const PsychiatristInfo =({route}) =>{
             }
             if(request=='accepted' || request==='requested'){        
                 const authToken = await AsyncStorage.getItem('authToken');
-                const requestDeleteResponse = await axios.post(`${config.apiUrl}/doctor_request/delete/${id}`,{
+                const requestDeleteResponse = await axios.post(`${config.apiUrl}/doctor_request_user/delete/${id}`,{
                 } ,{
                     headers:{
                         'Authorization': `Bearer ${authToken}`

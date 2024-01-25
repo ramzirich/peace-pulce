@@ -40,7 +40,11 @@ export default VolunteerUser = ({route}) =>{
                 })
                 setPlaces(requestPlace.data)
                 setHobbies(requestHobby.data)
-                setRequest(requestResponse.data.request)
+                if(!requestResponse.data.request){
+                    setRequest(false)
+                }else{
+                    setRequest(requestResponse.data.request)
+                }
             }catch(error){
                 console.error('Error fetching user data:', error.message);
             }
@@ -50,7 +54,7 @@ export default VolunteerUser = ({route}) =>{
 
     async function sendCancelRequest (){
         try{
-            if(request =='null'|| !request){
+            if(request =='null'|| !request || request == false){
                 const authToken = await AsyncStorage.getItem('authToken');
 
                 const requestResponse = await axios.post(`${config.apiUrl}/volunteer_request/create`,{
@@ -66,14 +70,14 @@ export default VolunteerUser = ({route}) =>{
             }
             if(request=='accepted' || request==='requested'){        
                 const authToken = await AsyncStorage.getItem('authToken');
-                const requestDeleteResponse = await axios.post(`${config.apiUrl}/volunteer_request/delete/${id}`,{
+                const requestDeleteResponse = await axios.post(`${config.apiUrl}/volunteer_request_user/delete/${id}`,{
                 } ,{
                     headers:{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
                 if(requestDeleteResponse.status == 200){
-                    setRequest(null)
+                    setRequest(false)
                 }
             }
         }catch(error){
@@ -165,7 +169,7 @@ export default VolunteerUser = ({route}) =>{
                 </View>
 
                 <TouchableOpacity onPress={sendCancelRequest} style={{paddingVertical:20}}>
-                    {!request && <Text style={styles.request}>Request volunteer -&gt;</Text>}
+                    {request == false && <Text style={styles.request}>Request volunteer -&gt;</Text>}
                     {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
                 </TouchableOpacity>
 
