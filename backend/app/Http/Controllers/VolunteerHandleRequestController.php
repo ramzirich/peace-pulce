@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\patient_volunteer_request;
+use App\Models\Volunteer;
 use Illuminate\Http\Request;
 use App\Manager\UserSpecificGenericManager;
 use App\Models\Patient_doctor_request;
@@ -23,33 +24,38 @@ class VolunteerHandleRequestController extends Controller
     }
 
     public function getAllRequestForVolunteer(Request $req){
-        $req->merge(['volunteer_id' => $this->user->id]);
-        $req->merge(['request' => 'accepted']);
-
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($req, $with=['user']);
-        if(!$model){
-            return [];
-        }
+        $userDoctor= new  Volunteer();
+        $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
+        $model = $this->volunteerRequest->where('volunteer_id',  $doctorId)->where('request', 'accepted')
+            ->with(['user', 'volunteer'])->get();
         return $model;
     }
 
     public function getAllPendingRequestForVolunteer(Request $req){
-        $req->merge(['volunteer_id' => $this->user->id]);
-        $req->merge(['request' => 'requested']);
-
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($req, $with=['user']);
-        if(!$model){
-            return [];
-        }
+        $userDoctor= new  Volunteer();
+        $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
+        $model = $this->volunteerRequest->where('volunteer_id',  $doctorId)->where('request', 'requested')
+            ->with(['user', 'volunteer'])->get();
         return $model;
     }
 
     public function acceptRequest($id, Request $request){
-        $request['request'] = 'accepted';
-        return $this->userSpecificGenericManager->updateForSpecificUser($request, $id, 'volunteer_id');
+        $userDoctor= new  Volunteer();
+        $doctorId = $userDoctor->where('user_id', $this->user->id)->first()->id;
+        $model = $this->volunteerRequest->find($id);
+        $model->request = 'accepted';
+        $model->save();
+        return $model;
     }
 
     public function DeleteRequest($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUser($id, 'volunteer_id');
+        $userDoctor= new  Volunteer();
+        $doctorId = $userDoctor->where('user_id', $this->user->id)->first()->id;
+        $model = $this->volunteerRequest->find($id);
+        $model->delete();
+        return response()->json([
+            'status' => 'success',
+            'message' =>  "Request successfully deleted"
+        ]);
     }
 }

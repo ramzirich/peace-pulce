@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Exceptions\ExceptionMessages;
 use App\Http\Requests\PatientDoctorRequest\PatientDoctorRequestValidation;
@@ -25,33 +26,38 @@ class DoctorHandleRequestController extends Controller
     }
 
     public function getAllRequestForDoctor(Request $req){
-        $req->merge(['doctor_id' => $this->user->id]);
-        $req->merge(['request' => 'accepted']);
-
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($req, $with=['user']);
-        if(!$model){
-            return [];
-        }
+        $userDoctor= new  Doctors();
+        $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
+        $model = $this->doctorRequest->where('doctor_id',  $doctorId)->where('request', 'accepted')
+        ->with(['user', 'doctor'])->get();
         return $model;
     }
 
     public function getAllPendingRequestForDoctor(Request $req){
-        $req->merge(['doctor_id' => $this->user->id]);
-        $req->merge(['request' => 'requested']);
-
-        $model = $this->userSpecificGenericManager->getAllForCurrentUser($req, $with=['user']);
-        if(!$model){
-            return [];
-        }
+        $userDoctor= new  Doctors();
+        $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
+        $model = $this->doctorRequest->where('doctor_id',  $doctorId)->where('request', 'requested')
+            ->with(['user', 'doctor'])->get();
         return $model;
     }
 
     public function acceptRequest($id, Request $request){
-        $request['request'] = 'accepted';
-        return $this->userSpecificGenericManager->updateForSpecificUser($request, $id, 'doctor_id');
+        $userDoctor= new  Doctors();
+        $doctorId = $userDoctor->where('user_id', $this->user->id)->first()->id;
+        $model = $this->doctorRequest->find($id);
+        $model->request = 'accepted';
+        $model->save();
+        return $model;
     }
 
     public function DeleteRequest($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUser($id, 'doctor_id');
-    }
+        $userDoctor= new  Doctors(); 
+        $doctorId = $userDoctor->where('user_id', $this->user->id)->first()->id;
+        $model = $this->doctorRequest->find($id);
+        $model->delete();
+        return response()->json([
+            'status' => 'success',
+            'message' =>  "Request successfully deleted"
+        ]);
+   }
 }

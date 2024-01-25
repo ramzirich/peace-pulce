@@ -47,7 +47,7 @@ class UserSpecificGenericManager{
         try{
             $query = $this->obj->query();
             $perPage = $request->query('perPage', $request['perPage']);
-            $page = $request->query('page', $request['perPage']);
+            $page = $request->query('page', $request['page']);
             $sortColumns = $request->query('sortColumns', []);
             
             if ($request) {

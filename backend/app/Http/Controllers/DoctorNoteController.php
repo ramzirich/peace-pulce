@@ -6,6 +6,7 @@ use App\Exceptions\ExceptionMessages;
 use App\Http\Requests\DoctorNote\DoctorNoteRequest;
 use App\Manager\UserSpecificGenericManager;
 use App\Manager\GenericManager;
+use App\Models\Doctors;
 use App\Models\Doctors_note;
 use App\Models\Patient_doctor_request;
 use App\Models\User;
@@ -24,7 +25,11 @@ class DoctorNoteController extends Controller
     }
 
     public function getDoctorNote($id){
-        return $this->userSpecificGenericManager->getByColumn('patient_id', $id, "doctor_id");   
+        $userDoctor= new  Doctors();
+        $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
+        $model = $this->doctor_note->where('doctor_id',  $doctorId)->where('patient_id', $id)
+            ->with(['user', 'doctor'])->get()->first();
+        return $model; 
     } 
     public function createDoctorNote(Request $request){
         try{

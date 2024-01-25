@@ -33,8 +33,12 @@ class PatientCommentController extends Controller
     }
 
     public function getAllPatientCommentForDoctor($id, Request $request){
-        $request->merge(['doctor_id' => $id]);
-        return $this->userSpecificGenericManager->getAllForCurrentUser($request, ['doctor','user']);
+        $perPage = $request->input('perPage');
+        $perPage = $perPage ?? 10;
+
+        $data = $this->patient_comment->with(['doctor', 'user'])->where('doctor_id', $id)
+            ->paginate($perPage);
+    return response()->json(['data' => $data]);
     }
 
     public function createPatientComment(Request $request){
