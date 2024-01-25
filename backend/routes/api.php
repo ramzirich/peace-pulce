@@ -21,6 +21,7 @@ use App\Http\Controllers\DoctorNoteController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\VolunteerController;
+use App\Http\Controllers\VolunteerHandleRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -172,6 +173,13 @@ Route::middleware(['auth.user', 'doctor.check'])->group(function () {
     Route::post('doctor_accept_request/update/{id}',  [DoctorHandleRequestController::class, 'acceptRequest']);
     Route::post('doctor_request/delete/{id}',  [DoctorHandleRequestController::class, 'DeleteRequest']);
     Route::get('patients_request',  [DoctorHandleRequestController::class, 'getAllRequestForDoctor']); 
+});
+
+Route::middleware(['auth.user', 'volunteer.check'])->group(function () {
+    Route::get('volunteer-patient_request_pending',  [VolunteerHandleRequestController::class, 'getAllPendingRequestForVolunteer']);
+    Route::post('volunteer_accept_request/update/{id}',  [VolunteerHandleRequestController::class, 'acceptRequest']);
+    Route::post('volunteer_request/delete/{id}',  [VolunteerHandleRequestController::class, 'DeleteRequest']);
+    Route::get('patients_request',  [VolunteerHandleRequestController::class, 'getAllRequestForVolunteer']); 
 });
 
 Route::middleware('auth.user')->group(function () {
