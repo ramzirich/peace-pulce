@@ -10,7 +10,7 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
         <TouchableOpacity style={styles.card}
             onPress={()=>navigation.navigate( pathName, {id:id, doctorInfo: item})}>
             <View style={styles.img_container}>  
-                <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>
+                {img_url && <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>}
             </View>
             <View style={styles.text_right}>
                 <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
