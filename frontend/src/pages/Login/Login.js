@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Keyboard, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { CustomColors } from '../../styles/color';
 import { Input } from '../../reusable/elements/Input/Input';
@@ -29,6 +29,7 @@ export default Login = ({navigation}) =>{
           login(inputs);
         }
     };
+    const [wrongCredentials, setWrongCredentials] = useState(false)
 
     const login = async(inputs) =>{
         try{
@@ -37,7 +38,14 @@ export default Login = ({navigation}) =>{
             dispatch(setUserInfo(response.data.user))
             navigation.navigate('home')
         }catch(error){
-            console.error("Coudn't login: ", error.response?.data || error.message)
+            if(error.response?.data.message == 'Wrong credentials'){
+                setWrongCredentials(true)
+                setTimeout(() => {
+                    setWrongCredentials(false);
+                }, 3000);
+            }else{
+                console.error("Coudn't login: ", error.response?.data || error.message)
+            }
         }
     }
 
@@ -50,7 +58,6 @@ export default Login = ({navigation}) =>{
 
     return(
         <LinearGradient 
-            // colors={['#8962f3', '#4752e2','#214ae2', '#1d50e0']} 
             colors={['#8962f3', '#4752e2','#214ae2']} 
             style={styles.bigContainer}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -78,7 +85,8 @@ export default Login = ({navigation}) =>{
                     
                     <View style={styles.btn}>
                         <CustomButton title="Log in" onPress={validate} />
-                    </View>         
+                    </View>
+                    {wrongCredentials && <Text style={styles.error}>Wrong Credentials</Text>}         
                     <Text
                         onPress={() => navigation.navigate('register')}
                         style={{
@@ -119,4 +127,8 @@ const styles = StyleSheet.create({
         marginTop:20,
         marginBottom:7
     },
+    error:{
+        color:'red',
+        fontSize:12
+    }
 })
