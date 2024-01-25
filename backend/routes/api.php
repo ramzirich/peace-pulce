@@ -179,7 +179,7 @@ Route::middleware(['auth.user', 'volunteer.check'])->group(function () {
     Route::get('volunteer-patient_request_pending',  [VolunteerHandleRequestController::class, 'getAllPendingRequestForVolunteer']);
     Route::post('volunteer_accept_request/update/{id}',  [VolunteerHandleRequestController::class, 'acceptRequest']);
     Route::post('volunteer_request/delete/{id}',  [VolunteerHandleRequestController::class, 'DeleteRequest']);
-    Route::get('patients_request',  [VolunteerHandleRequestController::class, 'getAllRequestForVolunteer']); 
+    Route::get('volunteer-patients_request',  [VolunteerHandleRequestController::class, 'getAllRequestForVolunteer']); 
 });
 
 Route::middleware('auth.user')->group(function () {
