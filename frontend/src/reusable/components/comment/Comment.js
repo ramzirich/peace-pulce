@@ -100,12 +100,12 @@ console.log(item)
                 <Text style={styles.comment}>{updatedComment}</Text>
             )}
             {isEditing && (
-                <View style={styles.space_between}>
-                <TouchableOpacity onPress={updateComment}>
-                    <Image style={styles.icon} source={require('../../../../assets/images/done.jpg')} />
-                </TouchableOpacity>
+                <View style={[styles.space_between, {paddingHorizontal: 5}]}>
                 <TouchableOpacity onPress={cancelEditing}>
                     <Image style={styles.icon} source={require('../../../../assets/images/cancel.jpg')} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={updateComment}>
+                    <Image style={styles.icon} source={require('../../../../assets/images/done.jpg')} />
                 </TouchableOpacity>
                 </View>
             )}
