@@ -111,7 +111,8 @@ export default Registration = ({navigation}) => {
           
           <View style={styles.btn}>
               <CustomButton title="Register" onPress={validate} />
-          </View>         
+          </View>    
+          {wrongCredentials && <Text style={styles.error}>Wrong Credentials</Text>}        
           <Text
               onPress={() => navigation.navigate('login')}
               style={{
