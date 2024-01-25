@@ -134,17 +134,17 @@ export default CreateProblem = () =>{
             let ballStyle;
             if(i<=4){           
                 ballStyle = {
-                    backgroundColor: i <= severity ? 'yellow' : '#828207'
+                    backgroundColor: i <= severity ? 'yellow' : 'rgba(225, 245, 5,0.5)'
                 };
             }
             else if(i<=7){
                 ballStyle = {
-                    backgroundColor: i <= severity ? 'orange' : '#ad5e09'
+                    backgroundColor: i <= severity ? 'orange' : 'rgba(245, 181, 5,0.8)'
                 };
             }
             else if(i<=10){
                 ballStyle = {
-                    backgroundColor: i <= severity ? 'red' : '#7F4040'
+                    backgroundColor: i <= severity ? 'red' : 'rgba(245, 5, 5, 0.6)'
                 };
             }
           
