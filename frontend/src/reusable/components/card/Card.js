@@ -11,6 +11,7 @@ export const Card = ({dr =null, item, navigation, pathName}) =>{
             onPress={()=>navigation.navigate( pathName, {id:id, doctorInfo: item})}>
             <View style={styles.img_container}>  
                 {img_url && <Image source={{ uri: imagePath }} style={styles.img} resizeMode="cover"/>}
+                {img_url ==null && <Image source={require('../../../../assets/images/user.jpg')} style={styles.img} resizeMode="cover"/>}
             </View>
             <View style={styles.text_right}>
                 <Text style={styles.name}>{dr} {first_name} {last_name}</Text>
