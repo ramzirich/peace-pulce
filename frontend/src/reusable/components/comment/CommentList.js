@@ -218,25 +218,6 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
                     />
                 }
             </View> 
-            {/* <TouchableOpacity onPress={showAddComment}>
-                            <Text style={styles.addcomment}>
-                                Add Comment
-                            </Text>
-                        </TouchableOpacity> 
-            { isShowInput == true &&
-                <View style={[styles.spacebtw, {marginTop:5}]}>
-                    <TextInput
-                        value={newComment}
-                        onChangeText={(text) => setNewComment(text)}
-                        placeholder="Type your comment..."
-                        multiline
-                        style={styles.input}
-                    />
-                    <TouchableOpacity style={styles.postBtn} onPress={submitComment}>
-                        <Text style={{color:CustomColors.white}}>Post</Text>
-                    </TouchableOpacity>
-                </View>
-            } */}
         </View>
         
     )
