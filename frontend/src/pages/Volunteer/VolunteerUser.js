@@ -99,6 +99,31 @@ export default VolunteerUser = ({route}) =>{
         
     };
 
+    const renderPlaces = (items) => {
+        const rows = [];
+            for (let i = 0; i < items.length; i += 4) {
+                const currentRow = items.slice(i, i + 4).map((item, index) => (
+                  <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+                      <View key={index}
+                      >
+                      <Image
+                          source={{ uri: `${config.imgUrl}${item.hobby.img_url}` }}
+                          style={{ height: 50, width: 50 , borderRadius:10}} 
+                      />
+                      </View>
+                      <Text style={{color:CustomColors.white, fontSize:12}}>{item.hobby.name}</Text> 
+                  </View>
+                ));
+                rows.push(
+                  <View style={{ flexDirection: 'row', marginBottom: 15, justifyContent:'space-between' }}>
+                    {currentRow}
+                  </View>
+                );
+            return rows;
+        }
+        
+    };
+
     return(
         <LinearGradient style={styles.big_container}
         colors={['#8962f3', '#4752e2','#214ae2']} 
