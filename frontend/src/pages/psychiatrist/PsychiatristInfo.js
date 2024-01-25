@@ -200,7 +200,6 @@ export const PsychiatristInfo =({route}) =>{
             <View style={styles.emojies_container}>
                 <View style={styles.emoji_info}>
                     <View>
-                        {/* <Text style={styles.emojies}>😊</Text> */}
                         <Image source={require('../../../assets/images/happy.png')} style={{height:40, width:40}}/>
                     </View>
                     <View>
@@ -210,7 +209,6 @@ export const PsychiatristInfo =({route}) =>{
 
                 <View style={styles.emoji_info}>
                     <View>
-                        {/* <Text style={styles.emojies}>😐</Text> */}
                         <Image source={require('../../../assets/images/neutral.png')} style={{height:40, width:40}}/>
                     </View>
                     <View>
@@ -220,7 +218,6 @@ export const PsychiatristInfo =({route}) =>{
 
                 <View style={styles.emoji_info}>
                     <View>
-                        {/* <Text style={styles.emojies}>😡</Text> */}
                         <Image source={require('../../../assets/images/angry.png')} style={{height:45, width:45}}/>
                     </View>
                     <View>
