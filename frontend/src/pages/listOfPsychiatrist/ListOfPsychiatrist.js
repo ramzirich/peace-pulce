@@ -45,7 +45,7 @@ export const ListOfPsychiatrist = ({navigation}) =>{
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
             {doctors === null &&
-                <View style={{padding:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
                     <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
                     <ActivityIndicator size="small" color={CustomColors.white} />
                 </View>

@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, Text, View } from "react-native"
+import { ActivityIndicator, FlatList, ScrollView, Text, View } from "react-native"
 import { CustomHeader } from "../../reusable/components/header/CustomHeader"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
 import React, { useEffect } from "react"
@@ -41,10 +41,16 @@ export const ListOfVolunteer = ({navigation}) =>{
     return(
         <LinearGradient 
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
-            style={{flex:1, paddingBottom:50, paddingTop:40, }}>
+            style={{flex:1, paddingBottom:50, paddingTop:40, }}> 
             <HeaderButton  navigation={navigation} />
+            {volunteers === null &&
+                <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
+                    <ActivityIndicator size="small" color={CustomColors.white} />
+                </View>
+            }
             {volunteers == null? 
-                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
+                <></> :
                 volunteers.length===0?     
                 <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>No Volunteers</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
