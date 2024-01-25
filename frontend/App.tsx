@@ -28,14 +28,14 @@ import { ListOfPatientsForVolunteer } from './src/pages/ListOfPatients/ListOfPat
 import { PatientForVolunteer } from './src/pages/Patient/PatientForVolunteer';
 import { RequestForVolunteer } from './src/pages/Request/requestForVolunteer';
 
-
+//ource={require('../../../assets/images/try.jpeg')}
 
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   return (
     <Provider store={storee}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login"> 
+        <Stack.Navigator initialRouteName="login">
           <Stack.Screen name="login" component={Login} options={{ headerShown: false }} /> 
           <Stack.Screen name="register" component={Registration} options={{ headerShown: false }} /> 
           <Stack.Screen name="home" component={Home} options={{ headerShown: false }} /> 
