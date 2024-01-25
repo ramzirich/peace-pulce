@@ -47,7 +47,14 @@ export default Registration = ({navigation}) => {
       dispatch(setUserInfo(response.data.user))
       navigation.navigate('home')    
     }catch(error){
-        console.error("Coudn't login: ", error.response?.data || error.message)
+      if(error.response?.data.message == 'Wrong credentials'){
+        setWrongCredentials(true)
+        setTimeout(() => {
+            setWrongCredentials(false);
+        }, 3000);
+        }else{
+            console.error("Coudn't login: ", error.response?.data || error.message)
+        }
     }
   }
 
