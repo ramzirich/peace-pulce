@@ -70,7 +70,8 @@ class PatientRequestVolunteer extends Controller
 
     public function deleteVolunteerRequest($id){
         try{
-            $this->volunteerRequest->where('volunteer_id', $id)->where('patient_id',$this->user->id)->first();
+            $model = $this->volunteerRequest->where('volunteer_id', $id)->where('patient_id',$this->user->id)->first();
+            $model->delete();
             return response()->json([
                 'status'=> 'success',
                 'message'=> "Volunteer Request successfully deleted" 

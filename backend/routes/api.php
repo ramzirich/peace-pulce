@@ -154,7 +154,7 @@ Route::controller(HomeImagesController::class)->group(function () {
 
 Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::post('doctor_request/create',  [PatientRequestDoctorController::class, 'createDoctorRequest']);
-    Route::post('doctor_request/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
+    Route::post('doctor_request_user/delete/{id}',  [PatientRequestDoctorController::class, 'deleteDoctorRequest']);
     Route::post('doctor_request/massDelete',  [PatientRequestDoctorController::class, 'massDeleteDoctorRequest']);
     Route::get('doctor_request/{id}',  [PatientRequestDoctorController::class, 'getRequestForPatient']);
     Route::get('doctor_request',  [PatientRequestDoctorController::class, 'getAllDoctorRequestForPatient']);
@@ -162,7 +162,7 @@ Route::middleware(['auth.user', 'patient.check'])->group(function () {
 
 Route::middleware(['auth.user', 'patient.check'])->group(function () {
     Route::post('volunteer_request/create',  [PatientRequestVolunteer::class, 'createVolunteerRequest']);
-    Route::post('volunteer_request/delete/{id}',  [PatientRequestVolunteer::class, 'deleteVolunteerRequest']);
+    Route::post('volunteer_request_user/delete/{id}',  [PatientRequestVolunteer::class, 'deleteVolunteerRequest']);
     Route::post('volunteer_request/massDelete',  [PatientRequestVolunteer::class, 'massDeleteDoctorRequest']);
     Route::get('volunteer_request/{id}',  [PatientRequestVolunteer::class, 'getRequestForPatient']);
     Route::get('volunteer_request',  [PatientRequestVolunteer::class, 'getAllVolunteerRequestForPatient']);
