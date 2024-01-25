@@ -23,6 +23,7 @@ export const RequestForVolunteer = ({navigation}) =>{
                         }
                     }
                 );
+                console.log(response)
                 setPatients(response.data)
             }catch(error){
                 console.error('Error fetching user data:', error.message);

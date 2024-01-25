@@ -16,11 +16,12 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
     const [isShowInput, setIsShowInput] = useState(false);
     const [rating, setRating] = useState(userRating);
     const perPageRef = useRef(perPage);
+ 
     useEffect(() =>{
         const fetchData = async() =>{
             try{
                 const authToken = await AsyncStorage.getItem('authToken');
-                const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}&page=1`,{
+                const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPage}`,{
                     headers:{
                         'Authorization': `Bearer ${authToken}`
                     }
@@ -31,9 +32,9 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
-        
+                console.log(commentResponse?.data.data.data)
                 setCommentCount(commentCountResponse.data);
-                setCommentList(commentResponse?.data)
+                setCommentList(commentResponse?.data.data.data)
             }catch(error){
                 console.error('Error fetching user data f:', error.message);
             }
@@ -50,12 +51,12 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
         const authToken = await AsyncStorage.getItem('authToken');
         
         perPageRef.current = perPageRef.current + 2;
-        const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}&page=1`,{
+        const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}`,{
             headers:{
                 'Authorization': `Bearer ${authToken}`
             }
-        });       
-        setCommentList(commentResponse.data)
+        });    
+        setCommentList(commentResponse.data.data.data)
     }
 
     renderItem = ({item}) =>{
@@ -67,7 +68,7 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
     const fetchCommentData = async() =>{
         try{
             const authToken = await AsyncStorage.getItem('authToken');
-            const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}&page=1`,{
+            const commentResponse = await axios.get(`${config.apiUrl}/patient_comments/${id}?perPage=${perPageRef.current}`,{
                 headers:{
                     'Authorization': `Bearer ${authToken}`
                 }
@@ -80,7 +81,7 @@ export const CommentList = ({id, request,  onRatingChange, userRating}) =>{
             });
     
             setCommentCount(commentCountResponse.data);
-            setCommentList(commentResponse?.data)
+            setCommentList(commentResponse?.data.data.data)
         }catch(error){
             console.error('Error fetching user data f:', error.message);
         }
