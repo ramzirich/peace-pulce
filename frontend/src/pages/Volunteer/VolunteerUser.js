@@ -15,7 +15,7 @@ export default VolunteerUser = ({route}) =>{
     const imgUrl = `${config.imgUrl}${img_url}`
     const [request, setRequest] = useState(null); 
     const [hobbies, setHobbies] = useState([]);
-console.log(id_volunteer)
+
     const navigation = useNavigation()
 
     useEffect(() =>{
@@ -32,7 +32,7 @@ console.log(id_volunteer)
                         'Authorization': `Bearer ${authToken}`
                     }
                 })
-                // console.log(requestHobby)
+                console.log(requestHobby.data)
                 setRequest(requestResponse.data.request)
             }catch(error){
                 console.error('Error fetching user data:', error.message);
