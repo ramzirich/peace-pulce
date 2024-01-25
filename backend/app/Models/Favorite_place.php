@@ -20,6 +20,6 @@ class Favorite_place extends Model
     }
 
     public function place(){
-        return $this->belongsTo(Place::class);
+        return $this->belongsTo(Place::class, 'places_id');
     }
 }
