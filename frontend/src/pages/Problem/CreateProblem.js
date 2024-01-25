@@ -29,22 +29,6 @@ export default CreateProblem = () =>{
             ai_solution: aiSolution
         }));
     }, [aiSolution]);
-    // const animateText = async () => {
-    //     for (let i=0;i < aiSolution.length ; i++) {
-    //         await setAsyncTimeout(() => {
-    //             setAiSolution((prevText) => prevText + aiSolution.charAt(i));
-    //         }, 50);
-    //     }       
-    // };
-    
-    // const setAsyncTimeout = (callback, delay) => {
-    //     return new Promise((resolve) => { 
-    //         setTimeout(() => {
-    //             callback();
-    //             resolve();
-    //         }, delay);
-    //     }); 
-    // };
 
     const validateForAi = () => {
         setErrors({})
