@@ -69,6 +69,14 @@ class PatientRequestVolunteer extends Controller
     }
 
     public function deleteVolunteerRequest($id){
-        return $this->userSpecificGenericManager->deleteForSpecificUserByColumn('volunteer_id', $id , 'patient_id');
+        try{
+            $this->volunteerRequest->where('volunteer_id', $id)->where('patient_id',$this->user->id)->first();
+            return response()->json([
+                'status'=> 'success',
+                'message'=> "Volunteer Request successfully deleted" 
+            ]);
+        }catch(\Exception $exception){
+            return ExceptionMessages::Error($exception->getMessage());
+        }
     }
 }
