@@ -125,33 +125,11 @@ export const PsychiatristInfo =({route}) =>{
         setRatingList(ratingResponse.data)     
     }
 
-    const handleStarClick = async(selectedRating) => {
-        try{
-            const authToken = await AsyncStorage.getItem('authToken');
-            const postRating = await axios.post(`${config.apiUrl}/rating`,
-                {
-                    rating: selectedRating,
-                    doctor_id: id
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${authToken}`,
-                    },
-                }
-            )
-            setRating(selectedRating)
-            onRatingChange()
-        }catch(error){
-            console.log("Error in set rating: ",error)
-        }
-      };
-
     return(   
         <LinearGradient style={styles.big_container}
             colors={['#8962f3', '#4752e2','#214ae2']} 
         >     
             <ScrollView showsVerticalScrollIndicator={false}>
-            {/* <Image source={{uri : imgUrl}} style={styles.image} /> */}
             <View style={styles.profile}>
                 <View style={styles.fullname}>
                     <Text style={[styles.name, styles.white]}>Dr. {first_name}</Text>
@@ -251,17 +229,6 @@ export const PsychiatristInfo =({route}) =>{
                 {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
                 {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
-            {/* {
-                request == 'accepted' && 
-                    <View style={styles.row_five}>
-                        <View>
-                            <Text style={{color:CustomColors.white}}>
-                                Rate
-                            </Text>
-                        </View>
-                        <View style={styles.starsContainer}>{renderStars()}</View> 
-                    </View>
-            } */}
 
             <View>
                 <CommentList id={id} request={request} onRatingChange={onRatingChange} userRating={userRating} />
