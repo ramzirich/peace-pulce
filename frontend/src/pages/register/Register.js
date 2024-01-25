@@ -61,7 +61,6 @@ export default Registration = ({navigation}) => {
   return (
     <LinearGradient  
       colors={['#8962f3', '#4752e2','#214ae2']} 
-      // colors={['#6484ee','#3e6ddb', '#1d50e0']}
       style={styles.bigContainer}>
     
       <ScrollView showsVerticalScrollIndicator={false}>
