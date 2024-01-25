@@ -209,7 +209,7 @@ export const PsychiatristInfo =({route}) =>{
                     <View>
                         <Text style={styles.white}>{ratingDistribution['3.75-5']} votes</Text>
                     </View>
-                </View>
+                </View> 
 
                 <View style={styles.emoji_info}>
                     <View>
