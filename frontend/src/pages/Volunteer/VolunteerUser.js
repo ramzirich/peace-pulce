@@ -15,6 +15,7 @@ export default VolunteerUser = ({route}) =>{
     const imgUrl = `${config.imgUrl}${img_url}`
     const [request, setRequest] = useState(null); 
     const [hobbies, setHobbies] = useState([]);
+    const [places, setPlaces] = useState([]);
 
     const navigation = useNavigation()
 
@@ -37,6 +38,7 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 })
+                setPlaces(requestPlace.data)
                 setHobbies(requestHobby.data)
                 setRequest(requestResponse.data.request)
             }catch(error){
