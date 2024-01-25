@@ -20,7 +20,6 @@ export const PatientInfo =({route}) =>{
     const [isVisibleNote, setIsVisibleNote] = useState(false)
     const imgUrl = `${config.imgUrl}${img_url}` 
     const navigation = useNavigation();
-
     const handleEmailPress = () => {
         Linking.openURL(`mailto:${email}`);
       };
@@ -39,6 +38,7 @@ export const PatientInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });  
+                console.log(requestResponse)
                 setNoteId(requestResponse.data.id)
                 setNote(requestResponse.data.note)        
             }catch(error){
@@ -70,14 +70,14 @@ export const PatientInfo =({route}) =>{
         });
         setIsEditing(false);
         Keyboard.dismiss();
-        const updatednoteFromApi = requestResponse.data.data.note;
-        setNote(updatednoteFromApi);
+        // const updatednoteFromApi = requestResponse.data.data.note;
+        setNote(note);
         } catch (error) {
         console.error('Error updating comment:', error.message);
         }
     }
 
-    addNote = async() =>{
+    addNote = async() =>{ 
         try{
             const authToken = await AsyncStorage.getItem('authToken');
             const requestResponse = await axios.post(`${config.apiUrl}/doctor_note/create`,{
@@ -88,6 +88,7 @@ export const PatientInfo =({route}) =>{
                     'Authorization': `Bearer ${authToken}`
                 }
             });
+            setNote(typedNote);
         }catch(error){
             console.error("Error in posting data: ", error)
         }
