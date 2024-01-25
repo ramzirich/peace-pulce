@@ -20,6 +20,6 @@ class Favorite_hobby extends Model
     }
 
     public function hobby(){
-        return $this->belongsTo(Hobby::class);
+        return $this->belongsTo(Hobby::class, 'hobbies_id');
     }
 }

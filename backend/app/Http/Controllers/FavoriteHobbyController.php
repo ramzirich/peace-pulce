@@ -38,7 +38,7 @@ class FavoriteHobbyController extends Controller
 
     public function getAllFavoriteHobbyForVolunteer($id){
         try{
-            return $this->favoriteHobby->where('user_id', $id)->get();
+            return $this->favoriteHobby->where('user_id', $id)->with(['hobby'])->get();
         }catch(\Exception $exception){
             return ExceptionMessages::Error($exception->getMessage());
         }
