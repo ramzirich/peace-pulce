@@ -32,6 +32,11 @@ export default VolunteerUser = ({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 })
+                const requestPlace = await axios.get(`${config.apiUrl}/favorite_placeVolunteer/${id_volunteer}`,{
+                    headers:{
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                })
                 setHobbies(requestHobby.data)
                 setRequest(requestResponse.data.request)
             }catch(error){
