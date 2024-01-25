@@ -43,8 +43,12 @@ export const PsychiatristInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });
-
-                setRequest(requestResponse.data.request)
+                if(requestResponse.data.request){
+                    setRequest(requestResponse.data.request)
+                }else{
+                    setRequest(false)
+                }
+                
                 setRatingList(ratingResponse.data)
                 const recordWithMatchingUserId = ratingResponse.data.find(record => record.user.id === userInfo.id)
                 if(recordWithMatchingUserId){
@@ -106,7 +110,7 @@ export const PsychiatristInfo =({route}) =>{
                     }
                 });
                 if(requestDeleteResponse.status == 200){
-                    setRequest(null)
+                    setRequest(false)
                 }
             }
         }catch(error){
@@ -226,7 +230,7 @@ export const PsychiatristInfo =({route}) =>{
             </View>
                
             <TouchableOpacity onPress={sendCancelRequest}>
-                {!request && <Text style={styles.request}>Request doctor -&gt;</Text>}
+                {request == false && <Text style={styles.request}>Request doctor -&gt;</Text>}
                 {(request=='requested') && <Text style={[styles.request,{color:"red"}]}>Cancel request</Text>}
             </TouchableOpacity>
 
