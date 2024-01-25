@@ -1,5 +1,4 @@
-import { FlatList, ScrollView, Text, View } from "react-native"
-import { CustomHeader } from "../../reusable/components/header/CustomHeader"
+import { ActivityIndicator, FlatList, Text, View } from "react-native"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
 import React, { useEffect } from "react"
 import axios from "axios"
@@ -10,7 +9,7 @@ import { CustomColors } from "../../styles/color"
 
 
 export const ListOfPsychiatrist = ({navigation}) =>{
-    const [doctors, setDoctors] = React.useState();
+    const [doctors, setDoctors] = React.useState(null);
 
     useEffect(() =>{
         const fetchUserData = async() =>{
@@ -45,6 +44,12 @@ export const ListOfPsychiatrist = ({navigation}) =>{
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
+            {doctors === null &&
+                <View style={{padding:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
+                    <ActivityIndicator size="small" color={CustomColors.white} />
+                </View>
+            }
             {doctors && doctors.length===0?     
                 <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
