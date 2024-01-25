@@ -86,7 +86,6 @@ Route::middleware('auth.user')->group(function () {
     Route::post('favorite_place/delete/{id}',  [FavoritePlaceController::class, 'deleteFavoritePlace']);
     Route::post('favorite_place/massDelete',  [FavoritePlaceController::class, 'massDeleteFavoritePlace']);
     Route::get('favorite_place/{id}',  [FavoritePlaceController::class, 'getFavoritePlaceForUser']);
-    Route::get('favorite_placeVolunteer/{id}',  [FavoritePlaceController::class, 'getAllFavoriteHobbyForVolunteer']);
     Route::get('favorite_places',  [FavoritePlaceController::class, 'getAllFavoritePlaceForUser']);  
 });
 
@@ -95,6 +94,7 @@ Route::middleware('auth.user')->group(function () {
     Route::post('favorite_hobby/update/{id}',  [FavoriteHobbyController::class, 'updateFavoriteHobby']);
     Route::post('favorite_hobby/delete/{id}',  [FavoriteHobbyController::class, 'deleteFavoriteHobby']);
     Route::post('favorite_hobby/massDelete',  [FavoriteHobbyController::class, 'massDeleteFavoriteHobby']);
+    Route::get('favorite_placeVolunteer/{id}',  [FavoriteHobbyController::class, 'getAllFavoriteHobbyForVolunteer']);
     Route::get('favorite_hobby/{id}',  [FavoriteHobbyController::class, 'getFavoriteHobbyForUser']);
     Route::get('favorite_hobbies',  [FavoriteHobbyController::class, 'getAllFavoriteHobbyForUser']);
 });
