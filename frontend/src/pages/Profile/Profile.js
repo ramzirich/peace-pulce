@@ -119,9 +119,11 @@ export default Profile = ({navigation}) =>{
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
-                <View style={{position:'absolute', top:'34%', width:'100%', padding:'5%', zIndex:2}}>
-                    <CustomModal hideModal={hideModal}/>
-                </View>
+                {showModal &&
+                    <View style={{position:'absolute', top:'34%', width:'100%', padding:'5%', zIndex:2}}>
+                        <CustomModal hideModal={hideModal}/>
+                    </View>
+                }
                 <View style={styles.medium_container}>
                     <View style={[styles.spacebtw,{alignItems:'center'}]}>
                         <TouchableOpacity onPress={pickImage}>
