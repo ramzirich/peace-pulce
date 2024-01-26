@@ -25,6 +25,11 @@ export default CustomVideoPlayer = () =>{
             <LinearGradient style={styles.bigcontainer}
                 colors={['#214ae2', '#4752e2','#8962f3']}
             >
+                {currentIndex == null &&
+                    <Image source={require('../../../assets/images/logo22.png')}
+                        style={{height:300, width:'100%'}}
+                    />
+                }
                 {currentIndex!=null && 
                     <CustomVideo3 video={videos[currentIndex]}/>
                 }
