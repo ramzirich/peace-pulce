@@ -83,7 +83,7 @@ export default DoctorProfile = ({navigation}) =>{
                 }
                 <View style={styles.medium_container}>          
                     <TouchableOpacity onPress={() => navigation.navigate('profile')}>
-                        <Image style={{height:60, width:60, tintColor:'white'}} 
+                        <Image style={{height:40, width:40, tintColor:'white'}} 
                             source={require('../../../assets/songImages/left.png')}/>
                     </TouchableOpacity>
                     <View style={styles.small_container}>

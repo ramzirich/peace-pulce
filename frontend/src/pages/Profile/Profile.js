@@ -124,8 +124,9 @@ export default Profile = ({navigation}) =>{
                     </View>
                 }
                 <View style={styles.medium_container}>
-                    <View style={[{flexDirection:'row',alignItems:'center'}]}>
-                        <TouchableOpacity onPress={pickImage}>
+                    <View style={[{flexDirection:'row',alignItems:'center', width:'100%', justifyContent:'space-between'}]}>
+                        <TouchableOpacity onPress={pickImage} //style={{alignItems:'center'}}
+                        >
                             {image? <Image source={{uri:`${config.imgUrl}${image}`}} style={styles.img} />
                                 :
                                 <Image  style={styles.img} 
@@ -133,7 +134,9 @@ export default Profile = ({navigation}) =>{
                             }
                         </TouchableOpacity>
                         {userInfo.role_id==2  &&
-                            <TouchableOpacity onPress={() => navigation.navigate('doctor-profile')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('doctor-profile')}
+                                // style={{width:'30%'}}
+                            >
                                 <Image style={{height:40, width:40, tintColor:'white'}} 
                                     source={require('../../../assets/songImages/right.png')}/>
                             </TouchableOpacity>
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
         height:120,
         width:120,
         borderRadius:60,
-        resizeMode:'stretch'
+        resizeMode:'stretch',
     },
     spacebtw:{
         flexDirection:'row',
