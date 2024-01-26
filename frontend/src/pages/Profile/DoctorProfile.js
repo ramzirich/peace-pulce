@@ -13,6 +13,7 @@ import { DoctorProfileValidation } from "./DoctorValidation"
 
 export default DoctorProfile = ({navigation}) =>{
     const [errors, setErrors] = useState({});
+    const [showModal, setShowModal]= useState(false)
     const [inputs, setInputs] = useState({
         about: '',
         degree: '',
