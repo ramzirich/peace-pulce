@@ -6,7 +6,7 @@ export default CustomModal = ({hideModal}) =>{
         <TouchableOpacity style={styles.container}
             onPress={hideModal}
         >
-            <Text style={styles.text}>Changes Saved</Text>
+            <Text style={styles.text}>Success</Text>
         </TouchableOpacity>
     )
 }

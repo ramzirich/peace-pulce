@@ -119,7 +119,7 @@ export default Profile = ({navigation}) =>{
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
                 {showModal &&
-                    <View style={{position:'absolute', top:'34%', width:'100%', padding:'5%', zIndex:2}}>
+                    <View style={{position:'absolute', top:'45%', width:'100%', padding:'5%', zIndex:2}}>
                         <CustomModal hideModal={hideModal}/>
                     </View>
                 }
