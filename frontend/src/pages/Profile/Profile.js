@@ -16,6 +16,7 @@ export default Profile = ({navigation}) =>{
     const {userInfo} = useSelector(state => state.userInfoReducer);
     const [imageuri, setImageuri] = useState(null)
     const [image, setImage] = useState(userInfo.img_url)
+    const [showModel, setShowModel]= useState(false)
     const [inputs, setInputs] = useState({
         email: userInfo.email,
         first_name: userInfo.first_name,
