@@ -140,7 +140,7 @@ export default Profile = ({navigation}) =>{
                         }
                         {userInfo.role_id==3  &&
                             <TouchableOpacity onPress={() => navigation.navigate('volunteer-profile')}>
-                                <Image style={{height:60, width:60, tintColor:'white'}} 
+                                <Image style={{height:40, width:40, tintColor:'white'}} 
                                     source={require('../../../assets/songImages/right.png')}/>
                             </TouchableOpacity>
                         }
