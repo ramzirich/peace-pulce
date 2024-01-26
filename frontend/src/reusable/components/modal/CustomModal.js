@@ -24,5 +24,8 @@ const styles = StyleSheet.create({
         color:CustomColors.white,
         fontSize:18,
         fontWeight:'500'
-    }
+    },
+    btn:{
+        backgroundColor:'#8962f3'
+    }  
 })
