@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native"
 export default CustomModal = () =>{
     return(
         <View style={styles.container}>
-            <Text></Text>
+            <Text>Changes Saved</Text>
         </View>
     )
 }
