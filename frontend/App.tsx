@@ -28,8 +28,6 @@ import { ListOfPatientsForVolunteer } from './src/pages/ListOfPatients/ListOfPat
 import { PatientForVolunteer } from './src/pages/Patient/PatientForVolunteer';
 import { RequestForVolunteer } from './src/pages/Request/requestForVolunteer';
 
-//ource={require('../../../assets/images/try.jpeg')}
-
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   return (
