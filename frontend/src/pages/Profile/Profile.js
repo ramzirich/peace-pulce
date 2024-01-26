@@ -56,8 +56,6 @@ export default Profile = ({navigation}) =>{
                             console.error('Error uploading image. Server responded with:', response);
                             }
                     } catch (error) {
-                        // console.error('Error uploading image:', error);
-                        // throw
                     }
             }    
         };
