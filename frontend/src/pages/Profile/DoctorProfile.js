@@ -10,6 +10,7 @@ import { CustomColors } from "../../styles/color"
 import { setUserInfo } from "../../redux/actions/userActions"
 import { Updatevalidation } from "./UpdateValidation"
 import { DoctorProfileValidation } from "./DoctorValidation"
+import CustomModal from "../../reusable/components/modal/CustomModal"
 
 export default DoctorProfile = ({navigation}) =>{
     const [errors, setErrors] = useState({});
@@ -75,6 +76,11 @@ export default DoctorProfile = ({navigation}) =>{
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
+                {showModal &&
+                    <View style={{position:'absolute', top:'45%', width:'100%', padding:'5%', zIndex:2}}>
+                        <CustomModal hideModal={hideModal}/>
+                    </View>
+                }
                 <View style={styles.medium_container}>          
                     <TouchableOpacity onPress={() => navigation.navigate('profile')}>
                         <Image style={{height:60, width:60, tintColor:'white'}} 
