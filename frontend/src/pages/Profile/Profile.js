@@ -134,7 +134,7 @@ export default Profile = ({navigation}) =>{
                         </TouchableOpacity>
                         {userInfo.role_id==2  &&
                             <TouchableOpacity onPress={() => navigation.navigate('doctor-profile')}>
-                                <Image style={{height:60, width:60, tintColor:'white'}} 
+                                <Image style={{height:40, width:40, tintColor:'white'}} 
                                     source={require('../../../assets/songImages/right.png')}/>
                             </TouchableOpacity>
                         }
