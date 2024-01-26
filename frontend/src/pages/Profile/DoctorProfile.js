@@ -55,7 +55,7 @@ export default DoctorProfile = ({navigation}) =>{
                     'Authorization': `Bearer ${authToken}`
                 }
             });
-            navigation.navigate('profile')    
+            setShowModal(true)    
         }catch(error){
             console.error("Error in saving changes: ", error.response?.data || error.message)
         }
