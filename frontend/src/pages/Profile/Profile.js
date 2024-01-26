@@ -115,7 +115,7 @@ export default Profile = ({navigation}) =>{
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
-                <View style={{position:'absolute', top:'45%', width:'100%', padding:'5%', zIndex:2}}>
+                <View style={{position:'absolute', top:'34%', width:'100%', padding:'5%', zIndex:2}}>
                     <CustomModal />
                 </View>
                 <View style={styles.medium_container}>
