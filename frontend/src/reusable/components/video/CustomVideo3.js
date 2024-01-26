@@ -4,6 +4,7 @@ import { config } from "../../../../config"
 import { CustomColors } from "../../../styles/color"
 import { useEffect, useRef, useState } from "react"
 import Slider from "@react-native-community/slider"
+import Orientation from "react-native-orientation-locker";
 
 export default  CustomVideo3 = ({video}) =>{
     const [clicked, setClicked] = useState(false) 
