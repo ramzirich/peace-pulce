@@ -3,12 +3,12 @@ import { CustomColors } from "../../../styles/color"
 
 export default CustomModal = () =>{
     return(
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <Text style={styles.text}>Changes Saved</Text>
             <TouchableOpacity style={styles.btn}>
-
+                <Text></Text>
             </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 const styles = StyleSheet.create({
