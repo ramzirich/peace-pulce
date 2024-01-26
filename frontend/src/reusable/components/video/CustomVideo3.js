@@ -2,14 +2,14 @@ import { Image, StyleSheet, Text, Touchable, TouchableOpacity, View } from "reac
 import Video from "react-native-video"
 import { config } from "../../../../config"
 import { CustomColors } from "../../../styles/color"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Slider from "@react-native-community/slider"
 
 export default  CustomVideo3 = ({video}) =>{
     const [clicked, setClicked] = useState(false) 
     const [paused, setPaused] = useState(false)
     const [progress, setProgress] = useState(null)
-    console.log(progress)
+    const [sliderValue, setSliderValue] = useState(null);
     const format = seconds =>{ 
         let mins = parseInt(seconds/60) 
             .toString()
@@ -18,8 +18,10 @@ export default  CustomVideo3 = ({video}) =>{
         return `${mins}:${secs}`
     }
     useEffect(() => {
-        setSliderValue(progress.currentTime);
-    }, [progress.currentTime]);  
+        if(progress){
+            setSliderValue(progress.currentTime);
+        }
+    }, [progress]);  
     const ref=useRef();
     return(
         <>
@@ -86,7 +88,7 @@ export default  CustomVideo3 = ({video}) =>{
                                 maximumValue={progress && progress.seekableDuration !== null && progress.seekableDuration}
                                 minimumTrackTintColor="#FFFFFF"
                                 maximumTrackTintColor="#000000"
-                                value={progress.currentTime}
+                                value={sliderValue}
                                 onValueChange={(x) =>{
                                     ref.current.seek(x)
                                 }}
