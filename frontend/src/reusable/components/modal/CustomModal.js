@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
         justifyContent:'center'
     },
     text:{
-        color:CustomColors.white
+        color:CustomColors.white,
+        fontSize:18,
+        fontWeight:'500'
     }
 })
