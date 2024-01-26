@@ -112,7 +112,7 @@ export default Profile = ({navigation}) =>{
     const handleError = (error, input) => {
         setErrors(prevState => ({...prevState, [input]: error}));
     };
-    // console.log(imageuri)
+
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
