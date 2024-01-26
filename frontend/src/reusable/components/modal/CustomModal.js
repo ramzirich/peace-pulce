@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         fontWeight:'500'
     },
     btn:{
-        backgroundColor:'#8962f3'
+        backgroundColor:'#8962f3',
+        height:50,
     }  
 })
