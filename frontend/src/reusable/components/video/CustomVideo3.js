@@ -9,6 +9,7 @@ export default  CustomVideo3 = ({video}) =>{
     const [clicked, setClicked] = useState(false) 
     const [paused, setPaused] = useState(false)
     const [progress, setProgress] = useState(null)
+    console.log(progress)
     const format = seconds =>{ 
         let mins = parseInt(seconds/60) 
             .toString()
@@ -16,6 +17,9 @@ export default  CustomVideo3 = ({video}) =>{
         let secs = (Math.trunc(seconds) %60).toString().padStart(2,'0');
         return `${mins}:${secs}`
     }
+    useEffect(() => {
+        setSliderValue(progress.currentTime);
+    }, [progress.currentTime]);  
     const ref=useRef();
     return(
         <>
@@ -82,6 +86,7 @@ export default  CustomVideo3 = ({video}) =>{
                                 maximumValue={progress && progress.seekableDuration !== null && progress.seekableDuration}
                                 minimumTrackTintColor="#FFFFFF"
                                 maximumTrackTintColor="#000000"
+                                value={progress.currentTime}
                                 onValueChange={(x) =>{
                                     ref.current.seek(x)
                                 }}

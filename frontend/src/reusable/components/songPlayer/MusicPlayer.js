@@ -68,11 +68,11 @@ export default MusicPlayer = ({songs, currentIndex, playbackState, progress, isV
                         maximumTrackTintColor="#fff" 
                         value={sliderValue}
                         onValueChange={(x) => {
-          setSliderValue(x);
-        }}
-        onSlidingComplete={(x) => {
-          handleSeek(x);
-        }}
+                            setSliderValue(x);
+                            }}
+                            onSlidingComplete={(x) => {
+                            handleSeek(x);
+                            }}
                     />
                     <Text style={{color: 'white'}}>{format(progress.duration)}</Text>
                 </View>
