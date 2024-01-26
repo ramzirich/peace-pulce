@@ -44,14 +44,14 @@ export const ListOfPsychiatrist = ({navigation}) =>{
             colors={['#373b39','#214ae2', '#4752e2','#8962f3']} 
             style={{flex:1, paddingBottom:50, paddingTop:40, }}>
             <HeaderButton  navigation={navigation} />
-            {doctors === null &&
+            {doctors === null && 
                 <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
                     <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
                     <ActivityIndicator size="small" color={CustomColors.white} />
                 </View>
             }
             {doctors && doctors.length===0?     
-                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>Loading...</Text> :
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>No Psychiatrist</Text> :
                 <View style={{alignItems:'center', marginTop:20}}>
                     <FlatList
                     showsVerticalScrollIndicator={false}

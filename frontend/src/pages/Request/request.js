@@ -1,4 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { HeaderButton } from "../../reusable/components/headerButtons/HeaderButtons"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
@@ -9,7 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 
 
 export const RequestFromPatient = ({navigation}) =>{
-    const [patients, setPatients] = React.useState([]);
+    const [patients, setPatients] = React.useState(null);
     const [acceptSuccess, setAcceptSuccess] = useState(false);
 
     useEffect(() =>{
@@ -31,15 +31,19 @@ export const RequestFromPatient = ({navigation}) =>{
         fetchUserData(); 
     }, [acceptSuccess])
 
-    const users = patients.map(patient => ({
-        id:patient.user.id,
-        first_name: patient.user.first_name,
-        last_name: patient.user.last_name,
-        img_url: patient.user.img_url,
-        phone : patient.user.phone,
-        email : patient.user.email,
-        id_request:patient.id
-    }));
+    let users;
+    if(patients){
+        users = patients.map(patient => ({
+            id:patient.user.id,
+            first_name: patient.user.first_name,
+            last_name: patient.user.last_name,
+            img_url: patient.user.img_url,
+            phone : patient.user.phone,
+            email : patient.user.email,
+            id_request:patient.id
+        }));
+    }
+    
 
     acceptRequest = async(id) =>{
         try{
@@ -85,8 +89,14 @@ export const RequestFromPatient = ({navigation}) =>{
             <View style={styles.logo_container}>
                 <Image source={require('../../../assets/images/logo22.png')} style={styles.img_logo} />
             </View>
-            {patients.length===0?     
-                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}></Text> :
+            {patients === null && 
+                <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
+                    <ActivityIndicator size="small" color={CustomColors.white} />
+                </View>
+            }
+            {patients && patients.length===0?     
+                <Text style={{color:CustomColors.white, padding:40, fontSize:20}}>No Requests</Text> :
                 <FlatList data={users}
                     showsVerticalScrollIndicator={false}
                     renderItem={({item, index})=>{
