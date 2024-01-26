@@ -116,12 +116,16 @@ export const RequestFromPatient = ({navigation}) =>{
                                 
                                 <View style={styles.gap}>
                                     <TouchableOpacity onPress={() =>acceptRequest(item.id_request)}>
-                                            <Text style={{color:'white'}}>✔️</Text>
+                                            <Image source={require('../../../assets/images/Layer1.png')}
+                                                style={{height:20, width:20}}
+                                            />
                                         </TouchableOpacity>
                                         <TouchableOpacity 
                                         style={{width:20}}
                                         onPress={() =>deleteRequest(item.id_request)}>
-                                            <Text style={styles.x}>X</Text>
+                                            <Image source={require('../../../assets/images/Layer0.png')}
+                                                style={{height:20, width:20}}
+                                            />
                                         </TouchableOpacity>
                                 </View>
                             </View>

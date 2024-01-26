@@ -53,7 +53,7 @@ export default VolunteerAbout = () =>{
                 value={typedNote}
                 onChangeText={(text) => setTypedNote(text)}
                 multiline
-                autoFocus
+                // autoFocus
                 style={{ width:'100%', color:CustomColors.white,
                 paddingHorizontal:15, borderWidth:1, borderColor:"#e782f5", borderRadius:10
                 }}

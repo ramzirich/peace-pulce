@@ -19,7 +19,7 @@ export default EmotionsPage = () =>{
       //   return result.uri;
       // }
        const result = await launchImageLibrary(options);
-       if (!result.cancelled) {
+       if (!result.cancelled) { 
         setImageUri(result.assets[0].uri)
         return result.assets[0].uri;
       }

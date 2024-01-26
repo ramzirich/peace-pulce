@@ -38,7 +38,6 @@ export const PatientInfo =({route}) =>{
                         'Authorization': `Bearer ${authToken}`
                     }
                 });  
-                console.log(requestResponse)
                 setNoteId(requestResponse.data.id)
                 setNote(requestResponse.data.note)        
             }catch(error){

@@ -21,8 +21,6 @@ export default DoctorProfile = ({navigation}) =>{
         hourly_rate: '',
         specialization: '',
     });
-    console.log(inputs)
-
 
     useEffect(() =>{
         const fetchData = async() =>{

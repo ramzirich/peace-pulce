@@ -62,18 +62,36 @@ export default Profile = ({navigation}) =>{
         uploadImage();
     },[imageuri])
 
-    const pickImage = async() => {
-        let options = {
-            storageOptions:{
-                path:'image'
-            }
+    // const pickImage = async() => {
+    //     let options = {
+    //         storageOptions:{
+    //             path:'image'
+    //         }
+    //     }
+    //     launchImageLibrary(options, response=>{
+    //         setImage(response)
+    //         setImageuri(response.assets[0].uri)
+    //     })
+    //    uploadImage()
+    // };
+
+    const pickImage = async () => {
+        const options = {
+          mediaType: 'photo',
+        };
+        try {
+           const result = await launchImageLibrary(options);
+           if (!result.cancelled) { 
+            setImage(result)
+            setImageuri(result.assets[0].uri)
+            // return result.assets[0].uri;
+          }
+          uploadImage()
+        } catch (error) {
+        //   console.error(error);
         }
-        launchImageLibrary(options, response=>{
-            setImage(response)
-            setImageuri(response.assets[0].uri)
-        })
-       uploadImage()
-    };
+        return null;
+      };
 
     const validate = () => {
         const isValid = Updatevalidation(inputs, handleError);
@@ -114,7 +132,7 @@ export default Profile = ({navigation}) =>{
     hideModal=()=>{
         setShowModal(false)
     }
-    console.log(showModal)
+
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
