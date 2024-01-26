@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'whitesmoke'
+        backgroundColor:'whitesmoke',
+        borderRadius: 10
     },
     text:{
         color:CustomColors.white,
