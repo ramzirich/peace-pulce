@@ -10,6 +10,7 @@ import { ProfileInput } from "../../reusable/elements/Input/ProfileInput"
 import { CustomColors } from "../../styles/color"
 import { setImgUrl, setUserInfo } from "../../redux/actions/userActions"
 import { Updatevalidation } from "./UpdateValidation"
+import CustomModal from "../../reusable/components/modal/CustomModal"
 
 export default Profile = ({navigation}) =>{
     const [errors, setErrors] = useState({});
@@ -114,6 +115,9 @@ export default Profile = ({navigation}) =>{
     return(
         <LinearGradient colors={[ '#8962f3', '#4752e2', '#214ae2']}  style={styles.bigContainer}>
             <ScrollView>
+                <View style={{position:'absolute', top:'45%', width:'100%', padding:'5%', zIndex:2}}>
+                    <CustomModal />
+                </View>
                 <View style={styles.medium_container}>
                     <View style={[styles.spacebtw,{alignItems:'center'}]}>
                         <TouchableOpacity onPress={pickImage}>

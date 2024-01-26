@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     container:{
         padding:30,
         height:200,
-        width:'90%',
+        width:'100%',
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'whitesmoke',
+        backgroundColor:'rgba(245, 245, 245, 0.8)',
         borderRadius: 10
     },
     text:{
