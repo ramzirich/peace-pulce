@@ -51,7 +51,6 @@ export default Profile = ({navigation}) =>{
                             const newImgUrl = "images/" + response.data.data;
                             dispatch(setImgUrl(newImgUrl));
                             setImage(newImgUrl)
-                            
                             } else {
                             console.error('Error uploading image. Server responded with:', response);
                             }
@@ -98,7 +97,8 @@ export default Profile = ({navigation}) =>{
                 }
             });
             dispatch(setUserInfo(response.data.data))
-            navigation.navigate('home')    
+            // navigation.navigate('home')
+            showModal(true)    
         }catch(error){
             console.error("Error in saving changes: ", error.response?.data || error.message)
         }
