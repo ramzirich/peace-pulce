@@ -202,7 +202,7 @@ export default CreateProblem = () =>{
                             <ActivityIndicator size="small" color={CustomColors.white} />
                         </View>
                     }
-                    {aiError == true&& <Text style={{color:'red'}}>Error connecting to ai</Text>}
+                    {aiError == true&& <Text style={{color:'red'}}>Can't connect to ai</Text>}
                     {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}
                 </View>
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
