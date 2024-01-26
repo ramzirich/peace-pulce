@@ -51,7 +51,7 @@ export default Profile = ({navigation}) =>{
                             const newImgUrl = "images/" + response.data.data;
                             dispatch(setImgUrl(newImgUrl));
                             setImage(newImgUrl)
-                            console.log('Image uploaded successfully');
+                            
                             } else {
                             console.error('Error uploading image. Server responded with:', response);
                             }
