@@ -116,17 +116,11 @@ export const RequestFromPatient = ({navigation}) =>{
                                 
                                 <View style={styles.gap}>
                                     <TouchableOpacity onPress={() =>acceptRequest(item.id_request)}>
-                                            {/* <Image style={styles.noteicon} 
-                                                source={require('../../../assets/images/done.jpg')} 
-                                            /> */}
                                             <Text style={{color:'white'}}>✔️</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity 
                                         style={{width:20}}
                                         onPress={() =>deleteRequest(item.id_request)}>
-                                            {/* <Image style={styles.noteicon} 
-                                                source={require('../../../assets/images/done.jpg')}     
-                                            /> */}
                                             <Text style={styles.x}>X</Text>
                                         </TouchableOpacity>
                                 </View>
@@ -144,7 +138,8 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         justifyContent:'center',
-        flex:1,
+        height:200,
+        width:'100%'
     },
     img_logo:{
         width:'100%',
