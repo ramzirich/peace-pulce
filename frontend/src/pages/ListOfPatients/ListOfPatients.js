@@ -30,8 +30,9 @@ export const ListOfPatients = ({navigation}) =>{
         fetchUserData(); 
     }, [])
 
+    let users;
     if(patients){
-        const users = patients.map(patient => ({
+        users = patients.map(patient => ({
             id:patient.user.id,
             first_name: patient.user.first_name,
             last_name: patient.user.last_name,
