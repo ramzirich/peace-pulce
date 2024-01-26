@@ -48,7 +48,16 @@ export default  CustomVideo3 = ({video}) =>{
                 />
                 {clicked && (
                     <View style={styles.video_container}>
-                        <TouchableOpacity style={styles.maxmin}>
+                        <TouchableOpacity 
+                                onPress={() =>{
+                                    if(fullScreen){
+                                        Orientation.lockToPortrait();
+                                    }else{
+                                        Orientation.lockToLandscape();
+                                    }
+                                    setFullScreen(!fullScreen)
+                                }}
+                            style={styles.maxmin}>
                             <Image source={require('../../../../assets/videosimages/full-size.png')}
                                 style={styles.icons}
                             />
