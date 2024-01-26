@@ -1,9 +1,14 @@
-import { View } from "react-native"
+import { StyleSheet, View } from "react-native"
 
 export default CustomModal = () =>{
     return(
-        <View>
+        <View style={styles.container}>
 
         </View>
     )
 }
+const styles = StyleSheet.create({
+    container:{
+
+    }
+})
