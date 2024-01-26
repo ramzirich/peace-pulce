@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         padding:30,
         height:200,
         width:'90%',
-        flexDirection:'row',
+        flexDirection:'column',
         alignItems:'center',
         justifyContent:'center'
     },
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#8962f3',
         height:55,
         width:70,
-        borderRadius:10
+        borderRadius:10,
+        alignSelf: 'flex-end'
     }  
 })
