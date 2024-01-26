@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
+import { CustomColors } from "../../../styles/color"
 
 export default CustomModal = () =>{
     return(
@@ -15,5 +16,8 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
+    },
+    text:{
+        color:CustomColors.white
     }
 })
