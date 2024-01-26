@@ -128,6 +128,11 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    maxmin:{
+        position:'absolute',
+        top:20,
+        left:20
+    },
     title:{
         fontSize:26,
         fontWeight:'bold',
