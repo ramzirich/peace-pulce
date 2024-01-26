@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native"
 import { config } from "../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CustomColors } from "../../styles/color";
@@ -87,6 +87,17 @@ export default ListOfProblems = () =>{
                     )
                 }}
             />
+            }
+            {listOfProblems == null && 
+                <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>Loading</Text>
+                    <ActivityIndicator size="small" color={CustomColors.white} />
+                </View>
+            }
+            {listOfProblems && listOfProblems.lenght ==0 && 
+                <View style={{marginTop:60,paddingLeft:20, flexDirection:'row', alignItems:'center', gap:10}}>
+                    <Text style={{color:CustomColors.white, fontSize:20, fontWeight:'500'}}>No Problems 😄</Text>
+                </View>
             }
         </View>
     )
