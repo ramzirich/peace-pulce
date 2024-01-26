@@ -98,7 +98,6 @@ export default Profile = ({navigation}) =>{
                 }
             });
             dispatch(setUserInfo(response.data.data))
-            // navigation.navigate('home')
             setShowModal(true)    
         }catch(error){
             console.error("Error in saving changes: ", error.response?.data || error.message)
