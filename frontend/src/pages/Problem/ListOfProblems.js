@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CustomColors } from "../../styles/color";
 
 export default ListOfProblems = () =>{
-    const [listOfProblems, setListOfProblems] = useState([]);
+    const [listOfProblems, setListOfProblems] = useState(null);
     useEffect(() =>{
         const fetchList = async() =>{
             try{
@@ -27,7 +27,7 @@ export default ListOfProblems = () =>{
    
     return(
         <View style={styles.container}>
-            <FlatList 
+            { listOfProblems &&<FlatList 
                 data={listOfProblems}
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
@@ -87,6 +87,7 @@ export default ListOfProblems = () =>{
                     )
                 }}
             />
+            }
         </View>
     )
 }
