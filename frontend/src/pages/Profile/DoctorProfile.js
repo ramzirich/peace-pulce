@@ -55,7 +55,6 @@ export default DoctorProfile = ({navigation}) =>{
                     'Authorization': `Bearer ${authToken}`
                 }
             });
-            // dispatch(setUserInfo(response.data.data))
             navigation.navigate('profile')    
         }catch(error){
             console.error("Error in saving changes: ", error.response?.data || error.message)
