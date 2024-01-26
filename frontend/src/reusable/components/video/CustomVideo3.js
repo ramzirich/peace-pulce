@@ -63,7 +63,11 @@ export default  CustomVideo3 = ({video}) =>{
                                 style={styles.icons}
                             />
                             }
-
+                            {!fullScreen &&
+                            <Image source={require('../../../../assets/videosimages/full-size.png')}
+                                style={styles.icons}
+                            />
+                            }
                         </TouchableOpacity>
                         <View style={styles.row}>
 
