@@ -27,7 +27,7 @@ export default  CustomVideo3 = ({video}) =>{
     const ref=useRef();
     return(
         <>
-            <TouchableOpacity style={styles.big_container}
+            <TouchableOpacity style={[styles.big_container,{height:fullScreen?'100%':'45%'}]}
                 activeOpacity={1}
                 onPress={() =>{
                     setClicked(!clicked)
@@ -125,7 +125,7 @@ export default  CustomVideo3 = ({video}) =>{
 
 const styles = StyleSheet.create({
     big_container:{
-        height:'45%',
+        // height:'45%',
         width:'100%'
     },
     video:{
