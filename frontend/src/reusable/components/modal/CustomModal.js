@@ -5,8 +5,8 @@ export default CustomModal = () =>{
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Changes Saved</Text>
-            <TouchableOpacity>
-                
+            <TouchableOpacity style={styles.btn}>
+
             </TouchableOpacity>
         </View>
     )
