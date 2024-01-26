@@ -122,7 +122,6 @@ export default Profile = ({navigation}) =>{
                             {image? <Image source={{uri:`${config.imgUrl}${image}`}} style={styles.img} />
                                 :
                                 <Image  style={styles.img} 
-                                    // source={{uri: `${config.imgUrl}${userInfo.img_url}`}}/>
                                     source={require('../../../assets/images/user.png')}/>
                             }
                         </TouchableOpacity>
