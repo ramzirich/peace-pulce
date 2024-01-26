@@ -5,9 +5,6 @@ export default CustomModal = () =>{
     return(
         <TouchableOpacity style={styles.container}>
             <Text style={styles.text}>Changes Saved</Text>
-            <TouchableOpacity style={styles.btn}>
-                <Text></Text>
-            </TouchableOpacity>
         </TouchableOpacity>
     )
 }
@@ -25,11 +22,4 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:'500'
     },
-    btn:{
-        backgroundColor:'#8962f3',
-        height:55,
-        width:70,
-        borderRadius:10,
-        alignSelf: 'flex-end'
-    }  
 })
