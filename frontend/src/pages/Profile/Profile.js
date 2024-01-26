@@ -124,7 +124,7 @@ export default Profile = ({navigation}) =>{
                     </View>
                 }
                 <View style={styles.medium_container}>
-                    <View style={[styles.spacebtw,{alignItems:'center'}]}>
+                    <View style={[{flexDirection:'row',alignItems:'center'}]}>
                         <TouchableOpacity onPress={pickImage}>
                             {image? <Image source={{uri:`${config.imgUrl}${image}`}} style={styles.img} />
                                 :
