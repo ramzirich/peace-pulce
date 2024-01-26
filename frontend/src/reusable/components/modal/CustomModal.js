@@ -13,7 +13,7 @@ export default CustomModal = ({hideModal}) =>{
 const styles = StyleSheet.create({
     container:{
         padding:30,
-        height:200,
+        height:100,
         width:'100%',
         flexDirection:'column',
         alignItems:'center',
