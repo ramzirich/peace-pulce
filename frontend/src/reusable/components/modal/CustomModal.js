@@ -3,7 +3,9 @@ import { CustomColors } from "../../../styles/color"
 
 export default CustomModal = ({hideModal}) =>{
     return(
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container}
+            onPress={hideModal}
+        >
             <Text style={styles.text}>Changes Saved</Text>
         </TouchableOpacity>
     )
