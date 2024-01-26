@@ -35,7 +35,7 @@ export default ListOfProblems = () =>{
                     const renderBalls = () => {
                         const balls = [];
                         const maxBalls = 10;
-                        for (let i = 1; i <= maxBalls; i++) {
+                        for (let i = 1; i <= item.severity; i++) {
                             let ballStyle;
                             if(i<=4){           
                                 ballStyle = {
@@ -141,6 +141,6 @@ const styles =StyleSheet.create({
     },
     ballsContainer:{
         flexDirection:'row',
-        justifyContent:'space-between',
+        gap:10,
     },
 })
