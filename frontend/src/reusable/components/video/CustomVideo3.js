@@ -11,6 +11,7 @@ export default  CustomVideo3 = ({video}) =>{
     const [paused, setPaused] = useState(false)
     const [progress, setProgress] = useState(null)
     const [sliderValue, setSliderValue] = useState(null);
+    const [fullScreen,setFullScreen]=useState(false)
     const format = seconds =>{ 
         let mins = parseInt(seconds/60) 
             .toString()
