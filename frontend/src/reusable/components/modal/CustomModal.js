@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { CustomColors } from "../../../styles/color"
 
-export default CustomModal = () =>{
+export default CustomModal = ({hideModal}) =>{
     return(
         <TouchableOpacity style={styles.container}>
             <Text style={styles.text}>Changes Saved</Text>
