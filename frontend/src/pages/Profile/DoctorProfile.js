@@ -32,7 +32,6 @@ export default DoctorProfile = ({navigation}) =>{
                         "Authorization" :`Bearer ${authToken}`
                 }
             })
-            // console.log("resp",responseData.data)
             setInputs(responseData.data) 
             }catch(error){
                 console.error("Error in fetching dctor info: ", error)
