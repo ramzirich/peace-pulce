@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         width:'90%',
         flexDirection:'column',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor:'whitesmoke'
     },
     text:{
         color:CustomColors.white,
