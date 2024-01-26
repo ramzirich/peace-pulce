@@ -58,7 +58,7 @@ export default  CustomVideo3 = ({video}) =>{
                                     setFullScreen(!fullScreen)
                                 }}
                             style={styles.maxmin}>
-                            {!fullScreen &&
+                            {fullScreen &&
                             <Image source={require('../../../../assets/videosimages/full-size.png')}
                                 style={styles.icons}
                             />
