@@ -195,7 +195,6 @@ export default Profile = ({navigation}) =>{
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
                     <Text style={styles.save_text}>Save</Text>
                 </TouchableOpacity>
-            {/* <FooterButtons navigation={navigation} /> */}
             </ScrollView>
         </LinearGradient>
    )
@@ -205,7 +204,6 @@ const styles = StyleSheet.create({
     bigContainer:{
         flex:1,
         paddingTop:40,
-        
     },
     medium_container:{
         paddingHorizontal:20
@@ -232,7 +230,7 @@ const styles = StyleSheet.create({
         gap:10
     },
     save_btn:{
-        marginTop:20,
+        marginTop:10,
         backgroundColor :'#8962f3',
         width:"50%",
         height:50,
