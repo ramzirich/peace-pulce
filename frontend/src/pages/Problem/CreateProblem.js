@@ -198,10 +198,11 @@ export default CreateProblem = () =>{
                     </Text>
                     {generateResponse == true && 
                         <View style={{marginTop:10,flexDirection:'row', alignItems:'center', gap:10}}>
-                        <Text style={{color:CustomColors.white, fontSize:16, fontWeight:'500'}}>Loading</Text>
-                        <ActivityIndicator size="small" color={CustomColors.white} />
-                </View>
+                            <Text style={{color:CustomColors.white, fontSize:16, fontWeight:'500'}}>Loading</Text>
+                            <ActivityIndicator size="small" color={CustomColors.white} />
+                        </View>
                     }
+                    {aiError == true&& <Text style={{color:'red'}}>Error connecting to ai</Text>}
                     {aiSolution !== ""&& <Text style={styles.label}>{aiSolution}</Text>}
                 </View>
                 <TouchableOpacity style={styles.save_btn} onPress={validate}>
