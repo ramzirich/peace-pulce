@@ -68,20 +68,6 @@ Route::controller(OpenAiController::class)->group(function () {
 });
 
 Route::middleware('auth.user')->group(function () {
-    Route::post('neuroticism_record/create',  [NeuroticismController::class, 'createRecord']);
-    Route::get('neuroticism_records',  [NeuroticismController::class, 'findAllRecords']);
-});
-
-Route::middleware('auth.user')->group(function () {
-    Route::post('stress_cause/create',  [StressCauseController::class, 'createStressCause']);
-    Route::post('stress_cause/update/{id}',  [StressCauseController::class, 'updateStressCause']);
-    Route::post('stress_cause/delete/{id}',  [StressCauseController::class, 'deleteStressCause']);
-    Route::post('stress_cause/massDelete',  [StressCauseController::class, 'massDeleteStressCause']);
-    Route::get('stress_cause/{id}',  [StressCauseController::class, 'getStressCauseForUser']);
-    Route::get('stress_causes',  [StressCauseController::class, 'getAllStressCauseForUser']);
-});
-
-Route::middleware('auth.user')->group(function () {
     Route::post('favorite_place/create',  [FavoritePlaceController::class, 'createFavoritePlace']);
     Route::post('favorite_place/update/{id}',  [FavoritePlaceController::class, 'updateFavoritePlace']);
     Route::post('favorite_place/delete/{id}',  [FavoritePlaceController::class, 'deleteFavoritePlace']);

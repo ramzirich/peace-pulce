@@ -49,13 +49,6 @@ class DoctorNoteController extends Controller
             if($patientObj->role_id != 1){
                 return ExceptionMessages::Error('This user is not a patient', 400);
             }
-
-            // $genericManagerRequest = new UserSpecificGenericManager(new Patient_doctor_request());
-            // $patientDoctorRequestModel = $genericManagerRequest->getByColumn('patient_id', 
-            //     $data['patient_id'], 'doctor_id');
-            // if($patientDoctorRequestModel ==[] || $patientDoctorRequestModel->request != 'accepted'){
-            //     return ExceptionMessages::Error('This user is not your patient', 400);
-            // } 
             
             $userDoctor= new  Doctors();
             $doctorId = $userDoctor->where('user_id',  $this->user->id)->first()->id;
