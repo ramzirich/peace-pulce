@@ -36,11 +36,10 @@
 <br><br>
 
 <!-- Database Design -->
-<img src="./readme/database-tables.PNG" />
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+<img src="./readme/demo/database-tables.PNG" />
 
 
 <br><br>
