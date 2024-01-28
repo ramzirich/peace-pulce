@@ -58,12 +58,16 @@
 | List Of Problems  | List of Songs | Song Player | List of Videos |
 | ![List Of Problems](./readme/screenshots/listofproblems.jpeg) | ![List of Songs](./readme/screenshots/songlist.jpeg) | ![Music Player](./readme/screenshots/songplayer.jpeg) | ![List of Videos](./readme/screenshots/videolist.jpeg) | 
 
-### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen  | Menu Screen | Order Screen |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+
+### Psychiatrist Screens (Mobile)
+| List of patients  | Requests |
+| ---| ---| ---| ---|
+| ![List of patients ](./readme/screenshots/patient.jpg) | ![Requests](./readme/screenshots/patientrequest.jpeg) | 
+
+### Volunteers Screens (Mobile)
+| List of patients  | Requests |
+| ---| ---| ---| ---|
+| ![List of patients ](./readme/screenshots/patientlistv.jpg) | ![Requests](./readme/screenshots/patientrequestv.jpeg) | 
 
 <br><br>
 
