@@ -50,11 +50,13 @@
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
+| Login screen  | Register screen | Home | Home |
 | ---| ---| ---| ---|
 | ![Login](./readme/screenshots/login.jpg) | ![Register](./readme/screenshots/register.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | ![Home](./readme/screenshots/home2.jpeg) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
+| List Of Psychiatrist  | Psychiatrist | Volunteer | Problem |
 | ![List Of Psychiatrist](./readme/screenshots/listofpsychiatrists.jpeg) | ![Psychiatrist](./readme/screenshots/doctor1.jpeg) | ![Volunteer](./readme/screenshots/volunteer.jpeg) | ![Problem](./readme/screenshots/problem.jpeg) | 
+| List Of Problems  | List of Songs | Song Player | List of Videos |
+| ![List Of Problems](./readme/screenshots/listofproblems.jpeg) | ![List of Songs](./readme/screenshots/songlist.jpeg) | ![Music Player](./readme/screenshots/songplayer.jpeg) | ![List of Videos](./readme/screenshots/videolist.jpeg) | 
 
 ### Admin Screens (Web)
 | Login screen  | Register screen |  Landing screen |
