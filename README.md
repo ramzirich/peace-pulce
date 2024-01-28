@@ -53,7 +53,7 @@
 
 
 <!-- Implementation -->
-<img src="./readme/title6.svg"/>
+<img src="./readme/database-table.PNG"/>
 
 
 ### User Screens (Mobile)
