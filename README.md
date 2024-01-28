@@ -33,33 +33,27 @@
 
 - Project Figma design [figma](https://www.figma.com/file/ohMmlF2OchoN5mLzdtwn1v/Untitled?type=design&node-id=1-2&mode=design&t=867fxmYwHvuWmld0-0)
 
-
-<!-- ### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | -->
-
 <br><br>
 
 <!-- Database Design -->
-<img src="./readme/title5.svg"/>
+<img src="./readme/database-tables.PNG" />
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-<img src="./readme/title6.svg"/>
+- Insert ER Diagram here
 
 
 <br><br>
 
 
 <!-- Implementation -->
-<img src="./readme/database-tables.PNG" />
+<img src="./readme/title6.svg"/>
 
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
 | ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![Landing]("./screenshots/login.jpg") | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 | Home screen  | Menu Screen | Order Screen | Checkout Screen |
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
