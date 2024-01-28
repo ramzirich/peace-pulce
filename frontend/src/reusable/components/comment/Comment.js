@@ -76,10 +76,10 @@ export const Comment = ({item, onDelete}) =>{
                     {userInfo.id == item.patient_id &&
                         <View style={[styles.row_gap_ten,{gap:20} ]}>
                             <TouchableOpacity onPress={startEditing}>
-                                <Image style={styles.icon} source={require('../../../../assets/images/edit.png')}/>
+                                <Image style={[styles.icon]} source={require('../../../../assets/images/edit.png')}/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => onDelete()}>
-                                <Image style={[styles.icon]} source={require('../../../../assets/images/delete.png')}/>
+                                <Image style={[styles.icon,{tintColor:'rgba(0,0,0,0.8)'}]} source={require('../../../../assets/images/delete.png')}/>
                             </TouchableOpacity>
                         </View>
                     }

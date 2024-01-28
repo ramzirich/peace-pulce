@@ -160,9 +160,9 @@ class AuthController extends Controller
 
     public function uploadImage(Request $request){
         try{
-            // $request->validate([
-            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            // ]);
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
             // Log::info('Incoming request:', $request->all());
             $user = Auth::user(); 
             if ($user && $request->hasFile('image')) {

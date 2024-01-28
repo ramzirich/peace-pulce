@@ -51,7 +51,7 @@ export default function CallPage({route}) {
   );
   const otherUserId = useRef(null);
     otherUserId.current = phone ///
-  const socket = SocketIOClient('http://192.168.0.103:8001', {
+  const socket = SocketIOClient('http://192.168.43.242:8001', {
     transports: ['websocket'],
     query: {
       callerId,
