@@ -60,14 +60,14 @@
 
 
 ### Psychiatrist Screens (Mobile)
-| List of patients  | Requests |
-| ---| ---|
-| ![List of patients ](./readme/screenshots/patient.jpeg) | ![Requests](./readme/screenshots/patientrequest.jpeg) | 
+| List of patients  | Requests | Home
+| ---| ---| ---|
+| ![List of patients ](./readme/screenshots/patient.jpeg) | ![Requests](./readme/screenshots/patientrequest.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | 
 
 ### Volunteers Screens (Mobile)
-| List of patients  | Requests |
-| ---| ---|
-| ![List of patients ](./readme/screenshots/patientlistv.jpeg) | ![Requests](./readme/screenshots/patientrequestv.jpeg) | 
+| List of patients  | Requests | Home
+| ---| ---| ---|
+| ![List of patients ](./readme/screenshots/patientlistv.jpeg) | ![Requests](./readme/screenshots/patientrequestv.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | 
 
 <br><br>
 
