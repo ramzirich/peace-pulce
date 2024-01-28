@@ -52,9 +52,9 @@
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
 | ---| ---| ---| ---|
-| ![Landing](./readme/demo/login.jpg) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![Login](./readme/screenshots/login.jpg) | ![Register](./readme/screenshots/register.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | ![Home](./readme/screenshots/home2.jpeg) |
 | Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| ![List Of Psychiatrist](./readme/screenshots/listofpsychiatrists.jpeg) | ![Psychiatrist](./readme/screenshots/doctor1.jpeg) | ![Volunteer](./readme/screenshots/volunteer.jpeg) | ![Problem](./readme/screenshots/problem.jpeg) | 
 
 ### Admin Screens (Web)
 | Login screen  | Register screen |  Landing screen |
