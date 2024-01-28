@@ -17,7 +17,7 @@
 
 ###  Peace Pulce is built using the following technologies:
 
-- This project uses the [React native app development framework](https://reactnative.dev/). React native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
+- This project uses the [React native](https://reactnative.dev/) app development framework. React native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage schema and save it to a local database.
 - The backend uses the [Laravel framework](https://laravel.com/). Laravel is a robust PHP framework that enables developpers to create web or mobile applications. It offers features and tools optimized for building dynamic applications.
 - For voice calls, the app uses [WebRTC](https://webrtc.org/). A librairy for real time communication capabilities that work on top of an open standard. Voice is send between peers.
@@ -34,10 +34,10 @@
 - Project Figma design [figma](https://www.figma.com/file/ohMmlF2OchoN5mLzdtwn1v/Untitled?type=design&node-id=1-2&mode=design&t=867fxmYwHvuWmld0-0)
 
 
-### Mockups
+<!-- ### Mockups
 | Home screen  | Menu Screen | Order Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | -->
 
 <br><br>
 
@@ -46,7 +46,7 @@
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+<img src="./readme/title6.svg"/>
 
 
 <br><br>

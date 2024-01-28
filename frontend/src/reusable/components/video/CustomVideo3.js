@@ -36,7 +36,6 @@ export default  CustomVideo3 = ({video}) =>{
                 <Video style={styles.video} 
                         source={{uri : `${config.imgUrl}videos/${video.filename}`}}
                         paused={paused}
-                        muted
                         ref={ref}
                         onProgress={(x) =>{
                             // console.log(x)
