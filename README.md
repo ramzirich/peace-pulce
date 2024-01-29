@@ -6,8 +6,14 @@
 > Peace Pulse, your dedicated mental health companion. Our app seamlessly connects you with a psychiatrist, considering your preferences and therapeutic needs. Engage in transformative video sessions. Receive daily resources tailored to your mental health journey, while also benefiting from a compassionate community of like-minded individuals. Trained volunteers are available to offer empathetic support during challenging moments. Track your progress with personalized dashboards and collaborate with your psychiatrist to set and achieve goals.
 
 ### User Stories
-- As a user, I want a space where I can talk about my problems, provide quick access to calming resources when I feel overwhelmed, offer guided relaxation exercises and breathing techniques to help me manage and reduce stress levels.
+- As a user, I want a space where I can talk about my problems. 
+- As a user, when I feel overwhelmed I want a quick access to calming resources , offer guided relaxation exercises and breathing techniques to help me manage and reduce stress levels.
+- As a user, I desire the option to select from a diverse range of affordable psychiatrists.
+
+### Doctor Stories
 - As a therapist, I want the app to have secure communication channels for virtual sessions with my clients, ensuring confidentiality and convenience.
+
+### Volunteer Stories
 - As a volunteer, I aim to share my self-development journey with those in need, providing them the resources and mindsets I encoporate in my daily life.
 
 <br><br>
@@ -98,9 +104,9 @@
 
 ###  Make Our services Available for all:
 
-Our mental health services shouldn't stay on the local host, it's our duty to make it accessible to everyone, so AWS please let us deliver our message world wide!!
+Our mental health services shouldn't stay on the local host, it's our duty to make it accessible to everyone, AWS will let us deliver our message world wide!!
 
-AWS is cloud platform provided by Amazon,  offering a variety of services such as computing power, storage, databases, machine learning, and more.
+AWS is a cloud platform provided by Amazon,  offering a variety of services such as computing power, storage, databases, machine learning, and more.
 
    - Install Apache, MariaDb.
    - Create database and user.
@@ -131,7 +137,6 @@ AWS is cloud platform provided by Amazon,  offering a variety of services such a
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
    git clone [github](https://github.com/ramzirich/peace-pulse)
@@ -155,16 +160,19 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-7. In `config.js` change the api to much your ip adress, open cmd type ipconfig
-8. If u wanna use viseo call, open a new terminal
+7. Open cmd type ipconfig, copy IPv4Address
+
+8. In `config.js` (frontend section) change the apiUrl and imgUrl to match your ip adress (ex: 'http://your ip adress:8000/api')
+
+9. If u wanna use video call, open a new terminal
    ```sh
    cd peace-pulse/server
    ```
-9. Install NPM packages
+10. Install NPM packages
    ```sh
    npm install
    ```
-10. Run server
+11. Run server
    ```sh
    Node index.js
    ```
