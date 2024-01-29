@@ -72,7 +72,7 @@
 ### Demo
 | Home| List Of Problems | Psychiatrist Profile | Songs |
 | ---| ---| ---| ---|
-| ![Home](./readme/demo/home.gif) | ![Register](./readme/demo/222.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Home](./readme/demo/song.gif) |
+| ![Home](./readme/demo/home.gif) | ![ List Of Problems](./readme/demo/222.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Songs](./readme/demo/song.gif) |
 
 <br><br>
 
