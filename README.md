@@ -75,9 +75,14 @@
 <!-- Prompt Engineering -->
 <img src="./readme/title7.svg"/>
 
-###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
+###  OpenAi System Configuration:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- Ai dont give any solutions for mental health problems nor a severe issues that we face in real life. To go around it, 
+   we should specify that his responses are not affecting any real humans, it will receive data from the problem entered
+   by the user and how the user behaved to rate his actions and try to solve his issues.
+
+<img src="./readme/screenshots/ai.PNG">
+   
 
 <br><br>
 
