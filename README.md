@@ -125,7 +125,10 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    git clone [github](https://github.com/ramzirich/peace-pulce)
-2. cd peace-pulce/backend
+2. Open the terminal
+   ```sh
+   cd peace-pulce/backend
+   ```
 3. Install Composer
    ```sh
    composer install
@@ -134,13 +137,26 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    php artisan jwt:secret
    ```
-3. Install NPM packages
+5. Open a new terminal
+   ```sh
+   cd peace-pulce/frontend
+   ```
+6. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+7. In `config.js` change the api to much your ip adress, open cmd type ipconfig
+8. If u wanna use viseo call, open a new terminal
+   ```sh
+   cd peace-pulce/server
+   ```
+9. Install NPM packages
+   ```sh
+   npm install
+   ```
+10. Run server
+   ```sh
+   Node index.js
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run Peace Pulce locally and explore its features.
