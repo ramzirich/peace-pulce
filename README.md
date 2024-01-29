@@ -89,9 +89,18 @@
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+###  Make Our services Available for all:
 
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+Our mental health services shouldn't stay on the local host, it's our duty to make it accessible to everyone, so AWS please let us deliver our message world wide!!
+
+AWS is cloud platform provided by Amazon,  offering a variety of services such as computing power, storage, databases, machine learning, and more.
+
+   - Install Apache, MariaDb.
+   - Create database and user.
+   - Install Composer, Laravel and Git.
+   - Cloning the backend from the github repo.
+   - Migrate and seed data. 
+   
 
 <br><br>
 
@@ -108,23 +117,23 @@
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+> To set up Peace pulce locally, follow these steps:
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo
-   git clone [github](https://github.com/your_username_/Project-Name.git)
+1. Clone the repo
+   git clone [github](https://github.com/ramzirich/peace-pulce)
+2. cd peace-pulce/backend
+3. Install Composer
+   ```sh
+   composer install
+   ```
+4. Generate jwt token
+   ```sh
+   php artisan jwt:secret
+   ```
 3. Install NPM packages
    ```sh
    npm install
