@@ -107,6 +107,8 @@ AWS is cloud platform provided by Amazon,  offering a variety of services such a
    - Install Composer, Laravel and Git.
    - Cloning the backend from the github repo.
    - Migrate and seed data. 
+
+<img src='./readme//screenshots/aws.PNG'>
    
 
 <br><br>
