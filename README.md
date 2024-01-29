@@ -3,7 +3,7 @@
 
 > A mobile app that guides you in your mental health journey.
 >
-> Peace Pulce, your dedicated mental health companion. Our app seamlessly connects you with a psychiatrist, considering your preferences and therapeutic needs. Engage in transformative video sessions. Receive daily resources tailored to your mental health journey, while also benefiting from a compassionate community of like-minded individuals. Trained volunteers are available to offer empathetic support during challenging moments. Track your progress with personalized dashboards and collaborate with your psychiatrist to set and achieve goals.
+> Peace Pulse, your dedicated mental health companion. Our app seamlessly connects you with a psychiatrist, considering your preferences and therapeutic needs. Engage in transformative video sessions. Receive daily resources tailored to your mental health journey, while also benefiting from a compassionate community of like-minded individuals. Trained volunteers are available to offer empathetic support during challenging moments. Track your progress with personalized dashboards and collaborate with your psychiatrist to set and achieve goals.
 
 ### User Stories
 - As a user, I want a space where I can talk about my problems, provide quick access to calming resources when I feel overwhelmed, offer guided relaxation exercises and breathing techniques to help me manage and reduce stress levels.
@@ -15,7 +15,7 @@
 <!-- Tech stack -->
 <img src="./readme/title3.svg"/>
 
-###  Peace Pulce is built using the following technologies:
+###  Peace Pulse is built using the following technologies:
 
 - This project uses the [React native](https://reactnative.dev/) app development framework. React native is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
 - For persistent storage (database), the app uses the [MySQL](https://www.mysql.com/) package which allows the app to create a custom storage schema and save it to a local database.
@@ -29,13 +29,15 @@
 <img src="./readme/title4.svg"/>
 
 
-> We designed Peace Pulce using wireframes, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Peace Pulse using wireframes, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 - Project Figma design [figma](https://www.figma.com/file/ohMmlF2OchoN5mLzdtwn1v/Untitled?type=design&node-id=1-2&mode=design&t=867fxmYwHvuWmld0-0)
 
 <br><br>
 
 <!-- Database Design -->
+<img src="./readme/title5.svg"/>
+
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
@@ -124,7 +126,7 @@ AWS is cloud platform provided by Amazon,  offering a variety of services such a
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Peace pulce locally, follow these steps:
+> To set up Peace pulse locally, follow these steps:
 
 ### Installation
 
@@ -134,7 +136,7 @@ _Below is an example of how you can instruct your audience on installing and set
    git clone [github](https://github.com/ramzirich/peace-pulce)
 2. Open the terminal
    ```sh
-   cd peace-pulce/backend
+   cd peace-pulse/backend
    ```
 3. Install Composer
    ```sh
@@ -166,4 +168,4 @@ _Below is an example of how you can instruct your audience on installing and set
    Node index.js
    ```
 
-Now, you should be able to run Peace Pulce locally and explore its features.
+Now, you should be able to run Peace Pulse locally and explore its features.
