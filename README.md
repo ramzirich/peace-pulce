@@ -134,7 +134,7 @@ AWS is cloud platform provided by Amazon,  offering a variety of services such a
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Clone the repo
-   git clone [github](https://github.com/ramzirich/peace-pulce)
+   git clone [github](https://github.com/ramzirich/peace-pulse)
 2. Open the terminal
    ```sh
    cd peace-pulse/backend
@@ -149,7 +149,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 5. Open a new terminal
    ```sh
-   cd peace-pulce/frontend
+   cd peace-pulse/frontend
    ```
 6. Install NPM packages
    ```sh
@@ -158,7 +158,7 @@ _Below is an example of how you can instruct your audience on installing and set
 7. In `config.js` change the api to much your ip adress, open cmd type ipconfig
 8. If u wanna use viseo call, open a new terminal
    ```sh
-   cd peace-pulce/server
+   cd peace-pulse/server
    ```
 9. Install NPM packages
    ```sh
