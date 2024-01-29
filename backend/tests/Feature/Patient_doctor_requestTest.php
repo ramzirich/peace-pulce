@@ -180,4 +180,66 @@ class Patient_doctor_requestTest extends TestCase
 
         $response->assertStatus(403);
     }
+
+
+    // public function test_patient_delete_doctors_request(): void
+    // {
+    //     Role::factory() -> create(["name" => 'patient']);
+    //     Role::factory() -> create(["name" => 'doctor']);
+    //     $user = User::factory() -> create([
+    //         'first_name' => 'ramzi',
+    //         'last_name' => 'rich',
+    //         'email' => 'ramzi@gmail.com',
+    //         'password' => 'P@ssword12',
+    //         'role_id' => 1
+    //     ]);
+    //     User::factory() -> create([
+    //         'first_name' => 'elsa',
+    //         'last_name' => 'frozen',
+    //         'email' => 'elsa@gmail.com',
+    //         'password' => 'P@ssword12',
+    //         'role_id' => 2
+    //     ]);
+    //     Doctors::factory() -> create([
+    //         'about' => 'hi',
+    //         'hourly_rate' => 10,
+    //         'degree' => 'hi',
+    //         'specialization' => 'hi',
+    //         'user_id' =>2
+    //     ]);
+    //     Patient_doctor_request::factory()-> create([
+    //         'patient_id'=>1,
+    //         'doctor_id' =>1,
+    //         'request' =>'requested'
+    //     ]);
+
+    //     $response = $this-> actingAs($user) ->post('/api/doctor_request/delete/1');
+
+    //     $response->assertStatus(200);
+    // }
+
+    // public function test_get_single_doctor(): void
+    // {
+    //     Role::factory() -> create(["name" => 'patient']);
+    //     Role::factory() -> create(["name" => 'doctor']);
+
+    //     User::factory() -> create([
+    //         'first_name' => 'elsa',
+    //         'last_name' => 'frozen',
+    //         'email' => 'elsa@gmail.com',
+    //         'password' => 'P@ssword12',
+    //         'role_id' => 2
+    //     ]);
+    //     Doctors::factory() -> create([
+    //         'about' => 'hi',
+    //         'hourly_rate' => 10,
+    //         'degree' => 'hi',
+    //         'specialization' => 'hi',
+    //         'user_id' =>1
+    //     ]);
+        
+    //     $response = $this->get('/doctor/1');
+
+    //     $response->assertStatus(200);
+    // }
 }
