@@ -70,9 +70,9 @@
 | ![List of patients ](./readme/screenshots/patientlistv.jpeg) | ![Requests](./readme/screenshots/patientrequestv.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | 
 
 ### Demo
-| List Of Problems | Register screen | Home | Home |
+| Home| List Of Problems | Psychiatrist Profile | Songs |
 | ---| ---| ---| ---|
-| ![List Of Problems](./readme/demo/222.gif) | ![Register](./readme/screenshots/register.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | ![Home](./readme/screenshots/home2.jpeg) |
+| ![Home](./readme/demo/home.gif) | ![Register](./readme/demo/222.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Home](./readme/demo/song.gif) |
 
 <br><br>
 
