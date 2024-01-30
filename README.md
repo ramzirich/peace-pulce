@@ -85,7 +85,7 @@
 | ---| ---| ---|
 | ![Songs](./readme/demo/song.gif) | ![ Videos](./readme/demo/video.gif) | ![List Of Problems](./readme/demo/222.gif) |
 
-<video src='./readme/demo/nomusic.mp4' width="300" height="380"></video>
+<video source='./readme/demo/nomusic.mp4' width="300" height="380"></video>
 
 <br><br>
 
