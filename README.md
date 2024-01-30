@@ -78,9 +78,12 @@
 | ![List of patients ](./readme/screenshots/patientlistv.jpeg) | ![Requests](./readme/screenshots/patientrequestv.jpeg) | ![Home](./readme/screenshots/home1.jpeg) | 
 
 ### Demo
-| Home| List Of Problems | Psychiatrist Profile | Songs |
+| Home| List Of Psychiatrist | Psychiatrist Profile | Volunteer Profile |
 | ---| ---| ---| ---|
-| ![Home](./readme/demo/home.gif) | ![ List Of Problems](./readme/demo/222.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Songs](./readme/demo/song.gif) |
+| ![Home](./readme/demo/home.gif) | ![ List Of Problems](./readme/demo/ListPsychiatrist.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Songs](./readme/demo/volunteerprofile.gif) |
+| Songs | Videos | List Of Problems
+| ---| ---| ---| ---|
+| ![Home](./readme/demo/song.gif) | ![ List Of Problems](./readme/demo/video.gif) | ![Psychiatrist Profile](./readme/demo/222.gif) |
 
 <br><br>
 

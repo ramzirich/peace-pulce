@@ -44,7 +44,7 @@ export default Login = ({navigation}) =>{
                     setWrongCredentials(false);
                 }, 3000);
             }else{
-                console.error("Coudn't login: ", error.response?.data || error.message)
+                // console.error("Coudn't login: ", error.response?.data || error.message)
             }
         }
     }

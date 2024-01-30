@@ -46,7 +46,7 @@ export default VolunteerUser = ({route}) =>{
                     setRequest(requestResponse.data.request)
                 }
             }catch(error){
-                console.error('Error fetching user data:', error.message);
+                // console.error('Error fetching user data:', error.message);
             }
         }
         fetchRequest();

@@ -85,7 +85,7 @@ export default CreateProblem = () =>{
             if (inputs.ai_solution === '') {
                 delete inputsWithoutSolution.ai_solution;
             }
-            console.log(inputsWithoutSolution)
+           
             const authToken = await AsyncStorage.getItem('authToken');
             const response = await axios.post(`${config.apiUrl}/problem/create`, inputsWithoutSolution,{
                 headers:{
