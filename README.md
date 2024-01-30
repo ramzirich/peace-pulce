@@ -86,8 +86,8 @@
 | ![Songs](./readme/demo/song.gif) | ![Videos](./readme/demo/video.gif) | ![List Of Problems](./readme/demo/222.gif) |
 
 
+https://github.com/ramzirich/peace-pulse/assets/58547788/b1b9ccc8-3f0f-4db3-961d-a68704f8cd99
 
-https://github.com/ramzirich/peace-pulse/assets/58547788/138c818d-8ace-4ee4-bb42-852183c758e1
 
 
 <br><br>
