@@ -85,7 +85,9 @@
 | ---| ---| ---|
 | ![Songs](./readme/demo/song.gif) | ![Videos](./readme/demo/video.gif) | ![List Of Problems](./readme/demo/222.gif) |
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UHyllAXTRFE?si=NYQMSEDr6gEls5iZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UHyllAXTRFE?si=NYQMSEDr6gEls5iZ" frameborder="0" allowfullscreen></iframe>
+
 
 <br><br>
 
