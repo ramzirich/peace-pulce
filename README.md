@@ -80,7 +80,7 @@
 ### Demo
 | Home| List Of Psychiatrist | Psychiatrist Profile | Volunteer Profile |
 | ---| ---| ---| ---|
-| ![Home](./readme/demo/home.gif) | ![ List Of Problems](./readme/demo/ListPsychiatrist.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Songs](./readme/demo/volunteerprofile.gif) |
+| ![Home](./readme/demo/home.gif) | ![ List Of Problems](./readme/demo/ListOfPsychiatrist.gif) | ![Psychiatrist Profile](./readme/demo/psyinfo.gif) | ![Songs](./readme/demo/volunteerprofile.gif) |
 | Songs | Videos | List Of Problems |
 | ---| ---| ---|
 | ![Songs](./readme/demo/song.gif) | ![ Videos](./readme/demo/video.gif) | ![List Of Problems](./readme/demo/222.gif) |
